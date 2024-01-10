@@ -22,8 +22,12 @@ public class Member {
 	private String email;
 	@NonNull
 	private String pw;
-	private String tel;
+	private String phone;
 	private String address;
-	
+	private String name;
+	private String birth;
+	//private String gender;
+	private String email_domain;
+	private String gender;
 	
 }

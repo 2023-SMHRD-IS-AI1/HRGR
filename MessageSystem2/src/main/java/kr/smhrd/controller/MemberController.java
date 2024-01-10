@@ -35,21 +35,23 @@ public class MemberController {
 	// @GetMapping : get방식 요청만 받을 수 있음
 	// @PostMapping : post방식 요청만 받을 수 있음
 
-	@GetMapping("/")
-	public String main() {
-		return "Main";
-	}
 	
 	@RequestMapping("/goMain")
 	public String goMain() {
 		return "Main";
 	}
 	
+	@GetMapping("/")
+	public String main() {
+		return "join_01";
+	}
+
 	// 회원가입 /memberInsert
 	@RequestMapping("/memberInsert")
 	public String memberInsert(Member member, Model model) {
 		// DB에 회원정보 삽입하기
 		System.out.println(member.toString());
+		
 		memberMapper.memberInsert(member); // 인터페이스는 추상메소드만 존재
 		model.addAttribute("email", member.getEmail());
 		return "JoinSuccess";

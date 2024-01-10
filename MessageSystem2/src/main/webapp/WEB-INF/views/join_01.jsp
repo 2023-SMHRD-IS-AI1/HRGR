@@ -17,11 +17,11 @@
             <label for="email">이메일:</label>
             <input type="text" name="email" id="email" placeholder="이메일을 입력하세요">
             <select name="email_domain" id="email_domain" onchange="updateEmail()">
-                <option value="naver.com">naver.com</option>
-                <option value="gmail.com">gmail.com</option>
-                <option value="daum.net">daum.net</option>
-                <option value="hanmail.net">hanmail.net</option>
-                <option value="nate.com">nate.com</option>
+                <option value="naver.com">@naver.com</option>
+                <option value="gmail.com">@gmail.com</option>
+                <option value="daum.net">@daum.net</option>
+                <option value="hanmail.net">@hanmail.net</option>
+                <option value="nate.com">@nate.com</option>
                 <option value="custom">직접입력</option>
             </select>
             <input type="text" name="custom_email" id="custom_email" style="display: none;" placeholder="직접입력">
@@ -31,7 +31,7 @@
         <li><span id="resultCheck"></span></li>
 
         <li><input type="password" placeholder="PW를 입력하세요" name="pw"></li>
-
+		<li><input type="password" placeholder="비밀번호를 한번 더 입력하세요" name="pwCheck"></li>
         <li><input type="text" placeholder="집주소를 입력하세요" name="address"></li>
         <li><input type="text" placeholder="이름을 입력하세요" name="name"></li>
         <li><input type="text" placeholder="휴대폰 번호를 입력하세요(숫자만)" name="phone"></li>

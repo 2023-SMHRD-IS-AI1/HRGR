@@ -31,10 +31,6 @@
         <li><span id="resultCheck"></span></li>
 
         <li><input type="password" placeholder="PW를 입력하세요" name="pw"></li>
-<<<<<<< HEAD
-=======
-		<li><input type="password" placeholder="비밀번호를 한번 더 입력하세요" name="pwCheck"></li>
->>>>>>> branch 'master' of https://github.com/2023-SMHRD-IS-AI1/HRGR.git
         <li><input type="text" placeholder="집주소를 입력하세요" name="address"></li>
         <li><input type="text" placeholder="이름을 입력하세요" name="name"></li>
         <li><input type="text" placeholder="휴대폰 번호를 입력하세요(숫자만)" name="phone"></li>

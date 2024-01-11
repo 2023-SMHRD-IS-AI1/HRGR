@@ -13,6 +13,15 @@
         <h5>회원가입</h5>
     </li>
     <form action="memberInsert" onsubmit="return validateForm()">
+        <li><input type="text" placeholder="숫자만 입력해주세요" name="phone" id="phone"></li>
+        
+        <li><input type="password" placeholder="PW를 입력하세요" id="pw" name="pw"></li>
+        <li><input type="password" placeholder="PW확인" id="pwCheck" name="pwCheck"><h4 id="passwordMessage"></h4></li>
+        
+        <li><input type="button" value="비밀번호 확인" onclick="checkPasswordMatch()"></li>
+        
+        <li><input type="text" placeholder="이름을 입력하세요" name="name" id="name"></li>
+       
         <li>
             <label for="email">이메일:</label>
             <input type="text" name="email" id="email" placeholder="이메일을 입력하세요">
@@ -26,31 +35,24 @@
             </select>
             <input type="text" name="custom_email" id="custom_email" style="display: none;" placeholder="직접입력">
         </li>
-        <li><input type="password" placeholder="PW를 입력하세요" id="pw" name="pw"></li>
-        <li><input type="password" placeholder="PW확인" id="pwCheck" name="pwCheck"></li>
-        <li id="passwordMessage"></li>
-        <li><input type="button" value="비밀번호 확인" onclick="checkPasswordMatch()"></li>
-
-
-        <li><input type="text" placeholder="집주소를 입력하세요" name="address" id="address"></li>
-        <li><input type="text" placeholder="이름을 입력하세요" name="name" id="name"></li>
-        <li><input type="text" placeholder="휴대폰 번호를 입력하세요(숫자만)" name="phone" id="phone"></li>
-
-        <li><input type="button" value="중복체크" onclick="checkE()"></li>
-        <li><span id="resultCheck"></span></li>
-
-        <li><input type="password" placeholder="PW를 입력하세요" name="pw"></li>
-        <li><input type="text" placeholder="집주소를 입력하세요" name="address"></li>
-        <li><input type="text" placeholder="이름을 입력하세요" name="name"></li>
-        <li><input type="text" placeholder="휴대폰 번호를 입력하세요(숫자만)" name="phone"></li>
-
-        <li><input type="date" name="birth" id="birth"></li>
+        
         <li>남<input type="radio" name="gender" value="male"></li>
         <li>여<input type="radio" name="gender" value="female"></li>
+        
+        <li><input type="text" placeholder="집주소를 입력하세요" name="address" id="address"></li>
+        
+        <li><input type="date" name="birth" id="birth"></li>
+        
         <li><input type="submit" id="joinUsButton" value="JoinUs" class="button fit" disabled></li>
     </form>
 </ul>
 <script>
+function updatePhone() {
+    // 전화번호 select 태그에서 선택한 값을 가져와서 phone1에 설정
+    var phone1Value = document.getElementById("phone1").value;
+    document.getElementById("phone1").value = phone1Value;
+}
+	
     function updateEmail() {
         var emailDomain = document.getElementById("email_domain");
         var emailInput = document.getElementById("email");

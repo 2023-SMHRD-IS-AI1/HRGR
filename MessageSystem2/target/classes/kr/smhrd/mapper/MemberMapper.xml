@@ -9,7 +9,8 @@
 	 
 	<!-- id값을 메소드 이름과 동일하게 하면 알아서 찾음 -->
 	<insert id="memberInsert" parameterType="kr.smhrd.entity.Member">
-		insert into member values(CONCAT(#{email}, '@', #{email_domain}), #{pw}, #{phone}, #{address},#{name},#{birth},#{gender})
+		<!-- insert into member values(CONCAT(#{email}, '@', #{email_domain}), #{pw}, #{phone}, #{address},#{name},#{birth},#{gender}) -->
+		insert into tb_cust values ('test54321', SHA2(#{pw},224),#{name}, 'cust_nick 501',CONCAT(#{email}, '@', #{email_domain}), #{phone}, #{birth}, #{gender}, #{address}, NOW(), 'N');
 	</insert>  
 
 	<select id="memberSelect" parameterType="kr.smhrd.entity.Member" resultType="kr.smhrd.entity.Member">

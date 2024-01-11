@@ -16,6 +16,7 @@ import lombok.ToString;
 @ToString
 public class Board {
 
+	
 	private int idx;
 	@NonNull private String title;
 	@NonNull private String writer;

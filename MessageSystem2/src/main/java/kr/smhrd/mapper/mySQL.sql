@@ -4,8 +4,11 @@ drop table member;
 create table member(
 	email varchar(100) not null,
 	pw varchar(100) not null,
-	tel varchar(100) not null,
+	phone varchar(100) not null,
 	address varchar(100) not null,
+	name varchar(100) not null,
+	birth varchar(100) not null,
+	gender varchar(100) not null,
 	primary key(email)
 );
 

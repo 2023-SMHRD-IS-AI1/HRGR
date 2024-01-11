@@ -31,9 +31,19 @@
         <li id="passwordMessage"></li>
         <li><input type="button" value="비밀번호 확인" onclick="checkPasswordMatch()"></li>
 
+
         <li><input type="text" placeholder="집주소를 입력하세요" name="address" id="address"></li>
         <li><input type="text" placeholder="이름을 입력하세요" name="name" id="name"></li>
         <li><input type="text" placeholder="휴대폰 번호를 입력하세요(숫자만)" name="phone" id="phone"></li>
+
+        <li><input type="button" value="중복체크" onclick="checkE()"></li>
+        <li><span id="resultCheck"></span></li>
+
+        <li><input type="password" placeholder="PW를 입력하세요" name="pw"></li>
+        <li><input type="text" placeholder="집주소를 입력하세요" name="address"></li>
+        <li><input type="text" placeholder="이름을 입력하세요" name="name"></li>
+        <li><input type="text" placeholder="휴대폰 번호를 입력하세요(숫자만)" name="phone"></li>
+
         <li><input type="date" name="birth" id="birth"></li>
         <li>남<input type="radio" name="gender" value="male"></li>
         <li>여<input type="radio" name="gender" value="female"></li>

@@ -9,14 +9,14 @@
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
     <script>
         var IMP = window.IMP; 
-        IMP.init("내 가맹점 식별코드"); 
+        IMP.init("store-e3fd8c94-f70d-4f4f-b9e5-4eb1fbe2df6c"); 
         
         function requestPay() {
             IMP.request_pay({
-                pg: "{kakaopay}.{store-e3fd8c94-f70d-4f4f-b9e5-4eb1fbe2df6c}",
+                pg: "{html5_inicis}.{store-e3fd8c94-f70d-4f4f-b9e5-4eb1fbe2df6c}",
                 pay_method: "card",
                 merchant_uid: "ORD20180131-0000011",   // 주문번호
-                name: "",
+                name: "싱싱농장 토마토",
                 amount: 64900,                         // 숫자 타입
                 buyer_email: "gildong@gmail.com",
                 buyer_name: "홍길동",

@@ -19,17 +19,17 @@ import lombok.ToString;
 public class Member {
 
 	@NonNull
-	private String email;
+	private String cust_email;
 	@NonNull
-	private String pw;
-	private String phone;
-	private String address;
-	private String name;
-	private String birth;
+	private String cust_pw;
+	private String cust_phone;
+	private String cust_addr;
+	private String cust_name;
+	private String cust_birthdate;
 	
 	private String email_domain;
-	private String gender;
-	private String nick;
+	private String cust_gender;
+	private String cust_nick;
 	
 	
 	private String company_name;

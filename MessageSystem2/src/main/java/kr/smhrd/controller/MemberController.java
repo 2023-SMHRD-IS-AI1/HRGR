@@ -55,7 +55,7 @@ public class MemberController {
 		System.out.println(member.toString());
 		
 		memberMapper.memberInsert(member); // 인터페이스는 추상메소드만 존재
-		model.addAttribute("email", member.getEmail());
+		model.addAttribute("email", member.getCust_email());
 		return "login";
 	}
 	@PostMapping("/memberlogin")
@@ -71,7 +71,7 @@ public class MemberController {
 	            // 로그인 성공
 	            System.out.println("로그인 성공");
 	            session.setAttribute("loginMember", loginMember);
-	            return "Main";
+	            return "prodOrder_01";
 	        } else {
 	            // 로그인 실패
 	            System.out.println("로그인 실패");
@@ -88,7 +88,7 @@ public class MemberController {
 	@PostMapping("/memberSelect1")
 	public String memberSelect1(Member member, HttpSession session) { // email, pw
 		Member loginMember = memberMapper.memberSelect(member);
-		List<Message> msgList = messageMapper.messageList(member.getEmail());
+		List<Message> msgList = messageMapper.messageList(member.getCust_email());
 		System.out.println("memCon" + msgList.size());
 		session.setAttribute("loginMember", loginMember);
 		session.setAttribute("msgList", msgList);

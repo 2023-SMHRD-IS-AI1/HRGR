@@ -17,10 +17,10 @@ public class RestController {
 	private MemberMapper memberMapper;
 	
 	// Email 중복체크
-	@RequestMapping("/emailCheck")
-	public int emailCheck(@RequestParam("inputE") String inputE) {
+	@RequestMapping("/phoneCheck")
+	public int phoneCheck(@RequestParam("cust_phone") String cust_phone) {
 
-		Member member = memberMapper.emailCheck(inputE);
+		Member member = memberMapper.phoneCheck(cust_phone);
 
 		if (member != null) { // 사용 불가능한 이메일
 			return 0;

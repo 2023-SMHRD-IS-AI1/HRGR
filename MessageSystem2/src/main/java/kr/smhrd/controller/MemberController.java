@@ -43,8 +43,7 @@ public class MemberController {
 	
 	@GetMapping("/")
 	public String main() {
-
-		return "login";
+		return "test";
 
 	}
 	
@@ -71,7 +70,7 @@ public class MemberController {
 	            // 로그인 성공
 	            System.out.println("로그인 성공");
 	            session.setAttribute("loginMember", loginMember);
-	            return "prodOrder_01";
+	            return "test";
 	        } else {
 	            // 로그인 실패
 	            System.out.println("로그인 실패");
@@ -84,6 +83,7 @@ public class MemberController {
 	        return "error-page"; // 적절한 에러 페이지로 리다이렉트 또는 포워딩
 	    }
 	}
+	
 	// 로그인 /memberSelect
 	@PostMapping("/memberSelect1")
 	public String memberSelect1(Member member, HttpSession session) { // email, pw
@@ -96,8 +96,8 @@ public class MemberController {
 	}
 
 	// 로그아웃 /logoutMember
-	@RequestMapping("/logoutMember")
-	public String logoutMember(HttpSession session) {
+	@RequestMapping("/goLogout")
+	public String goLogout(HttpSession session) {
 		session.removeAttribute("loginMember");
 		return "redirect:/";
 	}
@@ -150,5 +150,18 @@ public class MemberController {
 		
 		return "join_01";
 	}
+	
+	@RequestMapping("/goLogin")
+	public String goLogin() {
+		return "login";
+	}
+	
+	@RequestMapping("/goJoin")
+	public String goJoin() {
+		return "join_01";
+	}
+	
+	
+	
 
 }

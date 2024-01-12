@@ -14,6 +14,8 @@
     </li>
     <form action="memberInsert" onsubmit="return Check()">
         <li><input type="text" placeholder="숫자만 입력해주세요" name="cust_phone" id="cust_phone"></li>
+        <li><input type="button" onclick="checkE()" value="중복체크"> </li>
+        <li><span id="resultCheck"></span></li>
         
         <li><input type="password" placeholder="PW를 입력하세요" id="cust_pw" name="cust_pw"></li>
         <li><input type="password" placeholder="PW확인" id="pwCheck" name="pwCheck"><h4 id="passwordMessage"></h4></li>
@@ -120,5 +122,49 @@
         return true;
     }
 </script>
+<script src="resources/assets/js/jquery.min.js"></script>
+			<script src="resources/assets/js/jquery.scrolly.min.js"></script>
+			<script src="resources/assets/js/jquery.scrollex.min.js"></script>
+			<script src="resources/assets/js/skel.min.js"></script>
+			<script src="resources/assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="resources/assets/js/main.js"></script>
+
+			<script type="text/javascript">
+			
+				function checkE(){ /* $ : jQuery */
+					
+					var inputE = $('#cust_phone').val()
+					console.log(inputE)
+					
+					 $.ajax({ // json 형식-> {key : value, key : value}
+						// 어디로 요청할 것인지(요청 url)
+						url : 'phoneCheck',
+						// 요청 데이터
+						data : { 'cust_phone' : inputE },
+						// 요청방식
+						type : 'get',
+						// 요청-응답 성공
+						success : function(data){
+							// 불가능 : 0, 가능 : 1
+							// alert(data)
+							if(data == 0){
+								$('#resultCheck').text('사용 불가능한 핸드폰번호')
+							}else{
+								$('#resultCheck').text('사용 가능한 핸드폰번호')
+							}
+						},
+						// 요청-응답 실패
+						error : function(){
+							alert("통신실패")
+						}
+					}) 
+					
+					
+					
+				}
+			
+			
+			</script>
 </body>
 </html>

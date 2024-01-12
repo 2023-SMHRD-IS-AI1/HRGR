@@ -43,7 +43,7 @@ public class MemberController {
 	
 	@GetMapping("/")
 	public String main() {
-		return "login";
+		return "join_01";
 
 	}
 	

@@ -19,24 +19,23 @@ import com.siot.IamportRestClient.response.Payment;
 public class payController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		@Controller class PaymentController {
+	@Controller
+	public class PayController {
 
-		    private final IamportClient iamportClient;
+	    private final IamportClient iamportClient;
 
-		    public PaymentController() {
-		        this.iamportClient = new IamportClient("2634851125785437",
-		                "yyrpEC1rxUmK4RDcodwdZj44ZWfHZ1rfWnxSrbndkguP7lPyMeCBLGFq3d6j4wSiBE2xKU4gcHTTuDpB");
-		    }
+	    public PayController() {
+	        this.iamportClient = new IamportClient("2634851125785437",
+	                "yyrpEC1rxUmK4RDcodwdZj44ZWfHZ1rfWnxSrbndkguP7lPyMeCBLGFq3d6j4wSiBE2xKU4gcHTTuDpB");
+	    }
 
-		    @ResponseBody
-		    @RequestMapping("/verify/{imp_uid}")
-		    public IamportResponse<Payment> paymentByImpUid(@PathVariable("imp_uid") String imp_uid)
-		            throws IamportResponseException, IOException {
-		        return iamportClient.paymentByImpUid(imp_uid);
-		    }
+	    @ResponseBody
+	    @RequestMapping("/verify/{imp_uid}")
+	    public IamportResponse<Payment> paymentByImpUid(@PathVariable("imp_uid") String imp_uid)
+	            throws IamportResponseException, IOException {
+	        return iamportClient.paymentByImpUid(imp_uid);
+	    }
 
-		}
 	}
 
 }

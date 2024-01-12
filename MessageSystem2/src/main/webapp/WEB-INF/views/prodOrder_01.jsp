@@ -9,7 +9,8 @@
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
     <script>
         var IMP = window.IMP; 
-        IMP.init("store-e3fd8c94-f70d-4f4f-b9e5-4eb1fbe2df6c"); 
+        IMP.init("store-e3fd8c94-f70d-4f4f
+        		-b9e5-4eb1fbe2df6c"); 
         
         function requestPay() {
             IMP.request_pay({

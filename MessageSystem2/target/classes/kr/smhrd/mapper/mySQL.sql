@@ -113,3 +113,15 @@ ALTER TABLE tb_prod COMMENT '상품';
 ALTER TABLE tb_prod
     ADD CONSTRAINT FK_tb_prod_cust_id_tb_cust_cust_id FOREIGN KEY (cust_id)
         REFERENCES tb_cust (cust_id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+        
+delete from tb_cust;
+
+-- cust_id 번호초기화
+ALTER TABLE tb_cust AUTO_INCREMENT = 1;
+
+-- tb_cust 초기화
+DELETE FROM tb_cust;
+
+-- tb_cust 조회
+select * from tb_cust ;

@@ -16,8 +16,8 @@ public interface MemberMapper { // 틀, SqlSessionFactoryBean이 MemberMapper를
 
 	public Member memberSelect(Member member);
 
-	@Select("select * from member where email=#{email}")
-	public Member emailCheck(String inputE);
+	@Select("select * from tb_cust where cust_phone=#{cust_phone}")
+	public Member phoneCheck(String cust_phone);
 
 	public int updateMember(Member member);
 

@@ -41,7 +41,7 @@ public class MessageController {
 		System.out.println("num : " + num);
 		messageMapper.deleteMessage(num);
 		Member member = (Member)session.getAttribute("loginMember");
-		List<Message> msgList = messageMapper.messageList(member.getEmail());
+		List<Message> msgList = messageMapper.messageList(member.getCust_email());
 		session.setAttribute("msgList", msgList);
 		return "redirect:/";
 	}
@@ -50,8 +50,8 @@ public class MessageController {
 	@RequestMapping("/DeleteMessageAll")
 	public String DeleteMessageAll(HttpSession session) {
 		Member member = (Member)session.getAttribute("loginMember"); 
-		messageMapper.deleteMessageAll(member.getEmail());
-		List<Message> msgList = messageMapper.messageList(member.getEmail());
+		messageMapper.deleteMessageAll(member.getCust_email());
+		List<Message> msgList = messageMapper.messageList(member.getCust_email());
 		session.setAttribute("msgList", msgList);
 		return "redirect:/";
 	}

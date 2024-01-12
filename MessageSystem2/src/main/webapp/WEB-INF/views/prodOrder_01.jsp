@@ -12,29 +12,27 @@
         IMP.init("store-e3fd8c94-f70d-4f4f-b9e5-4eb1fbe2df6c"); 
         
         function requestPay() {
-            IMP.request_pay({
-                pg: "{html5_inicis}.{store-e3fd8c94-f70d-4f4f-b9e5-4eb1fbe2df6c}",
-                pay_method: "card",
-                merchant_uid: "ORD20180131-0000011",   // 주문번호
-                name: "싱싱농장 토마토",
-                amount: 64900,                         // 숫자 타입
-                buyer_email: "gildong@gmail.com",
-                buyer_name: "홍길동",
-                buyer_tel: "010-4242-4242",
-                buyer_addr: "서울특별시 강남구 신사동",
-                buyer_postcode: "01181"
-            }, function (rsp) { // callback
-                $.ajax({
-                   type: 'POST',
-                   url: '/verify/' + rsp.imp_uid
-                }).done(function(data) {
-                    if(rsp.paid_amount === data.response.amount){
-                        alert("결제 성공");
-                    } else {
-                        alert("결제 실패");
-                    }
-                });
-            });
+        	IMP.request_pay({
+        	    pg : "{kakaopay}.{상점ID}",
+        	    pay_method : 'trans',
+        	    merchant_uid: "order_no_0001", //상점에서 생성한 고유 주문번호
+        	    name : '주문명:결제테스트',
+        	    amount : 14000,
+        	    buyer_email : 'iamport@siot.do',
+        	    buyer_name : '구매자이름',
+        	    buyer_tel : '010-1234-5678',
+        	    buyer_addr : '서울특별시 강남구 삼성동',
+        	    buyer_postcode : '123-456',
+        	    m_redirect_url : 'Main' // 예: https://www.my-service.com/payments/complete
+        	}, function(rsp) {
+        	    if ( !rsp.success ) {
+        	    	//결제 시작 페이지로 리디렉션되기 전에 오류가 난 경우
+        	        var msg = '오류로 인하여 결제가 시작되지 못하였습니다.';
+        	        msg += '에러내용 : ' + rsp.error_msg;
+
+        	        alert(msg);
+        	    }
+        	});
         }
     </script>
     <meta charset="UTF-8">

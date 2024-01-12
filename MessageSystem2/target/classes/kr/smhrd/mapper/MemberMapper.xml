@@ -27,7 +27,7 @@
 		delete from member where email=#{email}
 	</delete>
 	<select id="memberlogin" parameterType="kr.smhrd.entity.Member" resultType="kr.smhrd.entity.Member">
-    select * from tb_cust where cust_phone=#{phone} and  cust_pw=#{pw} 
+    select * from tb_cust where cust_phone=#{phone} and cust_pw=#{pw} 
 	</select>
 
 

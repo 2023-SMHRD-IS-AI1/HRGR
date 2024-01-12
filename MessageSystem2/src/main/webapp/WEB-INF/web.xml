@@ -43,10 +43,21 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>payController</display-name>
+		<servlet-name>payController</servlet-name>
+		<servlet-class>kr.smhrd.controller.payController</servlet-class>
+	</servlet>
 		
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>payController</servlet-name>
+		<url-pattern>/payController</url-pattern>
 	</servlet-mapping>
 
 </web-app>

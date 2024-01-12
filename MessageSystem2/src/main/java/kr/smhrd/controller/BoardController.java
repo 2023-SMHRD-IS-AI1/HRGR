@@ -23,6 +23,13 @@ public class BoardController {
 	@Autowired
 	private BoardMapper boardMapper;
 	
+	// Test용
+	@RequestMapping("/test")
+	public void test() {
+		
+	}
+	
+	
 	// 관리자가 게시글 삭제
 	@RequestMapping("/boardDelete")
 	public String boardDelete(int idx) {

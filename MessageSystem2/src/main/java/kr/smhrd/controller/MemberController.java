@@ -43,7 +43,7 @@ public class MemberController {
 	
 	@GetMapping("/")
 	public String main() {
-		return "join_01";
+		return "login";
 	}
 
 	// 회원가입 /memberInsert
@@ -54,12 +54,37 @@ public class MemberController {
 		
 		memberMapper.memberInsert(member); // 인터페이스는 추상메소드만 존재
 		model.addAttribute("email", member.getEmail());
-		return "JoinSuccess";
+		return "login";
 	}
-
+	@PostMapping("/memberlogin")
+	public String memberlogin(Member member, HttpSession session) {
+	    try {
+	        // 로깅 문 추가
+	        System.out.println("회원 로그인 요청: " + member.toString());
+	        
+	        // 데이터베이스에서 해당 회원 정보 가져오기
+	        Member loginMember = memberMapper.memberlogin(member);
+	        
+	        if (loginMember != null) {
+	            // 로그인 성공
+	            System.out.println("로그인 성공");
+	            session.setAttribute("loginMember", loginMember);
+	            return "Main";
+	        } else {
+	            // 로그인 실패
+	            System.out.println("로그인 실패");
+	            return "login";
+	        }
+	    } catch (Exception e) {
+	        // 예외 처리
+	        System.err.println("로그인 중 예외 발생: " + e.getMessage());
+	        e.printStackTrace(); // 예외 정보를 콘솔에 출력
+	        return "error-page"; // 적절한 에러 페이지로 리다이렉트 또는 포워딩
+	    }
+	}
 	// 로그인 /memberSelect
-	@PostMapping("/memberSelect")
-	public String memberSelect(Member member, HttpSession session) { // email, pw
+	@PostMapping("/memberSelect1")
+	public String memberSelect1(Member member, HttpSession session) { // email, pw
 		Member loginMember = memberMapper.memberSelect(member);
 		List<Message> msgList = messageMapper.messageList(member.getEmail());
 		System.out.println("memCon" + msgList.size());

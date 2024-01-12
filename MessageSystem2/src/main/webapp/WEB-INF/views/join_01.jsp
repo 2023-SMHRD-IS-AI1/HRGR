@@ -19,12 +19,13 @@
         <li><input type="password" placeholder="PW확인" id="pwCheck" name="pwCheck"><h4 id="passwordMessage"></h4></li>
         
         <li><input type="button" value="비밀번호 확인" onclick="checkPasswordMatch()"></li>
-        
+        <li><input type="text" id="nick" name= "nick" placeholder="닉네임을 입력해주세요"></li>
         <li><input type="text" placeholder="이름을 입력하세요" name="name" id="name"></li>
        
         <li>
             <label for="email">이메일:</label>
             <input type="text" name="email" id="email" placeholder="이메일을 입력하세요">
+            <input type="text" name="custom_email" id="custom_email" style="display: none;" placeholder="직접입력">
             <select name="email_domain" id="email_domain" onchange="updateEmail()">
                 <option value="naver.com">naver.com</option>
                 <option value="gmail.com">gmail.com</option>
@@ -33,11 +34,10 @@
                 <option value="nate.com">nate.com</option>
                 <option value="custom">직접입력</option>
             </select>
-            <input type="text" name="custom_email" id="custom_email" style="display: none;" placeholder="직접입력">
         </li>
         
-        <li>남<input type="radio" name="gender" value="male"></li>
-        <li>여<input type="radio" name="gender" value="female"></li>
+        <li>남<input type="radio" name="gender" value="M"></li>
+        <li>여<input type="radio" name="gender" value="F"></li>
         
         <li><input type="text" placeholder="집주소를 입력하세요" name="address" id="address"></li>
         
@@ -63,7 +63,7 @@ function updatePhone() {
             emailInput.value = ""; // 사용자가 직접 입력하는 경우, 이메일 입력란 비우기
         } else {
             customEmailInput.style.display = "none";
-            emailInput.value = emailDomain.value;
+            
         }
     }
 
@@ -93,7 +93,7 @@ function updatePhone() {
 
     function checkAllFieldsFilled() {
         // 필수 입력 필드 배열
-        var requiredFields = ['email', 'pw', 'pwCheck', 'address', 'name', 'phone', 'birth'];
+        var requiredFields = ['email', 'pw', 'pwCheck', 'address', 'name', 'phone', 'birth','gender'];
 
         // 배열을 순회하면서 각 필드가 비어있는지 확인
         for (var i = 0; i < requiredFields.length; i++) {

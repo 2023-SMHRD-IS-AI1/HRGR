@@ -26,8 +26,9 @@ public class Member {
 	private String address;
 	private String name;
 	private String birth;
-	//private String gender;
+	
 	private String email_domain;
 	private String gender;
+	private String nick;
 	
 }

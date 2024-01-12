@@ -8,6 +8,12 @@
 	<name>MessageSystem</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
+	<repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
 	<properties>
 		<java-version>1.6</java-version>
 		<org.springframework-version>5.0.2.RELEASE</org.springframework-version>
@@ -178,7 +184,12 @@
 			<artifactId>cos</artifactId>
 			<version>2020.4</version>
 		</dependency>
-
+		<!-- import 결제용 dependency -->
+		<dependency>
+		    <groupId>com.github.iamport</groupId>
+			<artifactId>iamport-rest-client-java</artifactId>
+		    <version>0.2.14</version>
+	    </dependency>
 
 	</dependencies>
 	<build>

@@ -43,8 +43,7 @@ public class MemberController {
 	
 	@GetMapping("/")
 	public String main() {
-
-		return "Main";
+		return "login";
 
 	}
 	
@@ -71,7 +70,7 @@ public class MemberController {
 	            // 로그인 성공
 	            System.out.println("로그인 성공");
 	            session.setAttribute("loginMember", loginMember);
-	            return "join_01";
+	            return "prodOrder_01";
 	        } else {
 	            // 로그인 실패
 	            System.out.println("로그인 실패");

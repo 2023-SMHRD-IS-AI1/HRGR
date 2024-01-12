@@ -15,6 +15,7 @@
         핸드폰번호 : <input type="text" name="cust_phone" id="cust_phone" ><br>
         비밀번호 :  <input type="password" name="cust_pw" id="cust_pw" >
         <input type="submit" value="로그인">
+        <a href="goJoin">회원가입</a>
     </form>
     <script>
     

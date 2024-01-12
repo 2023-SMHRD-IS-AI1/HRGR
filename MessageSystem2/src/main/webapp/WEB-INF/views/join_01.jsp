@@ -12,19 +12,19 @@
     <li>
         <h5>회원가입</h5>
     </li>
-    <form action="memberInsert" onsubmit="return validateForm()">
-        <li><input type="text" placeholder="숫자만 입력해주세요" name="phone" id="phone"></li>
+    <form action="memberInsert" onsubmit="return Check()">
+        <li><input type="text" placeholder="숫자만 입력해주세요" name="cust_phone" id="cust_phone"></li>
         
-        <li><input type="password" placeholder="PW를 입력하세요" id="pw" name="pw"></li>
+        <li><input type="password" placeholder="PW를 입력하세요" id="cust_pw" name="cust_pw"></li>
         <li><input type="password" placeholder="PW확인" id="pwCheck" name="pwCheck"><h4 id="passwordMessage"></h4></li>
         
         <li><input type="button" value="비밀번호 확인" onclick="checkPasswordMatch()"></li>
-        <li><input type="text" id="nick" name= "nick" placeholder="닉네임을 입력해주세요"></li>
-        <li><input type="text" placeholder="이름을 입력하세요" name="name" id="name"></li>
+        <li><input type="text" id="cust_nick" name= "cust_nick" placeholder="닉네임을 입력해주세요"></li>
+        <li><input type="text" placeholder="이름을 입력하세요" name="cust_name" id="cust_name"></li>
        
         <li>
             <label for="email">이메일:</label>
-            <input type="text" name="email" id="email" placeholder="이메일을 입력하세요">
+            <input type="text" name="cust_email" id="cust_email" placeholder="이메일을 입력하세요">
             <input type="text" name="custom_email" id="custom_email" style="display: none;" placeholder="직접입력">
             <select name="email_domain" id="email_domain" onchange="updateEmail()">
                 <option value="naver.com">naver.com</option>
@@ -36,26 +36,22 @@
             </select>
         </li>
         
-        <li>남<input type="radio" name="gender" value="M"></li>
-        <li>여<input type="radio" name="gender" value="F"></li>
+        <li>남<input type="radio" name="cust_gender" value="M"></li>
+        <li>여<input type="radio" name="cust_gender" value="F"></li>
         
-        <li><input type="text" placeholder="집주소를 입력하세요" name="address" id="address"></li>
+        <li><input type="text" placeholder="집주소를 입력하세요" name="cust_addr" id="cust_addr"></li>
         
-        <li><input type="date" name="birth" id="birth"></li>
+        <li><input type="date" name="cust_birthdate" id="cust_birthdate"></li>
         
         <li><input type="submit" id="joinUsButton" value="JoinUs" class="button fit" disabled></li>
     </form>
 </ul>
 <script>
-function updatePhone() {
-    // 전화번호 select 태그에서 선택한 값을 가져와서 phone1에 설정
-    var phone1Value = document.getElementById("phone1").value;
-    document.getElementById("phone1").value = phone1Value;
-}
+
 	
     function updateEmail() {
         var emailDomain = document.getElementById("email_domain");
-        var emailInput = document.getElementById("email");
+        var emailInput = document.getElementById("cust_email");
         var customEmailInput = document.getElementById("custom_email");
 
         if (emailDomain.value === "custom") {
@@ -69,13 +65,13 @@ function updatePhone() {
 
     // 생년월일 현재 시간이후로는 설정 불가
     var currentDate = new Date().toISOString().split('T')[0];
-    document.getElementById('birth').setAttribute('max', currentDate);
+    document.getElementById('cust_birthdate').setAttribute('max', currentDate);
 
     // 비밀번호 확인
     var passwordChecked = false; // 비밀번호 확인 여부를 저장하는 변수 추가
 
     function checkPasswordMatch() {
-        var pw = document.getElementById('pw').value;
+        var pw = document.getElementById('cust_pw').value;
         var pwCheck = document.getElementById('pwCheck').value;
         var passwordMessage = document.getElementById('passwordMessage');
         var joinUsButton = document.getElementById('joinUsButton');
@@ -91,9 +87,9 @@ function updatePhone() {
         joinUsButton.disabled = !passwordChecked; // 버튼 활성화 여부 설정
     }
 
-    function checkAllFieldsFilled() {
+    function checkAll() {
         // 필수 입력 필드 배열
-        var requiredFields = ['email', 'pw', 'pwCheck', 'address', 'name', 'phone', 'birth','gender'];
+        var requiredFields = ['cust_email', 'cust_pw', 'pwCheck', 'cust_addr', 'cust_name', 'cust_phone', 'cust_birthdate','cust_gender'];
 
         // 배열을 순회하면서 각 필드가 비어있는지 확인
         for (var i = 0; i < requiredFields.length; i++) {
@@ -110,13 +106,13 @@ function updatePhone() {
         return true;
     }
 
-    function validateForm() {
+    function Check() {
         if (!passwordChecked) {
             alert('비밀번호를 확인해주세요.');
             return false;
         }
 
-        if (!checkAllFieldsFilled()) {
+        if (!checkAll()) {
             alert('빈 칸을 입력해주세요.');
             return false;
         }

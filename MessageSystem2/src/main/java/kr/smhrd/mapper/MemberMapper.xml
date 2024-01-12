@@ -11,7 +11,7 @@
 	<insert id="memberInsert" parameterType="kr.smhrd.entity.Member">
 		<!-- insert into member values(CONCAT(#{email}, '@', #{email_domain}), #{pw}, #{phone}, #{address},#{name},#{birth},#{gender}) -->
 		insert into tb_cust (cust_pw, cust_name, cust_nick, cust_email, cust_phone, cust_birthdate, cust_gender, cust_addr, joined_at, cust_role)
-		 values (#{pw},#{name}, #{nick},CONCAT(#{email}, '@', #{email_domain}), #{phone}, #{birth}, #{gender}, #{address}, NOW(), 'N');
+		 values (#{cust_pw},#{cust_name}, #{cust_nick},CONCAT(#{cust_email}, '@', #{email_domain}), #{cust_phone}, #{cust_birthdate}, #{cust_gender}, #{cust_addr}, NOW(), 'N');
 	</insert>  
 
 	<update id="updateMember" parameterType="kr.smhrd.entity.Member">
@@ -27,7 +27,7 @@
 		delete from member where email=#{email}
 	</delete>
 	<select id="memberlogin" parameterType="kr.smhrd.entity.Member" resultType="kr.smhrd.entity.Member">
-    select * from tb_cust where cust_phone=#{phone} and  cust_pw=#{pw} 
+    select * from tb_cust where cust_phone=#{cust_phone} and  cust_pw=SHA2(#{cust_pw},224) 
 	</select>
 
 

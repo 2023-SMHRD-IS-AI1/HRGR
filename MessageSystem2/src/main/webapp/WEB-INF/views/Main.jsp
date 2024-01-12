@@ -17,6 +17,7 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
+	
 	<body>
 		
 		<% 
@@ -42,7 +43,7 @@
 								<!-- Q7. 개인정보수정 기능 만들기 -->
 								<!-- Q8. 로그아웃 기능 만들기 -->
 								<!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-								<%if(loginMember.getEmail().equals("admin")){ %>
+								<%if(loginMember.getCust_email().equals("admin")){ %>
 									<a href="goShowMember">회원정보관리</a>
 								<%} %>
 								<a href="goUpdatePage">개인정보수정</a>
@@ -57,8 +58,8 @@
 						<!-- Q3. 로그인 기능 만들기 -->
 							<li><h5>로그인</h5></li>
 								<form action="memberSelect" method="post">
-									<li><input type="text"  placeholder="Email을 입력하세요" name="email"></li>
-									<li><input type="password"  placeholder="PW를 입력하세요" name="pw"></li>
+									<li><input type="text"  placeholder="cust_email을 입력하세요" name="cust_email"></li>
+									<li><input type="password"  placeholder="cust_pw를 입력하세요" name="cust_pw"></li>
 									<li><input type="submit" value="LogIn" class="button fit"></li>
 								</form>
 						</ul>
@@ -66,14 +67,14 @@
 						<!-- Q1. 회원가입 기능 만들기 -->
 							<li><h5>회원가입</h5></li>
 								<form action="memberInsert">
-									<li><input type="text" id="inputE" placeholder="Email을 입력하세요" name="email"></li>
+									<li><input type="text" id="inputE" placeholder="cust_email을 입력하세요" name="cust_email"></li>
 									
 									<li><input type="button" value="중복체크" onclick="checkE()"></li>
 									<li><span id="resultCheck"></span></li>
 									
-									<li><input type="password"  placeholder="PW를 입력하세요" name="pw"></li>
-									<li><input type="text"  placeholder="전화번호를 입력하세요" name="tel"></li>
-									<li><input type="text"  placeholder="집주소를 입력하세요" name="address"></li>
+									<li><input type="password"  placeholder="cust_pw를 입력하세요" name="cust_pw"></li>
+									<li><input type="text"  placeholder="전화번호를 입력하세요" name="cust_phone"></li>
+									<li><input type="text"  placeholder="집주소를 입력하세요" name="cust_addr"></li>
 									<li><input type="submit" value="JoinUs" class="button fit"></li>
 								</form>
 						</ul>
@@ -87,7 +88,7 @@
 							<%if(loginMember == null){ %>
 								<h1>로그인 한 세션아이디를 출력해주세요</h1>
 							<%}else{ %>
-								<h1>${loginMember.email } 님 환영합니다~</h1>
+								<h1>${loginMember.cust_email } 님 환영합니다~</h1>
 							<%} %>
 							</header>
 							<div class="content">
@@ -172,7 +173,7 @@
 										<%if(loginMember == null){ %>
 											<li>로그인을 하세요.</li>
 										<%}else{ %>
-											<li>${loginMember.email }님에게 온 메세지</li>
+											<li>${loginMember.cust_email }님에게 온 메세지</li>
 										<%} %>
 										<!-- Q14. 메시지 전체 삭제 기능 -->								
 										<li><a href="DeleteMessageAll" class="button next scrolly">전체삭제하기</a></li>
@@ -212,14 +213,14 @@
 								<div class="field half first">
 										<label for="name">Name</label>
 										<%if(loginMember != null){ %>
-											<input type="text"  id="name" value="${loginMember.email }" readonly placeholder="보내는 사람 이름" name="sendE"/>
+											<input type="text"  id="name" value="${loginMember.cust_email }" readonly placeholder="보내는 사람 이름" name="sendE"/>
 										<%}else{ %>
 											<input type="text"  id="name" placeholder="보내는 사람 이름" name="sendE"/>
 										<%} %>
 									</div>
 									<div class="field half">
-										<label for="email">Email</label>
-										<input type="text"  id="email" placeholder="받는 사람 이메일" name="receiveE"/>
+										<label for="cust_email">cust_email</label>
+										<input type="text"  id="cust_email" placeholder="받는 사람 이메일" name="receiveE"/>
 									</div>
 
 									<div class="field">
@@ -237,12 +238,12 @@
 								<section>
 									<div class="contact-method">
 										<span class="icon alt fa-envelope"></span>
-										<h3>Email</h3>
+										<h3>cust_email</h3>
 										<!-- Q5. 로그인 한 사용자의 이메일을 출력 -->
 										<%if(loginMember == null){ %>
 											<a href="#">로그인 한 사람의 이메일을 출력</a>
 										<%}else{ %>
-											<a href="#"><%=loginMember.getEmail() %></a>
+											<a href="#"><%=loginMember.getCust_email() %></a>
 										<%} %>
 									</div>
 								</section>
@@ -254,20 +255,20 @@
 										<%if(loginMember == null){ %>
 											<span>로그인 한 사람의 전화번호를 출력</span>
 										<%}else{ %>
-											<span>${loginMember.tel }</span>
+											<span>${loginMember.cust_phone }</span>
 										<%} %>
 									</div>
 								</section>
 								<section>
 									<div class="contact-method">
 										<span class="icon alt fa-home"></span>
-										<h3>Address</h3>
+										<h3>cust_addr</h3>
 										<!-- Q5. 로그인 한 사용자의 집주소를 출력 -->
 										<c:if test="${empty loginMember}">
 											<span>로그인 한 사람의 집주소를 출력</span>
 										</c:if>
 										<c:if test="${not empty loginMember}">
-											<span>${loginMember.address }</span>
+											<span>${loginMember.cust_addr }</span>
 										</c:if>
 									</div>
 								</section>

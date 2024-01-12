@@ -25,7 +25,11 @@ public interface MemberMapper { // 틀, SqlSessionFactoryBean이 MemberMapper를
 
 	public void memberMapper(String email);
 
+
 	public Member memberlogin(Member member);
+
+	public void sellerInsert(Member member);
+
 	
 	public Member loginmember(Member member);
 	

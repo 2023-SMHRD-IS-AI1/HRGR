@@ -31,4 +31,9 @@ public class Member {
 	private String gender;
 	private String nick;
 	
+	
+	private String company_name;
+	private String company_addr;
+	private String company_bno;
+	private String business_type;
 }

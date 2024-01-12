@@ -58,6 +58,7 @@ select * from board;
 select * from board order by b_date desc;
 
 
+
 ALTER TABLE tb_cust
 MODIFY COLUMN cust_id INT AUTO_INCREMENT;
 

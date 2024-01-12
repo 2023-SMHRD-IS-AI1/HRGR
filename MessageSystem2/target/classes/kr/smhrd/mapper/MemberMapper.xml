@@ -31,6 +31,10 @@
 	</select>
 
 
+	<insert id="sellerInsert" parameterType="kr.smhrd.entity.Member">
+		insert into tb_seller (company_name, company_addr, company_bno, business_type, certified_yn, created_at)
+		values(#{company_name}, #{company_addr}, #{company_bno}, #{business_type}, '0', now())
+	</insert>
 
 
 </mapper>

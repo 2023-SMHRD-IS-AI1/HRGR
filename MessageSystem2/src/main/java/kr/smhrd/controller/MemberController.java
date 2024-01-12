@@ -43,9 +43,9 @@ public class MemberController {
 	
 	@GetMapping("/")
 	public String main() {
-		return "join_01";
+		return "sellerAccount";
 	}
-
+	
 	// 회원가입 /memberInsert
 	@RequestMapping("/memberInsert")
 	public String memberInsert(Member member, Model model) {
@@ -112,6 +112,16 @@ public class MemberController {
 	public String deleteMember(@RequestParam("email") String email) {
 		memberMapper.memberMapper(email);
 		return "redirect:/goShowMember";
+	}
+	
+	@RequestMapping("/insertSeller")
+	public String insertSeller(Member member) {
+		
+		System.out.println(member.toString());
+		
+		memberMapper.sellerInsert(member); // 인터페이스는 추상메소드만 존재
+		
+		return "join_01";
 	}
 
 }

@@ -52,10 +52,3 @@ create table board(
 select * from board;
 
 select * from board order by b_date desc;
-
-
-
-
-
-
->>>>>>> branch 'master' of https://github.com/2023-SMHRD-IS-AI1/HRGR.git

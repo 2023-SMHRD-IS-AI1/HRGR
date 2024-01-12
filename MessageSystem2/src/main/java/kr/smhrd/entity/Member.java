@@ -30,4 +30,9 @@ public class Member {
 	private String email_domain;
 	private String gender;
 	
+	
+	private String company_name;
+	private String company_addr;
+	private String company_bno;
+	private String business_type;
 }

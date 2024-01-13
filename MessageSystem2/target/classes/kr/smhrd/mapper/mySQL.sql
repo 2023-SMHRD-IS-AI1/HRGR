@@ -147,7 +147,7 @@ select * from
 -- 사과 검색했을때 상품평점순으로 보여주기
 SELECT
     tb_prod.prod_idx,
-    tb_prod.prod_name,
+    tb_prod.prod_name as prod_name ,
     tb_prod.prod_desc,
     tb_prod.prod_type,
     tb_prod.prod_price,

@@ -12,16 +12,15 @@ import lombok.ToString;
 @Data
 @Getter
 @Setter
-/*
- * @AllArgsConstructor
- * 
- * @RequiredArgsConstructor
- * 
- * @NoArgsConstructor
- */
-@ToString
 
+@NoArgsConstructor
+@RequiredArgsConstructor
+ 
+@ToString
 public class Product {
 
-	@NonNull private String prod_name;
+	@NonNull 
+	private String prod_name;
+	private int prod_ratings;
+	
 }

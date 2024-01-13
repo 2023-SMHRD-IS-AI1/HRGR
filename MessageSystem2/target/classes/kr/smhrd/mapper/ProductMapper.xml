@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.smhrd.mapper.ProductMapper">
-<select id="searchProd" resultType="kr.smhrd.entity.Product">
-        SELECT * FROM tb_prod WHERE prod_name LIKE #{prod_name}
+<select id="searchList" resultType="kr.smhrd.entity.Product">
+        SELECT
+    tb_prod.prod_idx,
+    tb_prod.prod_name AS prod_name,
+    tb_prod.prod_desc,
+    tb_prod.prod_type,
+    tb_prod.prod_price,
+    tb_prod.prod_stock,
+    tb_prod.cust_id AS prod_cust_id,
+    tb_prod.created_at AS prod_created_at,
+    tb_cust.cust_name,
+    tb_cust.cust_nick,
+    tb_cust.cust_phone,
+    tb_cust.cust_addr,
+    tb_review.review_idx,
+    tb_review.review_content,
+    tb_review.prod_ratings AS prod_ratings ,
+    tb_review.reviewed_at
+FROM
+    tb_prod
+JOIN
+    tb_cust ON tb_prod.cust_id = tb_cust.cust_id
+JOIN
+    tb_review ON tb_prod.prod_idx = tb_review.prod_idx
+WHERE
+    tb_prod.prod_name LIKE CONCAT('%', #{searchInput}, '%')
+ORDER BY
+    tb_review.prod_ratings DESC;
 </select>
 </mapper>

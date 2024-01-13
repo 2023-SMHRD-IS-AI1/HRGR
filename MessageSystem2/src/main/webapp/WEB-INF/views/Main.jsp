@@ -31,7 +31,7 @@
   <% 
   	Member Memberlogin = (Member)session.getAttribute("loginMember");
 			
-		%>
+  %>
 
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
       <defs>
@@ -183,6 +183,10 @@
           
           <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
             <div class="support-box text-end d-none d-xl-block">
+            <%if(Memberlogin != null) {%>
+            	<a href="goSeller">판매자 등록</a>
+            
+            <%} %>
             <%if(Memberlogin == null){ %>
 						<a class="fs-6 text-muted" href="goLogin">로그인</a>
 			<%}else{ %>

@@ -190,7 +190,15 @@
 			<artifactId>iamport-rest-client-java</artifactId>
 		    <version>0.2.14</version>
 	    </dependency>
-
+		
+		<!-- spring security -->
+		<dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-security</artifactId>
+	        <!-- Spring Boot 버전에 맞는 버전을 지정합니다. -->
+	        <version>2.6.3</version> <!-- 예시 버전, 사용 중인 버전에 따라 수정 -->
+		</dependency>
+    
 	</dependencies>
 	<build>
 		<plugins>

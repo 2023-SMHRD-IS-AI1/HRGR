@@ -43,7 +43,7 @@ public class MemberController {
 	
 	@GetMapping("/")
 	public String main() {
-		return "test";
+		return "Main";
 
 	}
 	
@@ -55,7 +55,7 @@ public class MemberController {
 		
 		memberMapper.memberInsert(member); // 인터페이스는 추상메소드만 존재
 		model.addAttribute("email", member.getCust_email());
-		return "login";
+		return "JoinSuccess";
 	}
 	@PostMapping("/memberlogin")
 	public String memberlogin(Member member, HttpSession session) {
@@ -70,7 +70,7 @@ public class MemberController {
 	            // 로그인 성공
 	            System.out.println("로그인 성공");
 	            session.setAttribute("loginMember", loginMember);
-	            return "test";
+	            return "Mest";
 	        } else {
 	            // 로그인 실패
 	            System.out.println("로그인 실패");

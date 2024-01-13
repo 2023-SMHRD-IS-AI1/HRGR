@@ -14,13 +14,18 @@
 		<!-- Q19. 게시글 세부내용 조회 기능 -->	
 			<div id = "Product">
 				<table id="list">
-					<tr>
-						<td>제목</td>
+					
+					<ui>
+						
 						<c:forEach var="product" items="${Product}">
-        					<td>${product.prod_name}</td>
-        					<td>${product.prod_ratings}</td>
+        					<li>제품명 : ${product.prod_name}</li>
+        					<li>제품 평점 : ${product.prod_ratings}</li>
+        					<li>상품 설명 : ${product.prod_desc }</li>
+        					<li>판매자 : ${product.prod_cust_id }</li><br><br><br>
+        				
     					</c:forEach>
-					</tr>
+					</ui>
+					
 					
 				</table>
 			</div>

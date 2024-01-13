@@ -22,5 +22,6 @@ public class Product {
 	@NonNull 
 	private String prod_name;
 	private int prod_ratings;
-	
+	private String prod_cust_id;
+	private String prod_desc;
 }

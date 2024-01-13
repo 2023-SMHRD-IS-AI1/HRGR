@@ -148,7 +148,7 @@ select * from
 SELECT
     tb_prod.prod_idx,
     tb_prod.prod_name as prod_name ,
-    tb_prod.prod_desc,
+    tb_prod.prod_desc as prod_desc,
     tb_prod.prod_type,
     tb_prod.prod_price,
     tb_prod.prod_stock,

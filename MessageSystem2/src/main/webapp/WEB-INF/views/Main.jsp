@@ -2203,6 +2203,7 @@
     document.getElementById("userIcon").addEventListener("click", function() {
     	window.location.href = "goLogin";
   });
+    
     </script>
   </body>
 </html>

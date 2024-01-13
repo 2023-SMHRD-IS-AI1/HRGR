@@ -8,6 +8,7 @@
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 </head>
 <body>
     <form action="memberlogin" method="post">
@@ -18,8 +19,8 @@
         <a href="goJoin">회원가입</a>
        
     </form>
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js"
 
- <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js"
   integrity="sha384-6MFdIr0zOira1CHQkedUqJVql0YtcZA1P0nbPrQYJXVJZUkTk/oX4U9GhUIs3/z8" crossorigin="anonymous"></script>
 <script>
   Kakao.init('2f5e21c8e3960c92cbdd998a39f43cc8'); // 사용하려는 앱의 JavaScript 키 입력
@@ -30,12 +31,29 @@
     alt="카카오 로그인 버튼" />
 </a>
 <p id="token-result"></p>
+<button class="api-btn" onclick="requestUserInfo()" style="visibility:hidden">사용자 정보 가져오기</button>
 
 <script>
   function loginWithKakao() {
     Kakao.Auth.authorize({
-      redirectUri: 'http://localhost:8082/controller/test',
+      redirectUri: 'http://localhost:8082/controller/',
+      scope:'name, birthday, birthyear',
+      state: 'userme',
     });
+  }
+
+  function requestUserInfo() {
+    Kakao.API.request({
+      url: '/v2/user/me',
+    })
+      .then(function(res) {
+        alert(JSON.stringify(res));
+      })
+      .catch(function(err) {
+        alert(
+          'failed to request user information: ' + JSON.stringify(err)
+        );
+      });
   }
 
   // 아래는 데모를 위한 UI 코드입니다.
@@ -45,16 +63,8 @@
 
     if(token) {
       Kakao.Auth.setAccessToken(token);
-      Kakao.Auth.getStatusInfo()
-        .then(function(res) {
-          if (res.status === 'connected') {
-            document.getElementById('token-result').innerText
-              = 'login success, token: ' + Kakao.Auth.getAccessToken();
-          }
-        })
-        .catch(function(err) {
-          Kakao.Auth.setAccessToken(null);
-        });
+      document.querySelector('#token-result').innerText = 'login success, ready to request API';
+      document.querySelector('button.api-btn').style.visibility = 'visible';
     }
   }
 
@@ -62,33 +72,29 @@
     var parts = document.cookie.split(name + '=');
     if (parts.length === 2) { return parts[1].split(';')[0]; }
   }
-  window.Kakao.init('2f5e21c8e3960c92cbdd998a39f43cc8'); // 나의 애플리케이션 앱키
+  function getInfo() {
+      Kakao.API.request({
+          url: '/v2/user/me',
+          success: function (res) {
+              console.log(res);
+              // 이메일, 성별, 닉네임, 프로필이미지
+              var email = res.kakao_account.email;
+              var gender = res.kakao_account.gender;
+              var profile_nickname = res.kakao_account.profile.nickname;
+              var profile_image = res.kakao_account.profile.thumbnail_image_url;
+              var birthday = res.kakao_account.birthday;
 
-  function kakaoLogin() {
-      window.Kakao.Auth.login({
-          scope: 'account_email', //동의항목 페이지에 있는 개인정보 보호 테이블의 활성화된 ID값을 넣습니다.
-          success: function(response) {
-              console.log(response) // 로그인 성공하면 받아오는 데이터
-              window.Kakao.API.request({ // 사용자 정보 가져오기 
-                  url: '/v2/user/me',
-                  success: (res) => {
-                      //const kakao_account = res.kakao_account;
-                      //console.log(kakao_account);
-
-                      kakaologin.k_id.value = res.id;
-                      kakaologin.k_email.value = res.kakao_account.email;
-                      kakaologin.submit();
-                      
-                  }
-              });
-              // window.location.href='/ex/kakao_login.html' //리다이렉트 되는 코드
+              console.log(email, gender, profile_nickname, profile_image, birthday);
           },
-          fail: function(error) {
-              console.log(error);
+          fail: function (error) {
+              alert('카카오 로그인에 실패했습니다. 관리자에게 문의하세요.' + JSON.stringify(error));
           }
       });
   }
 </script>
+
+  
+
 
 </body>
 </html>

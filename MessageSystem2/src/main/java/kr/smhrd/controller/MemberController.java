@@ -30,6 +30,7 @@ public class MemberController {
 	private MemberMapper memberMapper; // DAO같은 역할인데 DAO는 커넥션 관리까지 다했다면
 	@Autowired
 	private MessageMapper messageMapper;
+	private Member member;
 
 	// @RequestMapping : get방식, post방식 요청을 다 받을 수 있음
 	// @GetMapping : get방식 요청만 받을 수 있음
@@ -57,7 +58,7 @@ public class MemberController {
 		model.addAttribute("email", member.getCust_email());
 		return "JoinSuccess";
 	}
-	@PostMapping("/memberlogin")
+	@RequestMapping("/memberlogin")
 	public String memberlogin(Member member, HttpSession session) {
 	    try {
 	        // 로깅 문 추가
@@ -70,7 +71,7 @@ public class MemberController {
 	            // 로그인 성공
 	            System.out.println("로그인 성공");
 	            session.setAttribute("loginMember", loginMember);
-	            return "Mest";
+	            return "Main";
 	        } else {
 	            // 로그인 실패
 	            System.out.println("로그인 실패");
@@ -164,5 +165,6 @@ public class MemberController {
 	
 	
 	
+
 
 }

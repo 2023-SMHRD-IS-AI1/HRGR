@@ -125,3 +125,57 @@ DELETE FROM tb_cust;
 
 -- tb_cust 조회
 select * from tb_cust ;
+
+-- tb_prod조회
+select * from tb_prod 
+
+tb_cust테이블
+cust_id, cust_pw, cust_name, cust_nick, cust_email, cust_phone, cust_birthdaate, cust_gender, cust_addr, joined_at, cust_role
+
+tb_prod테이블
+prod_idx prod_name prod_desc prod_type prod_price prod_stock  cust_id created_at
+
+tb_review 테이블
+review_idx prod_idx cust_id review_content prod_ratings reviewed_at
+insert into tb_prod (prod_name, prod_desc, prod_type, prod_price, prod_stock, cust_id, created_at) 
+values('사과', '맛있는 사과', '농산물', '20000', '50', 1, NOW());
+
+insert into tb_prod (prod_name, prod_desc, prod_type, prod_price, prod_stock, cust_id, created_at) 
+values('사과', '맛있는 사과1', '농산물1', '20000', '50', 2, NOW());
+
+select * from 
+-- 사과 검색했을때 상품평점순으로 보여주기
+SELECT
+    tb_prod.prod_idx,
+    tb_prod.prod_name,
+    tb_prod.prod_desc,
+    tb_prod.prod_type,
+    tb_prod.prod_price,
+    tb_prod.prod_stock,
+    tb_prod.cust_id AS prod_cust_id,
+    tb_prod.created_at AS prod_created_at,
+    tb_cust.cust_name,
+    tb_cust.cust_nick,
+    tb_cust.cust_phone,
+    tb_cust.cust_addr,
+    tb_review.review_idx,
+    tb_review.review_content,
+    tb_review.prod_ratings,
+    tb_review.reviewed_at
+FROM
+    tb_prod
+JOIN
+    tb_cust ON tb_prod.cust_id = tb_cust.cust_id
+JOIN
+    tb_review ON tb_prod.prod_idx = tb_review.prod_idx
+WHERE
+    tb_prod.prod_name LIKE '%사%'
+ORDER BY
+    tb_review.prod_ratings DESC;
+    
+    
+
+prod_idx prod_idx review_content prod_ratings reviewed_at
+
+
+insert into tb_review(prod_idx,cust_id, review_content, prod_ratings, reviewed_at) values(2,2,'맛있다.',3,NOW());

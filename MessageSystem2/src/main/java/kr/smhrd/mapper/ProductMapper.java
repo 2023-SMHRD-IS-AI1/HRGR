@@ -11,5 +11,6 @@
  @Mapper 
  public interface ProductMapper { 
 	 public List<Product> searchList(String searchInput); 
+	 public void prodRegist(Product product);
 	 }
  

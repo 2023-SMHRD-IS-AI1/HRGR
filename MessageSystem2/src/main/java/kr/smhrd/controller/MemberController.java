@@ -146,7 +146,7 @@ public class MemberController {
 		memberMapper.memberMapper(email);
 		return "redirect:/goShowMember";
 	}
-	
+//  판매자 등록
 	@RequestMapping("/insertSeller")
 	public String insertSeller(Member member, HttpSession session) {
 //		세션에서 로그인 한 사용자의 정보 가져오기 

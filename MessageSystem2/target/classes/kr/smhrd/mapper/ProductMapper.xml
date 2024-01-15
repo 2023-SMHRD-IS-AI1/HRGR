@@ -30,4 +30,9 @@ WHERE
 ORDER BY
     tb_review.prod_ratings DESC;
 </select>
+<insert id="prodRegist" parameterType="kr.smhrd.entity.Product">
+ INSERT
+   INTO tb_prod (prod_name, prod_desc, prod_type, prod_price, prod_stock, cust_id, created_at)
+ VALUES(#{prod_name}, #{prod_desc}, #{prod_type}, #{prod_price}, #{prod_stock}, #{cust_id}, now())
+</insert>
 </mapper>

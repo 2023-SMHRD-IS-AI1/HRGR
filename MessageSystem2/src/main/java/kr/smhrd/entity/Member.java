@@ -22,6 +22,8 @@ public class Member {
 	private String cust_email;
 	@NonNull
 	private String cust_pw;
+	@NonNull
+	private String cust_id;
 	private String cust_phone;
 	private String cust_addr;
 	private String cust_name;

@@ -201,11 +201,11 @@
         <div class="success">
           <!-- 글 하나 시작 -->
           <div class="success_content">
-            <h1>회원가입</h1>
+            <h1 align="center">회원가입</h1>
               <hr style="margin-top: 50px; margin-bottom: 50px;">
               <p align="center" style="font-size:40px;">회원가입이 완료되었습니다!</p>
               <div align="center" style="margin-top: 50px;">
-              <button type="button" class="btn btn-outline-success btn-lg">홈으로 가기</button>
+              <button type="button" class="btn btn-outline-success btn-lg" id="goMain">홈으로 가기</button>
               <button type="button" class="btn btn-success btn-lg" id="goLogin">로그인 하기</button>
             </div>
             </div>
@@ -298,7 +298,11 @@
       <script type="text/javascript"> 
 	    document.getElementById("goLogin").addEventListener("click", function() {
 	       window.location.href = "goLogin";
-	  });
+	    });
+	    
+	    document.getElementById("goMain").addEventListener("click", function() {
+		       window.location.href = "goMain";
+		});
     </script>
       <script src="js/jquery-1.11.0.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>

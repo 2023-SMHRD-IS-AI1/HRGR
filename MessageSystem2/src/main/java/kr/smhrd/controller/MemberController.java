@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +31,7 @@ public class MemberController {
 	private MemberMapper memberMapper; // DAO같은 역할인데 DAO는 커넥션 관리까지 다했다면
 	@Autowired
 	private MessageMapper messageMapper;
+	private Member member;
 
 	// @RequestMapping : get방식, post방식 요청을 다 받을 수 있음
 	// @GetMapping : get방식 요청만 받을 수 있음
@@ -57,7 +59,7 @@ public class MemberController {
 		model.addAttribute("email", member.getCust_email());
 		return "JoinSuccess";
 	}
-	@PostMapping("/memberlogin")
+	@RequestMapping("/memberlogin")
 	public String memberlogin(Member member, HttpSession session) {
 	    try {
 	        // 로깅 문 추가
@@ -70,7 +72,10 @@ public class MemberController {
 	            // 로그인 성공
 	            System.out.println("로그인 성공");
 	            session.setAttribute("loginMember", loginMember);
-	            return "Mest";
+
+	            System.out.println("세션값 tostring : "+loginMember.toString());
+
+	            return "Main";
 	        } else {
 	            // 로그인 실패
 	            System.out.println("로그인 실패");
@@ -103,6 +108,7 @@ public class MemberController {
 	}
 
 
+	
 
 	// 회원수정 페이지로 이동 /goUpdatePage
 	@RequestMapping("/goUpdatePage")
@@ -142,15 +148,23 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/insertSeller")
-	public String insertSeller(Member member) {
+	public String insertSeller(Member member, HttpSession session) {
+//		세션에서 로그인 한 사용자의 정보 가져오기 
+		Member loginMember = (Member)session.getAttribute("loginMember");
+		System.out.println("\n"+loginMember.toString() +"\n");
 		
+//		로그인 한 사용자의 cust_id값 가져오기
+		String cust_id = loginMember.getCust_id();
+		System.out.println("cust_id값 확인 : "+ cust_id);
+		
+//		member에 cust_id값 넣어서 tb_seller 테이블에 데이터 추가
+		member.setCust_id(cust_id);
+//		member값 확인
 		System.out.println(member.toString());
-		
-		memberMapper.sellerInsert(member); // 인터페이스는 추상메소드만 존재
-		
-		return "join_01";
+	    memberMapper.sellerInsert(member);
+	    
+	    return "Main";
 	}
-	
 	@RequestMapping("/goLogin")
 	public String goLogin() {
 		return "login";
@@ -161,7 +175,14 @@ public class MemberController {
 		return "join_01";
 	}
 	
+	@RequestMapping("/goSeller")
+	public String goSeller() {
+		
+		return "sellerAccount";
+	}
 	
 	
+	
+
 
 }

@@ -31,7 +31,7 @@
   <% 
   	Member Memberlogin = (Member)session.getAttribute("loginMember");
 			
-		%>
+  %>
 
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
       <defs>
@@ -171,18 +171,28 @@
                 </select>
               </div>
               <div class="col-11 col-md-7">
-                <form id="search-form" class="text-center" action="searchProd" method="post">
-                  <input type="text" class="form-control border-0 bg-transparent" name="searchInput" placeholder="검색어를 입력해주세요!" />
+                <form id="search-form" class="text-center" action="gosearch" method="post">
+                  <input type="text" class="form-control border-0 bg-transparent" name="searchInput" id="searchInput" placeholder="검색어를 입력해주세요!"/>
                 </form>
               </div>
               <div class="col-1">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z"/></svg>
+                <div id="svg-container">
+                
+  					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    				<path fill="currentColor" d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z"/>
+  					</svg>
+  				
+				</div>
               </div>
             </div>
           </div>
           
           <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
             <div class="support-box text-end d-none d-xl-block">
+            <%if(Memberlogin != null) {%>
+            	<a href="goSeller">판매자 등록</a>
+            
+            <%} %>
             <%if(Memberlogin == null){ %>
 						<a class="fs-6 text-muted" href="goLogin">로그인</a>
 			<%}else{ %>
@@ -2203,6 +2213,18 @@
     document.getElementById("userIcon").addEventListener("click", function() {
     	window.location.href = "goLogin";
   });
+    
     </script>
+    <script>
+  // 검색창 눌렀을때 페이지 이동
+   document.getElementById('svg-container').addEventListener('click', function() {
+    // 현재 검색어 입력란의 값을 가져옴
+    var inputValue = document.getElementById('searchInput').value;
+
+    // 현재 페이지 URL에 검색어를 추가하여 페이지 이동
+    window.location.href = 'gosearch?searchInput=' + encodeURIComponent(inputValue);
+  });
+</script>
+</script>
   </body>
 </html>

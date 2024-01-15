@@ -51,6 +51,7 @@ public class BoardController {
 	@RequestMapping("/goBoardMain")
 	public String goBoardMain(Model model) {
 		List<Board> boardList = boardMapper.boardList();
+		System.out.println(boardList.toString());
 		// System.out.println(boardList.size());
 		model.addAttribute("boardList", boardList);
 		return "BoardMain";

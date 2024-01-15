@@ -18,6 +18,7 @@
 	<delete id="boardDelete" parameterType="int">
 		delete from board where idx = #{idx}	
 	</delete>
+	
 
 
 

@@ -21,7 +21,11 @@ public class Product {
 
 	@NonNull 
 	private String prod_name;
+	private String prod_price;
+	private String prod_type;
+	private String prod_stock;
 	private int prod_ratings;
 	private String prod_cust_id;
 	private String prod_desc;
+	private String cust_id;
 }

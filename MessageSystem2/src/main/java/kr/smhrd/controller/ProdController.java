@@ -39,5 +39,25 @@ public class ProdController {
 		System.out.println(model.toString());
 		return "search" ;
 	}
+
+	@RequestMapping("/prodRegist")
+	public String prodRegist(Product product, HttpSession session) {
+//		세션에서 로그인 한 사용자의 정보 가져오기 
+		Member loginMember = (Member)session.getAttribute("loginMember");
+		
+//		로그인 한 사용자의 cust_id값 가져오기
+		String cust_id = loginMember.getCust_id();
+		
+//		member에 cust_id값 넣어서 tb_seller 테이블에 데이터 추가
+		product.setCust_id(cust_id);
+		
+		ProductMapper.prodRegist(product);
+		return "Main";
+	}
 	
+	@RequestMapping("/goSell")
+	public String goSell() {
+		
+		return "prodRegist";
+	}
 }

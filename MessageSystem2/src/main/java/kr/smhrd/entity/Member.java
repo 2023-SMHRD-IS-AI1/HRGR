@@ -41,4 +41,6 @@ public class Member {
 	private String business_type;
 	private int prod_idx;
 	private String created_at;
+	private String prod_name;
+	private String prod_price;
 }

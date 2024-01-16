@@ -188,15 +188,6 @@
           
           <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
             <div class="support-box text-end d-none d-xl-block">
-<<<<<<< HEAD
-=======
-            <%if(Memberlogin != null) {%>
-            	<a href="goSell">상품 등록</a>
-            
-            <%} %>
-            <%if(Memberlogin != null) {%>
-            	<a href="goSeller">판매자 등록</a>
->>>>>>> branch 'master' of https://github.com/2023-SMHRD-IS-AI1/HRGR.git
             
             
             <%if(Memberlogin == null){ %>
@@ -229,7 +220,7 @@
 					<!-- Q7. 개인정보수정 기능 만들기 -->
 					<!-- Q8. 로그아웃 기능 만들기 -->
 					<!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-					<a href="#" class="rounded-circle bg-light p-2 mx-1">
+					<a href="gomyPage" class="rounded-circle bg-light p-2 mx-1">
 						<svg width="24" height="24" viewBox="0 0 24 24">
   						<use xlink:href="#user"></use>
 						</svg></a>

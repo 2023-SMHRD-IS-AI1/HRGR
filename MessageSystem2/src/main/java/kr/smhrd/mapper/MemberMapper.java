@@ -46,6 +46,10 @@ public interface MemberMapper { // 틀, SqlSessionFactoryBean이 MemberMapper를
 	public void removeLike(Member member);
 	
 	public int searchLike(Member member);
+
+	public List<Member> likeList(String member);
+	
+	public List<Member> likeList();
 	
 	
 	

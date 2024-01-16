@@ -1,7 +1,9 @@
 package kr.smhrd.controller;
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -19,6 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.oreilly.servlet.MultipartRequest;
+
+import kr.smhrd.entity.Board;
 import kr.smhrd.entity.Member;
 import kr.smhrd.entity.Message;
 import kr.smhrd.mapper.MemberMapper;
@@ -36,6 +41,7 @@ public class MemberController {
 	@Autowired
 	private MessageMapper messageMapper;
 	private Member member;
+	private HttpServletRequest request;
 
 	// @RequestMapping : get방식, post방식 요청을 다 받을 수 있음
 	// @GetMapping : get방식 요청만 받을 수 있음
@@ -212,6 +218,26 @@ public class MemberController {
 	    return ResponseEntity.ok("Added to wishlist");
 	}
 	
-
-
+	
+	@RequestMapping("/gomyPage")
+	public String gomyPage(Member member, HttpSession session,Model model) {
+		MultipartRequest multi = null;
+		Member loginMember = (Member)session.getAttribute("loginMember");
+		String cust = loginMember.getCust_id();
+		List<Member> likeList = memberMapper.likeList(cust);
+		model.addAttribute("likeList",likeList);
+		/*
+		 * try { multi = new MultipartRequest(request, savePath, maxSize, enc, dftrp);
+		 * String title = multi.getParameter("title"); String writer =
+		 * multi.getParameter("writer"); String filename =
+		 * multi.getFilesystemName("filename"); String content =
+		 * multi.getParameter("content");
+		 * 
+		 * board = new Board(title, writer, filename, content);
+		 * System.out.println(board.toString()); } catch (IOException e) { // TODO
+		 * Auto-generated catch block e.printStackTrace(); }
+		 */
+		  return "myPage";
+		
+	}
 }

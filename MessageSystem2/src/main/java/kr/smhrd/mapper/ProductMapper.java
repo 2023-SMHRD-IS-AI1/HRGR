@@ -13,6 +13,6 @@
 	 public List<Product> searchList(String searchInput); 
 	 public void prodRegist(Product product);
 	 public void insertImage(Product product);
-	 
+	 public Product searchIdx(Product product);
 	 }
  

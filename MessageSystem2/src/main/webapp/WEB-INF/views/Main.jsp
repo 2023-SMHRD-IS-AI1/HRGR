@@ -13,24 +13,25 @@
     <meta name="author" content="">
     <meta name="keywords" content="">
     <meta name="description" content="">
+
     <link rel="stylesheet" href="resources/assets/test.css" />
     <link rel="stylesheet" href="resources/assets/test1.css" />
     <link rel="stylesheet" href="resources/assets/test2.css" />
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/vendor.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="./resources/assets/css/vendor.css">
+    <link rel="stylesheet" type="text/css" href="./resources/assets/css/style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    
+
   </head>
   <body>
-  <% 
-  	Member Memberlogin = (Member)session.getAttribute("loginMember");
-			
-  %>
+  <%
+	Member Memberlogin = (Member) session.getAttribute("loginMember");
+	%>
 
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
       <defs>
@@ -153,8 +154,10 @@
           
           <div class="col-sm-4 col-lg-3 text-center text-sm-start">
             <div class="main-logo">
+
               <a href="index.html" id="goMain">
                 <img src="resources/images/harugreen.png" alt="logo" class="img-fluid" style="max-width: 60%;">
+
               </a>
             </div>
           </div>
@@ -169,27 +172,22 @@
                   <option>가공식품</option>
                 </select>
               </div>
+              
               <div class="col-11 col-md-7">
-                <form id="search-form" class="text-center" action="gosearch" method="post">
-                  <input type="text" class="form-control border-0 bg-transparent" name="searchInput" id="searchInput" placeholder="검색어를 입력해주세요!"/>
+                <form id="search-form" class="text-center" action="index.html" method="post">
+                  <input type="text" class="form-control border-0 bg-transparent" placeholder="검색어를 입력해주세요!" />
                 </form>
               </div>
               <div class="col-1">
-                <div id="svg-container">
-                
-  					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-    				<path fill="currentColor" d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z"/>
-  					</svg>
-  				
-				</div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z"/></svg>
               </div>
             </div>
           </div>
           
           <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
             <div class="support-box text-end d-none d-xl-block">
-            
-            
+
+           
             <%if(Memberlogin == null){ %>
                   <a class="fs-6 text-muted" href="goLogin">로그인</a>
          <%}else{ %>
@@ -206,11 +204,14 @@
             		
             <%} %>
            
+              <span class="fs-6 text-muted"></span>
+
               <h5 class="mb-0"></h5>
             </div>
 
             <ul class="d-flex justify-content-end list-unstyled m-0">
               <li>
+
                 <%if(Memberlogin == null){ %>
                 	<a href="goLogin" class="rounded-circle bg-light p-2 mx-1">
 						<svg width="24" height="24" viewBox="0 0 24 24">
@@ -227,6 +228,7 @@
 			<%} %>
                   
                
+
               </li>
               <li>
                 <%if(Memberlogin == null){ %>
@@ -284,12 +286,7 @@
 
                 <div class="offcanvas-body">
               
-                  <!-- <select class="filter-categories border-0 mb-0 me-5">
-                    <option>Shop by Departments</option>
-                    <option>Groceries</option>
-                    <option>Drinks</option>
-                    <option>Chocolates</option>
-                  </select> -->
+               
               
                   <ul class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
                     <li class="nav-item active">
@@ -304,34 +301,9 @@
                     <li class="nav-item">
                       <a href="#" class="nav-link">가공식품</a>
                     </li>
-                    <!-- <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" role="button" id="pages" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
-                      <ul class="dropdown-menu" aria-labelledby="pages">
-                        <li><a href="about.html" class="dropdown-item">About Us <span class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                        <li><a href="shop.html" class="dropdown-item">Shop <span class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                        <li><a href="single-product.html" class="dropdown-item">Single Product <span class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                        <li><a href="cart.html" class="dropdown-item">Cart <span class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                        <li><a href="checkout.html" class="dropdown-item">Checkout <span class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                        <li><a href="blog.html" class="dropdown-item">Blog <span class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                        <li><a href="single-post.html" class="dropdown-item">Single Post <span class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                        <li><a href="styles.html" class="dropdown-item">Styles <span class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                        <li><a href="contact.html" class="dropdown-item">Contact <span class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                        <li><a href="thank-you.html" class="dropdown-item">Thank You <span class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                        <li><a href="account.html" class="dropdown-item">My Account <span class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                        <li><a href="404.html" class="dropdown-item">404 Error <span class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                      </ul> 
-                    </li>-->
-                    <!-- <li class="nav-item">
-                      <a href="#brand" class="nav-link">영농일지</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#sale" class="nav-link">Sale</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#blog" class="nav-link">Blog</a>
-                    </li> --> 
+                   
                     <a href="#" target="_blank" class="nav-link btn-coupon-code">
-                <img src="resources/images/book-half.svg" alt="gift icon">
+                <img src="./resources/images/book-half.svg" alt="gift icon">
                 <strong class="ms-2 text-dark">영농일지 보러가기</strong>
               </a>
                   </ul>
@@ -350,7 +322,7 @@
     </header>
 
     
-    <section class="py-3" style="background-image: url('resources/images/background-pattern.jpg');background-repeat: no-repeat;background-size: cover;">
+    <section class="py-3" style="background-image: url('./resources/images/background-pattern.jpg');background-repeat: no-repeat;background-size: cover;">
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
@@ -371,7 +343,7 @@
                           <a href="#" class="btn btn-outline-dark btn-lg ltext-uppercase fs-6 rounded-1 px-4 py-3 mt-3">보러가기!</a>
                         </div>
                         <div class="img-wrapper col-md-5">
-                          <img src="resources/images/farmer.png" class="img-fluid">
+                          <img src="./resources/images/farmer.png" class="img-fluid">
                         </div>
                       </div>
                     </div>
@@ -385,7 +357,7 @@
                           <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">Shop Collection</a>
                         </div>
                         <div class="img-wrapper col-md-5">
-                          <img src="resources/images/product-thumb-1.png" class="img-fluid">
+                          <img src="./resources/images/product-thumb-1.png" class="img-fluid">
                         </div>
                       </div>
                     </div>
@@ -399,7 +371,7 @@
                           <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">Shop Collection</a>
                         </div>
                         <div class="img-wrapper col-md-5">
-                          <img src="resources/images/product-thumb-2.png" class="img-fluid">
+                          <img src="./resources/images/product-thumb-2.png" class="img-fluid">
                         </div>
                       </div>
                     </div>
@@ -410,7 +382,7 @@
                 </div>
               </div>
               
-              <div class="banner-ad bg-success-subtle block-2" style="background:url('resources/images/fish.png') no-repeat;background-position: right bottom">
+              <div class="banner-ad bg-success-subtle block-2" style="background:url('./resources/images/fish.png') no-repeat;background-position: right bottom">
                 <div class="row banner-content p-5">
 
                   <div class="content-wrapper col-md-7">
@@ -422,7 +394,7 @@
                 </div>
               </div>
 
-              <div class="banner-ad bg-danger block-3" style="background:url('resources/images/pear.png') no-repeat;background-position: right bottom">
+              <div class="banner-ad bg-danger block-3" style="background:url('./resources/images/pear.png') no-repeat;background-position: right bottom">
                 <div class="row banner-content p-5">
                   <div class="content-wrapper col-md-7">
                     <div class="categories sale mb-3 pb-3">겨울배 할인</div>
@@ -441,86 +413,7 @@
       </div>
     </section>
 
-    <!-- <section class="py-5 overflow-hidden">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-12">
-
-            <div class="section-header d-flex flex-wrap justify-content-between mb-5">
-              <h2 class="section-title">카테고리(여긴 살릴건지 말건지)</h2>
-
-              <div class="d-flex align-items-center">
-                <a href="#" class="btn-link text-decoration-none">넘기며 확인하기 →</a>
-                <div class="swiper-buttons">
-                  <button class="swiper-prev category-carousel-prev btn btn-yellow">❮</button>
-                  <button class="swiper-next category-carousel-next btn btn-yellow">❯</button>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-        </div> -->
-        <!-- <div class="row">
-          <div class="col-md-12">
-
-            <div class="category-carousel swiper">
-              <div class="swiper-wrapper">
-                <a href="category.html" class="nav-link category-item swiper-slide">
-                  <img src="images/icon-vegetables-broccoli.png" alt="Category Thumbnail">
-                  <h3 class="category-title">채소</h3>
-                </a>
-                <a href="category.html" class="nav-link category-item swiper-slide">
-                  <img src="images/icon-bread-baguette.png" alt="Category Thumbnail">
-                  <h3 class="category-title">빵</h3>
-                </a>
-                <a href="category.html" class="nav-link category-item swiper-slide">
-                  <img src="images/icon-soft-drinks-bottle.png" alt="Category Thumbnail">
-                  <h3 class="category-title">음료류</h3>
-                </a>
-                <a href="category.html" class="nav-link category-item swiper-slide">
-                  <img src="images/icon-wine-glass-bottle.png" alt="Category Thumbnail">
-                  <h3 class="category-title">주류</h3>
-                </a>
-                <a href="category.html" class="nav-link category-item swiper-slide">
-                  <img src="images/icon-animal-products-drumsticks.png" alt="Category Thumbnail">
-                  <h3 class="category-title">육류</h3>
-                </a>
-                <a href="category.html" class="nav-link category-item swiper-slide">
-                  <img src="images/icon-bread-herb-flour.png" alt="Category Thumbnail">
-                  <h3 class="category-title">쨈류</h3>
-                </a> -->
-                <!-- <a href="category.html" class="nav-link category-item swiper-slide">
-                  <img src="images/icon-vegetables-broccoli.png" alt="Category Thumbnail">
-                  <h3 class="category-title">Fruits & Veges</h3>
-                </a>
-                <a href="category.html" class="nav-link category-item swiper-slide">
-                  <img src="images/icon-vegetables-broccoli.png" alt="Category Thumbnail">
-                  <h3 class="category-title">Fruits & Veges</h3>
-                </a>
-                <a href="category.html" class="nav-link category-item swiper-slide">
-                  <img src="images/icon-vegetables-broccoli.png" alt="Category Thumbnail">
-                  <h3 class="category-title">Fruits & Veges</h3>
-                </a>
-                <a href="category.html" class="nav-link category-item swiper-slide">
-                  <img src="images/icon-vegetables-broccoli.png" alt="Category Thumbnail">
-                  <h3 class="category-title">Fruits & Veges</h3>
-                </a>
-                <a href="category.html" class="nav-link category-item swiper-slide">
-                  <img src="images/icon-vegetables-broccoli.png" alt="Category Thumbnail">
-                  <h3 class="category-title">Fruits & Veges</h3>
-                </a>
-                <a href="category.html" class="nav-link category-item swiper-slide">
-                  <img src="images/icon-vegetables-broccoli.png" alt="Category Thumbnail">
-                  <h3 class="category-title">Fruits & Veges</h3>
-                </a> -->
-<!--                 
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </section> -->
+   
     <section class="py-5 overflow-hidden">
       <div class="container-fluid">
         <div class="row">
@@ -552,7 +445,7 @@
                   <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                   <figure>
                     <a href="single-product.html" title="Product Title">
-                      <img src="resources/images/thumb-tomatoes.png"  class="tab-image">
+                      <img src="./resources/images/thumb-tomatoes.png"  class="tab-image">
                     </a>
                   </figure>
                   <h3>방울방울 토마토</h3>
@@ -581,7 +474,7 @@
                   <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                   <figure>
                     <a href="single-product.html" title="Product Title">
-                      <img src="resources/images/thumb-tomatoketchup.png"  class="tab-image">
+                      <img src="./resources/images/thumb-tomatoketchup.png"  class="tab-image">
                     </a>
                   </figure>
                   <h3>마늘마늘 펀치</h3>
@@ -610,7 +503,7 @@
                   <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                   <figure>
                     <a href="single-product.html" title="Product Title">
-                      <img src="resources/images/thumb-bananas.png"  class="tab-image">
+                      <img src="./resources/images/thumb-bananas.png"  class="tab-image">
                     </a>
                   </figure>
                   <h3>국내산 바나나</h3>
@@ -639,7 +532,7 @@
                   <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                   <figure>
                     <a href="single-product.html" title="Product Title">
-                      <img src="resources/images/thumb-bananas.png"  class="tab-image">
+                      <img src="./resources/images/thumb-bananas.png"  class="tab-image">
                     </a>
                   </figure>
                   <h3>원숭이가 좋아하는 바나나</h3>
@@ -666,7 +559,7 @@
                   <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                   <figure>
                     <a href="single-product.html" title="Product Title">
-                      <img src="resources/images/thumb-tomatoes.png"  class="tab-image">
+                      <img src="./resources/images/thumb-tomatoes.png"  class="tab-image">
                     </a>
                   </figure>
                   <h3>토매러주스</h3>
@@ -690,38 +583,7 @@
                   </div>
                 </div>
 
-                <!-- <div class="product-item swiper-slide">
-                  <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
-                  <figure>
-                    <a href="single-product.html" title="Product Title">
-                      <img src="images/thumb-tomatoketchup.png"  class="tab-image">
-                    </a>
-                  </figure>
-                  <h3>test1</h3>
-                  <span class="qty">1kg</span><span class="rating"><svg width="24" height="24" class="text-primary"><use xlink:href="#star-solid"></use></svg> 4.5</span>
-                  <span class="price">1000원</span>
-                  <div class="d-flex align-items-center justify-content-between">
-                    <div class="input-group product-qty">
-                        <span class="input-group-btn">
-                            <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                              <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                            </button>
-                        </span>
-                        <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                        <span class="input-group-btn">
-                            <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                                <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                            </button>
-                        </span>
-                    </div>
-                    <a href="#" class="nav-link">장바구니 넣기 <iconify-icon icon="uil:shopping-cart"></a>
-                  </div>
-                </div> -->
-
-                
-                
-
-                
+     
                 
               </div>
               
@@ -749,7 +611,7 @@
             <article class="post-item card border-0 shadow-sm p-3">
               <div class="image-holder zoom-effect">
                 <a href="#">
-                  <img src="resources/images/post-thumb-1.jpg" alt="post" class="card-img-top">
+                  <img src="./resources/images/post-thumb-1.jpg" alt="post" class="card-img-top">
                 </a>
               </div>
               <div class="card-body">
@@ -770,7 +632,7 @@
             <article class="post-item card border-0 shadow-sm p-3">
               <div class="image-holder zoom-effect">
                 <a href="#">
-                  <img src="resources/images/post-thumb-2.jpg" alt="post" class="card-img-top">
+                  <img src="./resources/images/post-thumb-2.jpg" alt="post" class="card-img-top">
                 </a>
               </div>
               <div class="card-body">
@@ -791,7 +653,7 @@
             <article class="post-item card border-0 shadow-sm p-3">
               <div class="image-holder zoom-effect">
                 <a href="#">
-                  <img src="resources/images/post-thumb-3.jpg" alt="post" class="card-img-top">
+                  <img src="./resources/images/post-thumb-3.jpg" alt="post" class="card-img-top">
                 </a>
               </div>
               <div class="card-body">
@@ -804,8 +666,7 @@
                     <a href="#" class="text-decoration-none">주명Lee농장</a>
                   </h3>
                   <p>오늘 할일 :
-                    끝내주게 물주기 간지나게 잡초뽑기
-                    작살나게 수확하기</p>
+                    끝내주게 물주기 <br> 간지나게 잡초뽑기 <br> 작살나게 수확하기</p>
                 </div>
               </div>
             </article>
@@ -844,7 +705,7 @@
                   <div class="card mb-3 p-3 rounded-4 shadow border-0">
                     <div class="row g-0">
                       <div class="col-md-4">
-                        <img src="resources/images/product-thumb-11.jpg" class="img-fluid rounded" alt="Card title">
+                        <img src="./resources/images/product-thumb-11.jpg" class="img-fluid rounded" alt="Card title">
                       </div>
                       <div class="col-md-8">
                         <div class="card-body py-0">
@@ -859,7 +720,7 @@
                   <div class="card mb-3 p-3 rounded-4 shadow border-0">
                     <div class="row g-0">
                       <div class="col-md-4">
-                        <img src="resources/images/product-thumb-12.jpg" class="img-fluid rounded" alt="Card title">
+                        <img src="./resources/images/product-thumb-12.jpg" class="img-fluid rounded" alt="Card title">
                       </div>
                       <div class="col-md-8">
                         <div class="card-body py-0">
@@ -874,7 +735,7 @@
                   <div class="card mb-3 p-3 rounded-4 shadow border-0">
                     <div class="row g-0">
                       <div class="col-md-4">
-                        <img src="resources/images/product-thumb-13.jpg" class="img-fluid rounded" alt="Card title">
+                        <img src="./resources/images/product-thumb-13.jpg" class="img-fluid rounded" alt="Card title">
                       </div>
                       <div class="col-md-8">
                         <div class="card-body py-0">
@@ -885,52 +746,7 @@
                     </div>
                   </div>
                 </div>
-                <!-- <div class="swiper-slide">
-                  <div class="card mb-3 p-3 rounded-4 shadow border-0">
-                    <div class="row g-0">
-                      <div class="col-md-4">
-                        <img src="images/product-thumb-14.jpg" class="img-fluid rounded" alt="Card title">
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body py-0">
-                          <p class="text-muted mb-0">Amber Jar</p>
-                          <h5 class="card-title">Honey best nectar you wish to get</h5>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
-                <!-- <div class="swiper-slide">
-                  <div class="card mb-3 p-3 rounded-4 shadow border-0">
-                    <div class="row g-0">
-                      <div class="col-md-4">
-                        <img src="images/product-thumb-11.jpg" class="img-fluid rounded" alt="Card title">
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body py-0">
-                          <p class="text-muted mb-0">Amber Jar</p>
-                          <h5 class="card-title">Honey best nectar you wish to get</h5>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
-                <!-- <div class="swiper-slide">
-                  <div class="card mb-3 p-3 rounded-4 shadow border-0">
-                    <div class="row g-0">
-                      <div class="col-md-4">
-                        <img src="images/product-thumb-12.jpg" class="img-fluid rounded" alt="Card title">
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body py-0">
-                          <p class="text-muted mb-0">Amber Jar</p>
-                          <h5 class="card-title">Honey best nectar you wish to get</h5>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
-                
+
               </div>
             </div>
 
@@ -968,7 +784,7 @@
                         <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                         <figure>
                           <a href="single-product.html" title="Product Title">
-                            <img src="resources/images/thumb-bananas.png"  class="tab-image">
+                            <img src="./resources/images/thumb-bananas.png"  class="tab-image">
                           </a>
                         </figure>
                         <h3>Sunstar Fresh Melon Juice</h3>
@@ -999,7 +815,7 @@
                         <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                         <figure>
                           <a href="single-product.html" title="Product Title">
-                            <img src="resources/images/thumb-biscuits.png"  class="tab-image">
+                            <img src="./resources/images/thumb-biscuits.png"  class="tab-image">
                           </a>
                         </figure>
                         <h3>Sunstar Fresh Melon Juice</h3>
@@ -1029,7 +845,7 @@
                         <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                         <figure>
                           <a href="single-product.html" title="Product Title">
-                            <img src="resources/images/thumb-cucumber.png"  class="tab-image">
+                            <img src="./resources/images/thumb-cucumber.png"  class="tab-image">
                           </a>
                         </figure>
                         <h3>Sunstar Fresh Melon Juice</h3>
@@ -1059,7 +875,7 @@
                         <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                         <figure>
                           <a href="single-product.html" title="Product Title">
-                            <img src="resources/images/thumb-milk.png"  class="tab-image">
+                            <img src="./resources/images/thumb-milk.png"  class="tab-image">
                           </a>
                         </figure>
                         <h3>Sunstar Fresh Melon Juice</h3>
@@ -1089,7 +905,7 @@
                         <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                         <figure>
                           <a href="single-product.html" title="Product Title">
-                            <img src="resources/images/thumb-bananas.png"  class="tab-image">
+                            <img src="./resources/images/thumb-bananas.png"  class="tab-image">
                           </a>
                         </figure>
                         <h3>Sunstar Fresh Melon Juice</h3>
@@ -1119,7 +935,7 @@
                         <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                         <figure>
                           <a href="single-product.html" title="Product Title">
-                            <img src="resources/images/thumb-biscuits.png"  class="tab-image">
+                            <img src="./resources/images/thumb-biscuits.png"  class="tab-image">
                           </a>
                         </figure>
                         <h3>Sunstar Fresh Melon Juice</h3>
@@ -1149,7 +965,7 @@
                         <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                         <figure>
                           <a href="single-product.html" title="Product Title">
-                            <img src="resources/images/thumb-cucumber.png"  class="tab-image">
+                            <img src="./resources/images/thumb-cucumber.png"  class="tab-image">
                           </a>
                         </figure>
                         <h3>Sunstar Fresh Melon Juice</h3>
@@ -1179,7 +995,7 @@
                         <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                         <figure>
                           <a href="single-product.html" title="Product Title">
-                            <img src="resources/images/thumb-milk.png"  class="tab-image">
+                            <img src="./resources/images/thumb-milk.png"  class="tab-image">
                           </a>
                         </figure>
                         <h3>Sunstar Fresh Melon Juice</h3>
@@ -1209,7 +1025,7 @@
                         <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                         <figure>
                           <a href="single-product.html" title="Product Title">
-                            <img src="resources/images/thumb-bananas.png"  class="tab-image">
+                            <img src="./resources/images/thumb-bananas.png"  class="tab-image">
                           </a>
                         </figure>
                         <h3>Sunstar Fresh Melon Juice</h3>
@@ -1239,7 +1055,7 @@
                         <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                         <figure>
                           <a href="single-product.html" title="Product Title">
-                            <img src="resources/images/thumb-biscuits.png"  class="tab-image">
+                            <img src="./resources/images/thumb-biscuits.png"  class="tab-image">
                           </a>
                         </figure>
                         <h3>Sunstar Fresh Melon Juice</h3>
@@ -1279,7 +1095,7 @@
                         <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                         <figure>
                           <a href="single-product.html" title="Product Title">
-                            <img src="resources/images/thumb-cucumber.png"  class="tab-image">
+                            <img src="./resources/images/thumb-cucumber.png"  class="tab-image">
                           </a>
                         </figure>
                         <h3>Sunstar Fresh Melon Juice</h3>
@@ -1310,7 +1126,7 @@
                         <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                         <figure>
                           <a href="single-product.html" title="Product Title">
-                            <img src="resources/images/thumb-milk.png"  class="tab-image">
+                            <img src="./resources/images/thumb-milk.png"  class="tab-image">
                           </a>
                         </figure>
                         <h3>Sunstar Fresh Melon Juice</h3>
@@ -1341,7 +1157,7 @@
                         <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                         <figure>
                           <a href="single-product.html" title="Product Title">
-                            <img src="resources/images/thumb-orange-juice.png"  class="tab-image">
+                            <img src="./resources/images/thumb-orange-juice.png"  class="tab-image">
                           </a>
                         </figure>
                         <h3>Sunstar Fresh Melon Juice</h3>
@@ -1371,7 +1187,7 @@
                         <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                         <figure>
                           <a href="single-product.html" title="Product Title">
-                            <img src="resources/images/thumb-raspberries.png"  class="tab-image">
+                            <img src="./resources/images/thumb-raspberries.png"  class="tab-image">
                           </a>
                         </figure>
                         <h3>Sunstar Fresh Melon Juice</h3>
@@ -1401,7 +1217,7 @@
                         <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                         <figure>
                           <a href="single-product.html" title="Product Title">
-                            <img src="resources/images/thumb-bananas.png"  class="tab-image">
+                            <img src="./resources/images/thumb-bananas.png"  class="tab-image">
                           </a>
                         </figure>
                         <h3>Sunstar Fresh Melon Juice</h3>
@@ -1431,7 +1247,7 @@
                         <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                         <figure>
                           <a href="single-product.html" title="Product Title">
-                            <img src="resources/images/thumb-bananas.png"  class="tab-image">
+                            <img src="./resources/images/thumb-bananas.png"  class="tab-image">
                           </a>
                         </figure>
                         <h3>Sunstar Fresh Melon Juice</h3>
@@ -1469,7 +1285,7 @@
                         <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                         <figure>
                           <a href="single-product.html" title="Product Title">
-                            <img src="resources/images/thumb-cucumber.png"  class="tab-image">
+                            <img src="./resources/images/thumb-cucumber.png"  class="tab-image">
                           </a>
                         </figure>
                         <h3>Sunstar Fresh Melon Juice</h3>
@@ -1499,7 +1315,7 @@
                         <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                         <figure>
                           <a href="single-product.html" title="Product Title">
-                            <img src="resources/images/thumb-milk.png"  class="tab-image">
+                            <img src="./resources/images/thumb-milk.png"  class="tab-image">
                           </a>
                         </figure>
                         <h3>Sunstar Fresh Melon Juice</h3>
@@ -1529,7 +1345,7 @@
                         <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                         <figure>
                           <a href="single-product.html" title="Product Title">
-                            <img src="resources/images/thumb-tomatoes.png"  class="tab-image">
+                            <img src="./resources/images/thumb-tomatoes.png"  class="tab-image">
                           </a>
                         </figure>
                         <h3>Sunstar Fresh Melon Juice</h3>
@@ -1559,7 +1375,7 @@
                         <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                         <figure>
                           <a href="single-product.html" title="Product Title">
-                            <img src="resources/images/thumb-tomatoketchup.png"  class="tab-image">
+                            <img src="./resources/images/thumb-tomatoketchup.png"  class="tab-image">
                           </a>
                         </figure>
                         <h3>Sunstar Fresh Melon Juice</h3>
@@ -1589,7 +1405,7 @@
                         <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                         <figure>
                           <a href="single-product.html" title="Product Title">
-                            <img src="resources/images/thumb-bananas.png"  class="tab-image">
+                            <img src="./resources/images/thumb-bananas.png"  class="tab-image">
                           </a>
                         </figure>
                         <h3>Sunstar Fresh Melon Juice</h3>
@@ -1619,7 +1435,7 @@
                         <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                         <figure>
                           <a href="single-product.html" title="Product Title">
-                            <img src="resources/images/thumb-bananas.png"  class="tab-image">
+                            <img src="./resources/images/thumb-bananas.png"  class="tab-image">
                           </a>
                         </figure>
                         <h3>Sunstar Fresh Melon Juice</h3>
@@ -1657,345 +1473,7 @@
       </div>
     </section>
 
-    <!-- <section class="py-5">
-      <div class="container-fluid">
-        <div class="row">
-          
-          <div class="col-md-6">
-            <div class="banner-ad bg-danger mb-3" style="background: url('images/ad-image-3.png');background-repeat: no-repeat;background-position: right bottom;">
-              <div class="banner-content p-5">
-
-                <div class="categories text-primary fs-3 fw-bold">Upto 25% Off</div>
-                <h3 class="banner-title">Luxa Dark Chocolate</h3>
-                <p>Very tasty & creamy vanilla flavour creamy muffins.</p>
-                <a href="#" class="btn btn-dark text-uppercase">Show Now</a>
-
-              </div>
-            
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="banner-ad bg-info" style="background: url('images/ad-image-4.png');background-repeat: no-repeat;background-position: right bottom;">
-              <div class="banner-content p-5">
-
-                <div class="categories text-primary fs-3 fw-bold">Upto 25% Off</div>
-                <h3 class="banner-title">Creamy Muffins</h3>
-                <p>Very tasty & creamy vanilla flavour creamy muffins.</p>
-                <a href="#" class="btn btn-dark text-uppercase">Show Now</a>
-
-              </div>
-            
-            </div>
-          </div>
-             
-        </div>
-      </div>
-    </section> -->
-
-    <!-- <section class="py-5 overflow-hidden">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-12">
-
-            <div class="section-header d-flex flex-wrap justify-content-between my-5">
-              
-              <h2 class="section-title">Best selling products</h2>
-
-              <div class="d-flex align-items-center">
-                <a href="#" class="btn-link text-decoration-none">View All Categories →</a>
-                <div class="swiper-buttons">
-                  <button class="swiper-prev products-carousel-prev btn btn-primary">❮</button>
-                  <button class="swiper-next products-carousel-next btn btn-primary">❯</button>
-                </div>  
-              </div>
-            </div>
-            
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-
-            <div class="products-carousel swiper">
-              <div class="swiper-wrapper">
-                
-                <div class="product-item swiper-slide">
-                  <span class="badge bg-success position-absolute m-3">-15%</span>
-                  <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
-                  <figure>
-                    <a href="single-product.html" title="Product Title">
-                      <img src="images/thumb-tomatoes.png"  class="tab-image">
-                    </a>
-                  </figure>
-                  <h3>Sunstar Fresh Melon Juice</h3>
-                  <span class="qty">1 Unit</span><span class="rating"><svg width="24" height="24" class="text-primary"><use xlink:href="#star-solid"></use></svg> 4.5</span>
-                  <span class="price">$18.00</span>
-                  <div class="d-flex align-items-center justify-content-between">
-                    <div class="input-group product-qty">
-                        <span class="input-group-btn">
-                            <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                              <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                            </button>
-                        </span>
-                        <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                        <span class="input-group-btn">
-                            <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                                <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                            </button>
-                        </span>
-                    </div>
-                    <a href="#" class="nav-link">Add to Cart <iconify-icon icon="uil:shopping-cart"></a>
-                  </div>
-                </div>
-
-                <div class="product-item swiper-slide">
-                  <span class="badge bg-success position-absolute m-3">-15%</span>
-                  <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
-                  <figure>
-                    <a href="single-product.html" title="Product Title">
-                      <img src="images/thumb-tomatoketchup.png"  class="tab-image">
-                    </a>
-                  </figure>
-                  <h3>Sunstar Fresh Melon Juice</h3>
-                  <span class="qty">1 Unit</span><span class="rating"><svg width="24" height="24" class="text-primary"><use xlink:href="#star-solid"></use></svg> 4.5</span>
-                  <span class="price">$18.00</span>
-                  <div class="d-flex align-items-center justify-content-between">
-                    <div class="input-group product-qty">
-                        <span class="input-group-btn">
-                            <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                              <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                            </button>
-                        </span>
-                        <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                        <span class="input-group-btn">
-                            <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                                <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                            </button>
-                        </span>
-                    </div>
-                    <a href="#" class="nav-link">Add to Cart <iconify-icon icon="uil:shopping-cart"></a>
-                  </div>
-                </div>
-
-                <div class="product-item swiper-slide">
-                  <span class="badge bg-success position-absolute m-3">-15%</span>
-                  <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
-                  <figure>
-                    <a href="single-product.html" title="Product Title">
-                      <img src="images/thumb-bananas.png"  class="tab-image">
-                    </a>
-                  </figure>
-                  <h3>Sunstar Fresh Melon Juice</h3>
-                  <span class="qty">1 Unit</span><span class="rating"><svg width="24" height="24" class="text-primary"><use xlink:href="#star-solid"></use></svg> 4.5</span>
-                  <span class="price">$18.00</span>
-                  <div class="d-flex align-items-center justify-content-between">
-                    <div class="input-group product-qty">
-                        <span class="input-group-btn">
-                            <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                              <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                            </button>
-                        </span>
-                        <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                        <span class="input-group-btn">
-                            <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                                <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                            </button>
-                        </span>
-                    </div>
-                    <a href="#" class="nav-link">Add to Cart <iconify-icon icon="uil:shopping-cart"></a>
-                  </div>
-                </div>
-
-                <div class="product-item swiper-slide">
-                  <span class="badge bg-success position-absolute m-3">-15%</span>
-                  <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
-                  <figure>
-                    <a href="single-product.html" title="Product Title">
-                      <img src="images/thumb-bananas.png"  class="tab-image">
-                    </a>
-                  </figure>
-                  <h3>Sunstar Fresh Melon Juice</h3>
-                  <span class="qty">1 Unit</span><span class="rating"><svg width="24" height="24" class="text-primary"><use xlink:href="#star-solid"></use></svg> 4.5</span>
-                  <span class="price">$18.00</span>
-                  <div class="d-flex align-items-center justify-content-between">
-                    <div class="input-group product-qty">
-                        <span class="input-group-btn">
-                            <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                              <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                            </button>
-                        </span>
-                        <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                        <span class="input-group-btn">
-                            <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                                <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                            </button>
-                        </span>
-                    </div>
-                    <a href="#" class="nav-link">Add to Cart <iconify-icon icon="uil:shopping-cart"></a>
-                  </div>
-                </div>
-                <div class="product-item swiper-slide">
-                  <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
-                  <figure>
-                    <a href="single-product.html" title="Product Title">
-                      <img src="images/thumb-tomatoes.png"  class="tab-image">
-                    </a>
-                  </figure>
-                  <h3>Sunstar Fresh Melon Juice</h3>
-                  <span class="qty">1 Unit</span><span class="rating"><svg width="24" height="24" class="text-primary"><use xlink:href="#star-solid"></use></svg> 4.5</span>
-                  <span class="price">$18.00</span>
-                  <div class="d-flex align-items-center justify-content-between">
-                    <div class="input-group product-qty">
-                        <span class="input-group-btn">
-                            <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                              <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                            </button>
-                        </span>
-                        <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                        <span class="input-group-btn">
-                            <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                                <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                            </button>
-                        </span>
-                    </div>
-                    <a href="#" class="nav-link">Add to Cart <iconify-icon icon="uil:shopping-cart"></a>
-                  </div>
-                </div>
-
-                <div class="product-item swiper-slide">
-                  <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
-                  <figure>
-                    <a href="single-product.html" title="Product Title">
-                      <img src="images/thumb-tomatoketchup.png"  class="tab-image">
-                    </a>
-                  </figure>
-                  <h3>Sunstar Fresh Melon Juice</h3>
-                  <span class="qty">1 Unit</span><span class="rating"><svg width="24" height="24" class="text-primary"><use xlink:href="#star-solid"></use></svg> 4.5</span>
-                  <span class="price">$18.00</span>
-                  <div class="d-flex align-items-center justify-content-between">
-                    <div class="input-group product-qty">
-                        <span class="input-group-btn">
-                            <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                              <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                            </button>
-                        </span>
-                        <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                        <span class="input-group-btn">
-                            <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                                <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                            </button>
-                        </span>
-                    </div>
-                    <a href="#" class="nav-link">Add to Cart <iconify-icon icon="uil:shopping-cart"></a>
-                  </div>
-                </div>
-
-                <div class="product-item swiper-slide">
-                  <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
-                  <figure>
-                    <a href="single-product.html" title="Product Title">
-                      <img src="images/thumb-bananas.png"  class="tab-image">
-                    </a>
-                  </figure>
-                  <h3>Sunstar Fresh Melon Juice</h3>
-                  <span class="qty">1 Unit</span><span class="rating"><svg width="24" height="24" class="text-primary"><use xlink:href="#star-solid"></use></svg> 4.5</span>
-                  <span class="price">$18.00</span>
-                  <div class="d-flex align-items-center justify-content-between">
-                    <div class="input-group product-qty">
-                        <span class="input-group-btn">
-                            <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                              <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                            </button>
-                        </span>
-                        <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                        <span class="input-group-btn">
-                            <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                                <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                            </button>
-                        </span>
-                    </div>
-                    <a href="#" class="nav-link">Add to Cart <iconify-icon icon="uil:shopping-cart"></a>
-                  </div>
-                </div>
-
-                <div class="product-item swiper-slide">
-                  <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
-                  <figure>
-                    <a href="single-product.html" title="Product Title">
-                      <img src="images/thumb-bananas.png"  class="tab-image">
-                    </a>
-                  </figure>
-                  <h3>Sunstar Fresh Melon Juice</h3>
-                  <span class="qty">1 Unit</span><span class="rating"><svg width="24" height="24" class="text-primary"><use xlink:href="#star-solid"></use></svg> 4.5</span>
-                  <span class="price">$18.00</span>
-                  <div class="d-flex align-items-center justify-content-between">
-                    <div class="input-group product-qty">
-                        <span class="input-group-btn">
-                            <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
-                              <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
-                            </button>
-                        </span>
-                        <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
-                        <span class="input-group-btn">
-                            <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
-                                <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
-                            </button>
-                        </span>
-                    </div>
-                    <a href="#" class="nav-link">Add to Cart <iconify-icon icon="uil:shopping-cart"></a>
-                  </div>
-                </div>
-                
-              </div>
-            </div>-->
-            <!-- / products-carousel -->
-
-          <!-- </div>
-        </div>
-      </div>
-    </section>  -->
-
-    <!-- <section class="py-5">
-      <div class="container-fluid">
-
-        <div class="bg-secondary py-5 my-5 rounded-5" style="background: url('images/bg-leaves-img-pattern.png') no-repeat;">
-          <div class="container my-5">
-            <div class="row">
-              <div class="col-md-6 p-5">
-                <div class="section-header">
-                  <h2 class="section-title display-4">Get <span class="text-primary">25% Discount</span> on your first purchase</h2>
-                </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dictumst amet, metus, sit massa posuere maecenas. At tellus ut nunc amet vel egestas.</p>
-              </div>
-              <div class="col-md-6 p-5">
-                <form>
-                  <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text"
-                      class="form-control form-control-lg" name="name" id="name" placeholder="Name">
-                  </div>
-                  <div class="mb-3">
-                    <label for="" class="form-label">Email</label>
-                    <input type="email" class="form-control form-control-lg" name="email" id="email" placeholder="abc@mail.com">
-                  </div>
-                  <div class="form-check form-check-inline mb-3">
-                    <label class="form-check-label" for="subscribe">
-                    <input class="form-check-input" type="checkbox" id="subscribe" value="subscribe">
-                    Subscribe to the newsletter</label>
-                  </div>
-                  <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-dark btn-lg">Submit</button>
-                  </div>
-                </form>
-                
-              </div>
-              
-            </div>
-            
-          </div>
-        </div>
-        
-      </div>
-    </section> -->
+   
 
     <section class="py-5">
       <div class="container-fluid">
@@ -2085,7 +1563,7 @@
 
           <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="footer-menu">
-              <img src="resources/images/logo.png" alt="logo">
+              <img src="./resources/images/harugreen.png" alt="logo">
               <div class="social-links mt-5">
                 <ul class="d-flex list-unstyled gap-2">
                   <li>
@@ -2219,9 +1697,10 @@
         </div>
       </div>
     </div>
-    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="./resources/assets/js/jquery-1.11.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
     <script src="js/plugins.js"></script>
     <script src="js/script.js"></script>
     
@@ -2251,5 +1730,9 @@
     }
   });
 </script>
+
+    <script src="./resources/assets/js/plugins.js"></script>
+    <script src="./resources/assets/js/script.js"></script>
+
   </body>
 </html>

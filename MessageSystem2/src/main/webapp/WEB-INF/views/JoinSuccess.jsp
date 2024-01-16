@@ -15,8 +15,8 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/vendor.css">
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="./resources/assets/css/vendor.css">
+    <link rel="stylesheet" type="text/css" href="./resources/assets/css/stylejm.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -81,7 +81,7 @@
             <div class="col-sm-4 col-lg-3 text-center text-sm-start">
               <div class="main-logo">
                 <a href="index.html">
-                  <img src="resources/images/harugreen.png" alt="logo" class="img-fluid" style="max-width: 60%;">
+                  <img src="./resources/images/harugreen.png" alt="logo" class="img-fluid" style="max-width: 60%;">
                 </a>
               </div>
             </div>
@@ -115,22 +115,22 @@
   
               <ul class="d-flex justify-content-end list-unstyled m-0">
                 <li>
-                  <a href="#" class="rounded-circle bg-light p-2 mx-1">
+                  <a href="#" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
                     <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#user"></use></svg>
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="rounded-circle bg-light p-2 mx-1">
+                  <a href="#" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
                     <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#heart"></use></svg>
                   </a>
                 </li>
                 <li class="d-lg-none">
-                  <a href="#" class="rounded-circle bg-light p-2 mx-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+                  <a href="#" class="rounded-circle bg-light p-2 mx-1" style="color: green;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
                     <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#cart"></use></svg>
                   </a>
                 </li>
                 <li class="d-lg-none">
-                  <a href="#" class="rounded-circle bg-light p-2 mx-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch">
+                  <a href="#" class="rounded-circle bg-light p-2 mx-1" style="color: green;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch">
                     <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#search"></use></svg>
                   </a>
                 </li>
@@ -179,7 +179,7 @@
                         <a href="#" class="nav-link">가공식품</a>
                       </li>
                       <a href="#" target="_blank" class="nav-link btn-coupon-code">
-                  <img src="resources/images/book-half.svg" alt="gift icon">
+                  <img src="./resources/images/book-half.svg" alt="gift icon">
                   <strong class="ms-2 text-dark">영농일지 보러가기</strong>
                 </a>
                     </ul>
@@ -201,12 +201,12 @@
         <div class="success">
           <!-- 글 하나 시작 -->
           <div class="success_content">
-            <h1 align="center">회원가입</h1>
+            <h1>회원가입</h1>
               <hr style="margin-top: 50px; margin-bottom: 50px;">
               <p align="center" style="font-size:40px;">회원가입이 완료되었습니다!</p>
               <div align="center" style="margin-top: 50px;">
-              <button type="button" class="btn btn-outline-success btn-lg" id="goMain">홈으로 가기</button>
-              <button type="button" class="btn btn-success btn-lg" id="goLogin">로그인 하기</button>
+              <button type="button" class="btn btn-outline-success btn-lg">홈으로 가기</button>
+              <button type="button" class="btn btn-success btn-lg">로그인 하기</button>
             </div>
             </div>
             <!-- 글 하나 끝 -->
@@ -217,13 +217,13 @@
       </div>
 
 
-      <footer class="py-5">
+      <footer class="py-5 fixed-bottom">
         <div class="container-fluid">
           <div class="row">
   
             <div class="col-lg-3 col-md-6 col-sm-6">
               <div class="footer-menu">
-                <img src="resources/images/harugreen.png" alt="logo">
+                <img src="./resources/images/harugreen.png" alt="logo">
                 <div class="social-links mt-5">
                   <ul class="d-flex list-unstyled gap-2">
                     <li>
@@ -284,26 +284,17 @@
           </div>
         </div>
 
-      </footer>
-      <div id="footer-bottom">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-6 copyright">
-              <p>©그린허브 핵심프로젝트.</p>
+        <div id="footer-bottom">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6 copyright">
+                <p>©그린허브 핵심프로젝트.</p>
+              </div>
+              
             </div>
-            
           </div>
         </div>
-      </div>
-      <script type="text/javascript"> 
-	    document.getElementById("goLogin").addEventListener("click", function() {
-	       window.location.href = "goLogin";
-	    });
-	    
-	    document.getElementById("goMain").addEventListener("click", function() {
-		       window.location.href = "goMain";
-		});
-    </script>
+      </footer>
       <script src="js/jquery-1.11.0.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>

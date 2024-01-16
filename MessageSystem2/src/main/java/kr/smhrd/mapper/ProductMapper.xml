@@ -35,4 +35,9 @@ ORDER BY
    INTO tb_prod (prod_name, prod_desc, prod_type, prod_price, prod_stock, cust_id, created_at)
  VALUES(#{prod_name}, #{prod_desc}, #{prod_type}, #{prod_price}, #{prod_stock}, #{cust_id}, now())
 </insert>
+
+<insert id="insertImage" parameterType="kr.smhrd.entity.Product">
+insert into tb_prod_image (prod_idx, img_name, img_real_name, img_ext, img_size)
+values(#{prod_idx}, #{img_name}, #{img_real_name}, #{img_ext}, #{img_size})
+</insert>
 </mapper>

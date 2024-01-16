@@ -12,10 +12,9 @@ import lombok.ToString;
 @Data
 @Getter
 @Setter
-
+@AllArgsConstructor
 @NoArgsConstructor
 @RequiredArgsConstructor
- 
 @ToString
 public class Product {
 
@@ -28,4 +27,14 @@ public class Product {
 	private String prod_cust_id;
 	private String prod_desc;
 	private String cust_id;
+	
+	// 상품 이미지파일 컬럼명
+	@NonNull
+	private int prod_idx;
+	private int img_name;
+	private int img_real_name;
+	private int img_ext;
+	private int img_size;
+	
+	
 }

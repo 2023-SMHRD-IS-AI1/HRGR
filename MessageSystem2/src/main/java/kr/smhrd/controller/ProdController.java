@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,23 +42,43 @@ public class ProdController {
 	}
 
 	@RequestMapping("/prodRegist")
-	public String prodRegist(Product product, HttpSession session) {
+	public String prodRegist(@ModelAttribute("product") Product product, HttpSession session) {
 //		세션에서 로그인 한 사용자의 정보 가져오기 
 		Member loginMember = (Member)session.getAttribute("loginMember");
 		
 //		로그인 한 사용자의 cust_id값 가져오기
 		String cust_id = loginMember.getCust_id();
 		
-//		member에 cust_id값 넣어서 tb_seller 테이블에 데이터 추가
+//		member에 cust_id값 넣어서 tb_prod 테이블에 데이터 추가
 		product.setCust_id(cust_id);
 		
+		System.out.println("값 확인~~~~~ : "+product.toString()); // 값 확인
 		ProductMapper.prodRegist(product);
+		
+//		방금 insert 한 상품의 prod_idx 가져오기
+		
+		/* ProductMapper.getProd_idx(); */
+		/* int prod_idx = product.getProd_idx(); */
+		
+		/*
+		 * ProductMapper.insertImage(product);
+		 */
 		return "Main";
 	}
+	
+	
 	
 	@RequestMapping("/goSell")
 	public String goSell() {
 		
 		return "prodRegist";
 	}
+	
+	@RequestMapping("/uploadFile")
+	public String uploadFile(Product product) {
+		
+		
+		return "Main";
+	}
+	
 }

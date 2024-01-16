@@ -393,7 +393,7 @@
           <label for="formFile" class="form-label" style="font-weight: bold"
             >사진 업로드</label>
         
-          <input name="filename" class="form-control" type="file" accept="image/png, image/gif, image/jpeg" />            
+          <input name="img_name" class="form-control" type="file" accept="image/png, image/gif, image/jpeg" />            
             
         </div>
         <div class="image-placeholder" style="height : 300px;">새로 업로드된 이미지</div>

@@ -19,6 +19,11 @@
 
 <body>
 	
+	
+	
+	
+	
+	
 	<script type="text/javascript">
 	// 구매자 정보
 	/* const user_email = response.req_user_email

@@ -36,6 +36,10 @@ ORDER BY
  VALUES(#{prod_name}, #{prod_desc}, #{prod_type}, #{prod_price}, #{prod_stock}, #{cust_id}, now())
 </insert>
 
+<select id="searchIdx" parameterType="kr.smhrd.entity.Product" resultType="kr.smhrd.entity.Product">
+select * from tb_prod where cust_id=#{cust_id} order by created_at desc limit 1
+</select>
+
 <insert id="insertImage" parameterType="kr.smhrd.entity.Product">
 insert into tb_prod_image (prod_idx, img_name, img_real_name, img_ext, img_size)
 values(#{prod_idx}, #{img_name}, #{img_real_name}, #{img_ext}, #{img_size})

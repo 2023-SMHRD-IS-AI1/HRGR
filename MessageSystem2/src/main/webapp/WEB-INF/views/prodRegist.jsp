@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="author" content="" />
+    <meta name="author" content="" />
     <meta name="keywords" content="" />
     <meta name="description" content="" />
 
@@ -25,8 +25,8 @@
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" type="text/css" href="css/vendor.css" />
-    <link rel="stylesheet" type="text/css" href="main.css" />
+    <link rel="stylesheet" type="text/css" href="./resources/assets/css/vendor.css" />
+    <link rel="stylesheet" type="text/css" href="./resources/assets/css/main.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -201,7 +201,7 @@
             <div class="main-logo">
               <a href="index.html">
                 <img
-                  src="images/harugreen.png"
+                  src="./resources/images/harugreen.png"
                   alt="logo"
                   class="img-fluid"
                   style="max-width: 60%"
@@ -371,7 +371,7 @@
                       target="_blank"
                       class="nav-link btn-coupon-code"
                     >
-                      <img src="images/book-half.svg" alt="gift icon" />
+                      <img src="./resources/images/book-half.svg" alt="gift icon" />
                       <strong class="ms-2 text-dark">영농일지 보러가기</strong>
                     </a>
                   </ul>
@@ -385,16 +385,14 @@
     </header>
 
     <!-- 여기에 본문 내용 채우면 됩니다~ -->
-<form action="prodRegist" method="post" enctype="multipart/form-data">
+
     <div class="product_context">
       <div class="main_text" style="font-size: 40px;">물품등록</div>
       <div class="upload-section">
         <div class="mb-3">
           <label for="formFile" class="form-label" style="font-weight: bold"
             >사진 업로드</label>
-        
-          <input name="img_name" class="form-control" type="file" accept="image/png, image/gif, image/jpeg" />            
-            
+          <input class="form-control" type="file" id="formFile" />
         </div>
         <div class="image-placeholder" style="height : 300px;">새로 업로드된 이미지</div>
         <hr>
@@ -402,14 +400,16 @@
           <label for="inputWeight">상품명</label>
           <input
             type="text"
-            name="prod_name"
+            id="inputWeight"
+            name="weight"
             placeholder="(예시)신선한 당근 1kg"/>
         </div>
         <div class="form-group">
           <label for="inputWeight">타입</label>
           <input
             type="text"
-            name="prod_type"
+            id="inputWeight"
+            name="weight"
             placeholder="(예시) 농산물, 수산물.."
           />
           
@@ -418,7 +418,8 @@
           <label for="inputWeight">재고</label>
           <input
             type="text"
-            name="prod_stock"
+            id="inputWeight"
+            name="weight"
             placeholder="(예시) 100개"
           />
         </div>
@@ -426,31 +427,32 @@
           <label for="inputPrice">가격</label>
           <input
             type="text"
-            name="prod_price"
+            id="inputPrice"
+            name="price"
             placeholder="상품가격 기입해주세요"
           />
         </div>
         <div class="form-group">
           <label for="textareaDescription">상품설명</label>
           <textarea
-            name="prod_desc"
+            id="textareaDescription"
+            name="description"
             placeholder="상품에 대한 설명을 자유롭게 적어주세요"
           ></textarea>
         </div>
         <div class="button-group">
-          <button class="btn-cancel"><input type="reset" value="초기화" /></button>
-          <button class="btn-register" ><input type="submit" value="등록하기" /></button>
+          <button class="btn-cancel">취소하기</button>
+          <button class="btn-register">등록하기</button>
         </div>
-      
       </div>
     </div>
-</form>
+
     <footer class="py-5">
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="footer-menu">
-              <img src="images/harugreen.png" alt="logo" />
+              <img src="./resources/images/harugreen.png" alt="logo" />
               <div class="social-links mt-5">
                 <ul class="d-flex list-unstyled gap-2">
                   <li>
@@ -571,38 +573,15 @@
         </div>
       </div>
     </div>
-    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="./resources/assets/js/jquery-1.11.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
       crossorigin="anonymous"
     ></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/script.js"></script>
+    <script src="./resources/assets/js/plugins.js"></script>
+    <script src="./resources/assets/js/script.js"></script>
   </body>
 </html>
     
-<!-- <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<h1>상품 등록</h1>
-	<form action="prodRegist">
-	<ul>
-	<li><input type="text" placeholder="상품명을 입력해주세요" name="prod_name"></li>
-	<li><input type="text" placeholder="상품의 가격을 입력해주세요" name="prod_price"></li>
-	<li><input type="text" placeholder="상품의 타입을 입력해주세요(농산물/수산물/축산물 등)" name="prod_type"></li>
-	<li><input type="text" placeholder="상품의 재고를 입력해주세요(숫자만)" name="prod_stock"></li>
-	<li><input type="text" placeholder="상품의 설명을 입력해주세요" name="prod_desc"></li>
-	<li><input type="" value="취소하기" >
-		<span>  </span>
-		<input type="submit" value="등록하기">
-	</li>
-	</ul>
-	</form>
-</body>
-</html> -->

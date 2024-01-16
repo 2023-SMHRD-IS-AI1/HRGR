@@ -45,7 +45,7 @@ public class MemberController {
 	
 	@GetMapping("/")
 	public String main() {
-		return "myPage";
+		return "JoinSuccess";
 
 	}
 	

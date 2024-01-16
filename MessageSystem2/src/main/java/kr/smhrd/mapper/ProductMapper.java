@@ -10,6 +10,11 @@
  
  @Mapper 
  public interface ProductMapper { 
-	 public List<Product> searchList(String searchInput); 
+	 public List<Product> searchTopList(String searchInput); 
+	 
+	 public List<Product> searchNewList(String searchInput); 
+	 
+	 public List<Product> WishlistItem();
+	 
 	 }
  

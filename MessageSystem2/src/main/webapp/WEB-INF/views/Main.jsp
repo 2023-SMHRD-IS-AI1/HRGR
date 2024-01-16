@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="resources/assets/test.css" />
     <link rel="stylesheet" href="resources/assets/test1.css" />
     <link rel="stylesheet" href="resources/assets/test2.css" />
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/vendor.css">
@@ -154,7 +153,7 @@
           
           <div class="col-sm-4 col-lg-3 text-center text-sm-start">
             <div class="main-logo">
-              <a href="index.html">
+              <a href="index.html" id="goMain">
                 <img src="resources/images/harugreen.png" alt="logo" class="img-fluid" style="max-width: 60%;">
               </a>
             </div>
@@ -189,45 +188,61 @@
           
           <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
             <div class="support-box text-end d-none d-xl-block">
-            <%if(Memberlogin != null) {%>
-            	<a href="goSeller">판매자 등록</a>
             
-            <%} %>
+            
             <%if(Memberlogin == null){ %>
-						<a class="fs-6 text-muted" href="goLogin">로그인</a>
-			<%}else{ %>
-					<!-- Q7. 개인정보수정 기능 만들기 -->
-					<!-- Q8. 로그아웃 기능 만들기 -->
-					<!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-					
-					
-					<a href="goLogout">로그아웃</a>
-			<%} %>
-              
+                  <a class="fs-6 text-muted" href="goLogin">로그인</a>
+         <%}else{ %>
+               <!-- Q7. 개인정보수정 기능 만들기 -->
+               <!-- Q8. 로그아웃 기능 만들기 -->
+               <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
+               <%if(!Memberlogin.getCust_role().equals("S")){ %>
+               			<a href="goSeller">판매자 등록</a>
+               			<a href="goLogout">로그아웃</a>
+               <%}else {%>
+                    <a href="goLogout">로그아웃</a>
+                  	
+			   <%} %>
+            		
+            <%} %>
+           
               <h5 class="mb-0"></h5>
             </div>
 
             <ul class="d-flex justify-content-end list-unstyled m-0">
               <li>
-                <a href="#" class="rounded-circle bg-light p-2 mx-1">
                 <%if(Memberlogin == null){ %>
-						<svg width="24" height="24" viewBox="0 0 24 24" id="userIcon">
+                	<a href="goLogin" class="rounded-circle bg-light p-2 mx-1">
+						<svg width="24" height="24" viewBox="0 0 24 24">
   						<use xlink:href="#user"></use>
-						</svg>
+						</svg></a>
 			<%}else{ %>
 					<!-- Q7. 개인정보수정 기능 만들기 -->
 					<!-- Q8. 로그아웃 기능 만들기 -->
 					<!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-					
-					<svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#user"></use></svg>
+					<a href="#" class="rounded-circle bg-light p-2 mx-1">
+						<svg width="24" height="24" viewBox="0 0 24 24">
+  						<use xlink:href="#user"></use>
+						</svg></a>
 			<%} %>
                   
-                </a>
+               
               </li>
               <li>
-                <a href="#" class="rounded-circle bg-light p-2 mx-1">
-                  <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#heart"></use></svg>
-                </a>
+                <%if(Memberlogin == null){ %>
+                	<a href="goLogin" class="rounded-circle bg-light p-2 mx-1">
+						<svg width="24" height="24" viewBox="0 0 24 24">
+  						<use xlink:href="#heart"></use>
+						</svg></a>
+			<%}else{ %>
+					<!-- Q7. 개인정보수정 기능 만들기 -->
+					<!-- Q8. 로그아웃 기능 만들기 -->
+					<!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
+					<a href="goLike" class="rounded-circle bg-light p-2 mx-1">
+						<svg width="24" height="24" viewBox="0 0 24 24">
+  						<use xlink:href="#heart"></use>
+						</svg></a>
+			<%} %>
               </li>
               <li class="d-lg-none">
                 <a href="#" class="rounded-circle bg-light p-2 mx-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
@@ -2209,22 +2224,32 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <script src="js/plugins.js"></script>
     <script src="js/script.js"></script>
+    
     <script type="text/javascript"> 
-    document.getElementById("userIcon").addEventListener("click", function() {
-    	window.location.href = "goLogin";
+    document.getElementById("goMain").addEventListener("click", function() {
+    	window.location.href = "goMain";
   });
     
     </script>
-    <script>
+    
+    
+   
+</script>
+ <script>
   // 검색창 눌렀을때 페이지 이동
    document.getElementById('svg-container').addEventListener('click', function() {
     // 현재 검색어 입력란의 값을 가져옴
     var inputValue = document.getElementById('searchInput').value;
 
-    // 현재 페이지 URL에 검색어를 추가하여 페이지 이동
-    window.location.href = 'gosearch?searchInput=' + encodeURIComponent(inputValue);
+ // 검색어가 비어있는지 확인
+    if (inputValue.trim() === "") {
+        // 검색어가 비어있다면 메시지 표시
+        alert("검색어를 입력해주세요.");
+    } else {
+        // 현재 페이지 URL에 검색어를 추가하여 페이지 이동
+        window.location.href = 'gosearch?searchInput=' + encodeURIComponent(inputValue);
+    }
   });
-</script>
 </script>
   </body>
 </html>

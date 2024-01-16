@@ -4,13 +4,17 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,7 +44,7 @@ public class MemberController {
 	
 	@RequestMapping("/goMain")
 	public String goMain() {
-		return "Main";
+		return "redirect:/";
 	}
 	
 	@GetMapping("/")
@@ -106,8 +110,8 @@ public class MemberController {
 		session.removeAttribute("loginMember");
 		return "redirect:/";
 	}
-
-
+	
+	
 	
 
 	// 회원수정 페이지로 이동 /goUpdatePage
@@ -162,7 +166,7 @@ public class MemberController {
 //		member값 확인
 		System.out.println(member.toString());
 	    memberMapper.sellerInsert(member);
-	    
+	    memberMapper.sellerUpdate(member);
 	    return "Main";
 	}
 	@RequestMapping("/goLogin")
@@ -180,8 +184,33 @@ public class MemberController {
 		
 		return "sellerAccount";
 	}
-	
-	
+	@PostMapping("/searchLike")
+	@ResponseBody
+	public ResponseEntity<String> addToWishlist(
+	     @RequestParam int prod_idx,Member member, HttpSession session
+	    
+	) {
+	    // TODO: 적절한 처리 수행
+	   
+	    Member loginMember = (Member)session.getAttribute("loginMember");
+		System.out.println("\n"+loginMember.toString() +"\n");
+		
+//		로그인 한 사용자의 cust_id값 가져오기
+		String cust_id = loginMember.getCust_id();
+		System.out.println("cust_id값 확인 : "+ cust_id);
+		member.setCust_id(cust_id);
+		member.setProd_idx(prod_idx);
+		int cnt = memberMapper.searchLike(member);
+		if(cnt >= 1) {
+			memberMapper.removeLike(member);
+			
+		}else {
+			memberMapper.goLike(member);
+		}
+	   
+	    
+	    return ResponseEntity.ok("Added to wishlist");
+	}
 	
 
 

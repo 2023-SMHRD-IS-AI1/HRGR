@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import kr.smhrd.entity.Member;
+import lombok.NonNull;
 
 // 결국은 MemberMapper라는 클래스도 Spring Container로 올라가게됨
 // mapper파일임을 알려줘야함
@@ -34,6 +35,21 @@ public interface MemberMapper { // 틀, SqlSessionFactoryBean이 MemberMapper를
 
 	
 	public Member loginmember(Member member);
+
+	public void sellerUpdate(Member member);
+	
+	public int goLike(Member member);
+	
+	@Select("select * from tb_favorite where cust_id=#{cust_id} and prod_id=#{prod_idx}")
+	boolean checkIfProductExistsInWishlist(String cust_id, int prod_idx);
+
+	public void removeLike(Member member);
+	
+	public int searchLike(Member member);
+	
+	
+	
+
 	
 }
 

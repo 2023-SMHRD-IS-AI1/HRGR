@@ -141,6 +141,7 @@
 						// 어디로 요청할 것인지(요청 url)
 						url : 'phoneCheck',
 						// 요청 데이터
+						
 						data : { 'cust_phone' : inputE },
 						// 요청방식
 						type : 'get',

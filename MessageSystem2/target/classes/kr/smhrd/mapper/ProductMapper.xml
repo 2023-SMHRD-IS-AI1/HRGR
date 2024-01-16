@@ -31,6 +31,7 @@ ORDER BY
     tb_review.prod_ratings DESC;
 </select>
 
+
 <select id="searchNewList" resultType="kr.smhrd.entity.Product">
         SELECT
     tb_prod.prod_idx AS prod_idx,
@@ -61,4 +62,19 @@ ORDER BY
 
 
 
+<insert id="prodRegist" parameterType="kr.smhrd.entity.Product">
+ INSERT
+   INTO tb_prod (prod_name, prod_desc, prod_type, prod_price, prod_stock, cust_id, created_at)
+ VALUES(#{prod_name}, #{prod_desc}, #{prod_type}, #{prod_price}, #{prod_stock}, #{cust_id}, now())
+</insert>
+
+<select id="searchIdx" parameterType="kr.smhrd.entity.Product" resultType="kr.smhrd.entity.Product">
+select * from tb_prod where cust_id=#{cust_id} order by created_at desc limit 1
+</select>
+
+<insert id="insertImage" parameterType="kr.smhrd.entity.Product">
+insert into tb_prod_image (prod_idx, img_name, img_real_name, img_ext, img_size)
+values(#{prod_idx}, #{img_name}, #{img_real_name}, #{img_ext}, #{img_size})
+</insert>
+>>>>>>> branch 'master' of https://github.com/2023-SMHRD-IS-AI1/HRGR.git
 </mapper>

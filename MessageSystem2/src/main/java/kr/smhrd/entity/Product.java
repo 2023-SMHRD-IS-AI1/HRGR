@@ -22,18 +22,17 @@ public class Product {
 	private String prod_type;
 	private String prod_stock;
 	private int prod_ratings;
-<<<<<<< HEAD
+
 	
 	private String prod_cust_id;
-=======
->>>>>>> branch 'master' of https://github.com/2023-SMHRD-IS-AI1/HRGR.git
+
 	private String prod_desc;
-<<<<<<< HEAD
-	private int prod_price;
-	private int prod_stock;
+
+
+	
 	private int created_at;
-	private int prod_idx;
-=======
+	
+
 	private String cust_id;
 	
 	// 상품 이미지파일 컬럼명
@@ -59,5 +58,5 @@ public class Product {
 	}
 	
 	
->>>>>>> branch 'master' of https://github.com/2023-SMHRD-IS-AI1/HRGR.git
+
 }

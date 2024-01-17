@@ -1,96 +1,62 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>결제하기 버튼</title>
-    <!-- 포트원 결제 -->
-    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
-    <!-- jQuery -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <!-- iamport.payment.js -->
-    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-
-</head>
-
-<body>
-	
-	
-	
-	
-	
-	
-	<script type="text/javascript">
-	// 구매자 정보
-	/* const user_email = response.req_user_email
-	const username = response.req_username */
-
-	// 결제창 함수 넣어주기
-	const buyButton = document.getElementById('payment')
-	buyButton.setAttribute('onclick', `kakaoPay('${user_email}', '${username}')`)
-
+<!-- PortOne SDK -->
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript"
+	src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<script>
 	var IMP = window.IMP;
+	IMP.init("imp44183336");
 
-	var today = new Date();
-	var hours = today.getHours(); // 시
-	var minutes = today.getMinutes();  // 분
-	var seconds = today.getSeconds();  // 초
-	var milliseconds = today.getMilliseconds();
-	var makeMerchantUid = `${hours}` + `${minutes}` + `${seconds}` + `${milliseconds}`;
-
-	function kakaoPay(useremail, username) {
-	    if (confirm("구매 하시겠습니까?")) { // 구매 클릭시 한번 더 확인하기
-	        if (localStorage.getItem("access")) { // 회원만 결제 가능
-
-	            IMP.init("imp44183336"); // 가맹점 식별코드
-	            IMP.request_pay({
-	                pg: 'kakaopay.TC0ONETIME', // PG사 코드표에서 선택
-	                pay_method: 'card', // 결제 방식
-	                merchant_uid: "IMP" + makeMerchantUid, // 결제 고유 번호
-	                name: '싱싱농장 미더덕', // 제품명
-	                amount: 100, // 가격
-	                //구매자 정보 ↓
-	                buyer_email: `${useremail}`,
-	                buyer_name: `${username}`,
-	                // buyer_tel : '010-1234-5678',
-	                // buyer_addr : '서울특별시 강남구 삼성동',
-	                // buyer_postcode : '123-456'
-	            }, async function (rsp) { // callback
-	                if (rsp.success) { //결제 성공시
-	                    console.log(rsp);
-						...
-	                    //결제 성공시 프로젝트 DB저장 요청
-	                    ...
-
-	                    if (response.status == 200) { // DB저장 성공시
-	                        alert('결제 완료!')
-	                        window.location.reload();
-	                    } else { // 결제완료 후 DB저장 실패시
-	                        alert(`error:[${response.status}]\n결제요청이 승인된 경우 관리자에게 문의바랍니다.`);
-	                        // DB저장 실패시 status에 따라 추가적인 작업 가능성
-	                    }
-	                } else if (rsp.success == false) { // 결제 실패시
-	                    alert(rsp.error_msg)
-	                }
-	            });
-	        }
-	        else { // 비회원 결제 불가
-	            alert('로그인이 필요합니다!')
-	        }
-	    } else { // 구매 확인 알림창 취소 클릭시 돌아가기
-	        return false;
-	    }
+	function requestPay() {
+		IMP.request_pay({
+			pg : "kcp.{AO09C}",
+			pay_method : "card",
+			merchant_uid : "57008833-33004",
+			name : "당근 10kg",
+			amount : 1004,
+			buyer_email : "Iamport@chai.finance",
+			buyer_name : "포트원 기술지원팀",
+			buyer_tel : "010-1234-5678",
+			buyer_addr : "서울특별시 강남구 삼성동",
+			buyer_postcode : "123-456",
+		}, function(rsp) {
+			// callback
+			//rsp.imp_uid 값으로 결제 단건조회 API를 호출하여 결제결과를 판단합니다.
+			if (rsp.success) {
+				// 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+				// jQuery로 HTTP 요청
+				jQuery.ajax({
+					url : "{서버의 결제 정보를 받는 가맹점 endpoint}",
+					method : "POST",
+					headers : {
+						"Content-Type" : "application/json"
+					},
+					data : {
+						imp_uid : rsp.imp_uid, // 결제 고유번호
+						merchant_uid : rsp.merchant_uid
+					// 주문번호
+					}
+				}).done(function(data) {
+					// 가맹점 서버 결제 API 성공시 로직
+				})
+			} else {
+				alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
+			}
+		});
 	}
-	
-	</script>
-	
-    <button id="payment">구매하기</button> <!-- 결제하기 버튼 생성 -->
-    
-    <script src="payment.js"></script>
+</script>
+<meta charset="UTF-8" />
+<title>Sample Payment</title>
+</head>
+<body>
+	<button onclick="requestPay()">결제하기</button>
+	<!-- 결제하기 버튼 생성 -->
 </body>
-
 </html>

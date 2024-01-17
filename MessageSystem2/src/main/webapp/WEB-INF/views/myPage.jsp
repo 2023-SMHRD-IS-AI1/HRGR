@@ -1,5 +1,8 @@
+<%@page import="kr.smhrd.entity.Member"%>
+<%@page import="kr.smhrd.entity.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,6 +27,10 @@
 
 </head>
 <body>
+	<% 
+  	Member Memberlogin = (Member)session.getAttribute("loginMember");
+			
+  %>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <defs>
           <symbol xmlns="http://www.w3.org/2000/svg" id="link" viewBox="0 0 24 24">
@@ -80,7 +87,7 @@
             
             <div class="col-sm-4 col-lg-3 text-center text-sm-start">
               <div class="main-logo">
-                <a href="index.html">
+                <a href="goMain">
                   <img src="./resources/images/harugreen.png" alt="logo" class="img-fluid" style="max-width: 60%;">
                 </a>
               </div>
@@ -215,12 +222,13 @@
             <div class="tab-content" id="nav-tabContent">
             
               <div class="tab-pane fade show active" id="nav-myOder" role="tabpanel" aria-labelledby="nav-myOder-tab" tabindex="0">
-                          
+               
               <!-- 메뉴바1내용 주문내역 -->
               <!-- 주문내역 시작 -->
               <div class="myOrder_content">
                 <h2 style="font-weight: bold; margin-bottom: 14px;">주문내역</h2>
                   <!-- 주문내역 아래 큰틀 -->
+             
                   <div class="myOrder_box border rounded row" style="margin-top: 0px;">
                     <div class="col-10" style="font-size: 20px; font-weight: bold; margin-bottom: 5px; padding: 0px;">
                       2024. 1. 12 주문
@@ -242,99 +250,9 @@
                     </div>
                   </div>
                 </div>
+              
                 <!-- 주문내역 한박스 끝 -->
-                  <!-- 주문내역 아래 큰틀 -->
-                  <div class="myOrder_box border rounded row">
-                    <div class="col-10" style="font-size: 20px; font-weight: bold; margin-bottom: 5px; padding: 0px;">
-                      2024. 1. 12 주문
-                    </div>
-                    <div class="col-2 showDetail" style="font-size: 10px;">
-                      <a href="#" style="text-decoration: none; color: rgb(0, 180, 39);">주문 상세보기 ></a>
-                      
-                    </div>
-                  <div class="myOrder_box_box row border rounded ">
-                    <div class="col-lg-2" style="padding: 0px;"> <img src="//thumbnail7.coupangcdn.com/thumbnails/remote/300x300ex/image/vendor_inventory/3347/38dbf382340fbf1c4f44405591e08a5175b383431326b32be42d8dfa68ad.jpg" alt="" style="max-width: 100%;" ></div>
-                    <div class="col-lg-7 d-grid gap-3 align-content-center" style="padding-left: 25px;">
-                      <div>배송중 | 내일 도착 예상</div>
-                      <div><p style="font-size: 20px; font-weight: bold;">상품명 당근당근</p></div>
-                      <div>3,000원 | 1kg</div>
-                    </div>
-                    <div class="col-lg-3 d-grid gap-2 my-auto">
-                      <button type="button" class="btn btn-outline-success">배송조회</button>
-                      <button type="button" class="btn btn-outline-secondary">후기 작성하기</button>
-                    </div>
-                  </div>
-                </div>
-                <!-- 주문내역 한박스 끝 -->
-                  <!-- 주문내역 아래 큰틀 -->
-                  <div class="myOrder_box border rounded row">
-                    <div class="col-10" style="font-size: 20px; font-weight: bold; margin-bottom: 5px; padding: 0px;">
-                      2024. 1. 12 주문
-                    </div>
-                    <div class="col-2 showDetail" style="font-size: 10px;">
-                      <a href="#" style="text-decoration-line: none; color: rgb(0, 180, 39);">주문 상세보기 ></a>
-                      
-                    </div>
-                  <div class="myOrder_box_box row border rounded ">
-                    <div class="col-lg-2" style="padding: 0px;"> <img src="//thumbnail7.coupangcdn.com/thumbnails/remote/300x300ex/image/vendor_inventory/3347/38dbf382340fbf1c4f44405591e08a5175b383431326b32be42d8dfa68ad.jpg" alt="" style="max-width: 100%;" ></div>
-                    <div class="col-lg-7 d-grid gap-3 align-content-center" style="padding-left: 25px;">
-                      <div>배송중 | 내일 도착 예상</div>
-                      <div><p style="font-size: 20px; font-weight: bold;">상품명 당근당근</p></div>
-                      <div>3,000원 | 1kg</div>
-                    </div>
-                    <div class="col-lg-3 d-grid gap-2 my-auto">
-                      <button type="button" class="btn btn-outline-success">배송조회</button>
-                      <button type="button" class="btn btn-outline-secondary">후기 작성하기</button>
-                    </div>
-                  </div>
-                </div>
-                <!-- 주문내역 한박스 끝 -->
-                  <!-- 주문내역 아래 큰틀 -->
-                  <div class="myOrder_box border rounded row">
-                    <div class="col-10" style="font-size: 20px; font-weight: bold; margin-bottom: 5px; padding: 0px;">
-                      2024. 1. 12 주문
-                    </div>
-                    <div class="col-2 showDetail" style="font-size: 10px;">
-                      <a href="#" style="text-decoration-line: none; color: rgb(0, 180, 39);">주문 상세보기 ></a>
-                      
-                    </div>
-                  <div class="myOrder_box_box row border rounded ">
-                    <div class="col-lg-2" style="padding: 0px;"> <img src="//thumbnail7.coupangcdn.com/thumbnails/remote/300x300ex/image/vendor_inventory/3347/38dbf382340fbf1c4f44405591e08a5175b383431326b32be42d8dfa68ad.jpg" alt="" style="max-width: 100%;" ></div>
-                    <div class="col-lg-7 d-grid gap-3 align-content-center" style="padding-left: 25px;">
-                      <div>배송중 | 내일 도착 예상</div>
-                      <div><p style="font-size: 20px; font-weight: bold;">상품명 당근당근</p></div>
-                      <div>3,000원 | 1kg</div>
-                    </div>
-                    <div class="col-lg-3 d-grid gap-2 my-auto">
-                      <button type="button" class="btn btn-outline-success">배송조회</button>
-                      <button type="button" class="btn btn-outline-secondary">후기 작성하기</button>
-                    </div>
-                  </div>
-                </div>
-                <!-- 주문내역 한박스 끝 -->
-                  <!-- 주문내역 아래 큰틀 -->
-                  <div class="myOrder_box border rounded row">
-                    <div class="col-10" style="font-size: 20px; font-weight: bold; margin-bottom: 5px; padding: 0px;">
-                      2024. 1. 12 주문
-                    </div>
-                    <div class="col-2 showDetail" style="font-size: 10px;">
-                      <a href="#" style="text-decoration-line: none; color: rgb(0, 180, 39);">주문 상세보기 ></a>
-                      
-                    </div>
-                  <div class="myOrder_box_box row border rounded ">
-                    <div class="col-lg-2" style="padding: 0px;"> <img src="//thumbnail7.coupangcdn.com/thumbnails/remote/300x300ex/image/vendor_inventory/3347/38dbf382340fbf1c4f44405591e08a5175b383431326b32be42d8dfa68ad.jpg" alt="" style="max-width: 100%;" ></div>
-                    <div class="col-lg-7 d-grid gap-3 align-content-center" style="padding-left: 25px;">
-                      <div>배송중 | 내일 도착 예상</div>
-                      <div><p style="font-size: 20px; font-weight: bold;">상품명 당근당근</p></div>
-                      <div>3,000원 | 1kg</div>
-                    </div>
-                    <div class="col-lg-3 d-grid gap-2 my-auto">
-                      <button type="button" class="btn btn-outline-success">배송조회</button>
-                      <button type="button" class="btn btn-outline-secondary">후기 작성하기</button>
-                    </div>
-                  </div>
-                </div>
-                <!-- 주문내역 한박스 끝 -->
+                
                 <!-- 페이지네이션 -->
     <div style="margin-top: 30px;">
       <nav aria-label="Page navigation example">
@@ -376,179 +294,38 @@
                 <button type="button" class="btn btn-outline-success btn-sm">선택삭제</button>
               </div>
               <!-- 상품ㄱㄱ -->
-              <div class="prodLike_pordLine">
-                <div class="border-bottom border-success row">
+               <c:forEach var="likeItem" items="${likeList}" varStatus="loopStatus">
+    <c:if test="${loopStatus.index < 5}">   
+        <div class="prodLike_pordLine">
+            <div class="border-bottom border-success row">
                 <div class="col-lg-3">
-                  <div class="row">
-
-                    <div class="col-1">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <div class="row">
+                        <div class="col-1">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        </div>
+                        <div class="col-11"><!-- ./resources/images/thumb-tuna.jpg -->
+                            <img class="prodLike_img-wrapper" src="./resources/images/thumb-tuna.jpg" alt="">
+                        </div>
                     </div>
-                    <div class="col-11">
-                      <img class="prodLike_img-wrapper" src="./resources/images/thumb-tuna.jpg" alt="">
-                    </div>
-                  </div>
                 </div>
                 <div class="col-lg-7 d-grid gap-2 my-auto">
-                  <div>
-                통조림 맛있는 통조림
-                  </div>
-                  <div>
-               1,500원
-                  </div>
+                    <div>
+                        ${likeItem['prod_name']}
+                    </div>
+                    <div>
+                        ${likeItem['prod_price']}원
+                    </div>
                 </div>
                 <div class="col-lg-2 d-grid gap-2 my-auto">
-                  <button type="button" class="btn btn-outline-success">장바구니담기</button>
-                  <button type="button" class="btn btn-outline-secondary">삭제</button>
+                    <button type="button" class="btn btn-outline-success">장바구니담기</button>
+                    <button type="button" class="btn btn-outline-secondary">삭제</button>
                 </div>
-              </div>
-              </div>
+            </div>
+        </div>
+    </c:if>
+</c:forEach>
               <!-- 상품 끝 -->               
-              <!-- 상품ㄱㄱ -->
-              <div class="prodLike_pordLine">
-                <div class="border-bottom border-success row">
-                <div class="col-lg-3">
-                  <div class="row">
-
-                    <div class="col-1">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    </div>
-                    <div class="col-11">
-                      <img class="prodLike_img" src="./resources/images/thumb-tuna.jpg" alt="">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-7 d-grid gap-2 my-auto">
-                  <div>
-                통조림 맛있는 통조림
-                  </div>
-                  <div>
-               1,500원
-                  </div>
-                </div>
-                <div class="col-lg-2 d-grid gap-2 my-auto">
-                  <button type="button" class="btn btn-outline-success">장바구니담기</button>
-                  <button type="button" class="btn btn-outline-secondary">삭제</button>
-                </div>
-              </div>
-              </div>
-              <!-- 상품 끝 -->               
-              <!-- 상품ㄱㄱ -->
-              <div class="prodLike_pordLine">
-                <div class="border-bottom border-success row">
-                <div class="col-lg-3">
-                  <div class="row">
-
-                    <div class="col-1">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    </div>
-                    <div class="col-11">
-                      <img class="prodLike_img" src="./resources/images/thumb-tuna.jpg" alt="">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-7 d-grid gap-2 my-auto">
-                  <div>
-                통조림 맛있는 통조림
-                  </div>
-                  <div>
-               1,500원
-                  </div>
-                </div>
-                <div class="col-lg-2 d-grid gap-2 my-auto">
-                  <button type="button" class="btn btn-outline-success">장바구니담기</button>
-                  <button type="button" class="btn btn-outline-secondary">삭제</button>
-                </div>
-              </div>
-              </div>
-              <!-- 상품 끝 -->               
-              <!-- 상품ㄱㄱ -->
-              <div class="prodLike_pordLine">
-                <div class="border-bottom border-success row">
-                <div class="col-lg-3">
-                  <div class="row">
-
-                    <div class="col-1">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    </div>
-                    <div class="col-11">
-                      <img class="prodLike_img" src="./resources/images/thumb-tuna.jpg" alt="">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-7 d-grid gap-2 my-auto">
-                  <div>
-                통조림 맛있는 통조림
-                  </div>
-                  <div>
-               1,500원
-                  </div>
-                </div>
-                <div class="col-lg-2 d-grid gap-2 my-auto">
-                  <button type="button" class="btn btn-outline-success">장바구니담기</button>
-                  <button type="button" class="btn btn-outline-secondary">삭제</button>
-                </div>
-              </div>
-              </div>
-              <!-- 상품 끝 -->               
-              <!-- 상품ㄱㄱ -->
-              <div class="prodLike_pordLine">
-                <div class="border-bottom border-success row">
-                <div class="col-lg-3">
-                  <div class="row">
-
-                    <div class="col-1">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    </div>
-                    <div class="col-11">
-                      <img class="prodLike_img" src="./resources/images/thumb-tuna.jpg" alt="">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-7 d-grid gap-2 my-auto">
-                  <div>
-                통조림 맛있는 통조림
-                  </div>
-                  <div>
-               1,500원
-                  </div>
-                </div>
-                <div class="col-lg-2 d-grid gap-2 my-auto">
-                  <button type="button" class="btn btn-outline-success">장바구니담기</button>
-                  <button type="button" class="btn btn-outline-secondary">삭제</button>
-                </div>
-              </div>
-              </div>
-              <!-- 상품 끝 -->               
-              <!-- 상품ㄱㄱ -->
-              <div class="prodLike_pordLine">
-                <div class="border-bottom border-success row">
-                <div class="col-lg-3">
-                  <div class="row">
-
-                    <div class="col-1">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    </div>
-                    <div class="col-11">
-                      <img class="prodLike_img" src="./resources/images/thumb-tuna.jpg" alt="">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-7 d-grid gap-2 my-auto">
-                  <div>
-                통조림 맛있는 통조림
-                  </div>
-                  <div>
-               1,500원
-                  </div>
-                </div>
-                <div class="col-lg-2 d-grid gap-2 my-auto">
-                  <button type="button" class="btn btn-outline-success">장바구니담기</button>
-                  <button type="button" class="btn btn-outline-secondary">삭제</button>
-                </div>
-              </div>
-              </div>
-              <!-- 상품 끝 -->               
+                          
                           <!-- 페이지네이션 -->
 <div style="margin-top: 30px;">
   <nav aria-label="Page navigation example">

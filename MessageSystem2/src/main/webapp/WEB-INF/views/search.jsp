@@ -20,6 +20,7 @@
 						<c:forEach var="product" items="${Product}">
         					<li>제품명 : ${product.prod_name}</li>
         					<li>제품 평점 : ${product.prod_ratings}</li>
+        					<li>상품 가격: ${} }</li>
         					<li>상품 설명 : ${product.prod_desc }</li>
         					<li>판매자 : ${product.prod_cust_id }</li><br><br><br>
         				

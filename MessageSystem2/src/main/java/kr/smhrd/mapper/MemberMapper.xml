@@ -11,7 +11,7 @@
 	<insert id="memberInsert" parameterType="kr.smhrd.entity.Member">
 		<!-- insert into member values(CONCAT(#{email}, '@', #{email_domain}), #{pw}, #{phone}, #{address},#{name},#{birth},#{gender}) -->
 		insert into tb_cust (cust_pw, cust_name, cust_nick, cust_email, cust_phone, cust_birthdate, cust_gender, cust_addr, joined_at, cust_role)
-		 values (SHA2(#{cust_pw},224),#{cust_name}, #{cust_nick},CONCAT(#{cust_email}, '@', #{email_domain}), #{cust_phone}, #{cust_birthdate}, #{cust_gender}, #{cust_addr}, NOW(), 'N');
+		 values (SHA2(#{cust_pw},224),#{cust_name}, #{cust_nick},CONCAT(#{cust_email}, '@', #{email_domain}), #{cust_phone}, #{cust_birthdate}, #{cust_gender}, #{cust_addr}, NOW(), 'U');
 	</insert>  
 
 	<update id="updateMember" parameterType="kr.smhrd.entity.Member">
@@ -34,8 +34,41 @@
 
 	<insert id="sellerInsert" parameterType="kr.smhrd.entity.Member">
 		insert into tb_seller (cust_id, company_name, company_addr, company_bno, business_type, certified_yn, created_at)
-		values(#{cust_id}, #{company_name}, #{company_addr}, #{company_bno}, #{business_type}, '0', now())
+		values(#{cust_id}, #{company_name}, #{company_addr}, #{company_bno}, #{business_type}, 'N', now())
 	</insert>
-
+	
+	<update id="sellerUpdate" parameterType="kr.smhrd.entity.Member">
+	update tb_cust set cust_role='S' where cust_id=#{cust_id}
+	</update>
+	
+	<insert id="goLike" parameterType="kr.smhrd.entity.Member">
+	insert into tb_favorite(cust_id,prod_idx,created_at)
+	values(#{cust_id},#{prod_idx},NOW())
+	</insert>
+	
+	<delete id="removeLike" parameterType="kr.smhrd.entity.Member">
+	delete from tb_favorite where cust_id=#{cust_id} and prod_idx=#{prod_idx};
+	</delete>
+	
+	<select id="searchLike" parameterType="kr.smhrd.entity.Member" resultType="Int">
+	select count(*) from tb_favorite where cust_id=#{cust_id} and prod_idx=#{prod_idx}
+	</select>
+	
+	<select id="likeList" parameterType="kr.smhrd.entity.Member" resultType="kr.smhrd.entity.Member">
+SELECT
+    p.prod_name AS prod_name,
+    p.prod_price AS prod_price,
+    di.img_name AS img_name,
+    di.img_real_name AS img_real_name,
+    di.img_ext AS img_ext
+FROM
+    tb_favorite f
+JOIN
+    tb_prod p ON f.prod_idx = p.prod_idx
+LEFT JOIN
+    tb_diary_image di ON p.prod_idx = di.diary_idx
+WHERE
+    f.cust_id = #{cust_id};
+</select>
 
 </mapper>

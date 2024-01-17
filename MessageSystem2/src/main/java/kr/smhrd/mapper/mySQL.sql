@@ -179,3 +179,45 @@ prod_idx prod_idx review_content prod_ratings reviewed_at
 
 
 insert into tb_review(prod_idx,cust_id, review_content, prod_ratings, reviewed_at) values(2,2,'맛있다.',3,NOW());
+
+select * from tb_seller ;
+
+
+update tb_cust set cust_role='S' where cust_id=1
+
+
+insert into tb_prod (prod_name, prod_desc, prod_type, prod_price, prod_stock, cust_id, created_at) 
+values('사과', '맛있는 사과1', '농산물1', '23000', '41', 3, NOW());
+
+insert into tb_prod (prod_name, prod_desc, prod_type, prod_price, prod_stock, cust_id, created_at) 
+values('사과', '맛있는 사과1', '농산물1', '20400', '30', 4, NOW());
+insert into tb_prod (prod_name, prod_desc, prod_type, prod_price, prod_stock, cust_id, created_at) 
+values('사과', '맛있는 사과1', '농산물1', '24300', '20', 5, NOW());
+insert into tb_prod (prod_name, prod_desc, prod_type, prod_price, prod_stock, cust_id, created_at) 
+values('사과', '맛있는 사과1', '농산물1', '45000', '60', 6, NOW());
+insert into tb_prod (prod_name, prod_desc, prod_type, prod_price, prod_stock, cust_id, created_at) 
+values('사과', '맛있는 사과1', '농산물1', '22000', '10', 7, NOW());
+insert into tb_prod (prod_name, prod_desc, prod_type, prod_price, prod_stock, cust_id, created_at) 
+values('사과', '맛있는 사과1', '농산물1', '22000', '30', 8, NOW());
+insert into tb_prod (prod_name, prod_desc, prod_type, prod_price, prod_stock, cust_id, created_at) 
+values('사과', '맛있는 사과1', '농산물1', '55000', '20', 9, NOW());
+insert into tb_prod (prod_name, prod_desc, prod_type, prod_price, prod_stock, cust_id, created_at) 
+values('사과', '맛있는 사과1', '농산물1', '210000', '10', 10, NOW());
+
+insert into tb_review(prod_idx,cust_id, review_content, prod_ratings, reviewed_at) values(3,2,'맛있다.',1,NOW());
+insert into tb_review(prod_idx,cust_id, review_content, prod_ratings, reviewed_at) values(4,2,'맛있다.',2,NOW());
+insert into tb_review(prod_idx,cust_id, review_content, prod_ratings, reviewed_at) values(5,2,'맛있다.',5,NOW());
+insert into tb_review(prod_idx,cust_id, review_content, prod_ratings, reviewed_at) values(6,2,'맛있다.',4,NOW());
+insert into tb_review(prod_idx,cust_id, review_content, prod_ratings, reviewed_at) values(7,2,'맛있다.',2,NOW());
+insert into tb_review(prod_idx,cust_id, review_content, prod_ratings, reviewed_at) values(8,2,'맛있다.',2,NOW());
+insert into tb_review(prod_idx,cust_id, review_content, prod_ratings, reviewed_at) values(9,2,'맛있다.',1,NOW());
+insert into tb_review(prod_idx,cust_id, review_content, prod_ratings, reviewed_at) values(10,2,'맛있다.',3,NOW());
+insert into tb_review(prod_idx,cust_id, review_content, prod_ratings, reviewed_at) values(11,2,'맛있다.',2,NOW());
+
+
+delete  from tb_favorite where cust_id=14
+
+select * from tb_prod_image
+
+
+  

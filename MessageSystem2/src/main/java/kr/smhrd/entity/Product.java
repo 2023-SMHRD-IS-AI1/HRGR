@@ -22,7 +22,17 @@ public class Product {
 	private String prod_type;
 	private String prod_stock;
 	private int prod_ratings;
+
+	
+	private String prod_cust_id;
+
 	private String prod_desc;
+
+
+	
+	private int created_at;
+	
+
 	private String cust_id;
 	
 	// 상품 이미지파일 컬럼명
@@ -48,4 +58,6 @@ public class Product {
 	}
 	
 	
+	
+
 }

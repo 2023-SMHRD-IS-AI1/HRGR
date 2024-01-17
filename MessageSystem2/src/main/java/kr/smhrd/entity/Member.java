@@ -32,10 +32,16 @@ public class Member {
 	private String email_domain;
 	private String cust_gender;
 	private String cust_nick;
+	private String cust_role;
 	
 	
 	private String company_name;
 	private String company_addr;
 	private String company_bno;
 	private String business_type;
+	private int prod_idx;
+	private String created_at;
+	private String prod_name;
+	private String prod_price;
+	
 }

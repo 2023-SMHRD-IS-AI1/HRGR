@@ -36,8 +36,8 @@
 <script>
   function loginWithKakao() {
     Kakao.Auth.authorize({
-      redirectUri: 'http://localhost:8082/controller/',
-      scope:'name, birthday, birthyear',
+      redirectUri: 'http://localhost:8082/controller/Main',
+      scope:'cust_name',
       state: 'userme',
     });
   }

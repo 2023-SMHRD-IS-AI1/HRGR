@@ -43,5 +43,21 @@ public class Member {
 	private String created_at;
 	private String prod_name;
 	private String prod_price;
+	private String img_name;
+	public Member(String cust_id,  String cust_phone,@NonNull String cust_pw,String cust_name, String cust_nick, @NonNull String cust_email, 
+			  String cust_birthdate,String cust_addr) {
+		super();
+		this.cust_id = cust_id;
+		this.cust_phone = cust_phone;
+		this.cust_pw = cust_pw;
+		this.cust_email = cust_email;
+		this.cust_addr = cust_addr;
+		this.cust_name = cust_name;
+		this.cust_birthdate = cust_birthdate;
+		this.cust_nick = cust_nick;
+	}
+	
+	
+	
 	
 }

@@ -1,3 +1,5 @@
+<%@page import="ch.qos.logback.core.recovery.ResilientSyslogOutputStream"%>
+<%@page import="java.util.List"%>
 <%@page import="kr.smhrd.entity.Member"%>
 <%@page import="kr.smhrd.entity.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -29,6 +31,11 @@
 <body>
 	<% 
   	Member Memberlogin = (Member)session.getAttribute("loginMember");
+	
+	List<Member> likeList = (List<Member>)request.getAttribute("likeList");
+	System.out.println(Memberlogin.toString());
+	String savePath = "./resources/upload";
+
 			
   %>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -304,7 +311,7 @@
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                         </div>
                         <div class="col-11"><!-- ./resources/images/thumb-tuna.jpg -->
-                            <img class="prodLike_img-wrapper" src="./resources/images/thumb-tuna.jpg" alt="">
+                            <img class="prodLike_img-wrapper" src="./resources/upload/${likeItem.img_name }" alt="">
                         </div>
                     </div>
                 </div>
@@ -624,46 +631,42 @@
           <div class="edit_content">
             <h2 style="font-weight: bold; margin-bottom: 14px;">회원정보 수정</h2>
             <!-- 제목 아래 큰틀 -->
-            <form action="">  
-
+            <form action="updateMember" method="post">  
+				<input type="hidden" value="<%=Memberlogin.getCust_id() %>" name="cust_id">
               <div class="edit_box border-bottom border-top border-success">
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-                <div class="col-2 border-end" align="right">아이디</div>
-<div class="col-10"><input type="text" value="harugreen" class="form-control-plaintext" style="width: 250px;" readonly></div>              
+                <div class="col-2 border-end" align="right">연락처</div>
+                <div class="col-10"><input type="text" placeholder="숫자만 입력해주세요" class="form-control" style="width: 250px;" name="cust_phone"></div>
               </div>
               <hr style="margin: 0px; color: rgb(188, 188, 188);">
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-2 border-end" align="right">비밀번호</div>
-                <div class="col-10"><input type="password" placeholder="수정할 비밀번호를 입력하세요" class="form-control" style="width: 250px;"></div>                
+                <div class="col-10"><input type="password" placeholder="수정할 비밀번호를 입력하세요" class="form-control" style="width: 250px;" name="cust_pw"></div>                
               </div>
               <hr style="margin: 0px; color: rgb(188, 188, 188);">
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-2 border-end" align="right">비밀번호 확인</div>
-                <div class="col-10"><input type="password" placeholder="비밀번호를 확인하세요" class="form-control" style="width: 250px;"></div>                
+                <div class="col-10"><input type="password" placeholder="비밀번호를 확인하세요" class="form-control" style="width: 250px;" ></div>                
               </div>
               <hr style="margin: 0px; color: rgb(188, 188, 188);">
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-2 border-end" align="right">이름</div>
-                <div class="col-10"><input type="text" value="하루그린" class="form-control-plaintext" style="width: 250px;" readonly></div>
+                <div class="col-10"><span><%=Memberlogin.getCust_name() %></span></div>
               </div>
               <hr style="margin: 0px; color: rgb(188, 188, 188);">
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-2 border-end" align="right">닉네임</div>
-                <div class="col-10"><input type="text" placeholder="수정할 닉네임을 입력하세요" class="form-control" style="width: 250px;"></div>              </div>
+                <div class="col-10"><input type="text" placeholder="수정할 닉네임을 입력하세요" class="form-control" style="width: 250px;" name="cust_nick"></div>              </div>
               <hr style="margin: 0px; color: rgb(188, 188, 188);">
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-2 border-end" align="right">이메일</div>
-                <div class="col-10"><input type="email" class="form-control" placeholder="name@example.com"  style="width: 250px;"></div>                
+                <div class="col-10"><input type="email" class="form-control" placeholder="name@example.com"  style="width: 250px;" name="cust_email"></div>                
               </div>
-              <hr style="margin: 0px; color: rgb(188, 188, 188);">
-              <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-                <div class="col-2 border-end" align="right">연락처</div>
-                <div class="col-10"><input type="text" placeholder="숫자만 입력해주세요" class="form-control" style="width: 250px;" ></div>
-              </div>
+            
               <hr style="margin: 0px; color: rgb(188, 188, 188);">
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-2 border-end" align="right">생년월일</div>
-                <div class="col-10"><input type="date" class="form-control" style="width: 250px;"></div>
+                <div class="col-10"><input type="date" class="form-control" style="width: 250px;" name="cust_birthdate"></div>
               </div>
               <hr style="margin: 0px; color: rgb(188, 188, 188);">
               <!-- <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
@@ -674,19 +677,20 @@
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-2 border-end" align="right">주소</div>
                 <div class="col-10">
-                  <input type="text" placeholder="광주광역시 어쩌구 저쩌구" class="form-control" style="width: 400px; margin-bottom: 5px;" >
+                  <input type="text" placeholder="광주광역시 어쩌구 저쩌구" class="form-control" style="width: 400px; margin-bottom: 5px;" name="cust_addr" >
                   <input type="text" placeholder="상세주소" class="form-control" style="width: 400px;">
                 </div>
               </div>           
                   </div>
                </div>
-              </form>
               <div class="myReview_box" align="center">
                               <!-- 페이지네이션 -->
                               <button type="button" class="btn btn-outline-secondary">취소하기</button>
-                              <button type="button" class="btn btn-success">수정하기</button>
+                              <button type="submit" class="btn btn-success">수정하기</button>
+                              
                               <!-- 페이지네이션 끝 -->
               </div>
+              </form>
             
               </div>
             

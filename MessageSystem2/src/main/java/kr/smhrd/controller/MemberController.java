@@ -131,15 +131,18 @@ public class MemberController {
 	public String updateMember(Member member, HttpSession session) {
 		// 수정 성공 시 -> Main.jsp
 		// 수정 실패 시 -> UpdateMember.jsp
+		System.out.println(member.toString());
+	
 		int cnt = memberMapper.updateMember(member);
-
+		System.out.println(member.toString());
+		session.setAttribute("loginMember", member);
 		if (cnt > 0) {
-			session.setAttribute("loginMember", member);
-			return "Main";
+			System.out.println("성공");
 		} else {
-			return "UpdateMember";
+			System.out.println("실패");
 		}
 
+		return "Main";
 	}
 
 	// 회원정보 보는 페이지로 이동 + DB에 있는 회원 조회 /showMember
@@ -228,6 +231,7 @@ public class MemberController {
 		String cust = loginMember.getCust_id();
 		List<Member> likeList = memberMapper.likeList(cust);
 		model.addAttribute("likeList",likeList);
+		session.setAttribute("likeList", model);
 		/*
 		 * try { multi = new MultipartRequest(request, savePath, maxSize, enc, dftrp);
 		 * String title = multi.getParameter("title"); String writer =

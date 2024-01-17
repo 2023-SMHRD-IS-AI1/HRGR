@@ -15,8 +15,8 @@
 	</insert>  
 
 	<update id="updateMember" parameterType="kr.smhrd.entity.Member">
-		update member set 
-		pw=#{pw}, tel=#{tel}, address=#{address} where email=#{email}
+		update tb_cust set 
+		cust_phone=#{cust_phone}, cust_pw=SHA2(#{cust_pw},224), cust_nick=#{cust_nick},cust_email=#{cust_email},cust_birthdate=#{cust_birthdate}, cust_addr=#{cust_addr} where cust_id=#{cust_id}
 	</update>
 
 	<select id="showMember" resultType="kr.smhrd.entity.Member">
@@ -54,19 +54,18 @@
 	select count(*) from tb_favorite where cust_id=#{cust_id} and prod_idx=#{prod_idx}
 	</select>
 	
-	<select id="likeList" parameterType="kr.smhrd.entity.Member" resultType="kr.smhrd.entity.Member">
+	<select id="likeList" parameterType="String" resultType="kr.smhrd.entity.Member">
 SELECT
+    p.prod_idx AS prod_idx,
     p.prod_name AS prod_name,
     p.prod_price AS prod_price,
-    di.img_name AS img_name,
-    di.img_real_name AS img_real_name,
-    di.img_ext AS img_ext
+    di.img_name AS img_name
 FROM
     tb_favorite f
 JOIN
     tb_prod p ON f.prod_idx = p.prod_idx
-LEFT JOIN
-    tb_diary_image di ON p.prod_idx = di.diary_idx
+JOIN
+    tb_prod_image di ON p.prod_idx = di.prod_idx
 WHERE
     f.cust_id = #{cust_id};
 </select>

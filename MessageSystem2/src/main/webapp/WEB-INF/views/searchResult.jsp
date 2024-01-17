@@ -442,7 +442,7 @@
 
 													<figure>
 														<a href="single-product.html" title="Product Title"> <img
-															src="images/thumb-bananas.png" class="tab-image">
+															src="./resources/upload/${product.img_name }" class="tab-image">
 														</a>
 													</figure>
 													<h3>${product.prod_name}</h3>
@@ -518,7 +518,7 @@
 											<div class="col">
 												<div class="product-item">
 													<span class="badge bg-success position-absolute m-3">-30%</span>
-
+													<input type="hidden" id="i">${loopStatus.index}</input>
 
 
 
@@ -547,7 +547,7 @@
 
 													<figure>
 														<a href="single-product.html" title="Product Title"> <img
-															src="images/thumb-bananas.png" class="tab-image">
+															src="./resources/upload/${ProductNew.img_name }" class="tab-image">
 														</a>
 													</figure>
 													<h3>${ProductNew.prod_name}</h3>
@@ -566,9 +566,9 @@
 																	data-type="minus">
 																	<svg width="16" height="16">
 																		<use xlink:href="#minus"></use></svg>
-																</button>
+																</button> 
 															</span> <input type="text" id="quantity" name="quantity"
-																class="form-control input-number" value="1"> <span
+																class="form-control input-number" value="${loopStatus.index}"> <span
 																class="input-group-btn">
 																<button type="button"
 																	class="quantity-right-plus btn btn-success btn-number"
@@ -680,8 +680,10 @@
     <script src="./resources/assets/js/script.js"></script>
 
 	<script>
-	function addToWishlist(event, prodName, prodStock, prodPrice, prodRatings, prod_idx) {
-	    
+	function addToWishlist(event, prodName, prodStock, prodPrice, prodRatings, prod_idx,link) {
+		var linkId = link.id
+		var i= $('#loopStatus.index').val()
+	     var quantity=$('#quantity').val()
 	    var wishlistItem = {
 	        prodName: prodName,
 	        prodStock: prodStock,
@@ -691,6 +693,10 @@
 	        
 	    };
 		console.log(wishlistItem)
+		console.log(i)
+		console.log(linkId)
+		
+		console.log(quantity)
 	    // AJAX를 사용하여 서버로 데이터 전송
 	    $.ajax({
 	        type: 'POST',

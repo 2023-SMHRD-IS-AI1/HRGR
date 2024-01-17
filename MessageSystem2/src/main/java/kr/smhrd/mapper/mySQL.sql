@@ -125,7 +125,7 @@ DELETE FROM tb_cust;
 
 -- tb_cust 조회
 select * from tb_cust ;
-
+use campus_23IS_LI1_hack_1;
 -- tb_prod조회
 select * from tb_prod 
 
@@ -215,9 +215,25 @@ insert into tb_review(prod_idx,cust_id, review_content, prod_ratings, reviewed_a
 insert into tb_review(prod_idx,cust_id, review_content, prod_ratings, reviewed_at) values(11,2,'맛있다.',2,NOW());
 
 
-delete  from tb_favorite where cust_id=14
+select *  from tb_favorite
 
 select * from tb_prod_image
 
-
-  
+    
+    
+    select * from tb_prod 
+    
+    UPDATE tb_cust
+SET
+    cust_pw = '새로운_비밀번호',
+    cust_nick = '새로운_닉네임',
+    cust_email = '새로운_이메일',
+    cust_phone = '새로운_전화번호',
+    cust_birthdate = '새로운_생년월일',
+    cust_addr = '새로운_주소'
+    
+WHERE
+    cust_name = '찾을_이름';
+    
+    
+update tb_cust set cust_phone=010, cust_pw=SHA2('1234',224), cust_nick='나다',cust_email='gadgs@gmail.com',cust_birthdate=NOW(), cust_addr='fdfsdag' where cust_name='fasd'

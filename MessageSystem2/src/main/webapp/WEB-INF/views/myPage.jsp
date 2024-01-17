@@ -303,7 +303,7 @@
                         <div class="col-1">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                         </div>
-                        <div class="col-11">
+                        <div class="col-11"><!-- ./resources/images/thumb-tuna.jpg -->
                             <img class="prodLike_img-wrapper" src="./resources/images/thumb-tuna.jpg" alt="">
                         </div>
                     </div>

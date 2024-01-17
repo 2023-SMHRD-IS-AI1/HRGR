@@ -16,9 +16,9 @@
 <meta name="author" content="">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<link rel="stylesheet" href="resources/assets/test.css" />
-<link rel="stylesheet" href="resources/assets/test1.css" />
-<link rel="stylesheet" href="resources/assets/test2.css" />
+<link rel="stylesheet" href="resources/assets/css/style.css" />
+<link rel="stylesheet" href="resources/assets/css/vendor.css" />
+
 
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
@@ -194,7 +194,7 @@
 
 				<div class="col-sm-4 col-lg-3 text-center text-sm-start">
 					<div class="main-logo">
-						<a href="goMain"> <img src="images/harugreen.png"
+						<a href="goMain"> <img src="./resources/images/harugreen.png"
 							alt="logo" class="img-fluid" style="max-width: 60%;">
 						</a>
 					</div>
@@ -279,7 +279,7 @@
 						</a> <%
  } else {
  %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-							<a href="#" class="rounded-circle bg-light p-2 mx-1"> <svg
+							<a href="gomyPage" class="rounded-circle bg-light p-2 mx-1"> <svg
 									width="24" height="24" viewBox="0 0 24 24">
   						<use xlink:href="#user"></use>
 						</svg></a> <%
@@ -431,7 +431,7 @@
 													<!-- Q8. 로그아웃 기능 만들기 -->
 													<!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
 													<a href="#" class="btn-wishlist" name="wishlist"
-														onclick="addToWishlist(event, '${product.prod_name}', ${product.prod_idx},${product.prod_stock}, ${product.prod_price}, ${product.prod_ratings})">
+														onclick="addToWishlist(event, '${product.prod_name}',${product.prod_stock}, ${product.prod_price}, ${product.prod_ratings},${product.prod_idx})">
 														<svg width="24" height="24">
         												<use xlink:href="#heart"></use>
     													</svg>
@@ -446,7 +446,7 @@
 														</a>
 													</figure>
 													<h3>${product.prod_name}</h3>
-
+													<h2>${product.prod_idx}</h2>
 													<span class="qty">${product.prod_stock }</span><span
 														class="rating"><svg width="24" height="24"
 															class="text-primary">
@@ -536,7 +536,7 @@
 													<!-- Q8. 로그아웃 기능 만들기 -->
 													<!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
 													<a href="#" class="btn-wishlist" name="wishlist"
-														onclick="addToWishlist(event, '${ProductNew.prod_name}', ${ProductNew.prod_idx},${ProductNew.prod_stock}, ${ProductNew.prod_price}, ${ProductNew.prod_ratings})">
+														onclick="addToWishlist(event, '${ProductNew.prod_name}',${ProductNew.prod_stock}, ${ProductNew.prod_price}, ${ProductNew.prod_ratings},${ProductNew.prod_idx})">
 														<svg width="24" height="24">
         												<use xlink:href="#heart"></use>
     													</svg>
@@ -551,6 +551,7 @@
 														</a>
 													</figure>
 													<h3>${ProductNew.prod_name}</h3>
+													<h2 id="prod_idx">${ProductNew.prod_idx}</h2>
 													<span class="qty">${ProductNew.prod_stock }</span><span
 														class="rating"><svg width="24" height="24"
 															class="text-primary">
@@ -672,19 +673,15 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/jquery-1.11.0.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-		crossorigin="anonymous"></script>
-	<script src="js/plugins.js"></script>
-	<script src="js/script.js"></script>
+	<script src="./resources/assets/js/jquery-1.11.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="./resources/assets/js/plugins.js"></script>
+    <script src="./resources/assets/js/script.js"></script>
 
 	<script>
 	function addToWishlist(event, prodName, prodStock, prodPrice, prodRatings, prod_idx) {
-	    // JavaScript 변수에 제품 정보 저장
+	    
 	    var wishlistItem = {
 	        prodName: prodName,
 	        prodStock: prodStock,
@@ -693,12 +690,11 @@
 	        prod_idx: prod_idx,
 	        
 	    };
-		
+		console.log(wishlistItem)
 	    // AJAX를 사용하여 서버로 데이터 전송
 	    $.ajax({
 	        type: 'POST',
 	        url: 'searchLike',
-	        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 	        data: wishlistItem,
 	        success: function(response) {
 	            console.log('Server response:',response);

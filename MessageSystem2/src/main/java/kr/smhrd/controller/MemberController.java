@@ -206,12 +206,14 @@ public class MemberController {
 		System.out.println("cust_id값 확인 : "+ cust_id);
 		member.setCust_id(cust_id);
 		member.setProd_idx(prod_idx);
+		System.out.println(prod_idx);
+		
 		int cnt = memberMapper.searchLike(member);
-		if(cnt >= 1) {
-			memberMapper.removeLike(member);
+		if(cnt == 0) {
 			
-		}else {
 			memberMapper.goLike(member);
+		}else {
+			memberMapper.removeLike(member);
 		}
 	   
 	    

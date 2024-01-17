@@ -14,10 +14,6 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="resources/assets/test.css" />
-    <link rel="stylesheet" href="resources/assets/test1.css" />
-    <link rel="stylesheet" href="resources/assets/test2.css" />
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/vendor.css">
@@ -29,10 +25,9 @@
 
   </head>
   <body>
-  <%
+<%
 	Member Memberlogin = (Member) session.getAttribute("loginMember");
 	%>
-
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
       <defs>
         <symbol xmlns="http://www.w3.org/2000/svg" id="link" viewBox="0 0 24 24">
@@ -154,10 +149,8 @@
           
           <div class="col-sm-4 col-lg-3 text-center text-sm-start">
             <div class="main-logo">
-
-              <a href="index.html" id="goMain">
-                <img src="resources/images/harugreen.png" alt="logo" class="img-fluid" style="max-width: 60%;">
-
+              <a href="goMain">
+                <img src="./resources/images/harugreen.png" alt="logo" class="img-fluid" style="max-width: 60%;">
               </a>
             </div>
           </div>
@@ -172,80 +165,84 @@
                   <option>가공식품</option>
                 </select>
               </div>
-              
               <div class="col-11 col-md-7">
-                <form id="search-form" class="text-center" action="index.html" method="post">
-                  <input type="text" class="form-control border-0 bg-transparent" placeholder="검색어를 입력해주세요!" />
+                <form id="search-form" class="text-center" action="gosearch" method="post">
+                  <input type="text" class="form-control border-0 bg-transparent" name="searchInput" id="searchInput" placeholder="검색어를 입력해주세요!"/>
                 </form>
               </div>
               <div class="col-1">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z"/></svg>
+                <div id="svg-container">
+                
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z"/>
+                 </svg>
+              
+            </div>
               </div>
             </div>
           </div>
           
           <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
             <div class="support-box text-end d-none d-xl-block">
+						<%
+						if (Memberlogin == null) {
+						%>
+						<a class="fs-6 text-muted" href="goLogin">로그인</a>
+						<%
+						} else {
+						%>
+						<!-- Q7. 개인정보수정 기능 만들기 -->
+						<!-- Q8. 로그아웃 기능 만들기 -->
+						<!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
+						<%
+						if (!Memberlogin.getCust_role().equals("S")) {
+						%>
+						<a href="goSeller">판매자 등록</a> <a href="goLogout">로그아웃</a>
+						<%
+						} else {
+						%>
+							<a href=goLogout>로그아웃</a>
 
-           
-            <%if(Memberlogin == null){ %>
-                  <a class="fs-6 text-muted" href="goLogin">로그인</a>
-         <%}else{ %>
-               <!-- Q7. 개인정보수정 기능 만들기 -->
-               <!-- Q8. 로그아웃 기능 만들기 -->
-               <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-               <%if(!Memberlogin.getCust_role().equals("S")){ %>
-               			<a href="goSeller">판매자 등록</a>
-               			<a href="goLogout">로그아웃</a>
-               <%}else {%>
-                    <a href="goLogout">로그아웃</a>
-                  	
-			   <%} %>
-            		
-            <%} %>
-           
-              <span class="fs-6 text-muted"></span>
+							<%}%>
 
-              <h5 class="mb-0"></h5>
-            </div>
+						<%}%>
+						<h5 class="mb-0"></h5>
+					</div>
 
-            <ul class="d-flex justify-content-end list-unstyled m-0">
-              <li>
-
-                <%if(Memberlogin == null){ %>
-                	<a href="goLogin" class="rounded-circle bg-light p-2 mx-1">
-						<svg width="24" height="24" viewBox="0 0 24 24">
+					<ul class="d-flex justify-content-end list-unstyled m-0">
+						<li>
+							<%
+							if (Memberlogin == null) {
+							%> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1">
+								<svg width="24" height="24" viewBox="0 0 24 24">
   						<use xlink:href="#user"></use>
-						</svg></a>
-			<%}else{ %>
-					<!-- Q7. 개인정보수정 기능 만들기 -->
-					<!-- Q8. 로그아웃 기능 만들기 -->
-					<!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-					<a href="gomyPage" class="rounded-circle bg-light p-2 mx-1">
-						<svg width="24" height="24" viewBox="0 0 24 24">
+						</svg>
+						</a> <%
+ } else {
+ %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
+							<a href="gomyPage" class="rounded-circle bg-light p-2 mx-1"> <svg
+									width="24" height="24" viewBox="0 0 24 24">
   						<use xlink:href="#user"></use>
-						</svg></a>
-			<%} %>
-                  
-               
-
-              </li>
-              <li>
-                <%if(Memberlogin == null){ %>
-                	<a href="goLogin" class="rounded-circle bg-light p-2 mx-1">
-						<svg width="24" height="24" viewBox="0 0 24 24">
+						</svg></a> <%
+ }
+ %>
+						</li>
+						<li>
+							<%
+							if (Memberlogin == null) {
+							%> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1">
+								<svg width="24" height="24" viewBox="0 0 24 24">
   						<use xlink:href="#heart"></use>
-						</svg></a>
-			<%}else{ %>
-					<!-- Q7. 개인정보수정 기능 만들기 -->
-					<!-- Q8. 로그아웃 기능 만들기 -->
-					<!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-					<a href="goLike" class="rounded-circle bg-light p-2 mx-1">
-						<svg width="24" height="24" viewBox="0 0 24 24">
+						</svg>
+						</a> <%
+ } else {
+ %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
+							<a href="goLike" class="rounded-circle bg-light p-2 mx-1"> <svg
+									width="24" height="24" viewBox="0 0 24 24">
   						<use xlink:href="#heart"></use>
-						</svg></a>
-			<%} %>
-              </li>
+						</svg></a> <%
+ }
+ %>
               <li class="d-lg-none">
                 <a href="#" class="rounded-circle bg-light p-2 mx-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
                   <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#cart"></use></svg>
@@ -1700,39 +1697,22 @@
     <script src="./resources/assets/js/jquery-1.11.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-
-    <script src="js/plugins.js"></script>
-    <script src="js/script.js"></script>
-    
-    <script type="text/javascript"> 
-    document.getElementById("goMain").addEventListener("click", function() {
-    	window.location.href = "goMain";
+    <script src="./resources/assets/js/plugins.js"></script>
+    <script src="./resources/assets/js/script.js"></script>
+    <script>
+    document.getElementById("userIcon").addEventListener("click", function() {
+       window.location.href = "goLogin";
   });
     
     </script>
-    
-    
-   
-</script>
- <script>
+    <script>
   // 검색창 눌렀을때 페이지 이동
    document.getElementById('svg-container').addEventListener('click', function() {
     // 현재 검색어 입력란의 값을 가져옴
     var inputValue = document.getElementById('searchInput').value;
-
- // 검색어가 비어있는지 확인
-    if (inputValue.trim() === "") {
-        // 검색어가 비어있다면 메시지 표시
-        alert("검색어를 입력해주세요.");
-    } else {
-        // 현재 페이지 URL에 검색어를 추가하여 페이지 이동
-        window.location.href = 'gosearch?searchInput=' + encodeURIComponent(inputValue);
-    }
+    // 현재 페이지 URL에 검색어를 추가하여 페이지 이동
+    window.location.href = 'gosearch?searchInput=' + encodeURIComponent(inputValue);
   });
 </script>
-
-    <script src="./resources/assets/js/plugins.js"></script>
-    <script src="./resources/assets/js/script.js"></script>
-
   </body>
 </html>

@@ -43,4 +43,5 @@ public class Member {
 	private String created_at;
 	private String prod_name;
 	private String prod_price;
+	
 }

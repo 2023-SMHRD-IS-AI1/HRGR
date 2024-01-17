@@ -215,7 +215,9 @@ insert into tb_review(prod_idx,cust_id, review_content, prod_ratings, reviewed_a
 insert into tb_review(prod_idx,cust_id, review_content, prod_ratings, reviewed_at) values(11,2,'맛있다.',2,NOW());
 
 
-select * from tb_favorite
+delete  from tb_favorite where cust_id=14
+
+select * from tb_prod_image
 
 
   

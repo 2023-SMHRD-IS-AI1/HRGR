@@ -70,4 +70,25 @@ WHERE
     f.cust_id = #{cust_id};
 </select>
 
+	<select id="reviewList" parameterType="String" resultType="kr.smhrd.entity.Member">
+ SELECT
+    r.*,
+    pi.img_name AS img_name,
+    p.prod_name AS prod_name,
+    p.prod_idx AS prod_idx
+FROM
+    tb_review r
+INNER JOIN
+    tb_prod_image pi ON r.prod_idx = pi.prod_idx
+LEFT JOIN
+    tb_prod p ON r.prod_idx = p.prod_idx
+WHERE
+    r.cust_id = #{cust_id};
+</select>
+
+<delete id="reviewDelete" parameterType="kr.smhrd.entity.Member" >
+delete from tb_review where cust_id = #{cust_id} and prod_idx = #{prod_idx}
+</delete>
+
+
 </mapper>

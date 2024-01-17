@@ -54,7 +54,7 @@ LEFT JOIN
 LEFT JOIN
     tb_prod_image ON tb_prod.prod_idx = tb_prod_image.prod_idx
 WHERE
-    tb_prod.prod_name LIKE '%사%'
+    tb_prod.prod_name LIKE CONCAT('%', #{searchInput}, '%')
 UNION
 SELECT
     tb_prod.prod_idx AS prod_idx,
@@ -62,6 +62,7 @@ SELECT
     tb_prod.prod_desc AS prod_desc,
     tb_prod.prod_price AS prod_price,
     tb_prod.prod_stock AS prod_stock,
+    
     tb_prod.cust_id AS prod_cust_id,
     tb_prod.created_at AS prod_created_at,
     tb_prod_image.img_name AS img_name
@@ -74,7 +75,7 @@ LEFT JOIN
 LEFT JOIN
     tb_prod_image ON tb_prod.prod_idx = tb_prod_image.prod_idx
 WHERE
-    tb_prod.prod_name LIKE '%사%'
+    tb_prod.prod_name LIKE CONCAT('%', #{searchInput}, '%')
 ORDER BY
     prod_created_at DESC;
 

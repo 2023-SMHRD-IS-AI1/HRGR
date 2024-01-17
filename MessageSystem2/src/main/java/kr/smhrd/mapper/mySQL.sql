@@ -284,3 +284,103 @@ JOIN
 WHERE
     f.cust_id = 1;
     
+    CREATE TABLE tb_review
+(
+    `review_idx`      INT UNSIGNED    NOT NULL    AUTO_INCREMENT COMMENT '리뷰 식별자', 
+    `prod_idx`        INT UNSIGNED    NOT NULL    COMMENT '상품 식별자', 
+    `cust_id`         VARCHAR(30)     NOT NULL    COMMENT '회원 아이디', 
+    `review_content`  TEXT            NOT NULL    COMMENT '리뷰 내용', 
+    `prod_ratings`    INT             NOT NULL    COMMENT '상품 평점', 
+    `reviewed_at`     DATETIME        NOT NULL    COMMENT '작성 일자', 
+     PRIMARY KEY (review_idx)
+);
+    
+select * from tb_review where cust_id = 1
+insert into tb_review (prod_idx,cust_id,review_content,prod_ratings,reviewed_at)
+values(25,1,'진짜 개맛있다.',5,NOW())
+
+SELECT
+    p.prod_name,
+    i.img_name,
+    r.*
+FROM
+    tb_prod p
+LEFT JOIN
+    tb_prod_image i ON p.prod_idx = i.prod_idx
+LEFT JOIN
+    tb_review r ON p.prod_idx = r.prod_idx
+WHERE
+    p.cust_id = 1
+
+UNION
+
+SELECT
+    p.prod_name,
+    i.img_name,
+    r.*
+FROM
+    tb_prod p
+RIGHT JOIN
+    tb_prod_image i ON p.prod_idx = i.prod_idx
+RIGHT JOIN
+    tb_review r ON p.prod_idx = r.prod_idx
+WHERE
+    p.cust_id = 1;
+    
+    
+    
+   SELECT
+    p.prod_name,
+    pi.img_name,
+    r.*
+FROM
+    tb_prod p
+LEFT JOIN
+    tb_prod_image pi ON p.prod_idx = pi.prod_idx
+LEFT JOIN
+    tb_review r ON p.prod_idx = r.prod_idx
+WHERE
+    p.cust_id = 1
+
+UNION
+
+SELECT
+    p.prod_name,
+    pi.img_name,
+    r.*
+FROM
+    tb_prod p
+RIGHT JOIN
+    tb_prod_image pi ON p.prod_idx = pi.prod_idx
+RIGHT JOIN
+    tb_review r ON p.prod_idx = r.prod_idx
+WHERE
+    p.cust_id = 1;
+    
+    
+    
+ SELECT
+    r.*,
+    pi.img_name
+FROM
+    tb_review r
+INNER JOIN
+    tb_prod_image pi ON r.prod_idx = pi.prod_idx
+WHERE
+    r.cust_id = 1;
+    
+    
+    
+    
+    SELECT
+    r.*,
+    pi.img_name AS img_name,
+    p.prod_name
+FROM
+    tb_review r
+INNER JOIN
+    tb_prod_image pi ON r.prod_idx = pi.prod_idx
+LEFT JOIN
+    tb_prod p ON r.prod_idx = p.prod_idx
+WHERE
+    r.cust_id = 1;

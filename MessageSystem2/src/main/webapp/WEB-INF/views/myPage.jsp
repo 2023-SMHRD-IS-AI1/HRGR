@@ -40,6 +40,7 @@
 	
 	List<Product> prodList = (List<Product>)request.getAttribute("prodList");
 	
+	
 			
   %>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -342,7 +343,7 @@
                 <label class="form-check-label" for="flexCheckDefault">
                   전체선택
                 </label>
-                <button type="button" class="btn btn-outline-success btn-sm">선택삭제</button>
+                <button type="button" class="btn btn-outline-success btn-sm" onclick="deleteSelected(${loopStatus.index})">선택삭제</button>
               </div>
               <!-- 상품ㄱㄱ -->
         <div class="prodLike_pordLine">
@@ -368,7 +369,7 @@
                 </div>
                 <div class="col-lg-2 d-grid gap-2 my-auto">
                     <button type="button" class="btn btn-outline-success">장바구니담기</button>
-                    <button type="button" class="btn btn-outline-secondary" onclick="searchLikeList()">삭제</button>
+                    <button type="button" class="btn btn-outline-secondary" onclick="searchLikeList(${likeList.prod_idx})">삭제</button>
                 </div>
             </div>
         </div>
@@ -409,79 +410,35 @@
           <div class="myReview_content">
             <h2 style="font-weight: bold; margin-bottom: 14px;">나의 후기</h2>
             <!-- 제목 아래 큰틀 -->
-
+<c:forEach var="reviewList" items="${reviewList}" varStatus="loopStatus">
+    <c:if test="${loopStatus.index < 5}"> 
             <div class="myReview_box border-bottom border-top border-success">
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-1">
-                  <img class="rounded" src="//thumbnail7.coupangcdn.com/thumbnails/remote/300x300ex/image/vendor_inventory/3347/38dbf382340fbf1c4f44405591e08a5175b383431326b32be42d8dfa68ad.jpg" alt="" style="max-width: 100%;" >
+                  <img class="rounded" src="./resources/upload/${reviewList.img_name }" alt="" style="max-width: 100%;" >
                 </div>
-                <div class="col-10">하루그린 방울토마토 당근당근</div>
-                  <div class="col-1"><a href="#" style="text-decoration: none; color: green;">삭제</a></div>
+                <div class="col-10">${reviewList.prod_name}</div>
+                  <div class="col-1"><a href="reviewDelete" style="text-decoration: none; color: green;" onclick="deletereview(${reviewList.prod_idx})">삭제</a></div>
                
               </div>
               <hr style="margin: 0px;">
               <div style="padding: 20px 20px;">
                 <div>
                  <span>★★★★☆</span>
-                <span>2024. 01. 15</span>
+                <span>${reviewList.reviewed_at}</span>
                 </div>
                 <div align="center" style="margin: 10px 0px">
                   <img src="https://cdn.nongupin.co.kr/news/photo/202304/98428_56733_2050.jpg" alt="리뷰사진인데용" style="max-width: 100%;">
                 </div>
                 <div>
-                  사장님이 신선하고 토마토가 친절해요<br>근데 저 토마토 안좋아해요
+                  ${reviewList.review_content}<br>
                 </div>
               </div>
             </div>
-            <!-- 하나 끝 -->
-            <div class="myReview_box border-bottom border-success">
-              <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-                <div class="col-1">
-                  <img class="rounded" src="//thumbnail7.coupangcdn.com/thumbnails/remote/300x300ex/image/vendor_inventory/3347/38dbf382340fbf1c4f44405591e08a5175b383431326b32be42d8dfa68ad.jpg" alt="" style="max-width: 100%;" >
-                </div>
-                <div class="col-10">하루그린 방울토마토 당근당근</div>
-                  <div class="col-1"><a href="#" style="text-decoration: none; color: green;">삭제</a></div>
-               
-              </div>
-              <hr style="margin: 0px;">
-              <div style="padding: 20px 20px;">
-                <div>
-                 <span>★★★★☆</span>
-                <span>2024. 01. 15</span>
-                </div>
-                <div align="center" style="margin: 10px 0px">
-                  <img src="https://cdn.nongupin.co.kr/news/photo/202304/98428_56733_2050.jpg" alt="리뷰사진인데용" style="max-width: 100%;">
-                </div>
-                <div>
-                  토마토맛토마토맛토<br>우우우욱
-                </div>
-              </div>
-            </div>
+            </c:if>
+</c:forEach> 
 <!-- 하나 끝 -->
-            <div class="myReview_box border-bottom border-success">
-              <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-                <div class="col-1">
-                  <img class="rounded" src="//thumbnail7.coupangcdn.com/thumbnails/remote/300x300ex/image/vendor_inventory/3347/38dbf382340fbf1c4f44405591e08a5175b383431326b32be42d8dfa68ad.jpg" alt="" style="max-width: 100%;" >
-                </div>
-                <div class="col-10">하루그린 방울토마토 당근당근</div>
-                  <div class="col-1"><a href="#" style="text-decoration: none; color: green;">삭제</a></div>
-               
-              </div>
-              <hr style="margin: 0px;">
-              <div style="padding: 20px 20px;">
-                <div>
-                 <span>★★★★☆</span>
-                <span>2024. 01. 15</span>
-                </div>
-                <div align="center" style="margin: 10px 0px">
-                  <img src="https://cdn.nongupin.co.kr/news/photo/202304/98428_56733_2050.jpg" alt="리뷰사진인데용" style="max-width: 100%;">
-                </div>
-                <div>
-                  바니바니바니바니당근당근<br>저는 당근 좋아해요
-                </div>
-              </div>
-            </div>
-<!-- 하나 끝 -->
+          
           <div class="myReview_box" align="center" style="margin-top: 20px;">
                           <!-- 페이지네이션 -->
                           <div style="margin-top: 30px;">
@@ -684,12 +641,15 @@
               <hr style="margin: 0px; color: rgb(188, 188, 188);">
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-2 border-end" align="right">비밀번호</div>
-                <div class="col-10"><input type="password" placeholder="수정할 비밀번호를 입력하세요" class="form-control" style="width: 250px;" name="cust_pw"></div>                
+                <div class="col-10"><input type="password" placeholder="PW를 입력하세요" id="cust_pw" name="cust_pw"></div>                
               </div>
               <hr style="margin: 0px; color: rgb(188, 188, 188);">
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-2 border-end" align="right">비밀번호 확인</div>
-                <div class="col-10"><input type="password" placeholder="비밀번호를 확인하세요" class="form-control" style="width: 250px;" ></div>                
+                <div class="col-10"><input type="password" placeholder="PW확인" id="pwCheck" name="pwCheck"><h4 id="passwordMessage"></div>  
+                <div style="margin-top: 10px;">
+  <input type="button" value="비밀번호 확인" onclick="checkPasswordMatch()" style="background-color: #4CAF50; /* Lighter green color */ color: white; padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer;">
+</div>             
               </div>
               <hr style="margin: 0px; color: rgb(188, 188, 188);">
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
@@ -820,17 +780,30 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
       <script src="js/plugins.js"></script>
       <script src="js/script.js"></script>
+       <script>
+    document.getElementById("userIcon").addEventListener("click", function() {
+       window.location.href = "goLogin";
+  });
+    
+    </script>
+    <script>
+  // 검색창 눌렀을때 페이지 이동
+   document.getElementById('svg-container').addEventListener('click', function() {
+    // 현재 검색어 입력란의 값을 가져옴
+    var inputValue = document.getElementById('searchInput').value;
+    // 현재 페이지 URL에 검색어를 추가하여 페이지 이동
+    window.location.href = 'gosearch?searchInput=' + encodeURIComponent(inputValue);
+  });
+</script>
       <script>
     // 찜 상품 삭제 함수
-    function searchLikeList() {
-    	var prod_idx = $('#prod_idx').val()
-    	console.log(prod_idx)
+    function searchLikeList(prod_idx) {
         if (confirm('정말로 찜 상품을 삭제하시겠습니까?')) {
             // Ajax를 사용하여 서버에 삭제 요청 전송
             $.ajax({
                 type: 'POST',
                 url: 'searchLikeList', // 서버에서 처리할 URL (searchLike.jsp 경로에 따라 수정 필요)
-                data: prod_idx,
+                data: { prod_idx: prod_idx },
                 success: function (data) {
                     // 삭제에 성공하면 페이지 리로드 또는 화면에서 삭제된 항목 제거 등을 수행
                     location.reload(); // 예시로 페이지를 리로드하는 방법
@@ -841,6 +814,53 @@
             });
         }
     }
+
+    // 선택된 항목 삭제 함수
+    function deleteSelected(index) {
+        // 여기에 선택된 항목을 삭제하는 로직 추가
+        console.log('선택된 항목 삭제 - 인덱스: ' + index);
+    }
+</script>
+<script>
+    // 후기 삭제 함수
+    function deletereview(prod_idx) {
+        if (confirm('정말로 후기를 삭제하시겠습니까?')) {
+            // Ajax를 사용하여 서버에 삭제 요청 전송
+            $.ajax({
+                type: 'POST',
+                url: 'reviewDelete', // 서버에서 처리할 URL (searchLike.jsp 경로에 따라 수정 필요)
+                data: { prod_idx: prod_idx },
+                success: function (data) {
+                    // 삭제에 성공하면 페이지 리로드 또는 화면에서 삭제된 항목 제거 등을 수행
+                    location.reload(); // 예시로 페이지를 리로드하는 방법
+                },
+                error: function (error) {
+                    console.error('후기 삭제 실패', error);
+                }
+            });
+        }
+    }
+
+</script>
+<script >
+var passwordChecked = false; // 비밀번호 확인 여부를 저장하는 변수 추가
+
+function checkPasswordMatch() {
+    var pw = document.getElementById('cust_pw').value;
+    var pwCheck = document.getElementById('pwCheck').value;
+    var passwordMessage = document.getElementById('passwordMessage');
+    var joinUsButton = document.getElementById('joinUsButton');
+
+    if (pw === pwCheck) {
+        passwordMessage.innerHTML = '비밀번호가 일치합니다.';
+        passwordChecked = true; // 비밀번호 확인됨
+    } else {
+        passwordMessage.innerHTML = '비밀번호가 일치하지 않습니다.';
+        passwordChecked = false; // 비밀번호 불일치
+    }
+
+    joinUsButton.disabled = !passwordChecked; // 버튼 활성화 여부 설정
+}
 </script>
 </body>
 </html>

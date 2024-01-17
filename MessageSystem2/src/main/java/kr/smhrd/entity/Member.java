@@ -39,8 +39,8 @@ public class Member {
 	private String company_addr;
 	private String company_bno;
 	private String business_type;
-	private int prod_idx;
 	private String created_at;
+	private int prod_idx;
 	private String prod_name;
 	private String prod_price;
 	private String img_name;
@@ -66,6 +66,12 @@ public class Member {
 		this.prod_idx = prod_idx;
 	}
 	
+	
+
+		// 리뷰
+		private String review_content;
+		private int prod_ratings;
+		private String reviewed_at;
 	
 	
 	

@@ -19,6 +19,35 @@
 		delete from board where idx = #{idx}	
 	</delete>
 	
+	<select id="searchReview" parameterType="String" resultType="kr.smhrd.entity.Board">
+SELECT
+    p.prod_name AS prod_name,
+    i.img_name AS img_name,
+    r.*
+FROM
+    tb_prod p
+LEFT JOIN
+    tb_prod_image i ON p.prod_idx = i.prod_idx
+LEFT JOIN
+    tb_review r ON p.prod_idx = r.prod_idx
+WHERE
+    p.cust_id = #{cust_id}
+
+UNION
+
+SELECT
+    p.prod_name,
+    i.img_name,
+    r.*
+FROM
+    tb_prod p
+RIGHT JOIN
+    tb_prod_image i ON p.prod_idx = i.prod_idx
+RIGHT JOIN
+    tb_review r ON p.prod_idx = r.prod_idx
+WHERE
+    p.cust_id = #{cust_id};
+</select>
 
 
 

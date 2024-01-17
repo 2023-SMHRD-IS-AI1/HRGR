@@ -27,6 +27,7 @@ import kr.smhrd.entity.Board;
 import kr.smhrd.entity.Member;
 import kr.smhrd.entity.Message;
 import kr.smhrd.entity.Product;
+import kr.smhrd.mapper.BoardMapper;
 import kr.smhrd.mapper.MemberMapper;
 import kr.smhrd.mapper.MessageMapper;
 import kr.smhrd.mapper.ProductMapper;
@@ -46,7 +47,8 @@ public class MemberController {
 	private HttpServletRequest request;
 	@Autowired
 	private ProductMapper ProductMapper;
-
+	
+	
 	// @RequestMapping : get방식, post방식 요청을 다 받을 수 있음
 	// @GetMapping : get방식 요청만 받을 수 있음
 	// @PostMapping : post방식 요청만 받을 수 있음
@@ -146,7 +148,7 @@ public class MemberController {
 			System.out.println("실패");
 		}
 
-		return "Main";
+		return "myPage";
 	}
 
 	// 회원정보 보는 페이지로 이동 + DB에 있는 회원 조회 /showMember
@@ -232,14 +234,20 @@ public class MemberController {
 	public String gomyPage(Member member, HttpSession session,Model model) {
 		MultipartRequest multi = null;
 		Member loginMember = (Member)session.getAttribute("loginMember");
-		String cust = loginMember.getCust_id();
-		List<Member> likeList = memberMapper.likeList(cust);
+		String cust_id = loginMember.getCust_id();
+		List<Member> likeList = memberMapper.likeList(cust_id);
 		model.addAttribute("likeList",likeList);
 		 
-		List<Product> prodList = ProductMapper.selectProdlist(cust);
+		List<Product> prodList = ProductMapper.selectProdlist(cust_id);
 		model.addAttribute("prodList",prodList);
 		
+		
+		List<Member> reviewList = memberMapper.reviewList(cust_id);
+		model.addAttribute("reviewList",reviewList);
 		System.out.println(model.toString());
+		
+		
+		
 		/*
 		 * try { multi = new MultipartRequest(request, savePath, maxSize, enc, dftrp);
 		 * String title = multi.getParameter("title"); String writer =
@@ -255,9 +263,9 @@ public class MemberController {
 		
 	}
 	
-	@PostMapping("/searchLikeList")
+	@RequestMapping("/searchLikeList")
 	@ResponseBody
-	public String deleteLikeItem(
+	public boolean deleteLikeItem(
 	     @RequestParam int prod_idx,Member member, HttpSession session
 	    
 	) {
@@ -275,9 +283,24 @@ public class MemberController {
 		memberMapper.removeLike(member);
 	
 	    
-	    return "myPage";
+	    return true;
 	}
 	
+	
+	@RequestMapping("/reviewDelete")
+	@ResponseBody
+	public String reviewDelete(@RequestParam int prod_idx,Member member, HttpSession session) {
+		
+		Member loginMember = (Member)session.getAttribute("loginMember");
+		System.out.println("\n"+loginMember.toString() +"\n");
+		String cust_id = loginMember.getCust_id();
+		System.out.println("cust_id값 확인 : "+ cust_id);
+		member.setCust_id(cust_id);
+		member.setProd_idx(prod_idx);
+		System.out.println(prod_idx);
+		memberMapper.reviewDelete(member);
+		return "myPage";
+	}
 	
 	
 	

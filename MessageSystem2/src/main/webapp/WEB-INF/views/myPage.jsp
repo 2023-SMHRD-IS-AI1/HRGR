@@ -1,10 +1,11 @@
+<%@page import="org.springframework.ui.Model"%>
 <%@page import="ch.qos.logback.core.recovery.ResilientSyslogOutputStream"%>
 <%@page import="java.util.List"%>
 <%@page import="kr.smhrd.entity.Member"%>
 <%@page import="kr.smhrd.entity.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,11 +23,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/vendor.css">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/stylejm.css">
+    
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 	<% 
@@ -35,7 +37,9 @@
 	List<Member> likeList = (List<Member>)request.getAttribute("likeList");
 	System.out.println(Memberlogin.toString());
 	String savePath = "./resources/upload";
-
+	
+	List<Product> prodList = (List<Product>)request.getAttribute("prodList");
+	
 			
   %>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -89,127 +93,163 @@
       </svg>
 
       <header>
-        <div class="container-fluid">
-          <div class="row py-3 border-bottom">
-            
-            <div class="col-sm-4 col-lg-3 text-center text-sm-start">
-              <div class="main-logo">
-                <a href="goMain">
-                  <img src="./resources/images/harugreen.png" alt="logo" class="img-fluid" style="max-width: 60%;">
-                </a>
-              </div>
+      <div class="container-fluid">
+        <div class="row py-3 border-bottom">
+          
+          <div class="col-sm-4 col-lg-3 text-center text-sm-start">
+            <div class="main-logo">
+              <a href="goMain">
+                <img src="./resources/images/harugreen.png" alt="logo" class="img-fluid" style="max-width: 60%;">
+              </a>
             </div>
-            
-            <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
-              <div class="search-bar row bg-light p-2 my-2 rounded-4">
-                <div class="col-md-4 d-none d-md-block">
-                  <select class="form-select border-0 bg-transparent">
-                    <option>전체상품</option>
-                    <option>농산물</option>
-                    <option>수산물</option>
-                    <option>가공식품</option>
-                  </select>
-                </div>
-                <div class="col-11 col-md-7">
-                  <form id="search-form" class="text-center" action="index.html" method="post">
-                    <input type="text" class="form-control border-0 bg-transparent" placeholder="검색어를 입력해주세요!" />
-                  </form>
-                </div>
-                <div class="col-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z"/></svg>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
-              <div class="support-box text-end d-none d-xl-block">
-                <span class="fs-6 text-muted"></span>
-                <h5 class="mb-0"></h5>
-              </div>
-  
-              <ul class="d-flex justify-content-end list-unstyled m-0">
-                <li>
-                  <a href="#" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
-                    <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#user"></use></svg>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
-                    <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#heart"></use></svg>
-                  </a>
-                </li>
-                <li class="d-lg-none">
-                  <a href="#" class="rounded-circle bg-light p-2 mx-1" style="color: green;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-                    <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#cart"></use></svg>
-                  </a>
-                </li>
-                <li class="d-lg-none">
-                  <a href="#" class="rounded-circle bg-light p-2 mx-1" style="color: green;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch">
-                    <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#search"></use></svg>
-                  </a>
-                </li>
-              </ul>
-  
-              <div class="cart text-end d-none d-lg-block dropdown">
-                <button class="border-0 bg-transparent d-flex flex-column gap-2 lh-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-                  <span class="fs-6 text-muted dropdown-toggle">장바구니</span>
-                  <span class="cart-total fs-5 fw-bold">현재가격</span>
-                </button>
-              </div>
-            </div>
-  
           </div>
+          
+          <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
+            <div class="search-bar row bg-light p-2 my-2 rounded-4">
+              <div class="col-md-4 d-none d-md-block">
+                <select class="form-select border-0 bg-transparent">
+                  <option>전체상품</option>
+                  <option>농산물</option>
+                  <option>수산물</option>
+                  <option>가공식품</option>
+                </select>
+              </div>
+              <div class="col-11 col-md-7">
+                <form id="search-form" class="text-center" action="gosearch" method="post">
+                  <input type="text" class="form-control border-0 bg-transparent" name="searchInput" id="searchInput" placeholder="검색어를 입력해주세요!"/>
+                </form>
+              </div>
+              <div class="col-1">
+                <div id="svg-container">
+                
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z"/>
+                 </svg>
+              
+            </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
+            <div class="support-box text-end d-none d-xl-block">
+						<%
+						if (Memberlogin == null) {
+						%>
+						<a class="fs-6 text-muted" href="goLogin">로그인</a>
+						<%
+						} else {
+						%>
+						<!-- Q7. 개인정보수정 기능 만들기 -->
+						<!-- Q8. 로그아웃 기능 만들기 -->
+						<!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
+						<% if (!Memberlogin.getCust_role().equals("S")) {%>
+						<a href="goSeller">판매자 등록</a> <a href="goLogout">로그아웃</a>
+						<%
+						} else {
+						%>
+							<a href=goLogout>로그아웃</a>
+
+							<%}%>
+
+						<%}%>
+						<h5 class="mb-0"></h5>
+					</div>
+
+					<ul class="d-flex justify-content-end list-unstyled m-0">
+						<li>
+							<%
+							if (Memberlogin == null) {
+							%> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
+								<svg width="24" height="24" viewBox="0 0 24 24">
+  						<use xlink:href="#user"></use>
+						</svg>
+						</a> <%
+ } else {
+ %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
+							<a href="gomyPage" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
+									width="24" height="24" viewBox="0 0 24 24">
+  						<use xlink:href="#user"></use>
+						</svg></a> <%
+ }
+ %>
+						</li>
+						<li>
+							<%
+							if (Memberlogin == null) {
+							%><a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
+								<svg width="24" height="24" viewBox="0 0 24 24">
+  						<use xlink:href="#cart"></use>
+						</svg>
+						</a> <%
+ } else {
+ %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
+							<a href="goLike" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
+									width="24" height="24" viewBox="0 0 24 24">
+  						<use xlink:href="#cart"></use>
+						</svg></a> <%
+ }
+ %>
+              
+            </ul>
+
+           
+          </div>
+
         </div>
-        <div class="container-fluid">
-          <div class="row py-3">
-            <div class="d-flex  justify-content-center justify-content-sm-between align-items-center">
-              <nav class="main-menu d-flex navbar navbar-expand-lg">
-  
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                  aria-controls="offcanvasNavbar">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-  
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-  
-                  <div class="offcanvas-header justify-content-center">
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                  </div>
-  
-                  <div class="offcanvas-body">
-                
-                
-                    <ul class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
-                      <li class="nav-item active">
-                        <a href="#" class="nav-link">전체</a>
-                      </li>
-                      <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">농산물</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">수산물</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">가공식품</a>
-                      </li>
-                      <a href="#" target="_blank" class="nav-link btn-coupon-code">
-                  <img src="./resources/images/book-half.svg" alt="gift icon">
-                  <strong class="ms-2 text-dark">영농일지 보러가기</strong>
-                </a>
-                    </ul>
-                  
-                  </div>
-  
+      </div>
+      <div class="container-fluid">
+        <div class="row py-3">
+          <div class="d-flex  justify-content-center justify-content-sm-between align-items-center">
+            <nav class="main-menu d-flex navbar navbar-expand-lg">
+
+              <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+
+                <div class="offcanvas-header justify-content-center">
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
-  
-              </nav>
-              <div class="d-none d-lg-block">
+
+                <div class="offcanvas-body">
+              
                
+              
+                  <ul class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
+                    <li class="nav-item active">
+                      <a href="#" class="nav-link">전체</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a href="#" class="nav-link">농산물</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">수산물</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">가공식품</a>
+                    </li>
+                   
+                    <a href="#" target="_blank" class="nav-link btn-coupon-code">
+                <img src="./resources/images/book-half.svg" alt="gift icon">
+                <strong class="ms-2 text-dark">영농일지 보러가기</strong>
+              </a>
+                  </ul>
+                
+                </div>
+
               </div>
+
+            </nav>
+            <div class="d-none d-lg-block">
+             
             </div>
           </div>
         </div>
-      </header>
+      </div>
+    </header>
 <!-- 헤더 끝 -->
       <div class="myOrder_parent" >
         <div class="myOrder ">
@@ -235,21 +275,22 @@
               <div class="myOrder_content">
                 <h2 style="font-weight: bold; margin-bottom: 14px;">주문내역</h2>
                   <!-- 주문내역 아래 큰틀 -->
-             
+             <c:forEach var="prodList" items="${prodList}" varStatus="loopStatus">
+    			<c:if test="${loopStatus.index < 5}">  
                   <div class="myOrder_box border rounded row" style="margin-top: 0px;">
                     <div class="col-10" style="font-size: 20px; font-weight: bold; margin-bottom: 5px; padding: 0px;">
-                      2024. 1. 12 주문
+                      ${prodList.ordered_at }
                     </div>
                     <div class="col-2 showDetail" style="font-size: 10px;">
                       <a href="#" style="text-decoration-line: none; color: rgb(0, 180, 39);">주문 상세보기 ></a>
                       
                     </div>
                   <div class="myOrder_box_box row border rounded ">
-                    <div class="col-lg-2" style="padding: 0px;"> <img src="//thumbnail7.coupangcdn.com/thumbnails/remote/300x300ex/image/vendor_inventory/3347/38dbf382340fbf1c4f44405591e08a5175b383431326b32be42d8dfa68ad.jpg" alt="" style="max-width: 100%;" ></div>
+                    <div class="col-lg-2" style="padding: 0px;"> <img src="./resources/upload/${prodList.img_name }" alt="" style="max-width: 100%;" ></div>
                     <div class="col-lg-7 d-grid gap-3 align-content-center" style="padding-left: 25px;">
-                      <div>배송중 | 내일 도착 예상</div>
-                      <div><p style="font-size: 20px; font-weight: bold;">상품명 당근당근</p></div>
-                      <div>3,000원 | 1kg</div>
+                      <div>${prodList.order_status }</div>
+                      <div><p style="font-size: 20px; font-weight: bold;">${prodList.prod_name }</p></div>
+                      <div>${prodList.paid_amount }</div>
                     </div>
                     <div class="col-lg-3 d-grid gap-2 my-auto">
                       <button type="button" class="btn btn-outline-success">배송조회</button>
@@ -257,7 +298,8 @@
                     </div>
                   </div>
                 </div>
-              
+               </c:if>
+			</c:forEach>
                 <!-- 주문내역 한박스 끝 -->
                 
                 <!-- 페이지네이션 -->
@@ -293,6 +335,8 @@
           <div class="prodLike_content">
             <h2 style="font-weight: bold; margin-bottom: 14px;">찜목록</h2>
               <!-- 찜목록 아래 큰틀 -->
+                <c:forEach var="likeList" items="${likeList}" varStatus="loopStatus">
+    <c:if test="${loopStatus.index < 5}">   
               <div class="prodLike_allCheck border-bottom border-top border-success" style="background: rgb(246, 246, 246);">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">
@@ -301,36 +345,35 @@
                 <button type="button" class="btn btn-outline-success btn-sm">선택삭제</button>
               </div>
               <!-- 상품ㄱㄱ -->
-               <c:forEach var="likeItem" items="${likeList}" varStatus="loopStatus">
-    <c:if test="${loopStatus.index < 5}">   
         <div class="prodLike_pordLine">
             <div class="border-bottom border-success row">
                 <div class="col-lg-3">
                     <div class="row">
                         <div class="col-1">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <input type="hidden" id="prod_idx" name="${likeList.prod_idx }">
                         </div>
                         <div class="col-11"><!-- ./resources/images/thumb-tuna.jpg -->
-                            <img class="prodLike_img-wrapper" src="./resources/upload/${likeItem.img_name }" alt="">
+                            <img class="prodLike_img-wrapper" src="./resources/upload/${likeList.img_name }" alt="">
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-7 d-grid gap-2 my-auto">
                     <div>
-                        ${likeItem['prod_name']}
+                        ${likeList['prod_name']}
                     </div>
                     <div>
-                        ${likeItem['prod_price']}원
+                        ${likeList['prod_price']}원
                     </div>
                 </div>
                 <div class="col-lg-2 d-grid gap-2 my-auto">
                     <button type="button" class="btn btn-outline-success">장바구니담기</button>
-                    <button type="button" class="btn btn-outline-secondary">삭제</button>
+                    <button type="button" class="btn btn-outline-secondary" onclick="searchLikeList()">삭제</button>
                 </div>
             </div>
         </div>
     </c:if>
-</c:forEach>
+</c:forEach> 
               <!-- 상품 끝 -->               
                           
                           <!-- 페이지네이션 -->
@@ -777,5 +820,27 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
       <script src="js/plugins.js"></script>
       <script src="js/script.js"></script>
+      <script>
+    // 찜 상품 삭제 함수
+    function searchLikeList() {
+    	var prod_idx = $('#prod_idx').val()
+    	console.log(prod_idx)
+        if (confirm('정말로 찜 상품을 삭제하시겠습니까?')) {
+            // Ajax를 사용하여 서버에 삭제 요청 전송
+            $.ajax({
+                type: 'POST',
+                url: 'searchLikeList', // 서버에서 처리할 URL (searchLike.jsp 경로에 따라 수정 필요)
+                data: prod_idx,
+                success: function (data) {
+                    // 삭제에 성공하면 페이지 리로드 또는 화면에서 삭제된 항목 제거 등을 수행
+                    location.reload(); // 예시로 페이지를 리로드하는 방법
+                },
+                error: function (error) {
+                    console.error('찜 상품 삭제 실패', error);
+                }
+            });
+        }
+    }
+</script>
 </body>
 </html>

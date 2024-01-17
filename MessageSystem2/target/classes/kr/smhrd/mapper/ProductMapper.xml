@@ -98,6 +98,12 @@ insert into tb_prod_image (prod_idx, img_name, img_real_name, img_ext, img_size)
 values(#{prod_idx}, #{img_name}, #{img_real_name}, #{img_ext}, #{img_size})
 </insert>
 
-
+<select id="selectProdlist" parameterType="String" resultType="kr.smhrd.entity.Product">
+SELECT tb_order.*, tb_prod.prod_name AS prod_name, tb_prod_img.img_name AS img_name
+FROM tb_order
+JOIN tb_prod ON tb_order.prod_idx = tb_prod.prod_idx
+LEFT JOIN tb_prod_image tb_prod_img ON tb_prod.prod_idx = tb_prod_img.prod_idx
+WHERE tb_order.cust_id = #{cust_id};
+</select>
 
 </mapper>

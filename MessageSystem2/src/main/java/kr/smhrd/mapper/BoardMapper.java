@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import kr.smhrd.entity.Board;
+import kr.smhrd.entity.Member;
 
 @Mapper
 public interface BoardMapper {
@@ -17,6 +18,7 @@ public interface BoardMapper {
 
 	public void boardDelete(int idx);
 
+	public void selectProdlist(String cust_id);
 	
 	
 	

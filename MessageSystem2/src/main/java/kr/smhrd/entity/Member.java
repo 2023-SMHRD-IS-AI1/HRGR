@@ -56,6 +56,15 @@ public class Member {
 		this.cust_birthdate = cust_birthdate;
 		this.cust_nick = cust_nick;
 	}
+	public Member(int prod_idx) {
+		super();
+		this.prod_idx = prod_idx;
+	}
+	public Member(@NonNull String cust_id, int prod_idx) {
+		super();
+		this.cust_id = cust_id;
+		this.prod_idx = prod_idx;
+	}
 	
 	
 	

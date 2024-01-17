@@ -194,9 +194,7 @@
 						<!-- Q7. 개인정보수정 기능 만들기 -->
 						<!-- Q8. 로그아웃 기능 만들기 -->
 						<!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-						<%
-						if (!Memberlogin.getCust_role().equals("S")) {
-						%>
+						<% if (!Memberlogin.getCust_role().equals("S")) {%>
 						<a href="goSeller">판매자 등록</a> <a href="goLogout">로그아웃</a>
 						<%
 						} else {
@@ -213,14 +211,14 @@
 						<li>
 							<%
 							if (Memberlogin == null) {
-							%> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1">
+							%> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
 								<svg width="24" height="24" viewBox="0 0 24 24">
   						<use xlink:href="#user"></use>
 						</svg>
 						</a> <%
  } else {
  %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-							<a href="gomyPage" class="rounded-circle bg-light p-2 mx-1"> <svg
+							<a href="gomyPage" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
 									width="24" height="24" viewBox="0 0 24 24">
   						<use xlink:href="#user"></use>
 						</svg></a> <%
@@ -230,37 +228,23 @@
 						<li>
 							<%
 							if (Memberlogin == null) {
-							%> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1">
+							%><a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
 								<svg width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#heart"></use>
+  						<use xlink:href="#cart"></use>
 						</svg>
 						</a> <%
  } else {
  %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-							<a href="goLike" class="rounded-circle bg-light p-2 mx-1"> <svg
+							<a href="goLike" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
 									width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#heart"></use>
+  						<use xlink:href="#cart"></use>
 						</svg></a> <%
  }
  %>
-              <li class="d-lg-none">
-                <a href="#" class="rounded-circle bg-light p-2 mx-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-                  <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#cart"></use></svg>
-                </a>
-              </li>
-              <li class="d-lg-none">
-                <a href="#" class="rounded-circle bg-light p-2 mx-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch">
-                  <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#search"></use></svg>
-                </a>
-              </li>
+              
             </ul>
 
-            <div class="cart text-end d-none d-lg-block dropdown">
-              <button class="border-0 bg-transparent d-flex flex-column gap-2 lh-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-                <span class="fs-6 text-muted dropdown-toggle">장바구니</span>
-                <span class="cart-total fs-5 fw-bold">현재가격</span>
-              </button>
-            </div>
+           
           </div>
 
         </div>

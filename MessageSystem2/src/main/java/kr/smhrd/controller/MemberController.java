@@ -26,8 +26,10 @@ import com.oreilly.servlet.MultipartRequest;
 import kr.smhrd.entity.Board;
 import kr.smhrd.entity.Member;
 import kr.smhrd.entity.Message;
+import kr.smhrd.entity.Product;
 import kr.smhrd.mapper.MemberMapper;
 import kr.smhrd.mapper.MessageMapper;
+import kr.smhrd.mapper.ProductMapper;
 
 // POJO를 찾기위해 @(어노테이션)으로 Controller라고 명시해야 함
 // 어떤 패키지에서 Controller를 찾을 건지 servlet-context.xml 파일에도 명시해야 함
@@ -42,6 +44,8 @@ public class MemberController {
 	private MessageMapper messageMapper;
 	private Member member;
 	private HttpServletRequest request;
+	@Autowired
+	private ProductMapper ProductMapper;
 
 	// @RequestMapping : get방식, post방식 요청을 다 받을 수 있음
 	// @GetMapping : get방식 요청만 받을 수 있음
@@ -231,7 +235,11 @@ public class MemberController {
 		String cust = loginMember.getCust_id();
 		List<Member> likeList = memberMapper.likeList(cust);
 		model.addAttribute("likeList",likeList);
-		session.setAttribute("likeList", model);
+		 
+		List<Product> prodList = ProductMapper.selectProdlist(cust);
+		model.addAttribute("prodList",prodList);
+		
+		System.out.println(model.toString());
 		/*
 		 * try { multi = new MultipartRequest(request, savePath, maxSize, enc, dftrp);
 		 * String title = multi.getParameter("title"); String writer =
@@ -246,4 +254,33 @@ public class MemberController {
 		  return "myPage";
 		
 	}
+	
+	@PostMapping("/searchLikeList")
+	@ResponseBody
+	public String deleteLikeItem(
+	     @RequestParam int prod_idx,Member member, HttpSession session
+	    
+	) {
+	    // TODO: 적절한 처리 수행
+	   
+	    Member loginMember = (Member)session.getAttribute("loginMember");
+		System.out.println("\n"+loginMember.toString() +"\n");
+		
+//		로그인 한 사용자의 cust_id값 가져오기
+		String cust_id = loginMember.getCust_id();
+		System.out.println("cust_id값 확인 : "+ cust_id);
+		member.setCust_id(cust_id);
+		member.setProd_idx(prod_idx);
+		System.out.println(prod_idx);
+		memberMapper.removeLike(member);
+	
+	    
+	    return "myPage";
+	}
+	
+	
+	
+	
+	
+	
 }

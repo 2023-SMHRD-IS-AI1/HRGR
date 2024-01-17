@@ -236,4 +236,51 @@ WHERE
     cust_name = '찾을_이름';
     
     
-update tb_cust set cust_phone=010, cust_pw=SHA2('1234',224), cust_nick='나다',cust_email='gadgs@gmail.com',cust_birthdate=NOW(), cust_addr='fdfsdag' where cust_name='fasd'
+CREATE TABLE tb_order
+(
+    `order_idx`        INT UNSIGNED     NOT NULL    AUTO_INCREMENT COMMENT '주문 식별자', 
+    `prod_idx`         INT UNSIGNED     NOT NULL    COMMENT '상품 식별자', 
+    `cust_id`          VARCHAR(30)      NOT NULL    COMMENT '주문자 아이디', 
+    `total_amunt`      INT              NOT NULL    COMMENT '주문 총금액', 
+    `discount_amount`  INT              NOT NULL    COMMENT '할인 금액', 
+    `pay_amount`       INT              NOT NULL    COMMENT '결제 대상 금액', 
+    `pay_method`       VARCHAR(10)       NOT NULL    COMMENT '결제 수단', 
+    `paid_amount`      INT              NOT NULL    COMMENT '결제 금액', 
+    `delivery_addr`    VARCHAR(1000)    NOT NULL    COMMENT '배송지 주소', 
+    `receiver_name`    VARCHAR(50)      NOT NULL    COMMENT '수령자 명', 
+    `receiver_phone`   VARCHAR(20)      NOT NULL    COMMENT '수령자 연락처', 
+    `delivery_msg`     TEXT             NOT NULL    COMMENT '배송 메시지', 
+    `order_status`     VARCHAR(5)       NOT NULL    COMMENT '주문 상태', 
+    `ordered_at`       DATETIME         NOT NULL    COMMENT '주문 일자', 
+     PRIMARY KEY (order_idx)
+);
+
+insert into tb_order (prod_idx,cust_id,total_amunt,discount_amount,pay_amount,pay_method,paid_amount,delivery_addr,receiver_name,receiver_phone,delivery_msg,
+ order_status,ordered_at)values(25,1,12000,1000,11000,'카드',10000,'광주','상권','010451112','132','결제완료',NOW())
+
+    select * from tb_order
+    
+SELECT tb_order.*, tb_prod.prod_name AS prod_name, tb_prod_img.img_name AS img_name
+FROM tb_order
+JOIN tb_prod ON tb_order.prod_idx = tb_prod.prod_idx
+LEFT JOIN tb_prod_image tb_prod_img ON tb_prod.prod_idx = tb_prod_img.prod_idx
+WHERE tb_order.cust_id = 1;
+    
+  
+select * from tb_favorite
+
+
+SELECT
+    p.prod_idx AS prod_idx,
+    p.prod_name AS prod_name,
+    p.prod_price AS prod_price,
+    di.img_name AS img_name
+FROM
+    tb_favorite f
+JOIN
+    tb_prod p ON f.prod_idx = p.prod_idx
+JOIN
+    tb_prod_image di ON p.prod_idx = di.prod_idx
+WHERE
+    f.cust_id = 1;
+    

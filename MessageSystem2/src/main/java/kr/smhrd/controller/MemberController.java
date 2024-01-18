@@ -168,7 +168,7 @@ public class MemberController {
 //  판매자 등록
 	@RequestMapping("/insertSeller")
 	public String insertSeller(Member member, HttpSession session) {
-//		세션에서 로그인 한 사용자의 정보 가져오기 
+//		세션에서 로그인 한 사용자의 정보 가져오기
 		Member loginMember = (Member)session.getAttribute("loginMember");
 		System.out.println("\n"+loginMember.toString() +"\n");
 		

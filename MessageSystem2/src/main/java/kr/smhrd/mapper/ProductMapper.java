@@ -25,7 +25,7 @@ import kr.smhrd.entity.Product;
 	 public Product searchIdx(Product product);
 
 	 public void addToCart(Cart cart);
-
+	 public Integer selectCart(Cart cart);
 	 public List<Product> selectProdlist(String cust);
 	 }
  

@@ -22,7 +22,7 @@ public class Cart {
 	@NonNull private String cust_id;
 	@NonNull private int prod_idx;
 	private String cart_in;
-	private String cart_count;
+	private int cart_count;
 	private int prod_price;
 	
 }

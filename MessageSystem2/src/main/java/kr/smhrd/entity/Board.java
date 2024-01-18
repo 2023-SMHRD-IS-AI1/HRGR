@@ -61,5 +61,7 @@ public class Board {
 		this.cust_id = cust_id;
 	}
 	
+	
+   
 		
 }

@@ -189,7 +189,7 @@
 		</div>
 	</div>
 
-	<header>
+	  <header>
       <div class="container-fluid">
         <div class="row py-3 border-bottom">
           
@@ -236,17 +236,14 @@
 						<a class="fs-6 text-muted" href="goLogin">로그인</a>
 						<%
 						} else {
-						%>
+						%> <a href=goLogout>로그아웃</a>
 						<!-- Q7. 개인정보수정 기능 만들기 -->
 						<!-- Q8. 로그아웃 기능 만들기 -->
 						<!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-						<% if (!Memberlogin.getCust_role().equals("S")) {%>
-						<a href="goSeller">판매자 등록</a> <a href="goLogout">로그아웃</a>
-						<%
-						} else {
-						%>
-							<a href=goLogout>로그아웃</a>
-
+							<% if (Memberlogin.getCust_role().equals("U")) {%>
+									<a href="goSeller">판매자 등록</a>
+							<%}else {%>	
+									<a href=goSell>상품등록</a>
 							<%}%>
 
 						<%}%>
@@ -346,6 +343,7 @@
           </div>
         </div>
       </div>
+    </header>
     </header>
 
 	<!-- 시세 확인란 -->

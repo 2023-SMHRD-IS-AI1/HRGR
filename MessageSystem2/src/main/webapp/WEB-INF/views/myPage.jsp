@@ -34,11 +34,12 @@
 	<% 
   	Member Memberlogin = (Member)session.getAttribute("loginMember");
 	
-	List<Member> likeList = (List<Member>)request.getAttribute("likeList");
+	
 	System.out.println(Memberlogin.toString());
 	String savePath = "./resources/upload";
 	
 	List<Product> prodList = (List<Product>)request.getAttribute("prodList");
+	List<Member> reviewList = (List<Member>)request.getAttribute("reviewList");
 	
 	
 			
@@ -93,7 +94,7 @@
         </defs>
       </svg>
 
-      <header>
+        <header>
       <div class="container-fluid">
         <div class="row py-3 border-bottom">
           
@@ -140,17 +141,14 @@
 						<a class="fs-6 text-muted" href="goLogin">로그인</a>
 						<%
 						} else {
-						%>
+						%> <a href=goLogout>로그아웃</a>
 						<!-- Q7. 개인정보수정 기능 만들기 -->
 						<!-- Q8. 로그아웃 기능 만들기 -->
 						<!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-						<% if (!Memberlogin.getCust_role().equals("S")) {%>
-						<a href="goSeller">판매자 등록</a> <a href="goLogout">로그아웃</a>
-						<%
-						} else {
-						%>
-							<a href=goLogout>로그아웃</a>
-
+							<% if (Memberlogin.getCust_role().equals("U")) {%>
+									<a href="goSeller">판매자 등록</a>
+							<%}else {%>	
+									<a href=goSell>상품등록</a>
 							<%}%>
 
 						<%}%>
@@ -277,7 +275,7 @@
                 <h2 style="font-weight: bold; margin-bottom: 14px;">주문내역</h2>
                   <!-- 주문내역 아래 큰틀 -->
              <c:forEach var="prodList" items="${prodList}" varStatus="loopStatus">
-    			<c:if test="${loopStatus.index < 5}">  
+    			<c:if test="${loopStatus.index < 10}">  
                   <div class="myOrder_box border rounded row" style="margin-top: 0px;">
                     <div class="col-10" style="font-size: 20px; font-weight: bold; margin-bottom: 5px; padding: 0px;">
                       ${prodList.ordered_at }
@@ -337,7 +335,7 @@
             <h2 style="font-weight: bold; margin-bottom: 14px;">찜목록</h2>
               <!-- 찜목록 아래 큰틀 -->
                 <c:forEach var="likeList" items="${likeList}" varStatus="loopStatus">
-    <c:if test="${loopStatus.index < 5}">   
+    <c:if test="${loopStatus.index < 10}">   
               <div class="prodLike_allCheck border-bottom border-top border-success" style="background: rgb(246, 246, 246);">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">
@@ -410,25 +408,29 @@
           <div class="myReview_content">
             <h2 style="font-weight: bold; margin-bottom: 14px;">나의 후기</h2>
             <!-- 제목 아래 큰틀 -->
-<c:forEach var="reviewList" items="${reviewList}" varStatus="loopStatus">
-    <c:if test="${loopStatus.index < 5}"> 
+<c:forEach var="reviewList" items="${reviewList}" varStatus="i">
+    <c:if test="${i.index < 10}"> 
             <div class="myReview_box border-bottom border-top border-success">
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-1">
-                  <img class="rounded" src="./resources/upload/${reviewList.img_name }" alt="" style="max-width: 100%;" >
+                  <img class="rounded" src="./resources/upload/${reviewList.product_img_name }" alt="" style="max-width: 100%;" >
                 </div>
                 <div class="col-10">${reviewList.prod_name}</div>
-                  <div class="col-1"><a href="reviewDelete" style="text-decoration: none; color: green;" onclick="deletereview(${reviewList.prod_idx})">삭제</a></div>
+                  <div class="col-1"><a href="#" style="text-decoration: none; color: green;" onclick="deletereview(${reviewList.prod_idx})">삭제</a></div>
                
               </div>
               <hr style="margin: 0px;">
               <div style="padding: 20px 20px;">
                 <div>
-                 <span>★★★★☆</span>
-                <span>${reviewList.reviewed_at}</span>
+				<!-- 여기에 별점;; -->
+				
+				<span>${reviewList.reviewed_at}</span>
                 </div>
                 <div align="center" style="margin: 10px 0px">
-                  <img src="https://cdn.nongupin.co.kr/news/photo/202304/98428_56733_2050.jpg" alt="리뷰사진인데용" style="max-width: 100%;">
+                  <!-- 리뷰사진이 없을때는 사진가리기 -->
+                  <c:if test="${not empty reviewList.review_img_name}">
+    				<img src="./resources/upload/${reviewList.review_img_name}" alt="리뷰사진인데용" style="max-width: 100%;">
+					</c:if>
                 </div>
                 <div>
                   ${reviewList.review_content}<br>
@@ -473,121 +475,40 @@
           <div class="myReview_content">
             <h2 style="font-weight: bold; margin-bottom: 14px;">나문희 (나의 문의라는 뜻)</h2>
             <!-- 제목 아래 큰틀 -->
-
+			<c:forEach var="searchQna" items="${searchQna}" varStatus="i">
+    		<c:if test="${i.index < 10}"> 
             <div class="myReview_box border-bottom border-top border-success">
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-1">
-                  <img class="rounded" src="//thumbnail7.coupangcdn.com/thumbnails/remote/300x300ex/image/vendor_inventory/3347/38dbf382340fbf1c4f44405591e08a5175b383431326b32be42d8dfa68ad.jpg" alt="" style="max-width: 100%;" >
+                  <img class="rounded" src="./resources/upload/${searchQna.prod_image_name }" alt="" style="max-width: 100%;" >
                 </div>
-                <div class="col-10">하루그린 방울토마토 당근당근</div>
-                  <div class="col-1"><a href="#" style="text-decoration: none; color: green;">삭제</a></div>
+                <div class="col-10">${searchQna.prod_name}</div>
+                  <div class="col-1"><a href="#" style="text-decoration: none; color: green;" onclick="deleteQna(${searchQna.prod_idx})">삭제</a></div>
                
               </div>
               <hr style="margin: 0px;">
               <div style="padding: 10px 20px;">
                <div style="font-weight: bold; margin-bottom: 10px;">문의내용</div> 
-               <div> 저 반정도 먹었는데 반품할수있나요? 저 사실 토마토 안좋아하거든용</div>
-               <div style="font-size: 13px; color: rgb(145, 145, 145);">2024. 01. 14</div>
+               <div>${searchQna.question}</div>
+               <div style="font-size: 13px; color: rgb(145, 145, 145);">${searchQna.questioned_at}</div>
               </div>
               <hr style="margin: 0px;">
               <div style="padding: 10px 50px;">
                 <div style="font-weight: bold; margin-bottom: 10px;">
                   <svg width="16" height="16" focusable="false" viewBox="0 0 20 20" aria-hidden="true" role="presentation" style="fill: rgb(136, 136, 136);"><g fill="none" fill-rule="evenodd"><path d="M0 0H20V20H0z"></path><path stroke="#888888" d="M5 3.333L5 13.333 15 13.333"></path></g></svg>
-                  김연성농원
+                  ${searchQna.seller_company_name }
                 </div> 
-                   <div style="margin-left: 20px;"> 죄송하지만 상품에 문제가 없다면 반품은 불가합니다.
-                    <div style="font-size: 13px; color: rgb(145, 145, 145);">2024. 01. 14</div>
+                   <div style="margin-left: 20px;"> ${searchQna.answer}
+                    <div style="font-size: 13px; color: rgb(145, 145, 145);">${searchQna.answered_at}</div>
                   </div>
                </div>
             </div>
+              </c:if>
+</c:forEach> 
             <!-- 하나 끝 -->
             <!-- 제목 아래 큰틀 -->
 
-            <div class="myReview_box border-bottom border-success">
-              <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-                <div class="col-1">
-                  <img class="rounded" src="//thumbnail7.coupangcdn.com/thumbnails/remote/300x300ex/image/vendor_inventory/3347/38dbf382340fbf1c4f44405591e08a5175b383431326b32be42d8dfa68ad.jpg" alt="" style="max-width: 100%;" >
-                </div>
-                <div class="col-10">하루그린 방울토마토 당근당근</div>
-                  <div class="col-1"><a href="#" style="text-decoration: none; color: green;">삭제</a></div>
-               
-              </div>
-              <hr style="margin: 0px;">
-              <div style="padding: 10px 20px;">
-               <div style="font-weight: bold; margin-bottom: 10px;">문의내용</div> 
-               <div> 저 반정도 먹었는데 반품할수있나요? 저 사실 토마토 안좋아하거든용</div>
-               <div style="font-size: 13px; color: rgb(145, 145, 145);">2024. 01. 14</div>
-              </div>
-              <hr style="margin: 0px;">
-              <div style="padding: 10px 50px;">
-                <div style="font-weight: bold; margin-bottom: 10px;">
-                  <svg width="16" height="16" focusable="false" viewBox="0 0 20 20" aria-hidden="true" role="presentation" style="fill: rgb(136, 136, 136);"><g fill="none" fill-rule="evenodd"><path d="M0 0H20V20H0z"></path><path stroke="#888888" d="M5 3.333L5 13.333 15 13.333"></path></g></svg>
-                  김연성농원
-                </div> 
-                   <div style="margin-left: 20px;"> 죄송하지만 상품에 문제가 없다면 반품은 불가합니다.
-                    <div style="font-size: 13px; color: rgb(145, 145, 145);">2024. 01. 14</div>
-                  </div>
-               </div>
-            </div>
-            <!-- 하나 끝 -->
-            <!-- 제목 아래 큰틀 -->
-
-            <div class="myReview_box border-bottom border-success">
-              <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-                <div class="col-1">
-                  <img class="rounded" src="//thumbnail7.coupangcdn.com/thumbnails/remote/300x300ex/image/vendor_inventory/3347/38dbf382340fbf1c4f44405591e08a5175b383431326b32be42d8dfa68ad.jpg" alt="" style="max-width: 100%;" >
-                </div>
-                <div class="col-10">하루그린 방울토마토 당근당근</div>
-                  <div class="col-1"><a href="#" style="text-decoration: none; color: green;">삭제</a></div>
-               
-              </div>
-              <hr style="margin: 0px;">
-              <div style="padding: 10px 20px;">
-               <div style="font-weight: bold; margin-bottom: 10px;">문의내용</div> 
-               <div> 저 반정도 먹었는데 반품할수있나요? 저 사실 토마토 안좋아하거든용</div>
-               <div style="font-size: 13px; color: rgb(145, 145, 145);">2024. 01. 14</div>
-              </div>
-              <hr style="margin: 0px;">
-              <div style="padding: 10px 50px;">
-                <div style="font-weight: bold; margin-bottom: 10px;">
-                  <svg width="16" height="16" focusable="false" viewBox="0 0 20 20" aria-hidden="true" role="presentation" style="fill: rgb(136, 136, 136);"><g fill="none" fill-rule="evenodd"><path d="M0 0H20V20H0z"></path><path stroke="#888888" d="M5 3.333L5 13.333 15 13.333"></path></g></svg>
-                  김연성농원
-                </div> 
-                   <div style="margin-left: 20px;"> 죄송하지만 상품에 문제가 없다면 반품은 불가합니다.
-                    <div style="font-size: 13px; color: rgb(145, 145, 145);">2024. 01. 14</div>
-                  </div>
-               </div>
-            </div>
-            <!-- 하나 끝 -->
-            <!-- 제목 아래 큰틀 -->
-
-            <div class="myReview_box border-bottom border-success">
-              <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-                <div class="col-1">
-                  <img class="rounded" src="//thumbnail7.coupangcdn.com/thumbnails/remote/300x300ex/image/vendor_inventory/3347/38dbf382340fbf1c4f44405591e08a5175b383431326b32be42d8dfa68ad.jpg" alt="" style="max-width: 100%;" >
-                </div>
-                <div class="col-10">하루그린 방울토마토 당근당근</div>
-                  <div class="col-1"><a href="#" style="text-decoration: none; color: green;">삭제</a></div>
-               
-              </div>
-              <hr style="margin: 0px;">
-              <div style="padding: 10px 20px;">
-               <div style="font-weight: bold; margin-bottom: 10px;">문의내용</div> 
-               <div> 저 반정도 먹었는데 반품할수있나요? 저 사실 토마토 안좋아하거든용</div>
-               <div style="font-size: 13px; color: rgb(145, 145, 145);">2024. 01. 14</div>
-              </div>
-              <hr style="margin: 0px;">
-              <div style="padding: 10px 50px;">
-                <div style="font-weight: bold; margin-bottom: 10px;">
-                  <svg width="16" height="16" focusable="false" viewBox="0 0 20 20" aria-hidden="true" role="presentation" style="fill: rgb(136, 136, 136);"><g fill="none" fill-rule="evenodd"><path d="M0 0H20V20H0z"></path><path stroke="#888888" d="M5 3.333L5 13.333 15 13.333"></path></g></svg>
-                  김연성농원
-                </div> 
-                   <div style="margin-left: 20px;"> 죄송하지만 상품에 문제가 없다면 반품은 불가합니다.
-                    <div style="font-size: 13px; color: rgb(145, 145, 145);">2024. 01. 14</div>
-                  </div>
-               </div>
-            </div>
-            <!-- 하나 끝 -->
+            
 
           <div class="myReview_box" align="center" style="margin-top: 20px;">
                           <!-- 페이지네이션 -->
@@ -823,25 +744,48 @@
 </script>
 <script>
     // 후기 삭제 함수
-    function deletereview(prod_idx) {
-        if (confirm('정말로 후기를 삭제하시겠습니까?')) {
-            // Ajax를 사용하여 서버에 삭제 요청 전송
-            $.ajax({
-                type: 'POST',
-                url: 'reviewDelete', // 서버에서 처리할 URL (searchLike.jsp 경로에 따라 수정 필요)
-                data: { prod_idx: prod_idx },
-                success: function (data) {
-                    // 삭제에 성공하면 페이지 리로드 또는 화면에서 삭제된 항목 제거 등을 수행
-                    location.reload(); // 예시로 페이지를 리로드하는 방법
-                },
-                error: function (error) {
-                    console.error('후기 삭제 실패', error);
-                }
-            });
-        }
+   function deletereview(prod_idx) {
+    if (confirm('정말로 후기를 삭제하시겠습니까?')) {
+        // Ajax를 사용하여 서버에 삭제 요청 전송
+        $.ajax({
+            type: 'POST',
+            url: 'reviewDelete',
+            data: { prod_idx: prod_idx }, // 'prod_idx'를 데이터로 전송
+            success: function (data) {
+                // 삭제에 성공하면 페이지 리로드 또는 화면에서 삭제된 항목 제거 등을 수행
+                location.reload(); // 예시로 페이지를 리로드하는 방법
+            },
+            error: function (error) {
+                console.error('후기 삭제 실패', error);
+            }
+        });
     }
+}
 
 </script>
+<script>
+    // qna 삭제 함수
+   function deleteQna(prod_idx) {
+    if (confirm('정말로 문의를 삭제하시겠습니까?')) {
+        // Ajax를 사용하여 서버에 삭제 요청 전송
+        $.ajax({
+            type: 'POST',
+            url: 'qnaDelete',
+            data: { prod_idx: prod_idx }, // 'prod_idx'를 데이터로 전송
+            success: function (data) {
+                // 삭제에 성공하면 페이지 리로드 또는 화면에서 삭제된 항목 제거 등을 수행
+                location.reload(); // 예시로 페이지를 리로드하는 방법
+            },
+            error: function (error) {
+                console.error('후기 삭제 실패', error);
+            }
+        });
+    }
+}
+
+</script>
+
+
 <script >
 var passwordChecked = false; // 비밀번호 확인 여부를 저장하는 변수 추가
 

@@ -384,3 +384,92 @@ LEFT JOIN
     tb_prod p ON r.prod_idx = p.prod_idx
 WHERE
     r.cust_id = 1;
+    
+    SELECT
+    r.*,
+    pi.img_name AS img_name,
+    p.prod_name AS prod_name,
+    p.prod_idx AS prod_idx
+FROM
+    tb_review r
+LEFT JOIN
+    tb_prod_image pi ON r.prod_idx = pi.prod_idx
+LEFT JOIN
+    tb_prod p ON r.prod_idx = p.prod_idx
+WHERE
+    r.cust_id = 1;
+    
+    
+    
+    SELECT
+    p.prod_idx AS prod_idx,
+    p.prod_name AS prod_name,
+    p.prod_price AS prod_price,
+    di.img_name AS img_name
+FROM
+    tb_favorite f
+JOIN
+    tb_prod p ON f.prod_idx = p.prod_idx
+JOIN
+    tb_prod_image di ON p.prod_idx = di.prod_idx
+WHERE
+    f.cust_id = #{cust_id};
+    
+    SELECT
+    p.prod_idx AS prod_idx,
+    p.prod_name AS prod_name,
+    p.prod_price AS prod_price,
+    di.img_name AS img_name
+FROM
+    tb_favorite f
+JOIN
+    tb_prod p ON f.prod_idx = p.prod_idx
+LEFT JOIN
+    tb_prod_image di ON p.prod_idx = di.prod_idx
+WHERE
+    f.cust_id = 1;
+    
+    
+    
+    CREATE TABLE tb_qna
+(
+    `qna_idx`        INT UNSIGNED    NOT NULL    AUTO_INCREMENT COMMENT '질답 식별자', 
+    `cust_id`        VARCHAR(30)     NOT NULL    COMMENT '회원 아이디', 
+    `prod_idx`       INT UNSIGNED    NOT NULL    COMMENT '상품 식별자', 
+    `question`       TEXT            NOT NULL    COMMENT '질문 내용', 
+    `questioned_at`  DATETIME        NOT NULL    COMMENT '질문 일시', 
+    `answer`         TEXT            NOT NULL    COMMENT '답변 내용', 
+    `answered_at`    DATETIME        NOT NULL    COMMENT '답변 일시', 
+     PRIMARY KEY (qna_idx)
+);
+
+
+insert into tb_qna (cust_id,prod_idx,question,questioned_at,answer,answered_at)
+values(1,25,'오늘 배송오나요?',NOW(),'아뇨 내일 갑니다.',NOW())
+
+
+SELECT
+    q.qna_idx AS qna_idx,
+    q.cust_id AS cust_id,
+    q.prod_idx AS prod_idx,
+    q.question AS question,
+    q.questioned_at AS questioned_at,
+    q.answer AS answer,
+    q.answered_at AS answered_at,
+    p.prod_name AS prod_name,
+    pi.img_name AS image_name,
+    p.cust_id AS product_customer_id,
+    s.company_name AS seller_company_name
+FROM
+    tb_qna q
+JOIN
+    tb_prod p ON q.prod_idx = p.prod_idx
+LEFT JOIN
+    tb_prod_image pi ON p.prod_idx = pi.prod_idx
+LEFT JOIN
+    tb_seller s ON q.cust_id = s.cust_id
+WHERE
+    q.cust_id = 1;
+    
+    select * from tb_cust where cust_id=1
+    update tb_cust set cust_role='U' where cust_id=1

@@ -77,7 +77,8 @@ public class MemberController {
 	}
 	@RequestMapping("/memberlogin")
 	public String memberlogin(Member member, HttpSession session) {
-	    try {
+		
+		 try {
 	        // 로깅 문 추가
 	        System.out.println("회원 로그인 요청: " + member.toString());
 	        
@@ -186,7 +187,7 @@ public class MemberController {
 	}
 	@RequestMapping("/goLogin")
 	public String goLogin() {
-		return "login";
+		return "login_01";
 	}
 	
 	@RequestMapping("/goJoin")
@@ -217,6 +218,7 @@ public class MemberController {
 		member.setProd_idx(prod_idx);
 		System.out.println(prod_idx);
 		
+		
 		int cnt = memberMapper.searchLike(member);
 		if(cnt == 0) {
 			
@@ -246,19 +248,16 @@ public class MemberController {
 		model.addAttribute("reviewList",reviewList);
 		System.out.println(model.toString());
 		
+		List<Member> searchQna = memberMapper.searchQna(cust_id);
+		model.addAttribute("searchQna",searchQna);
+		System.out.println(model.toString());
+		
+		if(loginMember.getCust_role().equals('S')) {
+			
+			return "sellerMyPage";
+		}
 		
 		
-		/*
-		 * try { multi = new MultipartRequest(request, savePath, maxSize, enc, dftrp);
-		 * String title = multi.getParameter("title"); String writer =
-		 * multi.getParameter("writer"); String filename =
-		 * multi.getFilesystemName("filename"); String content =
-		 * multi.getParameter("content");
-		 * 
-		 * board = new Board(title, writer, filename, content);
-		 * System.out.println(board.toString()); } catch (IOException e) { // TODO
-		 * Auto-generated catch block e.printStackTrace(); }
-		 */
 		  return "myPage";
 		
 	}
@@ -289,7 +288,7 @@ public class MemberController {
 	
 	@RequestMapping("/reviewDelete")
 	@ResponseBody
-	public String reviewDelete(@RequestParam int prod_idx,Member member, HttpSession session) {
+	public boolean reviewDelete(@RequestParam int prod_idx,Member member, HttpSession session) {
 		
 		Member loginMember = (Member)session.getAttribute("loginMember");
 		System.out.println("\n"+loginMember.toString() +"\n");
@@ -299,7 +298,22 @@ public class MemberController {
 		member.setProd_idx(prod_idx);
 		System.out.println(prod_idx);
 		memberMapper.reviewDelete(member);
-		return "myPage";
+		return true;
+	}
+	
+	@RequestMapping("/qnaDelete")
+	@ResponseBody
+	public boolean qnaDelete(@RequestParam int prod_idx,Member member, HttpSession session) {
+		
+		Member loginMember = (Member)session.getAttribute("loginMember");
+		System.out.println("\n"+loginMember.toString() +"\n");
+		String cust_id = loginMember.getCust_id();
+		System.out.println("cust_id값 확인 : "+ cust_id);
+		member.setCust_id(cust_id);
+		member.setProd_idx(prod_idx);
+		System.out.println(prod_idx);
+		memberMapper.qnaDelete(member);
+		return true;
 	}
 	
 	

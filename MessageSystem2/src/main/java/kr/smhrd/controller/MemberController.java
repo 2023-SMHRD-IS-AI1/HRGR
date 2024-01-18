@@ -26,8 +26,11 @@ import com.oreilly.servlet.MultipartRequest;
 import kr.smhrd.entity.Board;
 import kr.smhrd.entity.Member;
 import kr.smhrd.entity.Message;
+import kr.smhrd.entity.Product;
+import kr.smhrd.mapper.BoardMapper;
 import kr.smhrd.mapper.MemberMapper;
 import kr.smhrd.mapper.MessageMapper;
+import kr.smhrd.mapper.ProductMapper;
 
 // POJO를 찾기위해 @(어노테이션)으로 Controller라고 명시해야 함
 // 어떤 패키지에서 Controller를 찾을 건지 servlet-context.xml 파일에도 명시해야 함
@@ -42,7 +45,10 @@ public class MemberController {
 	private MessageMapper messageMapper;
 	private Member member;
 	private HttpServletRequest request;
-
+	@Autowired
+	private ProductMapper ProductMapper;
+	
+	
 	// @RequestMapping : get방식, post방식 요청을 다 받을 수 있음
 	// @GetMapping : get방식 요청만 받을 수 있음
 	// @PostMapping : post방식 요청만 받을 수 있음
@@ -55,7 +61,7 @@ public class MemberController {
 	
 	@GetMapping("/")
 	public String main() {
-		return "Main";
+		return "sellerRegist";
 
 	}
 	
@@ -131,15 +137,18 @@ public class MemberController {
 	public String updateMember(Member member, HttpSession session) {
 		// 수정 성공 시 -> Main.jsp
 		// 수정 실패 시 -> UpdateMember.jsp
+		System.out.println(member.toString());
+	
 		int cnt = memberMapper.updateMember(member);
-
+		System.out.println(member.toString());
+		session.setAttribute("loginMember", member);
 		if (cnt > 0) {
-			session.setAttribute("loginMember", member);
-			return "Main";
+			System.out.println("성공");
 		} else {
-			return "UpdateMember";
+			System.out.println("실패");
 		}
 
+		return "myPage";
 	}
 
 	// 회원정보 보는 페이지로 이동 + DB에 있는 회원 조회 /showMember
@@ -159,7 +168,7 @@ public class MemberController {
 //  판매자 등록
 	@RequestMapping("/insertSeller")
 	public String insertSeller(Member member, HttpSession session) {
-//		세션에서 로그인 한 사용자의 정보 가져오기 
+//		세션에서 로그인 한 사용자의 정보 가져오기
 		Member loginMember = (Member)session.getAttribute("loginMember");
 		System.out.println("\n"+loginMember.toString() +"\n");
 		
@@ -225,9 +234,20 @@ public class MemberController {
 	public String gomyPage(Member member, HttpSession session,Model model) {
 		MultipartRequest multi = null;
 		Member loginMember = (Member)session.getAttribute("loginMember");
-		String cust = loginMember.getCust_id();
-		List<Member> likeList = memberMapper.likeList(cust);
+		String cust_id = loginMember.getCust_id();
+		List<Member> likeList = memberMapper.likeList(cust_id);
 		model.addAttribute("likeList",likeList);
+		 
+		List<Product> prodList = ProductMapper.selectProdlist(cust_id);
+		model.addAttribute("prodList",prodList);
+		
+		
+		List<Member> reviewList = memberMapper.reviewList(cust_id);
+		model.addAttribute("reviewList",reviewList);
+		System.out.println(model.toString());
+		
+		
+		
 		/*
 		 * try { multi = new MultipartRequest(request, savePath, maxSize, enc, dftrp);
 		 * String title = multi.getParameter("title"); String writer =
@@ -242,4 +262,48 @@ public class MemberController {
 		  return "myPage";
 		
 	}
+	
+	@RequestMapping("/searchLikeList")
+	@ResponseBody
+	public boolean deleteLikeItem(
+	     @RequestParam int prod_idx,Member member, HttpSession session
+	    
+	) {
+	    // TODO: 적절한 처리 수행
+	   
+	    Member loginMember = (Member)session.getAttribute("loginMember");
+		System.out.println("\n"+loginMember.toString() +"\n");
+		
+//		로그인 한 사용자의 cust_id값 가져오기
+		String cust_id = loginMember.getCust_id();
+		System.out.println("cust_id값 확인 : "+ cust_id);
+		member.setCust_id(cust_id);
+		member.setProd_idx(prod_idx);
+		System.out.println(prod_idx);
+		memberMapper.removeLike(member);
+	
+	    
+	    return true;
+	}
+	
+	
+	@RequestMapping("/reviewDelete")
+	@ResponseBody
+	public String reviewDelete(@RequestParam int prod_idx,Member member, HttpSession session) {
+		
+		Member loginMember = (Member)session.getAttribute("loginMember");
+		System.out.println("\n"+loginMember.toString() +"\n");
+		String cust_id = loginMember.getCust_id();
+		System.out.println("cust_id값 확인 : "+ cust_id);
+		member.setCust_id(cust_id);
+		member.setProd_idx(prod_idx);
+		System.out.println(prod_idx);
+		memberMapper.reviewDelete(member);
+		return "myPage";
+	}
+	
+	
+	
+	
+	
 }

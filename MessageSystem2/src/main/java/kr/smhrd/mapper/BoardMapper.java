@@ -6,6 +6,10 @@ import org.apache.ibatis.annotations.Mapper;
 
 import kr.smhrd.entity.Board;
 
+import org.springframework.ui.Model;
+
+
+import lombok.NonNull;
 @Mapper
 public interface BoardMapper {
 
@@ -17,7 +21,8 @@ public interface BoardMapper {
 
 	public void boardDelete(int idx);
 
+	public void selectProdlist(String cust_id);
 	
-	
+	public List<Board> searchReview(String cust_id);
 	
 }

@@ -5,8 +5,9 @@
  import java.util.List;
   
  import org.apache.ibatis.annotations.Mapper;
- 
- import kr.smhrd.entity.Product;
+
+import kr.smhrd.entity.Cart;
+import kr.smhrd.entity.Product;
  
  @Mapper 
  public interface ProductMapper { 
@@ -23,5 +24,8 @@
 	 public void insertImage(Product product);
 	 public Product searchIdx(Product product);
 
+	 public void addToCart(Cart cart);
+	 public Integer selectCart(Cart cart);
+	 public List<Product> selectProdlist(String cust);
 	 }
  

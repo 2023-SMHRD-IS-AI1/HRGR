@@ -96,7 +96,7 @@ public class MemberController {
 	        } else {
 	            // 로그인 실패
 	            System.out.println("로그인 실패");
-	            return "login";
+	            return "login_01";
 	        }
 	    } catch (Exception e) {
 	        // 예외 처리

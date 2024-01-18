@@ -130,24 +130,25 @@
           <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
             <div class="support-box text-end d-none d-xl-block">
 
-						<%
-						if (Memberlogin == null) {
-						%>
-						<a class="fs-6 text-muted" href="goLogin">로그인</a>
-						<%
-						} else {
-						%>
-						<!-- Q7. 개인정보수정 기능 만들기 -->
-						<!-- Q8. 로그아웃 기능 만들기 -->
-						<!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-						<% if (!Memberlogin.getCust_role().equals("S")) {%>
-						<a href="goSeller">판매자 등록</a> <a href="goLogout">로그아웃</a>
-						<%
-						} else {
-						%>
-							<a href=goLogout>로그아웃</a>
+						
 
-                 
+                  <%
+                  if (Memberlogin == null) {
+                  %>
+                  <a class="fs-6 text-muted" href="goLogin">로그인</a>
+                  <%
+                  } else {
+                  %>
+                  <!-- Q7. 개인정보수정 기능 만들기 -->
+                  <!-- Q8. 로그아웃 기능 만들기 -->
+                  <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
+                  <% if (!Memberlogin.getCust_role().equals("S")) {%>
+                  <a href="goSeller">판매자 등록</a> <a href="goLogout">로그아웃</a>
+                  <%
+                  } else {
+                  %>
+                     <a href=goLogout>로그아웃</a>
+
 							<%}%>
 
 						<%}%>
@@ -278,27 +279,7 @@
           <div class="input__block">
              <input type="password" placeholder="비밀번호를 입력하세요" class="input" name="cust_pw" id="cust_pw"  />
           </div>
-<<<<<<< HEAD
-          <!-- repeat password input -->
-          <div class="input__block">
-             <input type="password" placeholder="비밀번호를 다시 입력하세요" class="input repeat__password" id="pwCheck" name="pwCheck"><h4 id="passwordMessage"></h4>
-          </div>
-          <div class="input__block">
-             <input type="text" placeholder="이름을 입력하세요" class="input repeat__password" id="cust_name"    />
-          </div>
-          <div class="input__block">
-             <input type="email" placeholder="이메일을 입력하세요" class="input repeat__password" id="cust_email"    />
-          </div>
-     		 <div class="input__block">
-             <input type="text" placeholder="주소를 입력하세요" class="input repeat__password" id="cust_addr"    />
-            </div>
-            <div class="input__block">
-               <input type="text" placeholder="생년월일을 입력하세요" class="input repeat__password" id="cust_birthdate"    />
-            </div>
-          
-=======
-   
->>>>>>> branch 'master' of https://github.com/2023-SMHRD-IS-AI1/HRGR.git
+
           <!-- sign in button -->
           <button class="signin__btn">
             로그인

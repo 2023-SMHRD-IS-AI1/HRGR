@@ -186,19 +186,19 @@
             <div class="support-box text-end d-none d-xl-block">
             						<h5 class="mb-0"></h5>
 					</div>
-					<ul class="d-flex justify-content-end list-unstyled m-0">
-            			<li>
-						<%
-						if (Memberlogin == null) {
-						%>
-						<a href="goLogin" style="font-size: 20px; color: green; font-weight: bold;"><i class="fa fa-sign-in" aria-hidden="true"> 로그인</i></a>
-						<%
-						} else {
-						%>
-						<a href="goLogout" style="font-size: 20px; color: green; font-weight: bold;"><i class="fa fa-sign-out" aria-hidden="true"> 로그아웃</i></a>
-						<%}%>
-
-							<%
+            <ul class="d-flex justify-content-end list-unstyled m-0">
+              <li><%
+                if (Memberlogin == null) {
+                %>
+                <a href="goLogin" style="font-size: 20px; color: green; font-weight: bold;"><i class="fa fa-sign-in" aria-hidden="true"> 로그인</i></a>
+                <%
+                } else {
+                %>
+                <a href="goLogout" style="font-size: 20px; color: green; font-weight: bold;"><i class="fa fa-sign-out" aria-hidden="true"> 로그아웃</i></a>
+                <%}%>
+              </li>
+              <li>
+                <%
 							if (Memberlogin == null) {
 							%> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
 								<svg width="24" height="24" viewBox="0 0 24 24">
@@ -213,21 +213,21 @@
 						</svg></a> <%
  }
  %>
-						</li>
-						<li>
-							<%
-							if (Memberlogin == null) {
-							%><a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
-								<svg width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#cart"></use>
-						</svg>
-						</a> <%
- } else {%>
-					<a href="goMyCart" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
-						width="24" height="24" viewBox="0 0 24 24">
-  					<use xlink:href="#cart"></use>
-						</svg></a> 
-						<%}%>
+              </li>
+              <li>
+                <%
+                if (Memberlogin == null) {
+                %><a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
+                  <svg width="24" height="24" viewBox="0 0 24 24">
+                <use xlink:href="#cart"></use>
+              </svg>
+              </a> <%
+   } else {%>
+            <a href="goMyCart" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
+              width="24" height="24" viewBox="0 0 24 24">
+              <use xlink:href="#cart"></use>
+              </svg></a> 
+              <%}%>
               </li>
             </ul>
 

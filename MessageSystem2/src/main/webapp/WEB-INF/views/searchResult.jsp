@@ -1,6 +1,7 @@
 
 <%@page import="kr.smhrd.entity.Member"%>
 <%@page import="kr.smhrd.entity.Product"%>
+<%@page import="kr.smhrd.entity.Cart"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -427,7 +428,7 @@
 																	<svg width="16" height="16">
 																		<use xlink:href="#minus"></use></svg>
 																</button>
-															</span> <input type="text" id="quantity" name="quantity"
+															</span> <input type="text" id="quantity" name="quantity${loopStatus.index}"
 																class="form-control input-number" value="1"> <span
 																class="input-group-btn">
 																<button type="button"
@@ -438,7 +439,7 @@
 																</button>
 															</span>
 														</div>
-														<a href="#" class="nav-link">Add to Cart <iconify-icon
+														<a href="#" class="nav-link" onclick="addToCart(event,${product.prod_idx}, 'quantity${loopStatus.index}')">Add to Cart <iconify-icon
 																icon="uil:shopping-cart"></a>
 													</div>
 												</div>
@@ -531,9 +532,9 @@
 																	data-type="minus">
 																	<svg width="16" height="16">
 																		<use xlink:href="#minus"></use></svg>
-																</button> 
-															</span> <input type="text" id="quantity" name="quantity"
-																class="form-control input-number" value="${loopStatus.index}"> <span
+																</button>
+															</span> <input type="text" id="quantity" name="quantity${loopStatus.index}"
+																class="form-control input-number" value="1"> <span
 																class="input-group-btn">
 																<button type="button"
 																	class="quantity-right-plus btn btn-success btn-number"
@@ -543,7 +544,7 @@
 																</button>
 															</span>
 														</div>
-														<a href="#" class="nav-link">Add to Cart <iconify-icon
+														<a href="#" class="nav-link" onclick="addToCart">Add to Cart <iconify-icon
 																icon="uil:shopping-cart"></a>
 													</div>
 												</div>
@@ -670,10 +671,73 @@
 	            console.error('Error:', error);
 	        }
 	    });
+	// 기본 동작 막기
+	    event.preventDefault();
+	   };
+	</script>
+	
+	<script>
+	// 장바구니 추가
+	function addToCart(event, prod_idx, name) {
 
+		var quantityElement = document.getElementsByName(name)[0];
+		var quantityValue = quantityElement.value;
+	    
+	        var prodInfo = {
+	    		    prod_idx: prod_idx,
+	    		    cart_count: quantityValue
+	    		};
+	    			console.log(prodInfo);
+	    		    // AJAX를 사용하여 서버로 데이터 전송
+	    		    $.ajax({
+	    		        type: 'POST',
+	    		        url: 'http://localhost:8081/controller/insertCart',
+	    		        data: JSON.stringify(prodInfo),
+	    		        contentType: 'application/json',
+	    		        dataType: 'json', 
+	    		        success: function(response) {
+	    		            console.log('Server response:',response);
+	    		            location.reload();
+	    		            // TODO: 서버 응답에 따른 동작 수행
+	    		        },
+	    		        error: function(error) {
+	    		            console.error('Error:', error);
+	    		        }
+	    			});
+	  
+		alert("장바구니에 추가되었습니다!");
 	    // 기본 동작 막기
 	    event.preventDefault();
-	}
+		};
+		
+		/* function addToCart(event, prod_idx, name) {
+		    var quantityElement = document.getElementsByName(name)[0];
+		    var quantityValue = quantityElement.value;
+
+		    var form = document.createElement('form');
+		    form.action = 'insertCart';
+		    form.method = 'POST';
+
+		    var input1 = document.createElement('input');
+		    input1.type = 'hidden';
+		    input1.name = 'prod_idx';
+		    input1.value = prod_idx;
+
+		    var input2 = document.createElement('input');
+		    input2.type = 'hidden';
+		    input2.name = 'cart_count';
+		    input2.value = quantityValue;
+
+		    form.appendChild(input1);
+		    form.appendChild(input2);
+
+		    document.body.appendChild(form);
+		    form.submit();
+
+		    alert("장바구니에 추가되었습니다!");
+		    // 기본 동작 막기
+		    event.preventDefault();
+		} */
 </script>
 
 	<script>

@@ -22,6 +22,7 @@ public class Product {
 	private String prod_type;
 	private String prod_stock;
 	private int prod_ratings;
+	private int cart_count;
 
 	
 	private String prod_cust_id;

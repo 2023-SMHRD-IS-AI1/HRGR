@@ -189,56 +189,46 @@
 	</div>
 
 	<header>
-		<div class="container-fluid">
-			<div class="row py-3 border-bottom">
-
-				<div class="col-sm-4 col-lg-3 text-center text-sm-start">
-					<div class="main-logo">
-						<a href="goMain"> <img src="./resources/images/harugreen.png"
-							alt="logo" class="img-fluid" style="max-width: 60%;">
-						</a>
-					</div>
-				</div>
-
-				<div
-					class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
-					<div class="search-bar row bg-light p-2 my-2 rounded-4">
-						<div class="col-md-4 d-none d-md-block">
-							<select class="form-select border-0 bg-transparent">
-								<option>전체상품</option>
-								<option>농산물</option>
-								<option>수산물</option>
-								<option>가공식품</option>
-							</select>
-						</div>
-						<div class="col-11 col-md-7">
-							<form id="search-form" class="text-center" action="gosearch"
-								method="post">
-								<input type="text" class="form-control border-0 bg-transparent"
-									name="searchInput" id="searchInput" placeholder="검색어를 입력해주세요!" />
-							</form>
-						</div>
-						<div class="col-1">
-							<div id="svg-container">
-
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-									viewBox="0 0 24 24">
-    				<path fill="currentColor"
-										d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z" />
-  					</svg>
-
-							</div>
-						</div>
-						
-					</div>
-				</div>
-
-				<div
-					class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
-
-
-					<div class="support-box text-end d-none d-xl-block">
-
+      <div class="container-fluid">
+        <div class="row py-3 border-bottom">
+          
+          <div class="col-sm-4 col-lg-3 text-center text-sm-start">
+            <div class="main-logo">
+              <a href="goMain">
+                <img src="./resources/images/harugreen.png" alt="logo" class="img-fluid" style="max-width: 60%;">
+              </a>
+            </div>
+          </div>
+          
+          <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
+            <div class="search-bar row bg-light p-2 my-2 rounded-4">
+              <div class="col-md-4 d-none d-md-block">
+                <select class="form-select border-0 bg-transparent">
+                  <option>전체상품</option>
+                  <option>농산물</option>
+                  <option>수산물</option>
+                  <option>가공식품</option>
+                </select>
+              </div>
+              <div class="col-11 col-md-7">
+                <form id="search-form" class="text-center" action="gosearch" method="post">
+                  <input type="text" class="form-control border-0 bg-transparent" name="searchInput" id="searchInput" placeholder="검색어를 입력해주세요!"/>
+                </form>
+              </div>
+              <div class="col-1">
+                <div id="svg-container">
+                
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z"/>
+                 </svg>
+              
+            </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
+            <div class="support-box text-end d-none d-xl-block">
 						<%
 						if (Memberlogin == null) {
 						%>
@@ -249,22 +239,16 @@
 						<!-- Q7. 개인정보수정 기능 만들기 -->
 						<!-- Q8. 로그아웃 기능 만들기 -->
 						<!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-						<%
-						if (!Memberlogin.getCust_role().equals("S")) {
-						%>
+						<% if (!Memberlogin.getCust_role().equals("S")) {%>
 						<a href="goSeller">판매자 등록</a> <a href="goLogout">로그아웃</a>
 						<%
 						} else {
 						%>
-						<a href=goLogout>로그아웃</a>
+							<a href=goLogout>로그아웃</a>
 
-						<%
-						}
-						%>
+							<%}%>
 
-						<%
-						}
-						%>
+						<%}%>
 						<h5 class="mb-0"></h5>
 					</div>
 
@@ -272,14 +256,14 @@
 						<li>
 							<%
 							if (Memberlogin == null) {
-							%> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1">
+							%> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
 								<svg width="24" height="24" viewBox="0 0 24 24">
   						<use xlink:href="#user"></use>
 						</svg>
 						</a> <%
  } else {
  %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-							<a href="gomyPage" class="rounded-circle bg-light p-2 mx-1"> <svg
+							<a href="gomyPage" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
 									width="24" height="24" viewBox="0 0 24 24">
   						<use xlink:href="#user"></use>
 						</svg></a> <%
@@ -289,98 +273,79 @@
 						<li>
 							<%
 							if (Memberlogin == null) {
-							%> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1">
+							%><a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
 								<svg width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#heart"></use>
+  						<use xlink:href="#cart"></use>
 						</svg>
 						</a> <%
  } else {
  %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-							<a href="goLike" class="rounded-circle bg-light p-2 mx-1"> <svg
+							<a href="goLike" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
 									width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#heart"></use>
+  						<use xlink:href="#cart"></use>
 						</svg></a> <%
  }
  %>
-						</li>
-						<li class="d-lg-none"><a href="#"
-							class="rounded-circle bg-light p-2 mx-1"
-							data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
-							aria-controls="offcanvasCart"> <svg width="24" height="24"
-									viewBox="0 0 24 24">
-									<use xlink:href="#cart"></use></svg>
-						</a></li>
-						<li class="d-lg-none"><a href="#"
-							class="rounded-circle bg-light p-2 mx-1"
-							data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch"
-							aria-controls="offcanvasSearch"> <svg width="24" height="24"
-									viewBox="0 0 24 24">
-									<use xlink:href="#search"></use></svg>
-						</a></li>
-					</ul>
+              
+            </ul>
 
-					<div class="cart text-end d-none d-lg-block dropdown">
-						<button
-							class="border-0 bg-transparent d-flex flex-column gap-2 lh-1"
-							type="button" data-bs-toggle="offcanvas"
-							data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-							<span class="fs-6 text-muted dropdown-toggle">장바구니</span> <span
-								class="cart-total fs-5 fw-bold">현재가격</span>
-						</button>
-					</div>
-				</div>
+           
+          </div>
 
-			</div>
-		</div>
-		<div class="container-fluid">
-			<div class="row py-3">
-				<div
-					class="d-flex  justify-content-center justify-content-sm-between align-items-center">
-					<nav class="main-menu d-flex navbar navbar-expand-lg">
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div class="row py-3">
+          <div class="d-flex  justify-content-center justify-content-sm-between align-items-center">
+            <nav class="main-menu d-flex navbar navbar-expand-lg">
 
-						<button class="navbar-toggler" type="button"
-							data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-							aria-controls="offcanvasNavbar">
-							<span class="navbar-toggler-icon"></span>
-						</button>
+              <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+              </button>
 
-						<div class="offcanvas offcanvas-end" tabindex="-1"
-							id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+              <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
 
-							<div class="offcanvas-header justify-content-center">
-								<button type="button" class="btn-close"
-									data-bs-dismiss="offcanvas" aria-label="Close"></button>
-							</div>
+                <div class="offcanvas-header justify-content-center">
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
 
-							<div class="offcanvas-body">
+                <div class="offcanvas-body">
+              
+               
+              
+                  <ul class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
+                    <li class="nav-item active">
+                      <a href="#" class="nav-link">전체</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a href="#" class="nav-link">농산물</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">수산물</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">가공식품</a>
+                    </li>
+                   
+                    <a href="#" target="_blank" class="nav-link btn-coupon-code">
+                <img src="./resources/images/book-half.svg" alt="gift icon">
+                <strong class="ms-2 text-dark">영농일지 보러가기</strong>
+              </a>
+                  </ul>
+                
+                </div>
 
-								<ul
-									class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
-									<li class="nav-item active"><a href="#" class="nav-link">전체</a>
-									</li>
-									<li class="nav-item dropdown"><a href="#" class="nav-link">농산물</a>
-									</li>
-									<li class="nav-item"><a href="#" class="nav-link">수산물</a>
-									</li>
-									<li class="nav-item"><a href="#" class="nav-link">가공식품</a>
-									</li>
+              </div>
 
-									<a href="#" target="_blank" class="nav-link btn-coupon-code">
-										<img src="images/book-half.svg" alt="gift icon"> <strong
-										class="ms-2 text-dark">영농일지 보러가기</strong>
-									</a>
-								</ul>
-
-							</div>
-
-						</div>
-
-					</nav>
-					<div class="d-none d-lg-block"></div>
-				</div>
-			</div>
-		</div>
-	</header>
+            </nav>
+            <div class="d-none d-lg-block">
+             
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
 
 	<!-- 시세 확인란 -->
 	<ul class="sisae">
@@ -442,7 +407,7 @@
 
 													<figure>
 														<a href="single-product.html" title="Product Title"> <img
-															src="images/thumb-bananas.png" class="tab-image">
+															src="./resources/upload/${product.img_name }" class="tab-image">
 														</a>
 													</figure>
 													<h3>${product.prod_name}</h3>
@@ -518,7 +483,7 @@
 											<div class="col">
 												<div class="product-item">
 													<span class="badge bg-success position-absolute m-3">-30%</span>
-
+													<input type="hidden" id="i">${loopStatus.index}</input>
 
 
 
@@ -547,7 +512,7 @@
 
 													<figure>
 														<a href="single-product.html" title="Product Title"> <img
-															src="images/thumb-bananas.png" class="tab-image">
+															src="./resources/upload/${ProductNew.img_name }" class="tab-image">
 														</a>
 													</figure>
 													<h3>${ProductNew.prod_name}</h3>
@@ -566,9 +531,9 @@
 																	data-type="minus">
 																	<svg width="16" height="16">
 																		<use xlink:href="#minus"></use></svg>
-																</button>
+																</button> 
 															</span> <input type="text" id="quantity" name="quantity"
-																class="form-control input-number" value="1"> <span
+																class="form-control input-number" value="${loopStatus.index}"> <span
 																class="input-group-btn">
 																<button type="button"
 																	class="quantity-right-plus btn btn-success btn-number"
@@ -681,7 +646,7 @@
 
 	<script>
 	function addToWishlist(event, prodName, prodStock, prodPrice, prodRatings, prod_idx) {
-	    
+		
 	    var wishlistItem = {
 	        prodName: prodName,
 	        prodStock: prodStock,
@@ -691,6 +656,7 @@
 	        
 	    };
 		console.log(wishlistItem)
+		
 	    // AJAX를 사용하여 서버로 데이터 전송
 	    $.ajax({
 	        type: 'POST',

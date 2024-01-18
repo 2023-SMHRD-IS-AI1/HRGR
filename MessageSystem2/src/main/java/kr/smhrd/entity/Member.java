@@ -39,9 +39,40 @@ public class Member {
 	private String company_addr;
 	private String company_bno;
 	private String business_type;
-	private int prod_idx;
 	private String created_at;
+	private int prod_idx;
 	private String prod_name;
 	private String prod_price;
+	private String img_name;
+	public Member(String cust_id,  String cust_phone,@NonNull String cust_pw,String cust_name, String cust_nick, @NonNull String cust_email, 
+			  String cust_birthdate,String cust_addr) {
+		super();
+		this.cust_id = cust_id;
+		this.cust_phone = cust_phone;
+		this.cust_pw = cust_pw;
+		this.cust_email = cust_email;
+		this.cust_addr = cust_addr;
+		this.cust_name = cust_name;
+		this.cust_birthdate = cust_birthdate;
+		this.cust_nick = cust_nick;
+	}
+	public Member(int prod_idx) {
+		super();
+		this.prod_idx = prod_idx;
+	}
+	public Member(@NonNull String cust_id, int prod_idx) {
+		super();
+		this.cust_id = cust_id;
+		this.prod_idx = prod_idx;
+	}
+	
+	
+
+		// 리뷰
+		private String review_content;
+		private int prod_ratings;
+		private String reviewed_at;
+	
+	
 	
 }

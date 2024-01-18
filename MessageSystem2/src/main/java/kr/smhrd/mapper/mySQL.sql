@@ -125,7 +125,7 @@ DELETE FROM tb_cust;
 
 -- tb_cust 조회
 select * from tb_cust ;
-
+use campus_23IS_LI1_hack_1;
 -- tb_prod조회
 select * from tb_prod 
 
@@ -215,9 +215,172 @@ insert into tb_review(prod_idx,cust_id, review_content, prod_ratings, reviewed_a
 insert into tb_review(prod_idx,cust_id, review_content, prod_ratings, reviewed_at) values(11,2,'맛있다.',2,NOW());
 
 
-delete  from tb_favorite where cust_id=14
+select *  from tb_favorite
 
 select * from tb_prod_image
 
+    
+    
+    select * from tb_prod 
+    
+    UPDATE tb_cust
+SET
+    cust_pw = '새로운_비밀번호',
+    cust_nick = '새로운_닉네임',
+    cust_email = '새로운_이메일',
+    cust_phone = '새로운_전화번호',
+    cust_birthdate = '새로운_생년월일',
+    cust_addr = '새로운_주소'
+    
+WHERE
+    cust_name = '찾을_이름';
+    
+    
+CREATE TABLE tb_order
+(
+    `order_idx`        INT UNSIGNED     NOT NULL    AUTO_INCREMENT COMMENT '주문 식별자', 
+    `prod_idx`         INT UNSIGNED     NOT NULL    COMMENT '상품 식별자', 
+    `cust_id`          VARCHAR(30)      NOT NULL    COMMENT '주문자 아이디', 
+    `total_amunt`      INT              NOT NULL    COMMENT '주문 총금액', 
+    `discount_amount`  INT              NOT NULL    COMMENT '할인 금액', 
+    `pay_amount`       INT              NOT NULL    COMMENT '결제 대상 금액', 
+    `pay_method`       VARCHAR(10)       NOT NULL    COMMENT '결제 수단', 
+    `paid_amount`      INT              NOT NULL    COMMENT '결제 금액', 
+    `delivery_addr`    VARCHAR(1000)    NOT NULL    COMMENT '배송지 주소', 
+    `receiver_name`    VARCHAR(50)      NOT NULL    COMMENT '수령자 명', 
+    `receiver_phone`   VARCHAR(20)      NOT NULL    COMMENT '수령자 연락처', 
+    `delivery_msg`     TEXT             NOT NULL    COMMENT '배송 메시지', 
+    `order_status`     VARCHAR(5)       NOT NULL    COMMENT '주문 상태', 
+    `ordered_at`       DATETIME         NOT NULL    COMMENT '주문 일자', 
+     PRIMARY KEY (order_idx)
+);
 
+insert into tb_order (prod_idx,cust_id,total_amunt,discount_amount,pay_amount,pay_method,paid_amount,delivery_addr,receiver_name,receiver_phone,delivery_msg,
+ order_status,ordered_at)values(25,1,12000,1000,11000,'카드',10000,'광주','상권','010451112','132','결제완료',NOW())
+
+    select * from tb_order
+    
+SELECT tb_order.*, tb_prod.prod_name AS prod_name, tb_prod_img.img_name AS img_name
+FROM tb_order
+JOIN tb_prod ON tb_order.prod_idx = tb_prod.prod_idx
+LEFT JOIN tb_prod_image tb_prod_img ON tb_prod.prod_idx = tb_prod_img.prod_idx
+WHERE tb_order.cust_id = 1;
+    
   
+select * from tb_favorite
+
+
+SELECT
+    p.prod_idx AS prod_idx,
+    p.prod_name AS prod_name,
+    p.prod_price AS prod_price,
+    di.img_name AS img_name
+FROM
+    tb_favorite f
+JOIN
+    tb_prod p ON f.prod_idx = p.prod_idx
+JOIN
+    tb_prod_image di ON p.prod_idx = di.prod_idx
+WHERE
+    f.cust_id = 1;
+    
+    CREATE TABLE tb_review
+(
+    `review_idx`      INT UNSIGNED    NOT NULL    AUTO_INCREMENT COMMENT '리뷰 식별자', 
+    `prod_idx`        INT UNSIGNED    NOT NULL    COMMENT '상품 식별자', 
+    `cust_id`         VARCHAR(30)     NOT NULL    COMMENT '회원 아이디', 
+    `review_content`  TEXT            NOT NULL    COMMENT '리뷰 내용', 
+    `prod_ratings`    INT             NOT NULL    COMMENT '상품 평점', 
+    `reviewed_at`     DATETIME        NOT NULL    COMMENT '작성 일자', 
+     PRIMARY KEY (review_idx)
+);
+    
+select * from tb_review where cust_id = 1
+insert into tb_review (prod_idx,cust_id,review_content,prod_ratings,reviewed_at)
+values(25,1,'진짜 개맛있다.',5,NOW())
+
+SELECT
+    p.prod_name,
+    i.img_name,
+    r.*
+FROM
+    tb_prod p
+LEFT JOIN
+    tb_prod_image i ON p.prod_idx = i.prod_idx
+LEFT JOIN
+    tb_review r ON p.prod_idx = r.prod_idx
+WHERE
+    p.cust_id = 1
+
+UNION
+
+SELECT
+    p.prod_name,
+    i.img_name,
+    r.*
+FROM
+    tb_prod p
+RIGHT JOIN
+    tb_prod_image i ON p.prod_idx = i.prod_idx
+RIGHT JOIN
+    tb_review r ON p.prod_idx = r.prod_idx
+WHERE
+    p.cust_id = 1;
+    
+    
+    
+   SELECT
+    p.prod_name,
+    pi.img_name,
+    r.*
+FROM
+    tb_prod p
+LEFT JOIN
+    tb_prod_image pi ON p.prod_idx = pi.prod_idx
+LEFT JOIN
+    tb_review r ON p.prod_idx = r.prod_idx
+WHERE
+    p.cust_id = 1
+
+UNION
+
+SELECT
+    p.prod_name,
+    pi.img_name,
+    r.*
+FROM
+    tb_prod p
+RIGHT JOIN
+    tb_prod_image pi ON p.prod_idx = pi.prod_idx
+RIGHT JOIN
+    tb_review r ON p.prod_idx = r.prod_idx
+WHERE
+    p.cust_id = 1;
+    
+    
+    
+ SELECT
+    r.*,
+    pi.img_name
+FROM
+    tb_review r
+INNER JOIN
+    tb_prod_image pi ON r.prod_idx = pi.prod_idx
+WHERE
+    r.cust_id = 1;
+    
+    
+    
+    
+    SELECT
+    r.*,
+    pi.img_name AS img_name,
+    p.prod_name
+FROM
+    tb_review r
+INNER JOIN
+    tb_prod_image pi ON r.prod_idx = pi.prod_idx
+LEFT JOIN
+    tb_prod p ON r.prod_idx = p.prod_idx
+WHERE
+    r.cust_id = 1;

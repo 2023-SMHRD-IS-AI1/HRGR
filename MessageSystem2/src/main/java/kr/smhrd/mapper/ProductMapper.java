@@ -23,5 +23,6 @@
 	 public void insertImage(Product product);
 	 public Product searchIdx(Product product);
 
+	public List<Product> selectProdlist(String cust);
 	 }
  

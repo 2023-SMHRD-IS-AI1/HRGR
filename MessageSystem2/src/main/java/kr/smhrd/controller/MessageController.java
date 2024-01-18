@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.smhrd.entity.Member;
 import kr.smhrd.entity.Message;
+import kr.smhrd.entity.Board;
+import kr.smhrd.mapper.BoardMapper;
 import kr.smhrd.mapper.MessageMapper;
 
 @Controller
@@ -19,6 +21,7 @@ public class MessageController {
 
 	@Autowired
 	private MessageMapper messageMapper;
+	
 	
 	// 메세지 보내기 /messageSend
 	@PostMapping("/messageSend")

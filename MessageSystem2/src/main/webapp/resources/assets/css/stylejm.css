@@ -398,3 +398,21 @@ padding: 30px;
   object-fit: cover;
   margin: auto;
 }
+
+/* 장바구니 이미지 크기 조절 */
+
+.prodLike_img-wrapper {
+  position: relative;
+  width: 180px;
+  height: 180px;
+}
+.prodLike_img-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(50, 50);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: auto;
+}

@@ -19,10 +19,16 @@ import lombok.ToString;
 public class Cart {
 	
 	
-	@NonNull private String cust_id;
+	private String cust_id;
 	@NonNull private int prod_idx;
 	private String cart_in;
 	private int cart_count;
 	private int prod_price;
+	private String prod_name;
+	private String img_name;
+	
+	
+	
+	
 	
 }

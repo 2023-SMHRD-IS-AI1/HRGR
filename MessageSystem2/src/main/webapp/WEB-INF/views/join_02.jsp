@@ -1,4 +1,3 @@
-<%@page import="kr.smhrd.entity.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,21 +20,12 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapi
-    s.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,800" rel="stylesheet"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:500,800" rel="stylesheet">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-
     <link rel="stylesheet" href="./resources/assets/css/login_01.css">
 </head>
 <body>
-<%
-	Member Memberlogin = (Member) session.getAttribute("loginMember");
-	%>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <defs>
       <symbol xmlns="http://www.w3.org/2000/svg" id="link" viewBox="0 0 24 24">
@@ -86,9 +76,7 @@
     </defs>
   </svg>
 
-
- <header>
-
+  <header>
       <div class="container-fluid">
         <div class="row py-3 border-bottom">
           
@@ -129,64 +117,61 @@
           
           <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
             <div class="support-box text-end d-none d-xl-block">
+                  <%
+                  if (Memberlogin == null) {
+                  %>
+                  <a class="fs-6 text-muted" href="goLogin">로그인</a>
+                  <%
+                  } else {
+                  %>
+                  <!-- Q7. 개인정보수정 기능 만들기 -->
+                  <!-- Q8. 로그아웃 기능 만들기 -->
+                  <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
+                  <% if (!Memberlogin.getCust_role().equals("S")) {%>
+                  <a href="goSeller">판매자 등록</a> <a href="goLogout">로그아웃</a>
+                  <%
+                  } else {
+                  %>
+                     <a href=goLogout>로그아웃</a>
 
-						<%
-						if (Memberlogin == null) {
-						%>
-						<a class="fs-6 text-muted" href="goLogin">로그인</a>
-						<%
-						} else {
-						%>
-						<!-- Q7. 개인정보수정 기능 만들기 -->
-						<!-- Q8. 로그아웃 기능 만들기 -->
-						<!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-						<% if (!Memberlogin.getCust_role().equals("S")) {%>
-						<a href="goSeller">판매자 등록</a> <a href="goLogout">로그아웃</a>
-						<%
-						} else {
-						%>
-							<a href=goLogout>로그아웃</a>
+                     <%}%>
 
-                 
-							<%}%>
+                  <%}%>
+                  <h5 class="mb-0"></h5>
+               </div>
 
-						<%}%>
-						<h5 class="mb-0"></h5>
-					</div>
-
-					<ul class="d-flex justify-content-end list-unstyled m-0">
-						<li>
-							<%
-							if (Memberlogin == null) {
-							%> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
-								<svg width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#user"></use>
-						</svg>
-						</a> <%
+               <ul class="d-flex justify-content-end list-unstyled m-0">
+                  <li>
+                     <%
+                     if (Memberlogin == null) {
+                     %> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
+                        <svg width="24" height="24" viewBox="0 0 24 24">
+                    <use xlink:href="#user"></use>
+                  </svg>
+                  </a> <%
  } else {
  %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-							<a href="gomyPage" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
-									width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#user"></use>
-						</svg></a> <%
+                     <a href="gomyPage" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
+                           width="24" height="24" viewBox="0 0 24 24">
+                    <use xlink:href="#user"></use>
+                  </svg></a> <%
  }
  %>
-						</li>
-						<li>
-							<%
-							if (Memberlogin == null) {
-							%><a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
-								<svg width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#cart"></use>
-						</svg>
-						</a> <%
+                  </li>
+                  <li>
+                     <%
+                     if (Memberlogin == null) {
+                     %><a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
+                        <svg width="24" height="24" viewBox="0 0 24 24">
+                    <use xlink:href="#cart"></use>
+                  </svg>
+                  </a> <%
  } else {
  %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-							<a href="goLike" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
-									width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#cart"></use>
-						</svg></a> <%
-
+                     <a href="goLike" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
+                           width="24" height="24" viewBox="0 0 24 24">
+                    <use xlink:href="#cart"></use>
+                  </svg></a> <%
  }
  %>
               
@@ -251,17 +236,17 @@
     </header>
 
       <!-- 여기에 본문 내용 채우면 됩니다~ -->
-	<div class="container">
+      <div class="container">
         <!-- Heading -->
-        <h1>로그인</h1>
+        <h1>회원가입</h1>
         
         <!-- Links -->
         <ul class="links">
           <li>
-            <a href="login_01.html" id="signin">로그인</a>
+            <a href="join_01.html" id="signup">회원가입</a>
           </li>
           <li>
-            <a href="join_01.html" id="signup">회원가입</a>
+            <a href="login_01.html" id="signin">로그인</a>
           </li>
           <li>
             <a href="#" id="reset">초기화</a>
@@ -269,39 +254,32 @@
         </ul>
         
         <!-- Form -->
-        <form  action="memberlogin" method="post">
-          <!-- email input -->
+        <form  action="" method="post">
           <div class="first-input input__block first-input__block">
-             <input placeholder="전화번호를 입력하세요" class="input" input type="text" name="cust_phone" id="cust_phone"  />
-          </div>
-          <!-- password input -->
-          <div class="input__block">
-             <input type="password" placeholder="비밀번호를 입력하세요" class="input" name="cust_pw" id="cust_pw"  />
-          </div>
-<<<<<<< HEAD
-          <!-- repeat password input -->
-          <div class="input__block">
-             <input type="password" placeholder="비밀번호를 다시 입력하세요" class="input repeat__password" id="pwCheck" name="pwCheck"><h4 id="passwordMessage"></h4>
+             <input type="tel" placeholder="전화번호를 입력하세요" class="input" id="email"   />
           </div>
           <div class="input__block">
-             <input type="text" placeholder="이름을 입력하세요" class="input repeat__password" id="cust_name"    />
+             <input type="password" placeholder="비밀번호를 입력하세요" class="input" id="password"    />
           </div>
           <div class="input__block">
-             <input type="email" placeholder="이메일을 입력하세요" class="input repeat__password" id="cust_email"    />
+             <input type="password" placeholder="비밀번호를 다시 입력하세요" class="input" id="repeat__password"    />
           </div>
-     		 <div class="input__block">
-             <input type="text" placeholder="주소를 입력하세요" class="input repeat__password" id="cust_addr"    />
+          <div class="input__block">
+             <input type="text" placeholder="이름을 입력하세요" class="input" id="user_name"    />
+          </div>
+          <div class="input__block">
+             <input type="email" placeholder="이메일을 입력하세요" class="input" id="user_email"    />
+          </div>
+          <div class="input__block">
+             <input type="text" placeholder="주소를 입력하세요" class="input" id="user_addr"    />
             </div>
             <div class="input__block">
-               <input type="text" placeholder="생년월일을 입력하세요" class="input repeat__password" id="cust_birthdate"    />
+               <input type="text" placeholder="생년월일을 입력하세요" class="input" id="user_bday"    />
             </div>
           
-=======
-   
->>>>>>> branch 'master' of https://github.com/2023-SMHRD-IS-AI1/HRGR.git
           <!-- sign in button -->
           <button class="signin__btn">
-            로그인
+            회원가입
           </button>
         </form>
         <!-- separator -->
@@ -311,7 +289,7 @@
         <!-- google button -->
         <button class="github__btn">
           <i class="fa fa- fa-comment"></i>
-          카카오톡으로 로그인
+          카카오톡으로 가입
         </button>
       </div>
       

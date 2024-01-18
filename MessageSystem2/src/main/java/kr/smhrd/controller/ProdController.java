@@ -142,6 +142,7 @@ public class ProdController {
 		return "Main";
 	}
 	
+
 	// 장바구니에 추가
 	@PostMapping("/insertCart")
 	@ResponseBody
@@ -170,6 +171,7 @@ public class ProdController {
 	    
 		
 	}
+
 	
 	
 }

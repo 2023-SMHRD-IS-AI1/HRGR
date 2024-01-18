@@ -23,6 +23,9 @@ import kr.smhrd.entity.Product;
 	 public void prodRegist(Product product);
 	 public void insertImage(Product product);
 	 public Product searchIdx(Product product);
+
 	 public void addToCart(Cart cart);
+
+	 public List<Product> selectProdlist(String cust);
 	 }
  

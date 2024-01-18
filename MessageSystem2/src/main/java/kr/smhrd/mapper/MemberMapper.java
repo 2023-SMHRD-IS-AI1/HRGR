@@ -46,9 +46,16 @@ public interface MemberMapper { // 틀, SqlSessionFactoryBean이 MemberMapper를
 	
 	public int searchLike(Member member);
 
-	public List<Member> likeList(String member);
+	public List<Member> likeList(String cust_id);
 	
 	public List<Member> likeList();
+	
+	
+	public List<Member> reviewList(String cust_id);
+
+	public void reviewDelete(Member member);
+
+	
 	
 	
 	

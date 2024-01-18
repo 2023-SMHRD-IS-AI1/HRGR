@@ -31,6 +31,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import kr.smhrd.entity.Board;
+import kr.smhrd.entity.Cart;
 import kr.smhrd.entity.Member;
 import kr.smhrd.entity.Product;
 
@@ -139,6 +140,35 @@ public class ProdController {
 		
 		
 		return "Main";
+	}
+	
+	// 장바구니에 추가
+	@PostMapping("/insertCart")
+	@ResponseBody
+	public ResponseEntity<String> addToCart(
+	@RequestParam int prod_idx, @RequestParam String cart_count, Cart cart, HttpSession session) {
+		
+		System.out.println("\n !!insertCart 시작!! \n");
+		
+		// 세션에서 로그인 한 사용자의 정보 가져오기
+	    Member loginMember = (Member)session.getAttribute("loginMember");
+
+		// 로그인 한 사용자의 cust_id값 가져오기
+	    String cust_id = loginMember.getCust_id();
+
+	    // cart에 cust_id, prod_idx, prod_price값 넣기
+	    cart.setCust_id(cust_id);
+	    cart.setProd_idx(prod_idx);
+	    cart.setCart_count(cart_count);
+	    
+	    System.out.println(cart.toString());
+	    // Mapper로 이동
+	    ProductMapper.addToCart(cart);
+	    
+	    return ResponseEntity.ok("Added to myCart");
+	    
+	    
+		
 	}
 	
 	

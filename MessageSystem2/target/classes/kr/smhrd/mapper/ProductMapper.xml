@@ -77,6 +77,9 @@ insert into tb_prod_image (prod_idx, img_name, img_real_name, img_ext, img_size)
 values(#{prod_idx}, #{img_name}, #{img_real_name}, #{img_ext}, #{img_size})
 </insert>
 
-
+<insert id="addToCart">
+insert into tb_myCart (prod_idx, cust_id, cart_in, cart_count, cart_price)
+values(#{prod_idx}, #{cust_id}, "O", #{cart_count}, #{prod_price})
+</insert>
 
 </mapper>

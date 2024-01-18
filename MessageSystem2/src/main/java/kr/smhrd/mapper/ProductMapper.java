@@ -27,5 +27,16 @@ import kr.smhrd.entity.Product;
 	 public void addToCart(Cart cart);
 	 public Integer selectCart(Cart cart);
 	 public List<Product> selectProdlist(String cust);
+	 public List<Cart> selectAllCart(String cust_id);
+
+	 public String selectProdName(int prod_idx);
+
+	 public String selectProdImg(int prod_idx);
+	 
+	 
+	 
+	 
+	 
+	 
 	 }
  

@@ -386,13 +386,16 @@
 
     <!-- 여기에 본문 내용 채우면 됩니다~ -->
 
+ <form action="prodRegist" method="post" enctype="multipart/form-data">
     <div class="product_context">
       <div class="main_text" style="font-size: 40px;">물품등록</div>
       <div class="upload-section">
         <div class="mb-3">
           <label for="formFile" class="form-label" style="font-weight: bold"
             >사진 업로드</label>
-          <input class="form-control" type="file" id="formFile" />
+
+          <input name="filename" class="form-control" type="file" accept="image/png, image/gif, image/jpeg" />            
+
         </div>
         <div class="image-placeholder" style="height : 300px;">새로 업로드된 이미지</div>
         <hr>
@@ -400,26 +403,23 @@
           <label for="inputWeight">상품명</label>
           <input
             type="text"
-            id="inputWeight"
-            name="weight"
+            name="prod_name"
             placeholder="(예시)신선한 당근 1kg"/>
         </div>
         <div class="form-group">
           <label for="inputWeight">타입</label>
           <input
             type="text"
-            id="inputWeight"
-            name="weight"
+            name="prod_type"
             placeholder="(예시) 농산물, 수산물.."
           />
-          
+
         </div>
         <div class="form-group">
           <label for="inputWeight">재고</label>
           <input
             type="text"
-            id="inputWeight"
-            name="weight"
+            name="prod_stock"
             placeholder="(예시) 100개"
           />
         </div>
@@ -427,26 +427,25 @@
           <label for="inputPrice">가격</label>
           <input
             type="text"
-            id="inputPrice"
-            name="price"
+            name="prod_price"
             placeholder="상품가격 기입해주세요"
           />
         </div>
         <div class="form-group">
           <label for="textareaDescription">상품설명</label>
           <textarea
-            id="textareaDescription"
-            name="description"
+            name="prod_desc"
             placeholder="상품에 대한 설명을 자유롭게 적어주세요"
           ></textarea>
         </div>
         <div class="button-group">
-          <button class="btn-cancel">취소하기</button>
-          <button class="btn-register">등록하기</button>
+          <button class="btn-cancel"><input type="reset" value="초기화" /></button>
+          <button class="btn-register" ><input type="submit" value="등록하기" /></button>
         </div>
+
       </div>
     </div>
-
+</form>
     <footer class="py-5">
       <div class="container-fluid">
         <div class="row">

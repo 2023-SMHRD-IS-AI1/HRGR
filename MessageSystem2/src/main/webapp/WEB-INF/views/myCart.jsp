@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="kr.smhrd.entity.Cart"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -205,130 +207,59 @@
             <h2 style="font-weight: bold; margin-bottom: 14px;">장바구니</h2>
               <!-- 장바구니 아래 큰틀 -->
               <div class="prodLike_allCheck border-bottom border-top border-success" style="background: rgb(246, 246, 246);">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                  전체선택
-                </label>
+                <input class="form-check-input" type="checkbox" value="" id="selectAllCheckbox">
+					<label class="form-check-label" for="selectAllCheckbox">
+					  전체선택
+					</label>
                 <button type="button" class="btn btn-outline-success btn-sm">선택삭제</button>
               </div>
               <!-- 상품ㄱㄱ -->
-              <div class="prodLike_pordLine border-bottom border-success">
-                <div class="row">
-                <div class="col-3">
-                  <div style="display: flex; justify-content: space-between;">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                      <img class="prodLike_img-wrapper" src="./resources/images/thumb-tuna.jpg" alt="" style="margin-top: 0px; margin-bottom: 0px;">
-                  </div>
+<c:forEach var="cart" items="${Cart}" varStatus="loop">
+    <div class="prodLike_pordLine border-bottom border-success">
+        <div class="row">
+            <div class="col-3">
+                <div style="display: flex; justify-content: space-between;">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <img class="prodLike_img-wrapper" src="resources/upload/<c:out value="${cart.img_name}" />" alt="" style="margin-top: 0px; margin-bottom: 0px;">
                 </div>
-                <div class="col-7 d-flex flex-column justify-content-around border-end" style="font-size: 16px;">
-                  <div style="font-size: 20px;">
-                통조림 맛있는 통조림
-                  </div>
-                  <hr style="margin: 0;">
-                  <div>
-                배송비 3,000원
-                  </div>
-                  <hr style="margin: 0;">
-                  <div style="display: flex; justify-content: start; font-size: 20px;">
-               6,500원 <input type="number" value="1" min="1" class="form-control" style="width: 60px; margin-left: 20px;">
-                  </div>
-                </div>
-                <div class="col-2" style="display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold;">
-                  5,000원
-                </div>
-              </div>
-              </div>
-              <!-- 상품 끝 -->               
-              <!-- 상품ㄱㄱ -->
-              <div class="prodLike_pordLine border-bottom border-success">
-                <div class="row">
-                <div class="col-3">
-                  <div style="display: flex; justify-content: space-between;">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                      <img class="prodLike_img-wrapper" src="./resources/images/thumb-tuna.jpg" alt="" style="margin-top: 0px; margin-bottom: 0px;">
-                  </div>
-                </div>
-                <div class="col-7 d-flex flex-column justify-content-around border-end" style="font-size: 16px;">
-                  <div style="font-size: 20px;">
-                통조림 맛있는 통조림
-                  </div>
-                  <hr style="margin: 0;">
-                  <div>
-                배송비 3,000원
-                  </div>
-                  <hr style="margin: 0;">
-                  <div style="display: flex; justify-content: start; font-size: 20px;">
-               6,500원 <input type="number" value="1" min="1" class="form-control" style="width: 60px; margin-left: 20px;">
-                  </div>
-                </div>
-                <div class="col-2" style="display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold;">
-                  5,000원
-                </div>
-              </div>
-              </div>
-              <!-- 상품 끝 -->               
-              <!-- 상품ㄱㄱ -->
-              <div class="prodLike_pordLine border-bottom border-success">
-                <div class="row">
-                <div class="col-3">
-                  <div style="display: flex; justify-content: space-between;">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                      <img class="prodLike_img-wrapper" src="./resources/images/thumb-tuna.jpg" alt="" style="margin-top: 0px; margin-bottom: 0px;">
-                  </div>
-                </div>
-                <div class="col-7 d-flex flex-column justify-content-around border-end" style="font-size: 16px;">
-                  <div style="font-size: 20px;">
-                통조림 맛있는 통조림
-                  </div>
-                  <hr style="margin: 0;">
-                  <div>
-                배송비 3,000원
-                  </div>
-                  <hr style="margin: 0;">
-                  <div style="display: flex; justify-content: start; font-size: 20px;">
-               6,500원 <input type="number" value="1" min="1" class="form-control" style="width: 60px; margin-left: 20px;">
-                  </div>
-                </div>
-                <div class="col-2" style="display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold;">
-                  5,000원
-                </div>
-              </div>
-              </div>
-              <!-- 상품 끝 -->               
-              <!-- 상품ㄱㄱ -->
-              <div class="prodLike_pordLine border-bottom border-success">
-                <div class="row">
-                <div class="col-3">
-                  <div style="display: flex; justify-content: space-between;">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                      <img class="prodLike_img-wrapper" src="./resources/images/thumb-tuna.jpg" alt="" style="margin-top: 0px; margin-bottom: 0px;">
-                  </div>
-                </div>
-                <div class="col-7 d-flex flex-column justify-content-around border-end" style="font-size: 16px;">
-                  <div style="font-size: 20px;">
-                통조림 맛있는 통조림
-                  </div>
-                  <hr style="margin: 0;">
-                  <div>
-                배송비 3,000원
-                  </div>
-                  <hr style="margin: 0;">
-                  <div style="display: flex; justify-content: start; font-size: 20px;">
-               6,500원 <input type="number" value="1" min="1" class="form-control" style="width: 60px; margin-left: 20px;">
-                  </div>
-                </div>
-                <div class="col-2" style="display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold;">
-                  5,000원
-                </div>
-              </div>
             </div>
-            <div class="prodLike_allCheck border-bottom border-success row" style="background: rgb(246, 246, 246);margin-left: 0px;margin-right: 0px;">
+            <div class="col-7 d-flex flex-column justify-content-around border-end" style="font-size: 16px;">
+                <div style="font-size: 20px;">
+                    <c:out value="${cart.prod_name}" /> <!-- 상품 이름 -->
+                </div>
+                <hr style="margin: 0;">
+                <div>
+                    배송비 3,000원<!-- 3000원 고정 -->
+                </div>
+                <hr style="margin: 0;">
+                <div style="display: flex; justify-content: start; font-size: 20px;">
+                    <c:out value="${cart.prod_price}" /> 원 
+                    <!-- data-prod-price 및 data-cart-index 속성 추가 -->
+                    <input type="number" value="<c:out value="${cart.cart_count}" />" min="1" 
+                           class="form-control cart-count-input" 
+                           style="width: 60px; margin-left: 20px;"
+                           data-prod-price="${cart.prod_price}"
+                           data-cart-index="${loop.index}" <!-- 현재 카트의 인덱스 정보 추가 -->
+                </div>
+            </div>
+            <div class="col-2" style="display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold;">
+                <!-- data-cart-index 속성 추가 -->
+                <span class="total-price" data-cart-index="${loop.index}">
+                <c:out value="${cart.prod_price * cart.cart_count + 3000}" />원 <!-- 택배비 3000원 추가 -->
+            	</span>
+            </div>
+        </div>
+    </div>
+</c:forEach>
 
-<div class="col-10" align="right" style="font-weight: bold; font-size: 18px; padding-right: 40px;">총 금액</div>
-<div class="col-2" style="display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold;">
-200,000원</div>
-            </div>
               <!-- 상품 끝 -->               
+            <div class="prodLike_allCheck border-bottom border-success row" style="background: rgb(246, 246, 246); margin-left: 0px; margin-right: 0px;">
+    <div class="col-10" align="right" style="font-weight: bold; font-size: 18px; padding-right: 40px;">총 금액</div>
+    <div class="col-2" id="totalAmount" style="display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold;">
+        0원 <!-- 초기값 설정 -->
+    </div>
+</div>
+                          
 
                           <!-- 페이지네이션 -->
 <div style="margin-top: 30px;" align="center">
@@ -419,5 +350,55 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
       <script src="js/plugins.js"></script>
       <script src="js/script.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    // 전체 선택/해제 체크박스의 이벤트 처리
+    $('#selectAllCheckbox').change(function() {
+      // 모든 하위 체크박스들의 상태를 전체 선택/해제 체크박스의 상태로 설정
+      $('.prodLike_content input[type="checkbox"]').prop('checked', $(this).prop('checked'));
+    });
+  });
+  
+  // 각 상품 행의 input 요소에 대한 이벤트 리스너 추가
+  var countInputs = document.querySelectorAll('.cart-count-input');
+  countInputs.forEach(function (input) {
+      input.addEventListener('input', function () {
+          updateTotalPrice(this); // 입력 값이 변경될 때마다 호출
+      });
+  });
+
+  // 총 금액 업데이트 함수
+  function updateTotalPrice(input) {
+      var cartIndex = input.getAttribute('data-cart-index');
+      var prodPrice = input.getAttribute('data-prod-price');
+      var totalCount = input.value;
+      var totalPriceElement = document.querySelector('.total-price[data-cart-index="' + cartIndex + '"]');
+      var totalPrice = prodPrice * totalCount + 3000; // 택배비 3000원 추가
+      totalPriceElement.textContent = totalPrice + '원';
+
+      // 전체 총 금액 업데이트
+      updateGlobalTotalAmount();
+  }
+
+  // 전체 총 금액 업데이트 함수
+  function updateGlobalTotalAmount() {
+      var totalAmountElement = document.getElementById('totalAmount');
+      var totalAmount = 0;
+
+      // 각 상품 행의 총 금액을 합산
+      var totalPrices = document.querySelectorAll('.total-price');
+      totalPrices.forEach(function (priceElement) {
+          totalAmount += parseInt(priceElement.textContent);
+      });
+
+      totalAmountElement.textContent = totalAmount + '원';
+  }
+</script>
+
+
+
+
 </body>
 </html>

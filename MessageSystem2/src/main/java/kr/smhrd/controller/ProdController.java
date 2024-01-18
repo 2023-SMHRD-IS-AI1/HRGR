@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.GenericServlet;
@@ -48,7 +49,7 @@ public class ProdController {
 	
 	@RequestMapping("/gosearch")
 	public String gosearch(Model model, @RequestParam("searchInput") String searchInput,HttpSession session) {
-		// if 문으로 겁색 결과 없을때 창 만들어야함;
+		// if 문으로 검색 결과 없을때 창 만들어야함;
 		List<Product> prodlist = ProductMapper.searchTopList(searchInput);
 		List<Product> prodNewlist = ProductMapper.searchNewList(searchInput);
 		Member member = (Member)session.getAttribute("loginMember");
@@ -180,6 +181,65 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 	    
 	    return ResponseEntity.ok("Added to myCart");
 	}
+	
+	
+		@RequestMapping("/goMyCart")
+		public String goMyCart(Model model, HttpSession session, Cart cart) {
+			
+			// 세션에서 로그인 한 사용자의 정보 가져오기
+		    Member loginMember = (Member)session.getAttribute("loginMember");
+
+			// 로그인 한 사용자의 cust_id값 가져오기
+		    String cust_id = loginMember.getCust_id();
+			
+		    // 사용자의 장바구니에 있는 모든 상품 Cart에 담아서 가져오기
+			List<Cart> cartList = ProductMapper.selectAllCart(cust_id);
+			
+			System.out.println("카트리스트 : "+ cartList);
+			
+			List<Cart> cartList2 = new ArrayList<>();
+			
+			for(Cart cart1 : cartList) {
+				int prod_idx = cart1.getProd_idx();
+				System.out.println(prod_idx);
+				
+				// 상품 이름 가져오기
+				String prod_name = ProductMapper.selectProdName(prod_idx);
+				System.out.println("상품 이름 : "+ prod_name);
+				// 상품 이미지이름 가져오기
+				String img_name = ProductMapper.selectProdImg(prod_idx);
+				System.out.println("상품 이미지 이름 : " + img_name);
+				
+				int cart_count = cart1.getCart_count();
+				System.out.println("상품 카운트 : "+ cart_count);
+				
+				int prod_price = cart1.getProd_price();
+				System.out.println("상품 가격 : "+ prod_price);
+				
+				// Cart 객체 생성
+			    Cart cart2 = new Cart();
+			    // 필요한 정보 설정
+			    cart2.setProd_idx(prod_idx);
+			    cart2.setProd_name(prod_name);
+			    cart2.setImg_name(img_name);
+			    cart2.setProd_price(cart1.getProd_price());
+			    cart2.setCart_count(cart_count);
+			    
+			    
+			    // cartList2에 추가
+			    cartList2.add(cart2);
+			    
+			    System.out.println("투 스트링 : "+cart2.toString());
+			    
+			}
+			
+			model.addAttribute("Cart", cartList2);
+			
+			// 상품 정보도 가져오기
+			
+			
+			return "myCart";
+		}
 
 	
 	

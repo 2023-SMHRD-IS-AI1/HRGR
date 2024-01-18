@@ -15,8 +15,8 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/vendor.css">
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="./resources/assets/css/vendor.css">
+    <link rel="stylesheet" type="text/css" href="./resources/assets/css/main.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -81,7 +81,7 @@
             <div class="col-sm-4 col-lg-3 text-center text-sm-start">
               <div class="main-logo">
                 <a href="index.html">
-                  <img src="images/harugreen.png" alt="logo" class="img-fluid" style="max-width: 60%;">
+                  <img src="./resources/images/harugreen.png" alt="logo" class="img-fluid" style="max-width: 60%;">
                 </a>
               </div>
             </div>
@@ -179,7 +179,7 @@
                       </li>
                   
                       <a href="#" target="_blank" class="nav-link btn-coupon-code">
-                  <img src="images/book-half.svg" alt="gift icon">
+                  <img src="./resources/images/book-half.svg" alt="gift icon">
                   <strong class="ms-2 text-dark">영농일지 보러가기</strong>
                 </a>
                     </ul>
@@ -236,7 +236,7 @@
   
             <div class="col-lg-3 col-md-6 col-sm-6">
               <div class="footer-menu">
-                <img src="images/harugreen.png" alt="logo">
+                <img src="./resources/images/harugreen.png" alt="logo">
                 <div class="social-links mt-5">
                   <ul class="d-flex list-unstyled gap-2">
                     <li>
@@ -308,10 +308,10 @@
           </div>
         </div>
       </div>
-      <script src="js/jquery-1.11.0.min.js"></script>
+      <script src="./resources/assets/js/jquery-1.11.0.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-      <script src="js/plugins.js"></script>
-      <script src="js/script.js"></script>
+      <script src="./resources/assets/js/plugins.js"></script>
+      <script src="./resources/assets/js/script.js"></script>
 </body>
 </html>

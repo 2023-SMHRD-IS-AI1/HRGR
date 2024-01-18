@@ -236,17 +236,17 @@
     </header>
 
       <!-- 여기에 본문 내용 채우면 됩니다~ -->
-	<div class="container">
+      <div class="container">
         <!-- Heading -->
-        <h1>로그인</h1>
+        <h1>회원가입</h1>
         
         <!-- Links -->
         <ul class="links">
           <li>
-            <a href="login_01.html" id="signin">로그인</a>
+            <a href="join_01.html" id="signup">회원가입</a>
           </li>
           <li>
-            <a href="join_01.html" id="signup">회원가입</a>
+            <a href="login_01.html" id="signin">로그인</a>
           </li>
           <li>
             <a href="#" id="reset">초기화</a>
@@ -255,18 +255,31 @@
         
         <!-- Form -->
         <form  action="" method="post">
-          <!-- email input -->
           <div class="first-input input__block first-input__block">
              <input type="tel" placeholder="전화번호를 입력하세요" class="input" id="email"   />
           </div>
-          <!-- password input -->
           <div class="input__block">
              <input type="password" placeholder="비밀번호를 입력하세요" class="input" id="password"    />
           </div>
-   
+          <div class="input__block">
+             <input type="password" placeholder="비밀번호를 다시 입력하세요" class="input" id="repeat__password"    />
+          </div>
+          <div class="input__block">
+             <input type="text" placeholder="이름을 입력하세요" class="input" id="user_name"    />
+          </div>
+          <div class="input__block">
+             <input type="email" placeholder="이메일을 입력하세요" class="input" id="user_email"    />
+          </div>
+          <div class="input__block">
+             <input type="text" placeholder="주소를 입력하세요" class="input" id="user_addr"    />
+            </div>
+            <div class="input__block">
+               <input type="text" placeholder="생년월일을 입력하세요" class="input" id="user_bday"    />
+            </div>
+          
           <!-- sign in button -->
           <button class="signin__btn">
-            로그인
+            회원가입
           </button>
         </form>
         <!-- separator -->
@@ -276,7 +289,7 @@
         <!-- google button -->
         <button class="github__btn">
           <i class="fa fa- fa-comment"></i>
-          카카오톡으로 로그인
+          카카오톡으로 가입
         </button>
       </div>
       

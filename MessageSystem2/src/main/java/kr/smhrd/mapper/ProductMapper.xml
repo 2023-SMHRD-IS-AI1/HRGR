@@ -113,5 +113,8 @@ LEFT JOIN tb_prod_image tb_prod_img ON tb_prod.prod_idx = tb_prod_img.prod_idx
 WHERE tb_order.cust_id = #{cust_id};
 </select>
 
+<select id="selectCart" parameterType="kr.smhrd.entity.Cart" resultType="Int">
+	select * from tb_myCart where cust_id=#{cust_id} and prod_idx=#{prod_idx}
+</select>
 
 </mapper>

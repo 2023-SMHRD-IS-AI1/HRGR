@@ -123,5 +123,56 @@ delete from tb_qna where cust_id = #{cust_id} and prod_idx = #{prod_idx}
 
 </delete>
 
+<select id="searchMysell" parameterType="String" resultType="kr.smhrd.entity.Member">
+SELECT
+    r.cust_id,
+    p.prod_name AS prod_name,
+    p.prod_price AS prod_price,
+    pi.img_name AS img_name,
+    r.prod_ratings AS prod_ratings,
+    r.review_content AS review_content
+FROM
+    tb_review r
+JOIN
+    tb_prod p ON r.prod_idx = p.prod_idx
+LEFT JOIN
+    tb_prod_image pi ON p.prod_idx = pi.prod_idx
+WHERE
+    p.cust_id = #{cust_id};
+</select>
+
+<select id="searchDia" parameterType="String" resultType="kr.smhrd.entity.Member">
+SELECT
+    d.cust_id AS diary_cust_id,
+    d.diary_idx,
+    d.diary_title AS diary_title,
+    d.diary_content AS diary_content,
+    d.created_at AS diary_created_at,
+    d.diary_likes AS diary_likes,
+    di.img_idx,
+    di.img_name AS diary_img_name,
+    di.img_real_name,
+    di.img_ext,
+    di.img_size,
+    s.cust_id AS seller_cust_id,
+    s.company_name AS company_name
+FROM
+    tb_diary d
+LEFT JOIN
+    tb_diary_image di ON d.diary_idx = di.diary_idx
+LEFT JOIN
+    tb_seller s ON d.cust_id = s.cust_id
+WHERE
+    d.cust_id = #{cust_id};
+</select>
+
+<select id="qnaList" parameterType="String" resultType="kr.smhrd.entity.Member">
+SELECT q.*, p.*, i.img_name AS prod_img_name
+FROM tb_qna q
+JOIN tb_prod p ON q.prod_idx = p.prod_idx
+LEFT JOIN tb_prod_image i ON p.prod_idx = i.prod_idx
+WHERE p.cust_id = #{cust_id};
+</select>
+
 
 </mapper>

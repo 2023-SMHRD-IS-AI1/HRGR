@@ -169,7 +169,7 @@ public class MemberController {
 //  판매자 등록
 	@RequestMapping("/insertSeller")
 	public String insertSeller(Member member, HttpSession session) {
-//		세션에서 로그인 한 사용자의 정보 가져오기 
+//		세션에서 로그인 한 사용자의 정보 가져오기
 		Member loginMember = (Member)session.getAttribute("loginMember");
 		System.out.println("\n"+loginMember.toString() +"\n");
 		
@@ -198,7 +198,7 @@ public class MemberController {
 	@RequestMapping("/goSeller")
 	public String goSeller() {
 		
-		return "sellerAccount";
+		return "sellerRegist";
 	}
 	@PostMapping("/searchLike")
 	@ResponseBody
@@ -252,8 +252,16 @@ public class MemberController {
 		model.addAttribute("searchQna",searchQna);
 		System.out.println(model.toString());
 		
-		if(loginMember.getCust_role().equals('S')) {
+		if(loginMember.getCust_role().equals("S")) {
+			List<Member> sellList = memberMapper.searchMysell(cust_id);
+			model.addAttribute("sellList",sellList);
 			
+			List<Member> diaryList = memberMapper.searchDia(cust_id);
+			model.addAttribute("diaryList",diaryList);
+			
+			List<Member> qnaList = memberMapper.qnaList(cust_id);
+			model.addAttribute("qnaList",qnaList);
+			session.setAttribute("qnaList1", qnaList);
 			return "sellerMyPage";
 		}
 		
@@ -315,6 +323,7 @@ public class MemberController {
 		memberMapper.qnaDelete(member);
 		return true;
 	}
+	
 	
 	
 	

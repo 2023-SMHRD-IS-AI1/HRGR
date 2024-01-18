@@ -469,7 +469,95 @@ LEFT JOIN
 LEFT JOIN
     tb_seller s ON q.cust_id = s.cust_id
 WHERE
-    q.cust_id = 1;
+    q.cust_id = 9;
     
     select * from tb_cust where cust_id=1
-    update tb_cust set cust_role='U' where cust_id=1
+    update tb_cust set cust_role='S' where cust_id=9
+    
+  select * from tb_prod where cust_id=9
+    
+select * from tb_cust; 
+  
+
+SELECT
+    r.cust_id,
+    p.prod_name AS prod_name,
+    p.prod_price AS prod_price,
+    pi.img_name AS img_name,
+    r.prod_ratings AS prod_ratings
+FROM
+    tb_review r
+JOIN
+    tb_prod p ON r.prod_idx = p.prod_idx
+LEFT JOIN
+    tb_prod_image pi ON p.prod_idx = pi.prod_idx
+WHERE
+    p.cust_id = 9;
+  12-25  
+  select * from tb_review
+  
+  insert into tb_review (prod_idx,cust_id,review_content,prod_ratings,reviewed_at)
+values(19,1,'뭐맛있다.',5,NOW())
+
+
+CREATE TABLE tb_diary_image
+(
+    `img_idx`        INT UNSIGNED     NOT NULL    AUTO_INCREMENT COMMENT '이미지 식별자', 
+    `diary_idx`      INT UNSIGNED     NOT NULL    COMMENT '일지 식별자', 
+    `img_name`       VARCHAR(250)     NOT NULL    COMMENT '파일 이름', 
+    `img_real_name`  VARCHAR(1000)    NOT NULL    COMMENT '파일 실제 이름', 
+    `img_ext`        VARCHAR(10)      NOT NULL    COMMENT '파일 확장자', 
+    `img_size`       INT              NOT NULL    COMMENT '파일 사이즈', 
+     PRIMARY KEY (img_idx)
+);
+
+insert into tb_diary_image (diary_idx,img_name,img_real_name,img_ext,img_size)
+values(1,'푸키먼231.jpg','C:\eGovFrame-4.0.0\workspace.edu\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\HaruGreen\resources\upload','jgp',12)
+ 
+
+CREATE TABLE tb_diary
+(
+    `diary_idx`      INT UNSIGNED     NOT NULL    AUTO_INCREMENT COMMENT '일지 식별자', 
+    `cust_id`        VARCHAR(30)      NOT NULL    COMMENT '회원 아이디', 
+    `diary_title`    VARCHAR(1000)    NOT NULL    COMMENT '일지 제목', 
+    `diary_content`  TEXT             NOT NULL    COMMENT '일지 내용', 
+    `created_at`     DATETIME         NOT NULL    COMMENT '작성일자', 
+    `diary_likes`    INT              NOT NULL    COMMENT '일지 추천수', 
+     PRIMARY KEY (diary_idx)
+);
+
+insert into tb_diary (cust_id,diary_title,diary_content,created_at,diary_likes)
+values(9,'싱싱한 사과','맛좋은 사과1',NOW(),25);
+
+
+SELECT
+    d.cust_id AS diary_cust_id,
+    d.diary_idx,
+    d.diary_title,
+    d.diary_content,
+    d.created_at AS diary_created_at,
+    d.diary_likes,
+    di.img_idx,
+    di.img_name,
+    di.img_real_name,
+    di.img_ext,
+    di.img_size,
+    s.cust_id AS seller_cust_id,
+    s.company_name
+FROM
+    tb_diary d
+LEFT JOIN
+    tb_diary_image di ON d.diary_idx = di.diary_idx
+LEFT JOIN
+    tb_seller s ON d.cust_id = s.cust_id
+WHERE
+    d.cust_id = 9;
+    
+    
+    
+SELECT q.*, p.*, i.img_name AS prod_img_name
+FROM tb_qna q
+JOIN tb_prod p ON q.prod_idx = p.prod_idx
+LEFT JOIN tb_prod_image i ON p.prod_idx = i.prod_idx
+WHERE p.cust_id = 9;
+    

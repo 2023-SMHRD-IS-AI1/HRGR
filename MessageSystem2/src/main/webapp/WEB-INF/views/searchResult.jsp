@@ -1,4 +1,3 @@
-
 <%@page import="kr.smhrd.entity.Member"%>
 <%@page import="kr.smhrd.entity.Product"%>
 <%@page import="kr.smhrd.entity.Cart"%>
@@ -437,7 +436,7 @@
 																</button>
 															</span>
 														</div>
-														<a href="#" class="nav-link" onclick="addToCart(event,${product.prod_idx}, 'quantity${loopStatus.index}')">Add to Cart <iconify-icon
+														<a href="#" class="nav-link" onclick="addToCart(event,${product.prod_idx}, ${product.prod_price}, 'quantity${loopStatus.index}')">Add to Cart <iconify-icon
 																icon="uil:shopping-cart"></a>
 													</div>
 												</div>
@@ -531,7 +530,7 @@
 																	<svg width="16" height="16">
 																		<use xlink:href="#minus"></use></svg>
 																</button>
-															</span> <input type="text" id="quantity" name="quantity${loopStatus.index}"
+															</span> <input type="text" id="quantity" name="quantity(2)${loopStatus.index}"
 																class="form-control input-number" value="1"> <span
 																class="input-group-btn">
 																<button type="button"
@@ -542,7 +541,7 @@
 																</button>
 															</span>
 														</div>
-														<a href="#" class="nav-link" onclick="addToCart">Add to Cart <iconify-icon
+														<a href="#" class="nav-link" onclick="addToCart(event,${ProductNew.prod_idx}, ${ProductNew.prod_price}, 'quantity(2)${loopStatus.index}')">Add to Cart <iconify-icon
 																icon="uil:shopping-cart"></a>
 													</div>
 												</div>
@@ -676,34 +675,33 @@
 	
 	<script>
 	// 장바구니 추가
-	function addToCart(event, prod_idx, name) {
+	function addToCart(event, prod_idx, prod_price, name) {
 
 		var quantityElement = document.getElementsByName(name)[0];
 		var quantityValue = quantityElement.value;
 	    
 	        var prodInfo = {
 	    		    prod_idx: prod_idx,
-	    		    cart_count: quantityValue
+	    		    cart_count: parseInt(quantityValue, 10),
+	    		    prod_price: prod_price
 	    		};
 	    			console.log(prodInfo);
 	    		    // AJAX를 사용하여 서버로 데이터 전송
 	    		    $.ajax({
 	    		        type: 'POST',
 	    		        url: 'http://localhost:8081/controller/insertCart',
+	    		      
 	    		        data: JSON.stringify(prodInfo),
 	    		        contentType: 'application/json',
-	    		        dataType: 'json', 
 	    		        success: function(response) {
 	    		            console.log('Server response:',response);
-	    		            location.reload();
+	    		            /* location.reload(); */
 	    		            // TODO: 서버 응답에 따른 동작 수행
 	    		        },
 	    		        error: function(error) {
 	    		            console.error('Error:', error);
 	    		        }
 	    			});
-	  
-		alert("장바구니에 추가되었습니다!");
 	    // 기본 동작 막기
 	    event.preventDefault();
 		};

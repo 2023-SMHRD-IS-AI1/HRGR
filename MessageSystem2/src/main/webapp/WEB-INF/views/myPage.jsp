@@ -28,7 +28,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+   
 </head>
 <body>
 	<% 
@@ -265,6 +266,7 @@
                 
               </div>
             </nav>
+            
             <div class="tab-content" id="nav-tabContent">
             
               <div class="tab-pane fade show active" id="nav-myOder" role="tabpanel" aria-labelledby="nav-myOder-tab" tabindex="0">
@@ -341,7 +343,7 @@
                 <label class="form-check-label" for="flexCheckDefault">
                   전체선택
                 </label>
-                <button type="button" class="btn btn-outline-success btn-sm" onclick="deleteSelected(${loopStatus.index})">선택삭제</button>
+                <button type="button" class="btn btn-outline-success btn-sm" >선택삭제</button>
               </div>
               <!-- 상품ㄱㄱ -->
         <div class="prodLike_pordLine">
@@ -475,14 +477,14 @@
           <div class="myReview_content">
             <h2 style="font-weight: bold; margin-bottom: 14px;">나문희 (나의 문의라는 뜻)</h2>
             <!-- 제목 아래 큰틀 -->
-			<c:forEach var="searchQna" items="${searchQna}" varStatus="i">
+			<c:forEach var="searchQna" items="${searchQna }" varStatus="i">
     		<c:if test="${i.index < 10}"> 
             <div class="myReview_box border-bottom border-top border-success">
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-1">
                   <img class="rounded" src="./resources/upload/${searchQna.prod_image_name }" alt="" style="max-width: 100%;" >
                 </div>
-                <div class="col-10">${searchQna.prod_name}</div>
+                <div class="col-10">${searchQna.prod_name }</div>
                   <div class="col-1"><a href="#" style="text-decoration: none; color: green;" onclick="deleteQna(${searchQna.prod_idx})">삭제</a></div>
                
               </div>
@@ -490,7 +492,7 @@
               <div style="padding: 10px 20px;">
                <div style="font-weight: bold; margin-bottom: 10px;">문의내용</div> 
                <div>${searchQna.question}</div>
-               <div style="font-size: 13px; color: rgb(145, 145, 145);">${searchQna.questioned_at}</div>
+               <div style="font-size: 13px; color: rgb(145, 145, 145);">${searchQna.questioned_at }</div>
               </div>
               <hr style="margin: 0px;">
               <div style="padding: 10px 50px;">
@@ -498,8 +500,8 @@
                   <svg width="16" height="16" focusable="false" viewBox="0 0 20 20" aria-hidden="true" role="presentation" style="fill: rgb(136, 136, 136);"><g fill="none" fill-rule="evenodd"><path d="M0 0H20V20H0z"></path><path stroke="#888888" d="M5 3.333L5 13.333 15 13.333"></path></g></svg>
                   ${searchQna.seller_company_name }
                 </div> 
-                   <div style="margin-left: 20px;"> ${searchQna.answer}
-                    <div style="font-size: 13px; color: rgb(145, 145, 145);">${searchQna.answered_at}</div>
+                   <div style="margin-left: 20px;"> ${searchQna.answer }
+                    <div style="font-size: 13px; color: rgb(145, 145, 145);">${searchQna.answered_at }</div>
                   </div>
                </div>
             </div>
@@ -567,7 +569,7 @@
               <hr style="margin: 0px; color: rgb(188, 188, 188);">
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-2 border-end" align="right">비밀번호 확인</div>
-                <div class="col-10"><input type="password" placeholder="PW확인" id="pwCheck" name="pwCheck"><h4 id="passwordMessage"></div>  
+                <div class="col-10"><input type="password" placeholder="PW확인" id="pwCheck" name="pwCheck"><h4 id="passwordMessage"></h4></div>  
                 <div style="margin-top: 10px;">
   <input type="button" value="비밀번호 확인" onclick="checkPasswordMatch()" style="background-color: #4CAF50; /* Lighter green color */ color: white; padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer;">
 </div>             
@@ -701,6 +703,7 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
       <script src="js/plugins.js"></script>
       <script src="js/script.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
        <script>
     document.getElementById("userIcon").addEventListener("click", function() {
        window.location.href = "goLogin";

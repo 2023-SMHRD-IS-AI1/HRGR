@@ -33,6 +33,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import kr.smhrd.entity.Board;
 import kr.smhrd.entity.Cart;
 import kr.smhrd.entity.Member;
+import kr.smhrd.entity.ProdDto;
 import kr.smhrd.entity.Product;
 
 import kr.smhrd.mapper.MemberMapper;
@@ -142,14 +143,14 @@ public class ProdController {
 		return "Main";
 	}
 	
-
+	
 	// 장바구니에 추가
 	@PostMapping("/insertCart")
-	@ResponseBody
 	public ResponseEntity<String> addToCart(
-	@RequestParam int prod_idx, @RequestParam String cart_count, Cart cart, HttpSession session) {
+Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 		
 		System.out.println("\n !!insertCart 시작!! \n");
+		
 		
 		// 세션에서 로그인 한 사용자의 정보 가져오기
 	    Member loginMember = (Member)session.getAttribute("loginMember");
@@ -159,17 +160,25 @@ public class ProdController {
 
 	    // cart에 cust_id, prod_idx, prod_price값 넣기
 	    cart.setCust_id(cust_id);
-	    cart.setProd_idx(prod_idx);
-	    cart.setCart_count(cart_count);
+		
+		cart.setProd_idx(dto.getProd_idx()); 
+		cart.setCart_count(dto.getCart_count());
+		cart.setProd_price(dto.getProd_price());
 	    
 	    System.out.println(cart.toString());
 	    // Mapper로 이동
-	    ProductMapper.addToCart(cart);
+	    // DB검색해서 같은 prod_idx, cust_id가 있다면 안넣음
+	    
+	    Integer cnt = ProductMapper.selectCart(cart);
+	    
+	    if(cnt != null && cnt > 0){
+	    	System.out.println("이미 장바구니에 넣은 상품입니다");
+	    }else {
+	    	System.out.println("장바구니 담기 성공~");
+	    	ProductMapper.addToCart(cart);
+	    }
 	    
 	    return ResponseEntity.ok("Added to myCart");
-	    
-	    
-		
 	}
 
 	

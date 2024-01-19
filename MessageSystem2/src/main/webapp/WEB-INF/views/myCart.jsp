@@ -19,7 +19,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/vendor.css">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/stylejm.css">
-
+	<link rel="stylesheet" type="text/css" href="./resources/assets/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -220,9 +220,7 @@
             <div class="col-3">
                 <div style="display: flex; justify-content: space-between;">
                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <div class="prodLike_img-wrapper">
-                    <img src="resources/upload/<c:out value="${cart.img_name}" />" alt="" style="margin-top: 0px; margin-bottom: 0px;">
-                    </div>
+                    <img class="prodLike_img-wrapper" src="resources/upload/<c:out value="${cart.img_name}" />" alt="" style="margin-top: 0px; margin-bottom: 0px;">
                 </div>
             </div>
             <div class="col-7 d-flex flex-column justify-content-around border-end" style="font-size: 16px;">
@@ -254,7 +252,7 @@
     </div>
 </c:forEach>
 
-              <!-- 상품 끝 -->               
+              <!-- 상품 끝 -->
             <div class="prodLike_allCheck border-bottom border-success row" style="background: rgb(246, 246, 246); margin-left: 0px; margin-right: 0px;">
     <div class="col-10" align="right" style="font-weight: bold; font-size: 18px; padding-right: 40px;">총 금액</div>
     <div class="col-2" id="totalAmount" style="display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold;">
@@ -355,11 +353,14 @@
       <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <script>
-  $(document).ready(function() {
+$(document).ready(function() {
     // 전체 선택/해제 체크박스의 이벤트 처리
     $('#selectAllCheckbox').change(function() {
       // 모든 하위 체크박스들의 상태를 전체 선택/해제 체크박스의 상태로 설정
       $('.prodLike_content input[type="checkbox"]').prop('checked', $(this).prop('checked'));
+      
+      // 전체 총 금액 업데이트
+      updateGlobalTotalAmount();
     });
   });
   
@@ -396,6 +397,22 @@
       });
 
       totalAmountElement.textContent = totalAmount + '원';
+  }
+  
+  // 선택된 상품을 삭제하는 함수
+  function deleteSelectedItems() {
+      var checkboxes = document.getElementsByName('selectedItems');
+      var cartLines = document.querySelectorAll('.prodLike_pordLine');
+
+      for (var i = checkboxes.length - 1; i >= 0; i--) {
+          if (checkboxes[i].checked) {
+              // 체크된 상품 삭제
+              cartLines[i].remove();
+          }
+      }
+
+      // 총 금액 다시 계산
+      updateGlobalTotalAmount();
   }
 </script>
 

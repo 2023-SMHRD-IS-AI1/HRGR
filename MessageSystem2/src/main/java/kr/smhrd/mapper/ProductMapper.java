@@ -33,7 +33,13 @@ import kr.smhrd.entity.Product;
 
 	 public String selectProdImg(int prod_idx);
 	 
-	 
+	 public List<Product> selectProducts();
+		
+	public List<Product> selectLikeDiary();
+		
+	public List<Product> selectTopBuy();
+		
+	public List<Product> selectEditor();
 	 
 	 
 	 

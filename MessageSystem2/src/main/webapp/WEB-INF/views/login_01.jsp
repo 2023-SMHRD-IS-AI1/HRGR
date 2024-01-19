@@ -256,16 +256,17 @@
         <!-- Form -->
         <form  action="" method="post">
           <!-- email input -->
-          <div class="first-input input__block first-input__block">
-             <input type="tel" placeholder="전화번호를 입력하세요" class="input" id="email"   />
+          <div class="form-floating join_form">
+            <input type="tel" class="form-control" id="" placeholder="" >
+            <label for="floatingInput">전화번호</label>
           </div>
-          <!-- password input -->
-          <div class="input__block">
-             <input type="password" placeholder="비밀번호를 입력하세요" class="input" id="password"    />
+          <div class="form-floating join_form">
+            <input type="password" class="form-control" id="" placeholder="">
+            <label for="floatingPassword">비밀번호</label>
           </div>
    
           <!-- sign in button -->
-          <button class="signin__btn">
+          <button class="signin__btn" type="submit">
             로그인
           </button>
         </form>

@@ -261,7 +261,7 @@ public class MemberController {
 			
 			List<Member> qnaList = memberMapper.qnaList(cust_id);
 			model.addAttribute("qnaList",qnaList);
-			session.setAttribute("qnaList1", qnaList);
+			
 			return "sellerMyPage";
 		}
 		

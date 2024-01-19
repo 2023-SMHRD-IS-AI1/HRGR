@@ -31,10 +31,10 @@ public class BoardController {
 	
 	
 	// 관리자가 게시글 삭제
-	@RequestMapping("/boardDelete")
-	public String boardDelete(int idx) {
-		boardMapper.boardDelete(idx);
-		return "redirect:/goBoardMain";
+	@RequestMapping("/godiary")
+	public String godiary() {
+		
+		return "diary";
 	}
 	
 	// 게시글 상세보기

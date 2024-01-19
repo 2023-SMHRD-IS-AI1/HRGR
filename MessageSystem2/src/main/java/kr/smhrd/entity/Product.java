@@ -23,9 +23,17 @@ public class Product {
 	private String prod_stock;
 	private int prod_ratings;
 	private int cart_count;
-
 	
-	private String prod_cust_id;
+   
+    private int seller_idx;
+    private String company_name;
+    
+    private String certified_yn;
+    
+    private int img_idx;
+   
+	
+    private String prod_cust_id;
 
 	private String prod_desc;
 
@@ -100,8 +108,20 @@ public class Product {
 		this.ordered_at = ordered_at;
 		this.img_name = img_name;
 	}
+	 private int qna_idx;
+	    
+	   private String question;
+	   private String questioned_at;
+	   private String answer;
+	   private String answered_at;
+	   
+	   private String prod_image_name;
+	   private String product_customer_id;
+	   private String seller_company_name;
 	
-	
-	
-
+	   private String review_content;
+	   private String reviewed_at;
+	   private String review_img_name;
+	   private String product_img_name;
+	   private String cust_nick;
 }

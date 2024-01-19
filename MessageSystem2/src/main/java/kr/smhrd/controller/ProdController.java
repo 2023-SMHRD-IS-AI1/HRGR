@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.mysql.cj.Session;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -240,7 +241,26 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 			
 			return "myCart";
 		}
-
+		
+		@RequestMapping("/goprodDetail")
+	       public String goprodDetail(@RequestParam("prod_idx") int prod_idx,
+	                                   HttpSession session,Model model) {
+	           // 이제 prodIdx, prodName, prodPrice, quantityInputId 값을 사용하여 로직을 수행할 수 있습니다.
+	         
+	         // 세션에서 로그인 한 사용자의 정보 가져오기
+			System.out.println("asdgasdgasdga!!!!:    "+ prod_idx);
+	          List<Product> prodList = ProductMapper.prodDetail(prod_idx);
+	          model.addAttribute("prodList",prodList);
+	          
+	          List<Product> qnaList = ProductMapper.searchQna(prod_idx);
+	          model.addAttribute("qnaList",qnaList);
+	          System.out.println("qnsandasnfasnf!~~~~~~~~~:" + qnaList);
+	          
+	          List<Product> reviewList = ProductMapper.searchReview(prod_idx);
+	          model.addAttribute("reviewList",reviewList);
+	          
+	          return "prodDetail"; // 적절한 뷰 이름을 반환합니다.
+	       }
 	
 	
 }

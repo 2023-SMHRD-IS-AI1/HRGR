@@ -1,5 +1,10 @@
+
+<%@page import="java.util.List"%>
+<%@page import="kr.smhrd.entity.Member"%>
+<%@page import="kr.smhrd.entity.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,9 +26,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./resources/assets/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 </head>
 <body>
+<%
+	Member Memberlogin = (Member) session.getAttribute("loginMember");
+    List<Product> prodList = (List<Product>) request.getAttribute("prodList");
+    System.out.println("dasff:   "+prodList);
+    
+	%>
+	
+
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <defs>
           <symbol xmlns="http://www.w3.org/2000/svg" id="link" viewBox="0 0 24 24">
@@ -227,20 +241,27 @@
           <!-- 브레드크럼 성공함 -->
               <div class="prodDetail_content"> 
                 <!-- 메뉴바 위 박스 -->
+               
                <div class="row">
                 <div class="col-6">
-                  <img src="./resources/images/dangwi.png" alt="당귀사진임" style="max-width: 100%; padding: 10px;">
+                  <img src="./resources/upload/${prodList.get(0).getImg_name() }" alt="당귀사진임" style="max-width: 100%; padding: 10px;">
                 </div>
                 <div class="col-6 d-flex flex-column justify-content-around">
                   <div>
-                    <h3 style="font-weight: bold;">당신은 귀한사람 (당귀라는뜻)</h3>
+                    <h3 style="font-weight: bold;"><%= prodList.get(0).getProd_name() %></h3>
                   </div>
                   <div>
-                    <span style="font-size: 20px; font-weight: bold;">김연성농원<i class="fa fa-check-circle" style="color: green;"></i></span>
+                    <span style="font-size: 20px; font-weight: bold;"><%= prodList.get(0).getCompany_name() %>
+                    <%if(prodList.get(0).getCertified_yn().equals("Y")){ %>
+                    	<i class="fa fa-check-circle" style="color: green;"></i>
+                    <%}else{ %>
+                    
+                    <%} %>
+                    </span>
                   </div>
                   <hr style="color: rgb(156, 156, 156);">
                   <div style="color: grey; font-size: 12px;"> 최근 시세보다 500원↓ (최근시세 5,000원)</div>
-                  <div style="color: rgb(0, 141, 30); font-size: 30px; font-weight: bold;"> 4,500원</div>
+                  <div style="color: rgb(0, 141, 30); font-size: 30px; font-weight: bold;"><%= prodList.get(0).getProd_price() %>원</div>
                   <hr style="color: rgb(156, 156, 156);">
                   <div style="font-size: 12px;">
                     배송비 3,000원
@@ -248,9 +269,10 @@
                   </div>
                   <hr style="color: rgb(156, 156, 156);">
                   <div style="display: flex; justify-content: space-around;">
-                    <input type="number" class="form-control" value="1" min="1" style="width: 60px;">
-                    <button type="button" class="btn btn-lg btn-outline-success">찜</button>
-                    <button type="button" class="btn btn-lg btn-outline-success">장바구니담기</button>
+                    <input type="number"  min="1" style="width: 60px;" id="quantity" name="quantity${loopStatus.index}"
+																class="form-control input-number" value="1">
+                    <button type="button" class="btn btn-lg btn-outline-success" onclick="addToWishlist(event, '${prodList.get(0).getProd_name()}',${prodList.get(0).getProd_stock()}, ${prodList.get(0).getProd_price()}, ${prodList.get(0).getProd_ratings()},${prodList.get(0).getProd_idx()})">찜</button>
+                    <button type="button" class="btn btn-lg btn-outline-success" onclick="addToCart(event,${prodList.get(0).getProd_idx()}, ${prodList.get(0).getProd_price()}, 'quantity${loopStatus.index}')">장바구니담기</button>
                     <button type="button" class="btn btn-lg btn-success">바로구매</button>
                   </div>
                 </div>
@@ -282,110 +304,55 @@
         <!-- 후기페이지시작 -->
         <div>
           <div class="myReview_box">
+          <c:forEach var="reviewList" items="${reviewList }" varStatus="i">
+			<c:if test="${i.index < 10}">
 <div style="padding: 20px 40px;">
   <div class="row d-flex justify-content-between">
     <div class="col-3 review-img-wrapper">
-      <img src="https://cdn.nongupin.co.kr/news/photo/202304/98428_56733_2050.jpg" alt="리뷰사진인데용" style="max-width: 100%;">
+      <img src="#" alt="리뷰사진인데용" style="max-width: 100%;">
     </div>
     <div class="col-9 d-flex flex-column justify-content-between">
-        <div>엄*은<br>
-          ★★★★☆</div>
+        <div>${reviewList.cust_nick }<br>
+          ★${reviewList.prod_ratings }</div>
         <hr style="color: rgb(156, 156, 156); margin: 0px;">
-        <div>사장님이 신선하고 토마토가 친절해요<br>근데 저 토마토 안좋아해요</div>
-        <div>2024. 01. 15</div>
+        <div>${reviewList.review_content }</div>
+        <div>${reviewList.reviewed_at }</div>
     </div>
   </div>
 </div>
-<hr style="color: rgb(156, 156, 156); margin: 0px;">
-<div style="padding: 20px 40px;">
-  <div class="row d-flex justify-content-between">
-    <div class="col-3 review-img-wrapper">
-      <img src="https://cdn.nongupin.co.kr/news/photo/202304/98428_56733_2050.jpg" alt="리뷰사진인데용" style="max-width: 100%;">
-    </div>
-    <div class="col-9 d-flex flex-column justify-content-between">
-        <div>엄*은<br>
-          ★★★★☆</div>
-        <hr style="color: rgb(156, 156, 156); margin: 0px;">
-        <div>사장님이 신선하고 토마토가 친절해요<br>근데 저 토마토 안좋아해요</div>
-        <div>2024. 01. 15</div>
-    </div>
-  </div>
-</div>
-<hr style="color: rgb(156, 156, 156); margin: 0px;">
-<div style="padding: 20px 40px;">
-  <div class="row d-flex justify-content-between">
-    <div class="col-3 review-img-wrapper">
-      <img src="https://cdn.nongupin.co.kr/news/photo/202304/98428_56733_2050.jpg" alt="리뷰사진인데용" style="max-width: 100%;">
-    </div>
-    <div class="col-9 d-flex flex-column justify-content-between">
-        <div>엄*은<br>
-          ★★★★☆</div>
-        <hr style="color: rgb(156, 156, 156); margin: 0px;">
-        <div>사장님이 신선하고 토마토가 친절해요<br>근데 저 토마토 안좋아해요</div>
-        <div>2024. 01. 15</div>
-    </div>
-  </div>
-</div>
-<hr style="color: rgb(156, 156, 156); margin: 0px;">
-<div style="padding: 20px 40px;">
-  <div class="row d-flex justify-content-between">
-    <div class="col-3 review-img-wrapper">
-      <img src="https://cdn.nongupin.co.kr/news/photo/202304/98428_56733_2050.jpg" alt="리뷰사진인데용" style="max-width: 100%;">
-    </div>
-    <div class="col-9 d-flex flex-column justify-content-between">
-        <div>엄*은<br>
-          ★★★★☆</div>
-        <hr style="color: rgb(156, 156, 156); margin: 0px;">
-        <div>사장님이 신선하고 토마토가 친절해요</div>
-        <div>2024. 01. 15</div>
-    </div>
-  </div>
-</div>
-</div>
-          </div>
+</c:if>
+		</c:forEach>
+
+
           <!-- 후기페이지끝~ -->
         </div>
         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
           <!-- 문의페이지시작 -->
           <div>
             <!-- 문의 하나 -->
+            <c:forEach var="qnaList" items="${qnaList }" varStatus="i">
+			<c:if test="${i.index < 10}">
             <div class="prodReview_box" style="padding: 20px 20px 0px 20px;">
               <div style="padding: 10px 20px;">
                <div style="font-weight: bold; margin-bottom: 10px;">문의내용</div> 
-               <div> 저 반정도 먹었는데 반품할수있나요? 저 사실 토마토 안좋아하거든용</div>
-               <div style="font-size: 13px; color: rgb(145, 145, 145);">2024. 01. 14</div>
+               <div> ${qnaList.question }</div>
+               <div style="font-size: 13px; color: rgb(145, 145, 145);">${qnaList.questioned_at }</div>
               </div>
               <hr style="color: rgb(156, 156, 156);">
               <div style="padding: 10px 50px;">
                 <div style="font-weight: bold; margin-bottom: 10px;">
                   <svg width="16" height="16" focusable="false" viewBox="0 0 20 20" aria-hidden="true" role="presentation" style="fill: rgb(136, 136, 136);"><g fill="none" fill-rule="evenodd"><path d="M0 0H20V20H0z"></path><path stroke="#888888" d="M5 3.333L5 13.333 15 13.333"></path></g></svg>
-                  김연성농원
+                  ${qnaList.company_name }
                 </div> 
-                   <div style="margin-left: 20px;"> 죄송하지만 상품에 문제가 없다면 반품은 불가합니다.
-                    <div style="font-size: 13px; color: rgb(145, 145, 145);">2024. 01. 14</div>
+                   <div style="margin-left: 20px;"> ${qnaList.answer }
+                    <div style="font-size: 13px; color: rgb(145, 145, 145);">${qnaList.answered_at }</div>
                   </div>
                </div>
             </div>
+           </c:if>
+		</c:forEach>
             <!-- 문의 하나 끝 -->
-            <hr style="color: rgb(127, 127, 127);">
-            <!-- 문의 하나 -->
-            <div class="prodReview_box" style="padding: 0px 20px;">
-              <div style="padding: 10px 20px;">
-               <div style="font-weight: bold; margin-bottom: 10px;">문의내용</div>
-               <div> 저 반정도 먹었는데 반품할수있나요? 저 사실 토마토 안좋아하거든용</div>
-               <div style="font-size: 13px; color: rgb(145, 145, 145);">2024. 01. 14</div>
-              </div>
-              <hr style="color: rgb(156, 156, 156);">
-              <div style="padding: 10px 50px;">
-                <div style="font-weight: bold; margin-bottom: 10px;">
-                  <svg width="16" height="16" focusable="false" viewBox="0 0 20 20" aria-hidden="true" role="presentation" style="fill: rgb(136, 136, 136);"><g fill="none" fill-rule="evenodd"><path d="M0 0H20V20H0z"></path><path stroke="#888888" d="M5 3.333L5 13.333 15 13.333"></path></g></svg>
-                  김연성농원
-                </div> 
-                   <div style="margin-left: 20px;"> 죄송하지만 상품에 문제가 없다면 반품은 불가합니다.
-                    <div style="font-size: 13px; color: rgb(145, 145, 145);">2024. 01. 14</div>
-                  </div>
-               </div>
-            </div>
+            
             <!-- 문의 하나 끝 -->
           </div>
             <!-- 문의페이지끝~ -->
@@ -513,5 +480,70 @@
     window.location.href = 'gosearch?searchInput=' + encodeURIComponent(inputValue);
   });
 </script>
+<script>
+	function addToWishlist(event, prodName, prodStock, prodPrice, prodRatings, prod_idx) {
+		
+	    var wishlistItem = {
+	        prodName: prodName,
+	        prodStock: prodStock,
+	        prodPrice: prodPrice,
+	        prodRatings: prodRatings,
+	        prod_idx: prod_idx,
+	        
+	    };
+		console.log(wishlistItem)
+		
+	    // AJAX를 사용하여 서버로 데이터 전송
+	    $.ajax({
+	        type: 'POST',
+	        url: 'searchLike',
+	        data: wishlistItem,
+	        success: function(response) {
+	            console.log('Server response:',response);
+	            // TODO: 서버 응답에 따른 동작 수행
+	            alert('찜 완료')
+	        },
+	        error: function(error) {
+	            console.error('Error:', error);
+	        }
+	    });
+	// 기본 동작 막기
+	    event.preventDefault();
+	   };
+	</script>
+	<script >
+	function addToCart(event, prod_idx, prod_price, name) {
+
+		var quantityElement = document.getElementsByName(name)[0];
+		var quantityValue = quantityElement.value;
+	    
+	        var prodInfo = {
+	    		    prod_idx: prod_idx,
+	    		    cart_count: parseInt(quantityValue, 10),
+	    		    prod_price: prod_price
+	    		};
+	    			console.log(prodInfo);
+	    		    // AJAX를 사용하여 서버로 데이터 전송
+	    		    $.ajax({
+	    		        type: 'POST',
+	    		        url: 'http://localhost:8081/controller/insertCart',
+	    		      
+	    		        data: JSON.stringify(prodInfo),
+	    		        contentType: 'application/json',
+	    		        success: function(response) {
+	    		            console.log('Server response:',response);
+	    		            /* location.reload(); */
+	    		            // TODO: 서버 응답에 따른 동작 수행
+	    		            alert('장바구니 담기 성공')
+	    		        },
+	    		        error: function(error) {
+	    		            console.error('Error:', error);
+	    		        }
+	    			});
+	    // 기본 동작 막기
+	    event.preventDefault();
+		};
+	</script>
+
 </body>
 </html>

@@ -178,7 +178,7 @@
                       <li class="nav-item">
                         <a href="#" class="nav-link">가공식품</a>
                       </li>
-                      <a href="#" target="_blank" class="nav-link btn-coupon-code">
+                      <a href="godiary" class="nav-link btn-coupon-code">
                   <img src="./resources/images/book-half.svg" alt="gift icon">
                   <strong class="ms-2 text-dark">영농일지 보러가기</strong>
                 </a>
@@ -200,6 +200,9 @@
       <div class="diary_parent" >
         <div class="diary">
           <!-- 글 하나 시작 -->
+          
+          <c:forEach var="diaryList" items="${diaryList }" varStatus="i">
+                      <c:if test="${i.index < 10}">
           <div class="diary_content">
               <h2 style="font-weight: bold;">농사일기</h2>
               <hr>
@@ -216,6 +219,14 @@
                   <div class="col-lg-1">좋아요</div>
                 </div>
             </div>
+        </c:if>
+         </c:forEach> 
+            
+            
+          
+          <!-- 글 하나 끝 -->
+            
+            
             <!-- 글 하나 끝 -->
 <hr>
                       <!-- 글 하나 시작 -->

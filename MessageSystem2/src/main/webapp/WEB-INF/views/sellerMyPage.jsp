@@ -664,9 +664,9 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
             </div>
           </div>
           <!-- 글 하나 끝 -->
-        </div>
         </c:if>
          </c:forEach>                 
+        </div>
         <!-- 농사일지 내용 끝 -->
   </div>
   <div class="tab-pane fade" id="nav-myQnA-seller" role="tabpanel" aria-labelledby="nav-myQnA-seller-tab" tabindex="0">

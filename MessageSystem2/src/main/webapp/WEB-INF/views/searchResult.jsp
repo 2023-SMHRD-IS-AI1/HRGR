@@ -33,8 +33,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
-	href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-	rel="stylesheet">
+	href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
@@ -404,7 +403,7 @@
 													%>
 
 													<figure>
-														<a href="single-product.html" title="Product Title"> <img
+														<a href="goprodDetail?prod_idx=${product.prod_idx}" title="Product Title"> <img
 															src="./resources/upload/${product.img_name }" class="tab-image">
 														</a>
 													</figure>
@@ -509,7 +508,7 @@
 													%>
 
 													<figure>
-														<a href="single-product.html" title="Product Title"> <img
+														<a href="goprodDetail?prod_idx=${ProductNew.prod_idx}"title="Product Title"> <img
 															src="./resources/upload/${ProductNew.img_name }" class="tab-image">
 														</a>
 													</figure>

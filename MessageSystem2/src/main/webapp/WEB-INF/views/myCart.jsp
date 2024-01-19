@@ -218,10 +218,12 @@
     <div class="prodLike_pordLine border-bottom border-success">
         <div class="row">
             <div class="col-3">
+            
                 <div style="display: flex; justify-content: space-between;">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <input type="checkbox" value="" id="flexCheckDefault">
                     <img class="prodLike_img-wrapper" src="resources/upload/<c:out value="${cart.img_name}" />" alt="" style="margin-top: 0px; margin-bottom: 0px;">
                 </div>
+            
             </div>
             <div class="col-7 d-flex flex-column justify-content-around border-end" style="font-size: 16px;">
                 <div style="font-size: 20px;">

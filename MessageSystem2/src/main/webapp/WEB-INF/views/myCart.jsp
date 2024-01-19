@@ -19,7 +19,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/vendor.css">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/stylejm.css">
-	<link rel="stylesheet" type="text/css" href="./resources/assets/css/font-awesome.min.css">
+   <link rel="stylesheet" type="text/css" href="./resources/assets/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -208,9 +208,9 @@
               <!-- 장바구니 아래 큰틀 -->
               <div class="prodLike_allCheck border-bottom border-top border-success" style="background: rgb(246, 246, 246);">
                 <input class="form-check-input" type="checkbox" value="" id="selectAllCheckbox">
-					<label class="form-check-label" for="selectAllCheckbox">
-					  전체선택
-					</label>
+               <label class="form-check-label" for="selectAllCheckbox">
+                 전체선택
+               </label>
                 <button type="button" class="btn btn-outline-success btn-sm">선택삭제</button>
               </div>
               <!-- 상품ㄱㄱ -->
@@ -248,7 +248,7 @@
                 <!-- data-cart-index 속성 추가 -->
                 <span class="total-price" data-cart-index="${loop.index}">
                 <c:out value="${cart.prod_price * cart.cart_count + 3000}" />원 <!-- 택배비 3000원 추가 -->
-            	</span>
+               </span>
             </div>
         </div>
     </div>

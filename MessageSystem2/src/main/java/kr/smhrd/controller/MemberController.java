@@ -74,7 +74,7 @@ public class MemberController {
 			
 			List<Product> editorPick = ProductMapper.selectEditor();
 			model.addAttribute("editorPick",editorPick);
-		return "Main2";
+		return "Main";
 	}
 	
 	// 회원가입 /memberInsert

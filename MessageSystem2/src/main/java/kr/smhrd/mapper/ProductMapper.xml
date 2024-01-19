@@ -161,4 +161,9 @@ INNER JOIN tb_seller s ON p.cust_id = s.cust_id
 WHERE s.certified_yn = 0
 ORDER BY p.created_at DESC;
 </select>
+<!-- qna 입력 -->
+<insert id="insertQna" parameterType="kr.smhrd.entity.Product" >
+INSERT INTO tb_qna (prod_idx, cust_id, question, questioned_at)
+        VALUES (#{prod_idx}, #{cust_id}, #{question}, #{questioned_at})
+</insert>
 </mapper>

@@ -41,7 +41,7 @@ import kr.smhrd.entity.Product;
 		
 	public List<Product> selectEditor();
 	 
-	 
+	public void insertQna(Product product);
 	 
 	 
 	 }

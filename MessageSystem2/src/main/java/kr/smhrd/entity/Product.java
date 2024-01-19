@@ -143,6 +143,17 @@ public class Product {
 			this.prod_desc = prod_desc;
 			this.created_at = created_at;
 		}
+		
+		private String question;
+		private Date questioned_at;
+
+		public Product(String cust_id, @NonNull int prod_idx, String question, Date questioned_at) {
+			super();
+			this.cust_id = cust_id;
+			this.prod_idx = prod_idx;
+			this.question = question;
+			this.questioned_at = questioned_at;
+		}
 	
 	
 

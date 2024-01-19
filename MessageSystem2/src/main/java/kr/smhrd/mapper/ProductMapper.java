@@ -40,6 +40,8 @@ import kr.smhrd.entity.Product;
 	public List<Product> selectTopBuy();
 		
 	public List<Product> selectEditor();
+
+	public void deleteCart(Long prod_idx);
 	 
 	 
 	 

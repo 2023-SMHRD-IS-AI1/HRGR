@@ -241,6 +241,16 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 			return "myCart";
 		}
 
+		// 장바구니에서 상품 삭제 
+		@RequestMapping("/deleteCart")
+		public ResponseEntity<String> deleteCart(@RequestBody Long[] prodIdxArray) {
+		    // prodIdxArray를 사용하여 선택한 상품들을 처리
+		    for (Long prod_idx : prodIdxArray) {
+		        ProductMapper.deleteCart(prod_idx);
+		    }
+
+		    return ResponseEntity.ok("Delete to myCart");
+		}
 	
 	
 }

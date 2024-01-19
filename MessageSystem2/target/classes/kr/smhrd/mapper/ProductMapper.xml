@@ -161,4 +161,9 @@ INNER JOIN tb_seller s ON p.cust_id = s.cust_id
 WHERE s.certified_yn = 0
 ORDER BY p.created_at DESC;
 </select>
+
+<delete id="deleteCart" parameterType="Long">
+DELETE FROM tb_myCart
+WHERE prod_idx=#{prod_idx}
+</delete>
 </mapper>

@@ -267,7 +267,7 @@
                           <!-- 페이지네이션 -->
 <div style="margin-top: 30px;" align="center">
   <button type="button" class="btn btn-outline-secondary">계속 쇼핑하기</button>
-  <button type="submit" class="btn btn-success">구매하기</button>
+  <button type="button" class="btn btn-success" onclick="iamport()">구매하기</button>
 </div>
 <!-- 페이지네이션 끝 -->
             </div>
@@ -354,6 +354,8 @@
       <script src="js/plugins.js"></script>
       <script src="js/script.js"></script>
       <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+      <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+      
 
 <script>
 $(document).ready(function() {
@@ -438,7 +440,40 @@ $(document).ready(function() {
 	        });
 	    }
 	}
+  
+  // 결제 구현
+  function iamport(){
 
+	    //가맹점 식별코드
+	    IMP.init('imp44183336'); // 가맹점 식별코드로 Iamport 초기화
+        IMP.request_pay({ // 결제 요청
+            pg: "kakaopay",   // PG사 설정
+            pay_method : "card", // 결제 방법
+            merchant_uid : "20230901ABDE", // 주문 번호
+            name : "상품1", // 상품 이름
+            amount: 3000, // 결제 가격
+            buyer_name : "홍길동", // 구매자 이름 (buyer_ 부분은 꼭 작성하지 않아도된다. (선택사항))
+            buyer_tel : "010-5555-1111", // 구매자 연락처
+            buyer_postcode : 52030, // 구매자 우편번호
+            buyer_addr : "경기도 판교" // 구매자 주소
+        }, function(res) {
+            if (res.success) {
+                axios({
+                    method: "post",
+                    url: "payByImport"
+                })
+            	// 응답 데이터의 정보들
+                console.log("Payment success!");
+                console.log("Payment ID : " + res.imp_uid);
+                console.log("Order ID : " + res.merchant_uid);
+                console.log("Payment Amount : " + res.paid_amount);
+            } else {
+                console.error(response.error_msg);
+            }
+        })
+  };
+
+  
 </script>
 
 

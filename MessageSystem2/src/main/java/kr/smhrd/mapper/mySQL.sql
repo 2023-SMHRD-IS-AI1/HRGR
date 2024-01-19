@@ -553,7 +553,7 @@ LEFT JOIN
 WHERE
     d.cust_id = 9;
     
-    
+    select * from tb_cust
     
 SELECT q.*, p.*, i.img_name AS prod_img_name
 FROM tb_qna q
@@ -561,3 +561,5 @@ JOIN tb_prod p ON q.prod_idx = p.prod_idx
 LEFT JOIN tb_prod_image i ON p.prod_idx = i.prod_idx
 WHERE p.cust_id = 9;
     
+select * from tb_qna
+update tb_qna set answer='뉘예' where prod_idx =25 and qna_idx=2 

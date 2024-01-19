@@ -26,16 +26,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 <% 
-  	Member Memberlogin = (Member)session.getAttribute("loginMember");
-	
+     Member Memberlogin = (Member)session.getAttribute("loginMember");
+   
 List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
-	
-	
-			
+   
+   
+         
   %>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <defs>
@@ -128,58 +128,58 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
           
           <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
             <div class="support-box text-end d-none d-xl-block">
-						<%
-						if (Memberlogin == null) {
-						%>
-						<a class="fs-6 text-muted" href="goLogin">로그인</a>
-						<%
-						} else {
-						%> <a href=goLogout>로그아웃</a>
-						<!-- Q7. 개인정보수정 기능 만들기 -->
-						<!-- Q8. 로그아웃 기능 만들기 -->
-						<!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-							<% if (Memberlogin.getCust_role().equals("U")) {%>
-									<a href="goSeller">판매자 등록</a>
-							<%}else {%>	
-									<a href=goSell>상품등록</a>
-							<%}%>
+                  <%
+                  if (Memberlogin == null) {
+                  %>
+                  <a class="fs-6 text-muted" href="goLogin">로그인</a>
+                  <%
+                  } else {
+                  %> <a href=goLogout>로그아웃</a>
+                  <!-- Q7. 개인정보수정 기능 만들기 -->
+                  <!-- Q8. 로그아웃 기능 만들기 -->
+                  <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
+                     <% if (Memberlogin.getCust_role().equals("U")) {%>
+                           <a href="goSeller">판매자 등록</a>
+                     <%}else {%>   
+                           <a href=goSell>상품등록</a>
+                     <%}%>
 
-						<%}%>
-						<h5 class="mb-0"></h5>
-					</div>
+                  <%}%>
+                  <h5 class="mb-0"></h5>
+               </div>
 
-					<ul class="d-flex justify-content-end list-unstyled m-0">
-						<li>
-							<%
-							if (Memberlogin == null) {
-							%> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
-								<svg width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#user"></use>
-						</svg>
-						</a> <%
+               <ul class="d-flex justify-content-end list-unstyled m-0">
+                  <li>
+                     <%
+                     if (Memberlogin == null) {
+                     %> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
+                        <svg width="24" height="24" viewBox="0 0 24 24">
+                    <use xlink:href="#user"></use>
+                  </svg>
+                  </a> <%
  } else {
  %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-							<a href="gomyPage" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
-									width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#user"></use>
-						</svg></a> <%
+                     <a href="gomyPage" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
+                           width="24" height="24" viewBox="0 0 24 24">
+                    <use xlink:href="#user"></use>
+                  </svg></a> <%
  }
  %>
-						</li>
-						<li>
-							<%
-							if (Memberlogin == null) {
-							%><a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
-								<svg width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#cart"></use>
-						</svg>
-						</a> <%
+                  </li>
+                  <li>
+                     <%
+                     if (Memberlogin == null) {
+                     %><a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
+                        <svg width="24" height="24" viewBox="0 0 24 24">
+                    <use xlink:href="#cart"></use>
+                  </svg>
+                  </a> <%
  } else {
  %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-							<a href="goLike" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
-									width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#cart"></use>
-						</svg></a> <%
+                     <a href="goLike" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
+                           width="24" height="24" viewBox="0 0 24 24">
+                    <use xlink:href="#cart"></use>
+                  </svg></a> <%
  }
  %>
               
@@ -274,7 +274,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
   <div class="myOrder_content">
     <h2 style="font-weight: bold; margin-bottom: 14px;">주문내역</h2>
     <c:forEach var="prodList" items="${prodList}" varStatus="loopStatus">
-    			<c:if test="${loopStatus.index < 10}">  
+             <c:if test="${loopStatus.index < 10}">  
       <!-- 주문내역 반복되는곳 시작 -->
       <div class="myOrder_box border rounded row" style="margin-top: 0px; margin-bottom: 20px;">
         <div class="col-10" style="font-size: 20px; font-weight: bold; margin-bottom: 5px; padding: 0px;">
@@ -479,7 +479,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
 <hr style="margin: 0; color: darkgreen;">
 <!-- 제목 아래 큰틀 -->
 <c:forEach var="searchQna" items="${searchQna }" varStatus="i">
-    		<c:if test="${i.index < 10}"> 
+          <c:if test="${i.index < 10}"> 
 <div class="myReview_box">
   <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
     <div class="col-1">
@@ -597,23 +597,22 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
   <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
     <div class="col-2 border-end" align="right">주소</div>
     <div class="col-10">
-      <input type="text" placeholder="주소를 입력해주세요" class="form-control" style="width: 400px; margin-bottom: 5px;" name="cust_addr" >
-      
-    </div>
-   <div class="myReview_box" align="center">
-                   <button type="submit" class="btn btn-success">수정하기</button>
-    <button type="submit" class="btn btn-outline-secondary">취소하기</button>
-  </div>           
+        <input type="text" placeholder="도로명주소를 입력해주세요" class="form-control" style="width: 400px; margin-bottom: 5px;" >
+        <input type="text" placeholder="상세주소를 입력해주세요" class="form-control" style="width: 400px;">
       </div>
-   </div>
-                   <!-- 페이지네이션 -->
-   </div>
-  </form>
-                   
-                   <!-- 페이지네이션 끝 -->
-
-  </div>
-  <!-- 판매자용시작 -->
+    </div>           
+        </div>
+     
+     <div class="myReview_box" align="center">
+       <!-- 페이지네이션 -->
+       <button type="button" class="btn btn-outline-secondary">취소하기</button>
+       <button type="button" class="btn btn-success">수정하기</button>
+       <!-- 페이지네이션 끝 -->
+      </div>
+    </form>
+  
+    </div>
+    <!-- 판매자용시작 -->
   <div class="tab-pane fade" id="nav-prod-seller" role="tabpanel" aria-labelledby="nav-prod-seller-tab" tabindex="0">
     <div class="edit_content">
       <div style="display: flex; justify-content: space-between;">
@@ -651,7 +650,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
           </div>
           <!-- 글 하나 시작 반복 -->
           <c:forEach var="diaryList" items="${diaryList }" varStatus="i">
-    						<c:if test="${i.index < 10}">
+                      <c:if test="${i.index < 10}">
           <div class="shadow" style="margin-bottom: 20px;">
             <div class="diary_img" style="padding: 30px;">
               <img src="./resources/upload/${diaryList.diary_img_name }" alt="이미지에용" style="margin: 0px;">
@@ -667,7 +666,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
           <!-- 글 하나 끝 -->
         </div>
         </c:if>
-			</c:forEach>                 
+         </c:forEach>                 
         <!-- 농사일지 내용 끝 -->
   </div>
   <div class="tab-pane fade" id="nav-myQnA-seller" role="tabpanel" aria-labelledby="nav-myQnA-seller-tab" tabindex="0">
@@ -683,7 +682,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
             <hr>
           <!-- 상품한줄 시작 for돌리는곳 -->
           <c:forEach var="qnaList" items="${qnaList }" varStatus="i">
-    						<c:if test="${i.index < 10}"> 
+                      <c:if test="${i.index < 10}"> 
             <div class="row">
               <div class="col-2">
                 <div class="prodLike_img-wrapper" style="position: relative; width: 130px; height: 130px;"><img src="./resources/upload/${qnaList.prod_img_name }" class="rounded" alt="물품사진" style=" position: absolute; top: 0; left: 0; transform: translate(50, 50); width: 100%; height: 100%; object-fit: cover; margin: auto;"></div>
@@ -697,14 +696,14 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
                 </p>
               </div>
               <div class="col-5" style="display: flex; justify-content: space-between; align-items: center;">
-                <textarea name="" id="" class="form-control" rows="4" style="width: 320px;"></textarea>
-                <button type="submit" class="btn btn-sm btn-success" style="height: 30px;">확인</button></button>
+                <textarea name="" id="" class="form-control" rows="4" style="width: 320px;">${qnaList.answer}</textarea>
+                <button type="submit" class="btn btn-sm btn-success" style="height: 30px;" onclick="updateAnswer(${qnaList.answer},${qnaList.prod_idx},${qnaList.qna_idx})">확인</button></button>
               </div>
             </div>
             <hr>
           <!-- 상품한줄 끝 -->
         </c:if>
-			</c:forEach>
+         </c:forEach>
 
 
 
@@ -712,7 +711,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
   </div>
   </div>
   <!-- 판매자용끝 -->
-</div>
+
             </div>          
             </div>          
              </div>
@@ -896,6 +895,32 @@ function checkPasswordMatch() {
     }
 
     joinUsButton.disabled = !passwordChecked; // 버튼 활성화 여부 설정
+}
+
+</script>
+<script >
+function updateAnswer(answer,prod_idx,qna_idx) {
+    if (confirm('답변을 수정하시겠습니까?')) {
+        // Ajax를 사용하여 서버에 삭제 요청 전송
+         var Answer = {
+               answer: answer,
+               prod_idx:prod_idx,
+               qna_idx: qna_idx
+        };
+      console.log(Answer)
+        $.ajax({
+            type: 'POST',
+            url: 'updateAnswer',
+            data: Answer, 
+            success: function (data) {
+                
+                location.reload(); // 예시로 페이지를 리로드하는 방법
+            },
+            error: function (error) {
+                console.error('답변 수정 실패', error);
+            }
+        });
+    }
 }
 
 </script>

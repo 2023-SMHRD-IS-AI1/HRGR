@@ -239,29 +239,15 @@
           
           <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
             <div class="support-box text-end d-none d-xl-block">
-						<%
-						if (Memberlogin == null) {
-						%>
-						<a class="fs-6 text-muted" href="goLogin">로그인</a>
-						<%
-						} else {
-						%> <a href=goLogout>로그아웃</a>
-						<!-- Q7. 개인정보수정 기능 만들기 -->
-						<!-- Q8. 로그아웃 기능 만들기 -->
-						<!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-							<% if (Memberlogin.getCust_role().equals("U")) {%>
-									<a href="goSeller">판매자 등록</a>
-							<%}else {%>	
-									<a href=goSell>상품등록</a>
-							<%}%>
-
-						<%}%>
-						<h5 class="mb-0"></h5>
+            						<h5 class="mb-0"></h5>
 					</div>
 
 					<ul class="d-flex justify-content-end list-unstyled m-0">
-						<li>
+            			<li>
+						
+
 							<%
+
 							if (Memberlogin == null) {
 							%> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
 								<svg width="24" height="24" viewBox="0 0 24 24">
@@ -276,28 +262,27 @@
 						</svg></a> <%
  }
  %>
-						</li>
-						<li>
-							<%
-							if (Memberlogin == null) {
-							%><a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
-								<svg width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#cart"></use>
-						</svg>
-						</a> <%
- } else {
- %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-							<a href="goLike" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
-									width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#cart"></use>
-						</svg></a> <%
- }
- %>
-              
+              </li>
+              <li>
+                <%
+                if (Memberlogin == null) {
+                %><a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
+                  <svg width="24" height="24" viewBox="0 0 24 24">
+                <use xlink:href="#cart"></use>
+              </svg>
+              </a> <%
+   } else {%>
+            <a href="goMyCart" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
+              width="24" height="24" viewBox="0 0 24 24">
+              <use xlink:href="#cart"></use>
+              </svg></a> 
+              <%}%>
+              </li>
             </ul>
 
            
           </div>
+          
 
         </div>
       </div>
@@ -551,6 +536,21 @@
     ></script>
     <script src="./resources/assets/js/plugins.js"></script>
     <script src="./resources/assets/js/script.js"></script>
+     <script>
+    document.getElementById("userIcon").addEventListener("click", function() {
+       window.location.href = "goLogin";
+  });
+    
+    </script>
+    <script>
+  // 검색창 눌렀을때 페이지 이동
+   document.getElementById('svg-container').addEventListener('click', function() {
+    // 현재 검색어 입력란의 값을 가져옴
+    var inputValue = document.getElementById('searchInput').value;
+    // 현재 페이지 URL에 검색어를 추가하여 페이지 이동
+    window.location.href = 'gosearch?searchInput=' + encodeURIComponent(inputValue);
+  });
+</script>
   </body>
 </html>
     

@@ -86,7 +86,16 @@ public class Member {
 		
 		//diary
 		
-		 private int diary_idx;
+		 public Member(int prod_idx, int qna_idx, String answer) {
+			super();
+			this.prod_idx = prod_idx;
+			this.qna_idx = qna_idx;
+			this.answer = answer;
+		}
+
+
+
+		private int diary_idx;
 		 private String diary_title;
 		 private String diary_content;
 		 private String diary_created_at;

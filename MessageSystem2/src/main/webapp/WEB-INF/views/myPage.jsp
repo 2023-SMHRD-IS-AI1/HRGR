@@ -569,7 +569,7 @@
               <hr style="margin: 0px; color: rgb(188, 188, 188);">
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-2 border-end" align="right">비밀번호 확인</div>
-                <div class="col-10"><input type="password" placeholder="PW확인" id="pwCheck" name="pwCheck"><h4 id="passwordMessage"></h4></div>  
+                <div class="col-10"><input type="password" placeholder="PW확인" id="pwCheck" name="pwCheck"><h4 id="passwordMessage"></div>  
                 <div style="margin-top: 10px;">
   <input type="button" value="비밀번호 확인" onclick="checkPasswordMatch()" style="background-color: #4CAF50; /* Lighter green color */ color: white; padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer;">
 </div>             

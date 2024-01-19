@@ -332,5 +332,20 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
       <script src="js/plugins.js"></script>
       <script src="js/script.js"></script>
+       <script>
+    document.getElementById("userIcon").addEventListener("click", function() {
+       window.location.href = "goLogin";
+  });
+    
+    </script>
+    <script>
+  // 검색창 눌렀을때 페이지 이동
+   document.getElementById('svg-container').addEventListener('click', function() {
+    // 현재 검색어 입력란의 값을 가져옴
+    var inputValue = document.getElementById('searchInput').value;
+    // 현재 페이지 URL에 검색어를 추가하여 페이지 이동
+    window.location.href = 'gosearch?searchInput=' + encodeURIComponent(inputValue);
+  });
+</script>
 </body>
 </html>

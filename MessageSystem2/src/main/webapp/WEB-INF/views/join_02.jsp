@@ -1,3 +1,4 @@
+<%@page import="kr.smhrd.entity.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -24,8 +25,12 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:500,800" rel="stylesheet">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="./resources/assets/css/login_01.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
+<%
+	Member Memberlogin = (Member) session.getAttribute("loginMember");
+	%>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <defs>
       <symbol xmlns="http://www.w3.org/2000/svg" id="link" viewBox="0 0 24 24">
@@ -117,68 +122,50 @@
           
           <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
             <div class="support-box text-end d-none d-xl-block">
-                  <%
-                  if (Memberlogin == null) {
-                  %>
-                  <a class="fs-6 text-muted" href="goLogin">로그인</a>
-                  <%
-                  } else {
-                  %>
-                  <!-- Q7. 개인정보수정 기능 만들기 -->
-                  <!-- Q8. 로그아웃 기능 만들기 -->
-                  <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-                  <% if (!Memberlogin.getCust_role().equals("S")) {%>
-                  <a href="goSeller">판매자 등록</a> <a href="goLogout">로그아웃</a>
-                  <%
-                  } else {
-                  %>
-                     <a href=goLogout>로그아웃</a>
+            						<h5 class="mb-0"></h5>
+					</div>
 
-                     <%}%>
+					<ul class="d-flex justify-content-end list-unstyled m-0">
+            			<li>
+						
 
-                  <%}%>
-                  <h5 class="mb-0"></h5>
-               </div>
+							<%
 
-               <ul class="d-flex justify-content-end list-unstyled m-0">
-                  <li>
-                     <%
-                     if (Memberlogin == null) {
-                     %> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
-                        <svg width="24" height="24" viewBox="0 0 24 24">
-                    <use xlink:href="#user"></use>
-                  </svg>
-                  </a> <%
+							if (Memberlogin == null) {
+							%> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
+								<svg width="24" height="24" viewBox="0 0 24 24">
+  						<use xlink:href="#user"></use>
+						</svg>
+						</a> <%
  } else {
  %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-                     <a href="gomyPage" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
-                           width="24" height="24" viewBox="0 0 24 24">
-                    <use xlink:href="#user"></use>
-                  </svg></a> <%
+							<a href="gomyPage" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
+									width="24" height="24" viewBox="0 0 24 24">
+  						<use xlink:href="#user"></use>
+						</svg></a> <%
  }
  %>
-                  </li>
-                  <li>
-                     <%
-                     if (Memberlogin == null) {
-                     %><a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
-                        <svg width="24" height="24" viewBox="0 0 24 24">
-                    <use xlink:href="#cart"></use>
-                  </svg>
-                  </a> <%
- } else {
- %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-                     <a href="goLike" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
-                           width="24" height="24" viewBox="0 0 24 24">
-                    <use xlink:href="#cart"></use>
-                  </svg></a> <%
- }
- %>
-              
+              </li>
+              <li>
+                <%
+                if (Memberlogin == null) {
+                %><a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
+                  <svg width="24" height="24" viewBox="0 0 24 24">
+                <use xlink:href="#cart"></use>
+              </svg>
+              </a> <%
+   } else {%>
+            <a href="goMyCart" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
+              width="24" height="24" viewBox="0 0 24 24">
+              <use xlink:href="#cart"></use>
+              </svg></a> 
+              <%}%>
+              </li>
             </ul>
 
            
           </div>
+          
 
         </div>
       </div>
@@ -243,42 +230,45 @@
         <!-- Links -->
         <ul class="links">
           <li>
-            <a href="join_01.html" id="signup">회원가입</a>
+            <a href="goJoin" id="signup">회원가입</a>
           </li>
           <li>
-            <a href="login_01.html" id="signin">로그인</a>
+            <a href="goLogin" id="signin">로그인</a>
           </li>
           <li>
-            <a href="#" id="reset">초기화</a>
+            <a href="goJoin" id="reset">초기화</a>
           </li>
         </ul>
         
         <!-- Form -->
-        <form  action="" method="post">
+        <form  action="memberInsert" method="post">
           <div class="first-input input__block first-input__block">
-             <input type="tel" placeholder="전화번호를 입력하세요" class="input" id="email"   />
+             <input type="tel" placeholder="전화번호를 입력하세요" class="input" name="cust_phone" id="cust_phone" />
+             <span id="resultCheck"></span>
+             <input type="button" onclick="checkE()" value="중복체크">
           </div>
           <div class="input__block">
-             <input type="password" placeholder="비밀번호를 입력하세요" class="input" id="password"    />
+             <input type="password" placeholder="비밀번호를 입력하세요" class="input" id="cust_pw" name="cust_pw"/>
+          
+             <input type="password" placeholder="비밀번호를 다시 입력하세요" class="input" id="repeat__password"  id="pwCheck" name="pwCheck"  />
+             <span id="passwordMessage"></span>
+             <input type="button" value="비밀번호 확인" onclick="checkPasswordMatch()">
           </div>
           <div class="input__block">
-             <input type="password" placeholder="비밀번호를 다시 입력하세요" class="input" id="repeat__password"    />
+             <input type="text" placeholder="이름을 입력하세요" class="input" name="cust_name" id="cust_name"  />
           </div>
           <div class="input__block">
-             <input type="text" placeholder="이름을 입력하세요" class="input" id="user_name"    />
+             <input type="email" placeholder="이메일을 입력하세요" class="input" id="user_email"   name="cust_email" id="cust_email"  />
           </div>
           <div class="input__block">
-             <input type="email" placeholder="이메일을 입력하세요" class="input" id="user_email"    />
-          </div>
-          <div class="input__block">
-             <input type="text" placeholder="주소를 입력하세요" class="input" id="user_addr"    />
+             <input type="text" placeholder="주소를 입력하세요" class="input" id="user_addr"  name="cust_addr" id="cust_addr"/>
             </div>
             <div class="input__block">
-               <input type="text" placeholder="생년월일을 입력하세요" class="input" id="user_bday"    />
+               <input type="date" placeholder="생년월일을 입력하세요" class="input" name="cust_birthdate" id="cust_birthdate"  />
             </div>
           
           <!-- sign in button -->
-          <button class="signin__btn">
+          <button class="signin__btn" id="joinUsButton">
             회원가입
           </button>
         </form>
@@ -423,5 +413,85 @@
     window.location.href = 'gosearch?searchInput=' + encodeURIComponent(inputValue);
   });
 </script>
+<script >
+// 생년월일 현재 시간이후로는 설정 불가
+var currentDate = new Date().toISOString().split('T')[0];
+document.getElementById('cust_birthdate').setAttribute('max', currentDate);
+
+// 비밀번호 확인
+var passwordChecked = false; // 비밀번호 확인 여부를 저장하는 변수 추가
+
+function checkPasswordMatch() {
+    var pw = document.getElementById('cust_pw').value;
+    var pwCheck = document.getElementById('pwCheck').value;
+    var passwordMessage = document.getElementById('passwordMessage');
+    var joinUsButton = document.getElementById('joinUsButton');
+
+    if (pw === pwCheck) {
+        passwordMessage.innerHTML = '비밀번호가 일치합니다.';
+        passwordChecked = true; // 비밀번호 확인됨
+    } else {
+        passwordMessage.innerHTML = '비밀번호가 일치하지 않습니다.';
+        passwordChecked = false; // 비밀번호 불일치
+    }
+
+    joinUsButton.disabled = !passwordChecked; // 버튼 활성화 여부 설정
+}
+function checkAll() {
+    // 필수 입력 필드 배열
+    var requiredFields = ['cust_email', 'cust_pw', 'pwCheck', 'cust_addr', 'cust_name', 'cust_phone', 'cust_birthdate'];
+
+    // 배열을 순회하면서 각 필드가 비어있는지 확인
+    for (var i = 0; i < requiredFields.length; i++) {
+        // 필드의 값을 가져오고 양 끝의 공백을 제거하여 비어있는지 확인
+        var fieldValue = document.getElementById(requiredFields[i]).value.trim();
+
+        // 만약 필드가 비어있다면 false를 반환하고 함수 종료
+        if (fieldValue === '') {
+            return false;
+        }
+    }
+
+    // 모든 필드가 비어있지 않다면 true 반환
+    return true;
+}
+</script>
+<script type="text/javascript">
+			
+				function checkE(){ /* $ : jQuery */
+					
+					var inputE = $('#cust_phone').val()
+					console.log(inputE)
+					
+					 $.ajax({ // json 형식-> {key : value, key : value}
+						// 어디로 요청할 것인지(요청 url)
+						url : 'phoneCheck',
+						// 요청 데이터
+						
+						data : { 'cust_phone' : inputE },
+						// 요청방식
+						type : 'get',
+						// 요청-응답 성공
+						success : function(data){
+							// 불가능 : 0, 가능 : 1
+							// alert(data)
+							if(data == 0){
+								$('#resultCheck').text('사용 불가능한 핸드폰번호')
+							}else{
+								$('#resultCheck').text('사용 가능한 핸드폰번호')
+							}
+						},
+						// 요청-응답 실패
+						error : function(){
+							alert("통신실패")
+						}
+					}) 
+					
+					
+					
+				}
+			
+			
+			</script>
 </body>
 </html>

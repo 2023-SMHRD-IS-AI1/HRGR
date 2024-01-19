@@ -192,7 +192,7 @@ public class MemberController {
 	
 	@RequestMapping("/goJoin")
 	public String goJoin() {
-		return "join_01";
+		return "join_02";
 	}
 	
 	@RequestMapping("/goSeller")
@@ -314,7 +314,7 @@ public class MemberController {
 	public boolean qnaDelete(@RequestParam int prod_idx,Member member, HttpSession session) {
 		
 		Member loginMember = (Member)session.getAttribute("loginMember");
-		System.out.println("\n"+loginMember.toString() +"\n");
+		
 		String cust_id = loginMember.getCust_id();
 		System.out.println("cust_id값 확인 : "+ cust_id);
 		member.setCust_id(cust_id);
@@ -326,7 +326,23 @@ public class MemberController {
 	
 	
 	
-	
+	@RequestMapping("/updateAnswer")
+	@ResponseBody
+	public boolean updateAnswer(@RequestParam String answer, @RequestParam int prod_idx,@RequestParam int qna_idx,Member member, HttpSession session) {
+		
+		Member loginMember = (Member)session.getAttribute("loginMember");
+		
+		String cust_id = loginMember.getCust_id();
+		System.out.println("cust_id값 확인 : "+ cust_id);
+		System.out.println("수정할 답!! !:  "+answer);
+		System.out.println("prod 아이디 값: " +prod_idx);
+		member.setAnswer(answer);
+		member.setProd_idx(prod_idx);
+		member.setQna_idx(qna_idx);
+		System.out.println(prod_idx);
+		memberMapper.updateAnswer(member);
+		return true;
+	}
 	
 	
 }

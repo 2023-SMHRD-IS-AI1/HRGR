@@ -65,6 +65,8 @@ public interface MemberMapper { // 틀, SqlSessionFactoryBean이 MemberMapper를
 
 	public List<Member> qnaList(String cust_id);
 
+	public void updateAnswer(Member member);
+
 	
 
 	

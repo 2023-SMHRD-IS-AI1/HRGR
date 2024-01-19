@@ -174,5 +174,9 @@ LEFT JOIN tb_prod_image i ON p.prod_idx = i.prod_idx
 WHERE p.cust_id = #{cust_id};
 </select>
 
+<update id="updateAnswer" parameterType="kr.smhrd.entity.Member">
+update tb_qna set answer=#{answer} where prod_idx =#{prod_idx} and qna_idx=#{qna_idx}
+</update>
+
 
 </mapper>

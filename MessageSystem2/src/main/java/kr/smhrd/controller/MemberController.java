@@ -60,9 +60,21 @@ public class MemberController {
 	}
 	
 	@GetMapping("/")
-	public String main() {
-		return "Main";
+	public String main(Model model) {
+			List<Product> products = ProductMapper.selectProducts();
 
+			model.addAttribute("product", products);
+			
+			List<Product> likeDiaries = ProductMapper.selectLikeDiary();
+
+		    model.addAttribute("likeDiaries", likeDiaries);
+		    
+		    List<Product> topBuy = ProductMapper.selectTopBuy();
+		    model.addAttribute("topBuy",topBuy);
+			
+			List<Product> editorPick = ProductMapper.selectEditor();
+			model.addAttribute("editorPick",editorPick);
+		return "Main2";
 	}
 	
 	// 회원가입 /memberInsert

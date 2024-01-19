@@ -238,27 +238,30 @@
           <div class="review_content">
             <h2 style="font-weight: bold; margin-bottom: 14px;">상품문의</h2>
             <!-- 찜목록 아래 큰틀 -->
-            <form action="">
+            <form action="submitQna" method="post">
+            <input type="hidden" name="prod_idx" value="25">
+	         <input type="hidden" name="cust_id" value="1">
             <div class="review_box border-bottom border-top border-success">
              <div class="row" style="padding: 20px;">
               <div class="col-3"><img class="rounded" src="//thumbnail7.coupangcdn.com/thumbnails/remote/300x300ex/image/vendor_inventory/3347/38dbf382340fbf1c4f44405591e08a5175b383431326b32be42d8dfa68ad.jpg" alt="" style="max-width: 100%;" ></div>
               <div class="col-9">
-                  <div style="margin-bottom: 30px;"><p style="font-size: 20px; font-weight: bold;">상품명 당근당근</p></div>
-                  <div style="margin-bottom: 30px;">3,000원 | 1kg</div>
+                  <div style="margin-bottom: 30px;"><p style="font-size: 20px; font-weight: bold;">상품명 (상품이름 들고와야함)</p></div>
+                  <div style="margin-bottom: 30px;">1000원(여기 나중에 바꿔야됨)</div>
               </div>
              </div>
             </div>
             <div class="review_box border-bottom border-success row">
               <div class="col-2 align-self-center">문의내용</div>
               <div class="col-10">
-                <textarea class="form-control" id="review" rows="3" placeholder="상품에 대해 궁금한 점을 남겨주세요"></textarea>
+                <textarea class="form-control" name="question" id="review" rows="3" placeholder="상품에 대해 궁금한 점을 남겨주세요"></textarea>
               </div>
             </div>
-          </form>
+
           <div class="review_box" align="center">
             <button type="button" class="btn btn-outline-secondary">취소하기</button>
-            <button type="button" class="btn btn-success">등록하기</button>
+            <button type="submit" class="btn btn-success">등록하기</button>
           </div>
+          </form>
               </div>                        
              
             

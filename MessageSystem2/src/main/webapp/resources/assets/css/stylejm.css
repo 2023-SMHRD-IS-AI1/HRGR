@@ -92,7 +92,7 @@
     
 }
 .diary{
-    background-color : rgb(255, 255, 255);
+       background-color: rgb(255, 255, 255);
        width: 1000px;
        
 }
@@ -128,13 +128,16 @@ text-align: center;
 
 .prodLike_parent{
   background-color : rgb(255, 255, 255);
+
   display : flex;
   justify-content: center;
   
 }
 .prodLike{
      background-color: rgb(255, 255, 255);
-     width: 1000px;     
+     width: 1000px;
+
+     
 }
 .prodLike_content{
   padding: 30px;
@@ -237,6 +240,7 @@ max-width: 100%;
 
 .review_parent{
   background-color : rgb(255, 255, 255);
+
   display : flex;
   justify-content: center;
   
@@ -244,6 +248,7 @@ max-width: 100%;
 .review{
      background-color: rgb(255, 255, 255);
      width: 1000px;
+
      
 }
 .review_content{
@@ -398,6 +403,7 @@ padding: 30px;
   object-fit: cover;
   margin: auto;
 }
+
 
 /* 장바구니 이미지 크기 조절 */
 

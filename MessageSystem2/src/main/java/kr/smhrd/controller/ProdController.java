@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.GenericServlet;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -242,6 +244,7 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 			return "myCart";
 		}
 		
+
 		@RequestMapping("/goprodDetail")
 	       public String goprodDetail(@RequestParam("prod_idx") int prod_idx,
 	                                   HttpSession session,Model model) {
@@ -261,6 +264,22 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 	          
 	          return "prodDetail"; // 적절한 뷰 이름을 반환합니다.
 	       }
+
+		@RequestMapping(value="/submitQna", method = RequestMethod.POST)
+		public String submitQna(@RequestParam("prod_idx") int prod_idx,@RequestParam("cust_id") String cust_id,
+                @RequestParam("question") String question) {
+			
+			Product product = new Product();
+	        product.setProd_idx(prod_idx);
+	        product.setCust_id(cust_id);
+	        product.setQuestion(question);
+	        product.setQuestioned_at(new Date());
+	        System.out.println(product.toString());
+	        ProductMapper.insertQna(product); 
+	        return "Main";
+		}
+
+
 	
 	
 }

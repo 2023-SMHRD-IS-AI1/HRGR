@@ -43,7 +43,7 @@ import kr.smhrd.entity.Product;
 
 	public void deleteCart(Long prod_idx);
 	 
-	 
+	public void insertQna(Product product);
 	 
 	 
 	 }

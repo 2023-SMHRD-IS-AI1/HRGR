@@ -61,6 +61,10 @@ public class Board {
 		this.cust_id = cust_id;
 	}
 	
+	private String diary_title;
+	private String diary_content;
+	private String created_at;
+	private int diary_likes;
 	
    
 		

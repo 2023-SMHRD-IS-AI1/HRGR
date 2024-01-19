@@ -18,14 +18,17 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/vendor.css">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/stylejm.css">
+    <link rel="stylesheet" href="./resources/assets/css/login_01.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,800" rel="stylesheet">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
@@ -87,7 +90,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
         </defs>
       </svg>
 
-      <header>
+    <header>
       <div class="container-fluid">
         <div class="row py-3 border-bottom">
           
@@ -128,29 +131,21 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
           
           <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
             <div class="support-box text-end d-none d-xl-block">
-                  <%
-                  if (Memberlogin == null) {
-                  %>
-                  <a class="fs-6 text-muted" href="goLogin">로그인</a>
-                  <%
-                  } else {
-                  %> <a href=goLogout>로그아웃</a>
-                  <!-- Q7. 개인정보수정 기능 만들기 -->
-                  <!-- Q8. 로그아웃 기능 만들기 -->
-                  <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-                     <% if (Memberlogin.getCust_role().equals("U")) {%>
-                           <a href="goSeller">판매자 등록</a>
-                     <%}else {%>   
-                           <a href=goSell>상품등록</a>
-                     <%}%>
-
-                  <%}%>
-                  <h5 class="mb-0"></h5>
+                              <h5 class="mb-0"></h5>
                </div>
-
-               <ul class="d-flex justify-content-end list-unstyled m-0">
-                  <li>
-                     <%
+            <ul class="d-flex justify-content-end list-unstyled m-0">
+              <li><%
+                if (Memberlogin == null) {
+                %>
+                <a href="goLogin" style="font-size: 20px; color: green; font-weight: bold;"><i class="fa fa-sign-in" aria-hidden="true"> 로그인</i></a>
+                <%
+                } else {
+                %>
+                <a href="goLogout" style="font-size: 20px; color: green; font-weight: bold;"><i class="fa fa-sign-out" aria-hidden="true"> 로그아웃</i></a>
+                <%}%>
+              </li>
+              <li>
+                <%
                      if (Memberlogin == null) {
                      %> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
                         <svg width="24" height="24" viewBox="0 0 24 24">
@@ -165,28 +160,27 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
                   </svg></a> <%
  }
  %>
-                  </li>
-                  <li>
-                     <%
-                     if (Memberlogin == null) {
-                     %><a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
-                        <svg width="24" height="24" viewBox="0 0 24 24">
-                    <use xlink:href="#cart"></use>
-                  </svg>
-                  </a> <%
- } else {
- %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-                     <a href="goLike" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
-                           width="24" height="24" viewBox="0 0 24 24">
-                    <use xlink:href="#cart"></use>
-                  </svg></a> <%
- }
- %>
-              
+              </li>
+              <li>
+                <%
+                if (Memberlogin == null) {
+                %><a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
+                  <svg width="24" height="24" viewBox="0 0 24 24">
+                <use xlink:href="#cart"></use>
+              </svg>
+              </a> <%
+   } else {%>
+            <a href="goMyCart" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
+              width="24" height="24" viewBox="0 0 24 24">
+              <use xlink:href="#cart"></use>
+              </svg></a> 
+              <%}%>
+              </li>
             </ul>
 
            
           </div>
+          
 
         </div>
       </div>
@@ -242,6 +236,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
         </div>
       </div>
     </header>
+
 <!-- 헤더 끝 -->
       <div class="myOrder_parent" >
         <div class="myOrder ">

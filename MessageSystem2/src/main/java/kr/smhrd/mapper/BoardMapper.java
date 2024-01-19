@@ -26,4 +26,7 @@ public interface BoardMapper extends MemberMapper {
 	public List<Board> searchReview(String cust_id);
 
 	
+	
+
+	
 }

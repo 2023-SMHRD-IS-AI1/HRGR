@@ -95,6 +95,9 @@ public class Member {
 
 
 
+		
+
+
 		private int diary_idx;
 		 private String diary_title;
 		 private String diary_content;
@@ -105,7 +108,11 @@ public class Member {
 		 
 		 
 		
-		 //qna
+		 
+
+
+
+		//qna
 		 private String prod_img_name;
 		 
 		 

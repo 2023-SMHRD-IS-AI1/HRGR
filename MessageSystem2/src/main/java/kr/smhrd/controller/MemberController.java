@@ -356,5 +356,12 @@ public class MemberController {
 		return true;
 	}
 	
+	@RequestMapping("/godiary")
+	public String godiary(Model model,HttpSession session) {
+		List<Member> diaryList =memberMapper.diaryList();
+		model.addAttribute("diaryList",diaryList);
+		System.out.println(model);
+		return "diary";
+	}
 	
 }

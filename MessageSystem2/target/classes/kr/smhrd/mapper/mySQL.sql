@@ -782,3 +782,20 @@ UNION
 -- tb_diary_image 테이블에서는 전체 열 선택
 SELECT NULL, NULL, NULL, NULL, NULL, img_name
 FROM tb_diary_image;
+
+
+                  
+SELECT
+    S.company_name,
+    D.diary_content,
+    D.diary_likes,
+    DI.img_name,
+    D.diary_idx
+FROM
+    tb_diary D
+JOIN
+    tb_seller S ON D.cust_id = S.cust_id
+LEFT JOIN
+    tb_diary_image DI ON D.diary_idx = DI.diary_idx;
+
+    update tb_diary set diary_likes=50232 where diary_idx=1

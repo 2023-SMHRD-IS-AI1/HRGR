@@ -49,10 +49,7 @@ WHERE
     p.cust_id = #{cust_id};
 </select>
 
-<select id="diaryList">
-select * from tb_
 
-</select>
 
 
 

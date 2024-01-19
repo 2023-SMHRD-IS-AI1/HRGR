@@ -179,4 +179,19 @@ update tb_qna set answer=#{answer} where prod_idx =#{prod_idx} and qna_idx=#{qna
 </update>
 
 
+<select id="diaryList" resultType="kr.smhrd.entity.Member">
+SELECT
+    S.company_name AS seller_company_name,
+    D.diary_content AS diary_content,
+    D.diary_likes AS diary_likes,
+    DI.img_name AS diary_img_name
+FROM
+    tb_diary D
+JOIN
+    tb_seller S ON D.cust_id = S.cust_id
+LEFT JOIN
+    tb_diary_image DI ON D.diary_idx = DI.diary_idx;
+
+</select>
+
 </mapper>

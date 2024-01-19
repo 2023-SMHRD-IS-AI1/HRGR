@@ -67,6 +67,8 @@ public interface MemberMapper { // 틀, SqlSessionFactoryBean이 MemberMapper를
 
 	public void updateAnswer(Member member);
 
+	public List<Member> diaryList();
+
 	
 
 	

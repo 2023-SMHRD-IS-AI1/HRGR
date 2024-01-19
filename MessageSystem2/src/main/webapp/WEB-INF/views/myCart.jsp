@@ -252,7 +252,7 @@
     </div>
 </c:forEach>
 
-              <!-- 상품 끝 -->               
+              <!-- 상품 끝 -->
             <div class="prodLike_allCheck border-bottom border-success row" style="background: rgb(246, 246, 246); margin-left: 0px; margin-right: 0px;">
     <div class="col-10" align="right" style="font-weight: bold; font-size: 18px; padding-right: 40px;">총 금액</div>
     <div class="col-2" id="totalAmount" style="display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold;">
@@ -353,11 +353,14 @@
       <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <script>
-  $(document).ready(function() {
+$(document).ready(function() {
     // 전체 선택/해제 체크박스의 이벤트 처리
     $('#selectAllCheckbox').change(function() {
       // 모든 하위 체크박스들의 상태를 전체 선택/해제 체크박스의 상태로 설정
       $('.prodLike_content input[type="checkbox"]').prop('checked', $(this).prop('checked'));
+      
+      // 전체 총 금액 업데이트
+      updateGlobalTotalAmount();
     });
   });
   
@@ -394,6 +397,22 @@
       });
 
       totalAmountElement.textContent = totalAmount + '원';
+  }
+  
+  // 선택된 상품을 삭제하는 함수
+  function deleteSelectedItems() {
+      var checkboxes = document.getElementsByName('selectedItems');
+      var cartLines = document.querySelectorAll('.prodLike_pordLine');
+
+      for (var i = checkboxes.length - 1; i >= 0; i--) {
+          if (checkboxes[i].checked) {
+              // 체크된 상품 삭제
+              cartLines[i].remove();
+          }
+      }
+
+      // 총 금액 다시 계산
+      updateGlobalTotalAmount();
   }
 </script>
 

@@ -128,7 +128,7 @@ WHERE tb_order.cust_id = #{cust_id};
 	select img_name from tb_prod_image where prod_idx=#{prod_idx}
 </select>
 
-<<<<<<< HEAD
+
 <select id="prodDetail" parameterType="Int" resultType="kr.smhrd.entity.Product">
 SELECT 
     p.prod_idx,

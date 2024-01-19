@@ -211,11 +211,12 @@
                <label class="form-check-label" for="selectAllCheckbox">
                  전체선택
                </label>
-                <button type="button" class="btn btn-outline-success btn-sm">선택삭제</button>
+                <!-- 선택 삭제 버튼 -->
+<button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteCartItem('<c:out value="${cart.prod_idx}" />')">선택 삭제</button>
               </div>
               <!-- 상품ㄱㄱ -->
 <c:forEach var="cart" items="${Cart}" varStatus="loop">
-    <div class="prodLike_pordLine border-bottom border-success">
+    <div class="prodLike_pordLine border-bottom border-success" data-prod-idx="<c:out value="${cart.prod_idx}" />">
         <div class="row">
             <div class="col-3">
             
@@ -401,21 +402,43 @@ $(document).ready(function() {
       totalAmountElement.textContent = totalAmount + '원';
   }
   
-  // 선택된 상품을 삭제하는 함수
-  function deleteSelectedItems() {
-      var checkboxes = document.getElementsByName('selectedItems');
-      var cartLines = document.querySelectorAll('.prodLike_pordLine');
+  function deleteCartItem() {
+	    // 모든 체크된 체크박스 가져오기
+	    var checkedCheckboxes = $('.prodLike_pordLine input[type="checkbox"]:checked');
+	    // 체크된 체크박스가 하나 이상 선택되었는지 확인
+	    if (checkedCheckboxes.length > 0) {
+	        // prod_idx 값을 저장할 배열 생성
+	        var selectedProdIdxArray = [];
 
-      for (var i = checkboxes.length - 1; i >= 0; i--) {
-          if (checkboxes[i].checked) {
-              // 체크된 상품 삭제
-              cartLines[i].remove();
-          }
-      }
+	        checkedCheckboxes.each(function () {
+	            if ($(this).is(':checked')) {
+	                var prodIdx = $(this).closest('.prodLike_pordLine').data('prod-idx');
+	                selectedProdIdxArray.push(prodIdx);
+	            }
+	        });
+			
+	        // AJAX 요청으로 선택된 항목 삭제
+	        $.ajax({
+	            type: 'POST',
+	            url: '/controller/deleteCart',  // 이 부분을 절대경로로 수정
+	            data: JSON.stringify(selectedProdIdxArray),
+	            contentType: 'application/json',
+	            success: function (response) {
+	                console.log('선택한 상품 삭제 성공');
 
-      // 총 금액 다시 계산
-      updateGlobalTotalAmount();
-  }
+	                // UI에서 선택된 행 제거
+	                checkedCheckboxes.closest('.prodLike_pordLine').remove();
+
+	                // 전체 금액 다시 계산
+	                updateGlobalTotalAmount();
+	            },
+	            error: function (error) {
+	                console.error('상품 삭제 실패', error);
+	            }
+	        });
+	    }
+	}
+
 </script>
 
 

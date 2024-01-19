@@ -255,30 +255,62 @@
         
         <!-- Form -->
         <form  action="" method="post">
-          <div class="first-input input__block first-input__block">
-             <input type="tel" placeholder="전화번호를 입력하세요" class="input" id="email"   />
+
+
+          <!-- 새로 -->
+          <div class="form-floating join_form">
+            <input type="tel" class="form-control" id="" placeholder="" >
+            <label for="floatingInput">전화번호(숫자만 입력해주세요)</label>
           </div>
-          <div class="input__block">
-             <input type="password" placeholder="비밀번호를 입력하세요" class="input" id="password"    />
+          <div class="form-floating join_form">
+            <input type="password" class="form-control" id="" placeholder="">
+            <label for="floatingPassword">비밀번호</label>
           </div>
-          <div class="input__block">
-             <input type="password" placeholder="비밀번호를 다시 입력하세요" class="input" id="repeat__password"    />
+          <div class="form-floating join_form">
+            <input type="password" class="form-control" id="" placeholder="">
+            <label for="floatingPassword">비밀번호 확인</label>
           </div>
-          <div class="input__block">
-             <input type="text" placeholder="이름을 입력하세요" class="input" id="user_name"    />
+          <div class="form-floating join_form">
+            <input type="text" class="form-control" id="" placeholder="">
+            <label for="floatingPassword">이름</label>
           </div>
-          <div class="input__block">
-             <input type="email" placeholder="이메일을 입력하세요" class="input" id="user_email"    />
-          </div>
-          <div class="input__block">
-             <input type="text" placeholder="주소를 입력하세요" class="input" id="user_addr"    />
+          <div class="join_form" style="display: flex; justify-content: space-between; height: 58px;">
+            <div class="form-floating">
+              <input type="text" class="form-control" id="" placeholder="" style="width: 300px;">
+              <label for="floatingPassword">이메일</label>
             </div>
-            <div class="input__block">
-               <input type="text" placeholder="생년월일을 입력하세요" class="input" id="user_bday"    />
+            <select name="email_domain" class="form-select" id="email_domain" onchange="updateEmail()" style="width :250px;">
+                <option value="naver.com">@naver.com</option>
+                <option value="gmail.com">@gmail.com</option>
+                <option value="daum.net">@daum.net</option>
+                <option value="hanmail.net">@hanmail.net</option>
+                <option value="nate.com">@nate.com</option>
+                <option value="custom">직접입력</option>
+            </select>
+          </div>
+          <div class="form-floating join_form">
+            <input type="text" class="form-control" id="" placeholder="">
+            <label for="floatingPassword">주소</label>
+          </div>
+          <div class="form-floating join_form">
+            <input type="date" class="form-control" id="" placeholder="">
+            <label for="floatingPassword">생년월일</label>
+          </div>
+          <div class="join_form row" style="height: 58px; display: flex; justify-content: space-around; align-items: center;" >
+            <div class="col-4">성별</div>
+            <div class="form-check col-4">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="M">남성
+                </div>
+                <div class="form-check col-4">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="F">여성
             </div>
+
+          </div>
+          
+          <!-- 새로 -->
           
           <!-- sign in button -->
-          <button class="signin__btn">
+          <button class="signin__btn" type="submit">
             회원가입
           </button>
         </form>

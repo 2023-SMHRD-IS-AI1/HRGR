@@ -5,6 +5,11 @@ $(document).ready(function(){
    reset.on("click",function(e){
      e.preventDefault();
      $(this).parent().parent().siblings("form")
-     .find(".input__block").find(".input").val("");
+     .find(".join_form").find(".form-control").val("");
+   })
+   reset.on("click",function(e){
+     e.preventDefault();
+     $(this).parent().parent().siblings("form")
+     .find(".join_form").find(".form-check-input").prop("checked", false);
    })
 });

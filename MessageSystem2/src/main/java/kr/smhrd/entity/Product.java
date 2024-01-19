@@ -1,5 +1,7 @@
 package kr.smhrd.entity;
 
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -31,7 +33,7 @@ public class Product {
 
 
 	
-	private int created_at;
+	private String created_at;
 	
 
 	private String cust_id;
@@ -100,7 +102,47 @@ public class Product {
 		this.ordered_at = ordered_at;
 		this.img_name = img_name;
 	}
-	
+	// tb_diary 컬럼명
+		private String diary_title;
+		private String diary_content;
+		private int diary_likes;
+
+		private String company_name;
+		
+		private String certified_yn;
+
+
+
+		public Product(String created_at, String cust_id, String diary_title, String diary_content, int diary_likes
+				, String company_name) {
+			super();
+			this.created_at = created_at;
+			this.cust_id = cust_id;
+			this.diary_title = diary_title;
+			this.diary_content = diary_content;
+			this.diary_likes = diary_likes;
+			this.company_name=company_name;
+			
+		}
+
+
+
+		public Product(String prod_name, String prod_price, int prod_ratings, @NonNull int prod_idx) {
+			super();
+			this.prod_name = prod_name;
+			this.prod_price = prod_price;
+			this.prod_ratings = prod_ratings;
+			this.prod_idx = prod_idx;
+		}
+
+
+
+		public Product(String prod_name, String prod_desc, String created_at) {
+			super();
+			this.prod_name = prod_name;
+			this.prod_desc = prod_desc;
+			this.created_at = created_at;
+		}
 	
 	
 

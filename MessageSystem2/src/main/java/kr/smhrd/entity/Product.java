@@ -154,6 +154,24 @@ public class Product {
 			this.question = question;
 			this.questioned_at = questioned_at;
 		}
+		
+		private String review_content;
+		private Date reviewed_at;
+		private String image_name;
+
+
+
+
+		public Product(int prod_ratings, String cust_id, @NonNull int prod_idx, String review_content,
+				Date reviewed_at, String image_name) {
+			super();
+			this.prod_ratings = prod_ratings;
+			this.cust_id = cust_id;
+			this.prod_idx = prod_idx;
+			this.review_content = review_content;
+			this.reviewed_at = reviewed_at;
+			this.image_name=image_name;
+		}
 	
 	
 

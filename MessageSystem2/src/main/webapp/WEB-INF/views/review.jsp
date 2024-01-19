@@ -187,7 +187,9 @@
           <div class="review_content">
             <h2 style="font-weight: bold; margin-bottom: 14px;">후기 작성</h2>
             <!-- 제목 아래 큰틀 -->
-            <form action="">
+            <form action="submitReview" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="prod_idx" value="25">
+	        <input type="hidden" name="cust_id" value="1">
             <div class="review_box border-bottom border-top border-success">
              <div class="row" style="padding: 20px;">
               <div class="col-3"><img class="rounded" src="//thumbnail7.coupangcdn.com/thumbnails/remote/300x300ex/image/vendor_inventory/3347/38dbf382340fbf1c4f44405591e08a5175b383431326b32be42d8dfa68ad.jpg" alt="" style="max-width: 100%;" ></div>
@@ -195,7 +197,7 @@
                   <div style="margin-bottom: 30px;"><p style="font-size: 20px; font-weight: bold;">상품명 당근당근</p></div>
                   <div style="margin-bottom: 30px;">3,000원 | 1kg</div>
                   <div>
-                    <select class="form-select" style="width: 160px;">
+                    <select class="form-select" name="prod_ratings" style="width: 160px;">
                       <option selected value="5">★★★★★ 5점</option>
                       <option value="4">★★★★☆ 4점</option>
                       <option value="3">★★★☆☆ 3점</option>
@@ -209,23 +211,23 @@
             <div class="review_box border-bottom border-success row">
               <div class="col-2 align-self-center">상세리뷰</div>
               <div class="col-10">
-                <textarea class="form-control" id="review" rows="3" placeholder="상품에 대한 솔직한 평가를 남겨주세요."></textarea>
+                <textarea class="form-control" id="review" name="review_content" rows="3" placeholder="상품에 대한 솔직한 평가를 남겨주세요."></textarea>
               </div>
             </div>
             <div class="review_box border-bottom border-success row">
               <div class="col-2 align-self-center">사진첨부</div>
               <div class="col-4">
-                <input class="form-control" type="file" id="formFile">
+                <input class="form-control" type="file" name="image" id="formFile">
               </div>
               <div class="col-6">
                 사진은 최대 20MB이하의 JPG, PNG, GIF 파일을 첨부해주세요
               </div>
             </div>
-          </form>
           <div class="review_box" align="center">
             <button type="button" class="btn btn-outline-secondary">취소하기</button>
-            <button type="button" class="btn btn-success">등록하기</button>
+            <button type="submit" class="btn btn-success">등록하기</button>
           </div>
+           </form>
               </div>
             </div>
       </div>

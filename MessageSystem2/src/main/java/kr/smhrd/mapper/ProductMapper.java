@@ -46,9 +46,11 @@ import kr.smhrd.entity.Product;
 	public List<Product> selectTopBuy();
 		
 	public List<Product> selectEditor();
+
+	public void deleteCart(Long prod_idx);
 	 
 	public void insertQna(Product product);
 	 
-	 
+	public void insertReview(Product product);
 	 }
  

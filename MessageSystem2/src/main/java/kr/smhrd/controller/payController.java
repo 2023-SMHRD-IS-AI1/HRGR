@@ -25,15 +25,21 @@ public class payController extends HttpServlet {
 
 	    private final IamportClient iamportClient;
 
+	    
 	    public PayController() {
 	        this.iamportClient = new IamportClient("2634851125785437",
 	                "yyrpEC1rxUmK4RDcodwdZj44ZWfHZ1rfWnxSrbndkguP7lPyMeCBLGFq3d6j4wSiBE2xKU4gcHTTuDpB");
 	    }
 
+	    
 	    @ResponseBody
-	    @RequestMapping("/verify/{imp_uid}")
+	    @RequestMapping("/payByImport")
 	    public IamportResponse<Payment> paymentByImpUid(@PathVariable("imp_uid") String imp_uid)
 	            throws IamportResponseException, IOException {
+	    	
+	    	System.out.println("\n payByImport \n");
+	    	
+	    	
 	        return iamportClient.paymentByImpUid(imp_uid);
 	    }
 

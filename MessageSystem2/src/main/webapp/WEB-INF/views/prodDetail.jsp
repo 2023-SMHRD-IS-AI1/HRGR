@@ -349,6 +349,13 @@
             <c:forEach var="qnaList" items="${qnaList }" varStatus="i">
 			<c:if test="${i.index < 10}">
             <div class="prodReview_box" style="padding: 20px 20px 0px 20px;">
+                          <div style="display: flex; justify-content: space-between;">
+                <h2 style="padding-top: 10px;">상품문의</h2>
+                <a href="#">
+                  <button type="button" class="btn btn-lg btn-success">문의하기</button>
+                </a>
+              </div>
+              <hr style="color: rgb(156, 156, 156);">
               <div style="padding: 10px 20px;">
                <div style="font-weight: bold; margin-bottom: 10px;">문의내용</div> 
                <div> ${qnaList.question }</div>

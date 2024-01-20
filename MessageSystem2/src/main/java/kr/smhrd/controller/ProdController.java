@@ -3,7 +3,9 @@ package kr.smhrd.controller;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -279,6 +281,43 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 	        return "Main";
 		}
 
+
+		// 장바구니에서 상품 삭제 
+		@RequestMapping("/deleteCart")
+		public ResponseEntity<String> deleteCart(@RequestBody Long[] prodIdxArray) {
+		    // prodIdxArray를 사용하여 선택한 상품들을 처리
+		    for (Long prod_idx : prodIdxArray) {
+		        ProductMapper.deleteCart(prod_idx);
+		    }
+
+		    return ResponseEntity.ok("Delete to myCart");
+		}
+
+		@RequestMapping(value = "/submitReview", method = RequestMethod.POST)
+		public String submitReview(@ModelAttribute Product product, @RequestParam("image") MultipartFile image,
+				HttpServletRequest request) {
+
+			if (!image.isEmpty()) {
+				String imageName = image.getOriginalFilename();
+				ServletContext context = request.getSession().getServletContext();
+				String savePath = context.getRealPath("./resources/upload");
+				Path path = Paths.get(savePath + "/" + imageName);
+				try {
+					Files.copy(image.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+					product.setImage_name(imageName);
+				} catch (IOException e) {
+					e.printStackTrace();
+					return "error";
+				}
+
+				product.setReviewed_at(new Date());
+				ProductMapper.insertReview(product);
+
+			
+			}
+			return "Main";
+
+		}
 
 	
 	

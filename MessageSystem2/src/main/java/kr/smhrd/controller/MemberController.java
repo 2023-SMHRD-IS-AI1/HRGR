@@ -104,7 +104,7 @@ public class MemberController {
 
 	            System.out.println("세션값 tostring : "+loginMember.toString());
 
-	            return "Main";
+	            return "Main2";
 	        } else {
 	            // 로그인 실패
 	            System.out.println("로그인 실패");
@@ -126,7 +126,7 @@ public class MemberController {
 		System.out.println("memCon" + msgList.size());
 		session.setAttribute("loginMember", loginMember);
 		session.setAttribute("msgList", msgList);
-		return "Main";
+		return "Main2";
 	}
 
 	// 로그아웃 /logoutMember
@@ -161,7 +161,7 @@ public class MemberController {
 			System.out.println("실패");
 		}
 
-		return "Main";
+		return "Main2";
 	}
 
 	// 회원정보 보는 페이지로 이동 + DB에 있는 회원 조회 /showMember
@@ -195,7 +195,7 @@ public class MemberController {
 		System.out.println(member.toString());
 	    memberMapper.sellerInsert(member);
 	    memberMapper.sellerUpdate(member);
-	    return "Main";
+	    return "Main2";
 	}
 	@RequestMapping("/goLogin")
 	public String goLogin() {

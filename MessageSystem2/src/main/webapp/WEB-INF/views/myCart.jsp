@@ -241,11 +241,12 @@
                <label class="form-check-label" for="selectAllCheckbox">
                  전체선택
                </label>
-                <button type="button" class="btn btn-outline-success btn-sm">선택삭제</button>
+                <!-- 선택 삭제 버튼 -->
+<button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteCartItem('<c:out value="${cart.prod_idx}" />')">선택 삭제</button>
               </div>
               <!-- 상품ㄱㄱ -->
 <c:forEach var="cart" items="${Cart}" varStatus="loop">
-    <div class="prodLike_pordLine border-bottom border-success">
+    <div class="prodLike_pordLine border-bottom border-success" data-prod-idx="<c:out value="${cart.prod_idx}" />">
         <div class="row">
             <div class="col-3">
             
@@ -296,7 +297,7 @@
                           <!-- 페이지네이션 -->
 <div style="margin-top: 30px;" align="center">
   <button type="button" class="btn btn-outline-secondary">계속 쇼핑하기</button>
-  <button type="submit" class="btn btn-success">구매하기</button>
+  <button type="button" class="btn btn-success" onclick="iamport()">구매하기</button>
 </div>
 <!-- 페이지네이션 끝 -->
             </div>
@@ -383,6 +384,8 @@
       <script src="js/plugins.js"></script>
       <script src="js/script.js"></script>
       <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+      <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+      
 
 <script>
 $(document).ready(function() {
@@ -431,21 +434,76 @@ $(document).ready(function() {
       totalAmountElement.textContent = totalAmount + '원';
   }
   
-  // 선택된 상품을 삭제하는 함수
-  function deleteSelectedItems() {
-      var checkboxes = document.getElementsByName('selectedItems');
-      var cartLines = document.querySelectorAll('.prodLike_pordLine');
+  function deleteCartItem() {
+	    // 모든 체크된 체크박스 가져오기
+	    var checkedCheckboxes = $('.prodLike_pordLine input[type="checkbox"]:checked');
+	    // 체크된 체크박스가 하나 이상 선택되었는지 확인
+	    if (checkedCheckboxes.length > 0) {
+	        // prod_idx 값을 저장할 배열 생성
+	        var selectedProdIdxArray = [];
 
-      for (var i = checkboxes.length - 1; i >= 0; i--) {
-          if (checkboxes[i].checked) {
-              // 체크된 상품 삭제
-              cartLines[i].remove();
-          }
-      }
+	        checkedCheckboxes.each(function () {
+	            if ($(this).is(':checked')) {
+	                var prodIdx = $(this).closest('.prodLike_pordLine').data('prod-idx');
+	                selectedProdIdxArray.push(prodIdx);
+	            }
+	        });
+			
+	        // AJAX 요청으로 선택된 항목 삭제
+	        $.ajax({
+	            type: 'POST',
+	            url: '/controller/deleteCart',  // 이 부분을 절대경로로 수정
+	            data: JSON.stringify(selectedProdIdxArray),
+	            contentType: 'application/json',
+	            success: function (response) {
+	                console.log('선택한 상품 삭제 성공');
 
-      // 총 금액 다시 계산
-      updateGlobalTotalAmount();
-  }
+	                // UI에서 선택된 행 제거
+	                checkedCheckboxes.closest('.prodLike_pordLine').remove();
+
+	                // 전체 금액 다시 계산
+	                updateGlobalTotalAmount();
+	            },
+	            error: function (error) {
+	                console.error('상품 삭제 실패', error);
+	            }
+	        });
+	    }
+	}
+  
+  // 결제 구현
+  function iamport(){
+
+	    //가맹점 식별코드
+	    IMP.init('imp44183336'); // 가맹점 식별코드로 Iamport 초기화
+        IMP.request_pay({ // 결제 요청
+            pg: "kakaopay",   // PG사 설정
+            pay_method : "card", // 결제 방법
+            merchant_uid : "20230901ABDE", // 주문 번호
+            name : "상품1", // 상품 이름
+            amount: 3000, // 결제 가격
+            buyer_name : "홍길동", // 구매자 이름 (buyer_ 부분은 꼭 작성하지 않아도된다. (선택사항))
+            buyer_tel : "010-5555-1111", // 구매자 연락처
+            buyer_postcode : 52030, // 구매자 우편번호
+            buyer_addr : "경기도 판교" // 구매자 주소
+        }, function(res) {
+            if (res.success) {
+                axios({
+                    method: "post",
+                    url: "payByImport"
+                })
+            	// 응답 데이터의 정보들
+                console.log("Payment success!");
+                console.log("Payment ID : " + res.imp_uid);
+                console.log("Order ID : " + res.merchant_uid);
+                console.log("Payment Amount : " + res.paid_amount);
+            } else {
+                console.error(response.error_msg);
+            }
+        })
+  };
+
+  
 </script>
 <script>
 		document.getElementById("userIcon").addEventListener("click",

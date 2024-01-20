@@ -240,10 +240,25 @@ INNER JOIN tb_seller s ON p.cust_id = s.cust_id
 WHERE s.certified_yn = 0
 ORDER BY p.created_at DESC;
 </select>
+
+
+<delete id="deleteCart" parameterType="Long">
+DELETE FROM tb_myCart
+WHERE prod_idx=#{prod_idx}
+</delete>
+
 <!-- qna 입력 -->
 <insert id="insertQna" parameterType="kr.smhrd.entity.Product" >
 INSERT INTO tb_qna (prod_idx, cust_id, question, questioned_at)
         VALUES (#{prod_idx}, #{cust_id}, #{question}, #{questioned_at})
+</insert>
+
+
+
+<!-- 후기등록하기 -->
+<insert id="insertReview" parameterType="kr.smhrd.entity.Product">
+INSERT INTO tb_review (prod_idx, cust_id, review_content,prod_ratings,reviewed_at,image_name)
+		VALUES (#{prod_idx},#{cust_id},#{review_content},#{prod_ratings},#{reviewed_at},#{image_name})
 </insert>
 
 </mapper>

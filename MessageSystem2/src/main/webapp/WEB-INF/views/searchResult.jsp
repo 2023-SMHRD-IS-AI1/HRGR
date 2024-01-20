@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +20,6 @@
 <link rel="stylesheet" href="resources/assets/css/style.css" />
 <link rel="stylesheet" href="resources/assets/css/vendor.css" />
 
-
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
 <link
@@ -30,11 +30,24 @@
 <link rel="stylesheet" type="text/css" href=".resources/assets/css/vendor.css">
 <link rel="stylesheet" type="text/css" href="resources/assets/css/style.css">
 
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-	rel="stylesheet">
+<linkhref="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/vendor.css">
+    <link rel="stylesheet" type="text/css" href="stylejm.css">
+  <link rel="stylesheet" type="text/css" href="./resources/assets/css/vendor.css">
+    <link rel="stylesheet" type="text/css" href="./resources/assets/css/stylejm.css">
+    <link rel="stylesheet" href="./resources/assets/css/login_01.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,800" rel="stylesheet"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="./css/login_01.css">
+
+
+
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
@@ -188,7 +201,7 @@
 		</div>
 	</div>
 
-	<header>
+	 <header>
       <div class="container-fluid">
         <div class="row py-3 border-bottom">
           
@@ -209,6 +222,9 @@
                   <option>수산물</option>
                   <option>가공식품</option>
                 </select>
+                  <!-- 모달 내용을 원하는 대로 추가하세요 -->
+ 
+             
               </div>
               <div class="col-11 col-md-7">
                 <form id="search-form" class="text-center" action="gosearch" method="post">
@@ -229,68 +245,56 @@
           
           <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
             <div class="support-box text-end d-none d-xl-block">
-						<%
-						if (Memberlogin == null) {
-						%>
-						<a class="fs-6 text-muted" href="goLogin">로그인</a>
-						<%
-						} else {
-						%>
-						<!-- Q7. 개인정보수정 기능 만들기 -->
-						<!-- Q8. 로그아웃 기능 만들기 -->
-						<!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-						<% if (!Memberlogin.getCust_role().equals("S")) {%>
-						<a href="goSeller">판매자 등록</a> <a href="goLogout">로그아웃</a>
-						<%
-						} else {
-						%>
-							<a href=goLogout>로그아웃</a>
-
-							<%}%>
-
-						<%}%>
-						<h5 class="mb-0"></h5>
-					</div>
-
-					<ul class="d-flex justify-content-end list-unstyled m-0">
-						<li>
-							<%
-							if (Memberlogin == null) {
-							%> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
-								<svg width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#user"></use>
-						</svg>
-						</a> <%
+                              <h5 class="mb-0"></h5>
+               </div>
+            <ul class="d-flex justify-content-end list-unstyled m-0">
+              <li><%
+                if (Memberlogin == null) {
+                %>
+                <a href="goLogin" style="font-size: 20px; color: green; font-weight: bold;"><i class="fa fa-sign-in" aria-hidden="true"> 로그인</i></a>
+                <%
+                } else {
+                %>
+                <a href="goLogout" style="font-size: 20px; color: green; font-weight: bold;"><i class="fa fa-sign-out" aria-hidden="true"> 로그아웃</i></a>
+                <%}%>
+              </li>
+              <li>
+                <%
+                     if (Memberlogin == null) {
+                     %> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
+                        <svg width="24" height="24" viewBox="0 0 24 24">
+                    <use xlink:href="#user"></use>
+                  </svg>
+                  </a> <%
  } else {
  %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-							<a href="gomyPage" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
-									width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#user"></use>
-						</svg></a> <%
+                     <a href="gomyPage" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
+                           width="24" height="24" viewBox="0 0 24 24">
+                    <use xlink:href="#user"></use>
+                  </svg></a> <%
  }
  %>
-						</li>
-						<li>
-							<%
-							if (Memberlogin == null) {
-							%><a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
-								<svg width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#cart"></use>
-						</svg>
-						</a> <%
- } else {
- %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-							<a href="goLike" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
-									width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#cart"></use>
-						</svg></a> <%
- }
- %>
-              
+              </li>
+              <li>
+                <%
+                if (Memberlogin == null) {
+                %><a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
+                  <svg width="24" height="24" viewBox="0 0 24 24">
+                <use xlink:href="#cart"></use>
+              </svg>
+              </a> <%
+   } else {%>
+            <a href="goMyCart" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
+              width="24" height="24" viewBox="0 0 24 24">
+              <use xlink:href="#cart"></use>
+              </svg></a> 
+              <%}%>
+              </li>
             </ul>
 
            
           </div>
+          
 
         </div>
       </div>
@@ -346,6 +350,7 @@
         </div>
       </div>
     </header>
+
 
 	<!-- 시세 확인란 -->
 	<ul class="sisae">
@@ -406,17 +411,17 @@
 													%>
 
 													<figure>
-														<a href="single-product.html" title="Product Title"> <img
+														<a href="goprodDetail?prod_idx=${product.prod_idx}" title="Product Title"> <img
 															src="./resources/upload/${product.img_name }" class="tab-image">
 														</a>
 													</figure>
 													<h3>${product.prod_name}</h3>
-													<h2>${product.prod_idx}</h2>
+													
 													<span class="qty">${product.prod_stock }</span><span
 														class="rating"><svg width="24" height="24"
 															class="text-primary">
 															<use xlink:href="#star-solid"></use></svg>
-														${product.prod_ratings }</span> <span class="price">${product.prod_price}</span>
+														${product.prod_ratings }</span> <span class="price"><fmt:formatNumber value="${product.prod_price}" type="price" pattern="#,###"/>원</span>
 													<div
 														class="d-flex align-items-center justify-content-between">
 														<div class="input-group product-qty">
@@ -438,8 +443,8 @@
 																</button>
 															</span>
 														</div>
-														<a href="#" class="nav-link" onclick="addToCart(event,${product.prod_idx}, ${product.prod_price}, 'quantity${loopStatus.index}')">Add to Cart <iconify-icon
-																icon="uil:shopping-cart"></a>
+														<a href="#" class="nav-link" onclick="addToCart(event,${product.prod_idx}, ${product.prod_price}, 'quantity(2)${loopStatus.index}')">Add to Cart <iconify-icon
+                                                icon="uil:shopping-cart"></a>
 													</div>
 												</div>
 											</div>
@@ -511,7 +516,7 @@
 													%>
 
 													<figure>
-														<a href="single-product.html" title="Product Title"> <img
+														<a href="goprodDetail?prod_idx=${ProductNew.prod_idx}"title="Product Title"> <img
 															src="./resources/upload/${ProductNew.img_name }" class="tab-image">
 														</a>
 													</figure>
@@ -521,7 +526,7 @@
 														class="rating"><svg width="24" height="24"
 															class="text-primary">
 															<use xlink:href="#star-solid"></use></svg>
-														${ProductNew.prod_ratings }</span> <span class="price">${ProductNew.prod_price}</span>
+														${ProductNew.prod_ratings }</span> <span class="price"><fmt:formatNumber value="${ProductNew.prod_price}" type="price" pattern="#,###"/>원</span>
 													<div
 														class="d-flex align-items-center justify-content-between">
 														<div class="input-group product-qty">
@@ -544,7 +549,7 @@
 															</span>
 														</div>
 														<a href="#" class="nav-link" onclick="addToCart(event,${ProductNew.prod_idx}, ${ProductNew.prod_price}, 'quantity(2)${loopStatus.index}')">Add to Cart <iconify-icon
-																icon="uil:shopping-cart"></a>
+                                                icon="uil:shopping-cart"></a>
 													</div>
 												</div>
 											</div>
@@ -679,34 +684,34 @@
 	// 장바구니 추가
 	function addToCart(event, prod_idx, prod_price, name) {
 
-		var quantityElement = document.getElementsByName(name)[0];
-		var quantityValue = quantityElement.value;
-	    
-	        var prodInfo = {
-	    		    prod_idx: prod_idx,
-	    		    cart_count: parseInt(quantityValue, 10),
-	    		    prod_price: prod_price
-	    		};
-	    			console.log(prodInfo);
-	    		    // AJAX를 사용하여 서버로 데이터 전송
-	    		    $.ajax({
-	    		        type: 'POST',
-	    		        url: 'http://localhost:8081/controller/insertCart',
-	    		      
-	    		        data: JSON.stringify(prodInfo),
-	    		        contentType: 'application/json',
-	    		        success: function(response) {
-	    		            console.log('Server response:',response);
-	    		            /* location.reload(); */
-	    		            // TODO: 서버 응답에 따른 동작 수행
-	    		        },
-	    		        error: function(error) {
-	    		            console.error('Error:', error);
-	    		        }
-	    			});
-	    // 기본 동작 막기
-	    event.preventDefault();
-		};
+      var quantityElement = document.getElementsByName(name)[0];
+      var quantityValue = quantityElement.value;
+       
+           var prodInfo = {
+                 prod_idx: prod_idx,
+                 cart_count: parseInt(quantityValue, 10),
+                 prod_price: prod_price
+             };
+                console.log(prodInfo);
+                 // AJAX를 사용하여 서버로 데이터 전송
+                 $.ajax({
+                     type: 'POST',
+                     url: 'http://localhost:8081/controller/insertCart',
+                   
+                     data: JSON.stringify(prodInfo),
+                     contentType: 'application/json',
+                     success: function(response) {
+                         console.log('Server response:',response);
+                         /* location.reload(); */
+                         // TODO: 서버 응답에 따른 동작 수행
+                     },
+                     error: function(error) {
+                         console.error('Error:', error);
+                     }
+                });
+       // 기본 동작 막기
+       event.preventDefault();
+      };
 		
 		/* function addToCart(event, prod_idx, name) {
 		    var quantityElement = document.getElementsByName(name)[0];
@@ -754,6 +759,9 @@
     }
   });
 </script>
+
+
+
 
 </body>
 

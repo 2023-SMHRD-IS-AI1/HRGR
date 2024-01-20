@@ -3,7 +3,9 @@ package kr.smhrd.controller;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -30,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.mysql.cj.Session;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -243,6 +246,27 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 			return "myCart";
 		}
 		
+
+		@RequestMapping("/goprodDetail")
+	       public String goprodDetail(@RequestParam("prod_idx") int prod_idx,
+	                                   HttpSession session,Model model) {
+	           // 이제 prodIdx, prodName, prodPrice, quantityInputId 값을 사용하여 로직을 수행할 수 있습니다.
+	         
+	         // 세션에서 로그인 한 사용자의 정보 가져오기
+			System.out.println("asdgasdgasdga!!!!:    "+ prod_idx);
+	          List<Product> prodList = ProductMapper.prodDetail(prod_idx);
+	          model.addAttribute("prodList",prodList);
+	          
+	          List<Product> qnaList = ProductMapper.searchQna(prod_idx);
+	          model.addAttribute("qnaList",qnaList);
+	          System.out.println("qnsandasnfasnf!~~~~~~~~~:" + qnaList);
+	          
+	          List<Product> reviewList = ProductMapper.searchReview(prod_idx);
+	          model.addAttribute("reviewList",reviewList);
+	          
+	          return "prodDetail"; // 적절한 뷰 이름을 반환합니다.
+	       }
+
 		@RequestMapping(value="/submitQna", method = RequestMethod.POST)
 		public String submitQna(@RequestParam("prod_idx") int prod_idx,@RequestParam("cust_id") String cust_id,
                 @RequestParam("question") String question) {
@@ -257,6 +281,7 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 	        return "Main";
 		}
 
+
 		// 장바구니에서 상품 삭제 
 		@RequestMapping("/deleteCart")
 		public ResponseEntity<String> deleteCart(@RequestBody Long[] prodIdxArray) {
@@ -267,6 +292,33 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 
 		    return ResponseEntity.ok("Delete to myCart");
 		}
+
+		@RequestMapping(value = "/submitReview", method = RequestMethod.POST)
+		public String submitReview(@ModelAttribute Product product, @RequestParam("image") MultipartFile image,
+				HttpServletRequest request) {
+
+			if (!image.isEmpty()) {
+				String imageName = image.getOriginalFilename();
+				ServletContext context = request.getSession().getServletContext();
+				String savePath = context.getRealPath("./resources/upload");
+				Path path = Paths.get(savePath + "/" + imageName);
+				try {
+					Files.copy(image.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+					product.setImage_name(imageName);
+				} catch (IOException e) {
+					e.printStackTrace();
+					return "error";
+				}
+
+				product.setReviewed_at(new Date());
+				ProductMapper.insertReview(product);
+
+			
+			}
+			return "Main";
+
+		}
+
 	
 	
 }

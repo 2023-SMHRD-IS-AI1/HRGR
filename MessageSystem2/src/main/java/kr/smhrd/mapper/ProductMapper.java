@@ -32,6 +32,12 @@ import kr.smhrd.entity.Product;
 	 public String selectProdName(int prod_idx);
 
 	 public String selectProdImg(int prod_idx);
+
+	public List<Product> prodDetail(int prod_idx);
+
+	public List<Product> searchQna(int prod_idx);
+
+	public List<Product> searchReview(int prod_idx);
 	 
 	 public List<Product> selectProducts();
 		
@@ -45,6 +51,6 @@ import kr.smhrd.entity.Product;
 	 
 	public void insertQna(Product product);
 	 
-	 
+	public void insertReview(Product product);
 	 }
  

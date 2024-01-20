@@ -74,7 +74,7 @@ public class MemberController {
 			
 			List<Product> editorPick = ProductMapper.selectEditor();
 			model.addAttribute("editorPick",editorPick);
-		return "Main";
+		return "Main2";
 	}
 	
 	// 회원가입 /memberInsert
@@ -89,7 +89,8 @@ public class MemberController {
 	}
 	@RequestMapping("/memberlogin")
 	public String memberlogin(Member member, HttpSession session) {
-	    try {
+		
+		 try {
 	        // 로깅 문 추가
 	        System.out.println("회원 로그인 요청: " + member.toString());
 	        
@@ -103,11 +104,11 @@ public class MemberController {
 
 	            System.out.println("세션값 tostring : "+loginMember.toString());
 
-	            return "Main";
+	            return "redirect:/";
 	        } else {
 	            // 로그인 실패
 	            System.out.println("로그인 실패");
-	            return "login";
+	            return "login_01";
 	        }
 	    } catch (Exception e) {
 	        // 예외 처리
@@ -125,7 +126,7 @@ public class MemberController {
 		System.out.println("memCon" + msgList.size());
 		session.setAttribute("loginMember", loginMember);
 		session.setAttribute("msgList", msgList);
-		return "Main";
+		return "Main2";
 	}
 
 	// 로그아웃 /logoutMember
@@ -160,7 +161,7 @@ public class MemberController {
 			System.out.println("실패");
 		}
 
-		return "myPage";
+		return "Main2";
 	}
 
 	// 회원정보 보는 페이지로 이동 + DB에 있는 회원 조회 /showMember
@@ -194,22 +195,22 @@ public class MemberController {
 		System.out.println(member.toString());
 	    memberMapper.sellerInsert(member);
 	    memberMapper.sellerUpdate(member);
-	    return "Main";
+	    return "Main2";
 	}
 	@RequestMapping("/goLogin")
 	public String goLogin() {
-		return "login";
+		return "login_01";
 	}
 	
 	@RequestMapping("/goJoin")
 	public String goJoin() {
-		return "join_01";
+		return "join_02";
 	}
 	
 	@RequestMapping("/goSeller")
 	public String goSeller() {
 		
-		return "sellerAccount";
+		return "sellerRegist";
 	}
 	@PostMapping("/searchLike")
 	@ResponseBody
@@ -228,6 +229,7 @@ public class MemberController {
 		member.setCust_id(cust_id);
 		member.setProd_idx(prod_idx);
 		System.out.println(prod_idx);
+		
 		
 		int cnt = memberMapper.searchLike(member);
 		if(cnt == 0) {
@@ -258,19 +260,26 @@ public class MemberController {
 		model.addAttribute("reviewList",reviewList);
 		System.out.println(model.toString());
 		
+		List<Member> searchQna = memberMapper.searchQna(cust_id);
+		model.addAttribute("searchQna",searchQna);
+		System.out.println(model.toString());
+		
+		if(loginMember.getCust_role().equals("S")) {
+			List<Member> sellList = memberMapper.searchMysell(cust_id);
+			model.addAttribute("sellList",sellList);
+			
+			List<Member> diaryList = memberMapper.searchDia(cust_id);
+			model.addAttribute("diaryList",diaryList);
+			
+			List<Member> qnaList = memberMapper.qnaList(cust_id);
+			model.addAttribute("qnaList",qnaList);
+			System.out.println("SDagasdgasdgasdg!!! @!@       "+qnaList);
+			
+			
+			return "sellerMyPage";
+		}
 		
 		
-		/*
-		 * try { multi = new MultipartRequest(request, savePath, maxSize, enc, dftrp);
-		 * String title = multi.getParameter("title"); String writer =
-		 * multi.getParameter("writer"); String filename =
-		 * multi.getFilesystemName("filename"); String content =
-		 * multi.getParameter("content");
-		 * 
-		 * board = new Board(title, writer, filename, content);
-		 * System.out.println(board.toString()); } catch (IOException e) { // TODO
-		 * Auto-generated catch block e.printStackTrace(); }
-		 */
 		  return "myPage";
 		
 	}
@@ -301,7 +310,7 @@ public class MemberController {
 	
 	@RequestMapping("/reviewDelete")
 	@ResponseBody
-	public String reviewDelete(@RequestParam int prod_idx,Member member, HttpSession session) {
+	public boolean reviewDelete(@RequestParam int prod_idx,Member member, HttpSession session) {
 		
 		Member loginMember = (Member)session.getAttribute("loginMember");
 		System.out.println("\n"+loginMember.toString() +"\n");
@@ -311,11 +320,51 @@ public class MemberController {
 		member.setProd_idx(prod_idx);
 		System.out.println(prod_idx);
 		memberMapper.reviewDelete(member);
-		return "myPage";
+		return true;
+	}
+	
+	@RequestMapping("/qnaDelete")
+	@ResponseBody
+	public boolean qnaDelete(@RequestParam int prod_idx,Member member, HttpSession session) {
+		
+		Member loginMember = (Member)session.getAttribute("loginMember");
+		
+		String cust_id = loginMember.getCust_id();
+		System.out.println("cust_id값 확인 : "+ cust_id);
+		member.setCust_id(cust_id);
+		member.setProd_idx(prod_idx);
+		System.out.println(prod_idx);
+		memberMapper.qnaDelete(member);
+		return true;
 	}
 	
 	
 	
+	@RequestMapping("/updateAnswer")
+	@ResponseBody
+	public boolean updateAnswer(@RequestParam String answer, @RequestParam int prod_idx,@RequestParam int qna_idx,Member member, HttpSession session) {
+		
+		Member loginMember = (Member)session.getAttribute("loginMember");
+		
+		String cust_id = loginMember.getCust_id();
+		System.out.println("cust_id값 확인 : "+ cust_id);
+		System.out.println("수정할 답!! !:  "+answer);
+		System.out.println("prod 아이디 값: " +prod_idx);
+		member.setAnswer(answer);
+		member.setProd_idx(prod_idx);
+		member.setQna_idx(qna_idx);
+		System.out.println(prod_idx);
+		
+		memberMapper.updateAnswer(member);
+		return true;
+	}
 	
+	@RequestMapping("/godiary")
+	public String godiary(Model model,HttpSession session) {
+		List<Member> diaryList =memberMapper.diaryList();
+		model.addAttribute("diaryList",diaryList);
+		System.out.println(model);
+		return "diary";
+	}
 	
 }

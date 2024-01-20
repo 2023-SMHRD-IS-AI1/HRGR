@@ -73,15 +73,18 @@ WHERE
 	<select id="reviewList" parameterType="String" resultType="kr.smhrd.entity.Member">
  SELECT
     r.*,
-    pi.img_name AS img_name,
+    pi_review.img_name AS review_img_name,
     p.prod_name AS prod_name,
-    p.prod_idx AS prod_idx
+    p.prod_idx AS prod_idx,
+    pi_product.img_name AS product_img_name
 FROM
     tb_review r
-INNER JOIN
-    tb_prod_image pi ON r.prod_idx = pi.prod_idx
+LEFT JOIN
+    tb_prod_image pi_review ON r.prod_idx = pi_review.prod_idx
 LEFT JOIN
     tb_prod p ON r.prod_idx = p.prod_idx
+LEFT JOIN
+    tb_prod_image pi_product ON p.prod_idx = pi_product.prod_idx
 WHERE
     r.cust_id = #{cust_id};
 </select>
@@ -90,5 +93,105 @@ WHERE
 delete from tb_review where cust_id = #{cust_id} and prod_idx = #{prod_idx}
 </delete>
 
+<select id="searchQna" parameterType="String" resultType="kr.smhrd.entity.Member">
+SELECT
+    q.qna_idx AS qna_idx,
+    q.cust_id AS cust_id,
+    q.prod_idx AS prod_idx,
+    q.question AS question,
+    q.questioned_at AS questioned_at,
+    q.answer AS answer,
+    q.answered_at AS answered_at,
+    p.prod_name AS prod_name,
+    pi.img_name AS prod_image_name,
+    p.cust_id AS product_customer_id,
+    s.company_name AS seller_company_name
+FROM
+    tb_qna q
+JOIN
+    tb_prod p ON q.prod_idx = p.prod_idx
+LEFT JOIN
+    tb_prod_image pi ON p.prod_idx = pi.prod_idx
+LEFT JOIN
+    tb_seller s ON q.cust_id = s.cust_id
+WHERE
+    q.cust_id = #{cust_id};
+</select>
+
+<delete id="qnaDelete" parameterType="kr.smhrd.entity.Member">
+delete from tb_qna where cust_id = #{cust_id} and prod_idx = #{prod_idx}
+
+</delete>
+
+<select id="searchMysell" parameterType="String" resultType="kr.smhrd.entity.Member">
+SELECT
+    r.cust_id,
+    p.prod_name AS prod_name,
+    p.prod_price AS prod_price,
+    pi.img_name AS img_name,
+    r.prod_ratings AS prod_ratings,
+    r.review_content AS review_content
+FROM
+    tb_review r
+JOIN
+    tb_prod p ON r.prod_idx = p.prod_idx
+LEFT JOIN
+    tb_prod_image pi ON p.prod_idx = pi.prod_idx
+WHERE
+    p.cust_id = #{cust_id};
+</select>
+
+<select id="searchDia" parameterType="String" resultType="kr.smhrd.entity.Member">
+SELECT
+    d.cust_id AS diary_cust_id,
+    d.diary_idx,
+    d.diary_title AS diary_title,
+    d.diary_content AS diary_content,
+    d.created_at AS diary_created_at,
+    d.diary_likes AS diary_likes,
+    di.img_idx,
+    di.img_name AS diary_img_name,
+    di.img_real_name,
+    di.img_ext,
+    di.img_size,
+    s.cust_id AS seller_cust_id,
+    s.company_name AS company_name
+FROM
+    tb_diary d
+LEFT JOIN
+    tb_diary_image di ON d.diary_idx = di.diary_idx
+LEFT JOIN
+    tb_seller s ON d.cust_id = s.cust_id
+WHERE
+    d.cust_id = #{cust_id};
+</select>
+
+<select id="qnaList" parameterType="String" resultType="kr.smhrd.entity.Member">
+SELECT q.*, p.*, i.img_name AS prod_img_name
+FROM tb_qna q
+JOIN tb_prod p ON q.prod_idx = p.prod_idx
+LEFT JOIN tb_prod_image i ON p.prod_idx = i.prod_idx
+WHERE p.cust_id = #{cust_id};
+</select>
+
+<update id="updateAnswer" parameterType="kr.smhrd.entity.Member">
+update tb_qna set answer=#{answer} where prod_idx =#{prod_idx} and qna_idx=#{qna_idx}
+</update>
+
+
+<select id="diaryList" resultType="kr.smhrd.entity.Member">
+SELECT
+    S.company_name AS seller_company_name,
+    D.diary_content AS diary_content,
+    D.diary_likes AS diary_likes,
+    DI.img_name AS diary_img_name
+FROM
+    tb_diary D
+JOIN
+    tb_seller S ON D.cust_id = S.cust_id
+LEFT JOIN
+    tb_diary_image DI ON D.diary_idx = DI.diary_idx;
+
+</select>
 
 </mapper>

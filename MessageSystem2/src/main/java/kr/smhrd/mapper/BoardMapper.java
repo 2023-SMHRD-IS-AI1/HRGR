@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 
 import lombok.NonNull;
 @Mapper
-public interface BoardMapper {
+public interface BoardMapper extends MemberMapper {
 
 	public int insertBoard(Board board);
 
@@ -24,5 +24,9 @@ public interface BoardMapper {
 	public void selectProdlist(String cust_id);
 	
 	public List<Board> searchReview(String cust_id);
+
+	
+	
+
 	
 }

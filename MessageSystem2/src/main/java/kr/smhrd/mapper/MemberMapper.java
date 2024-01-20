@@ -55,6 +55,22 @@ public interface MemberMapper { // 틀, SqlSessionFactoryBean이 MemberMapper를
 
 	public void reviewDelete(Member member);
 
+	public List<Member> searchQna(String cust_id);
+
+	public void qnaDelete(Member member);
+
+	public List<Member> searchMysell(String cust_id);
+
+	public List<Member> searchDia(String cust_id);
+
+	public List<Member> qnaList(String cust_id);
+
+	public void updateAnswer(Member member);
+
+	public List<Member> diaryList();
+
+	
+
 	
 	
 	

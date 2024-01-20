@@ -72,7 +72,49 @@ public class Member {
 		private String review_content;
 		private int prod_ratings;
 		private String reviewed_at;
+		private String review_img_name;
+		private String product_img_name;
 	
-	
-	
+		//qna
+		private int qna_idx;
+		private String question;
+		private String questioned_at;
+		private String answer;
+		private String answered_at;
+		private String seller_company_name;
+		private String prod_image_name;
+		
+		//diary
+		
+		 public Member(int prod_idx, int qna_idx, String answer) {
+			super();
+			this.prod_idx = prod_idx;
+			this.qna_idx = qna_idx;
+			this.answer = answer;
+		}
+
+
+
+		
+
+
+		private int diary_idx;
+		 private String diary_title;
+		 private String diary_content;
+		 private String diary_created_at;
+		 private int diary_likes;
+		    
+		 private String diary_img_name;
+		 
+		 
+		
+		 
+
+
+
+		//qna
+		 private String prod_img_name;
+		 
+		 
+		
 }

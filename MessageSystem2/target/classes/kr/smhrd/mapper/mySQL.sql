@@ -384,3 +384,467 @@ LEFT JOIN
     tb_prod p ON r.prod_idx = p.prod_idx
 WHERE
     r.cust_id = 1;
+    
+    SELECT
+    r.*,
+    pi.img_name AS img_name,
+    p.prod_name AS prod_name,
+    p.prod_idx AS prod_idx
+FROM
+    tb_review r
+LEFT JOIN
+    tb_prod_image pi ON r.prod_idx = pi.prod_idx
+LEFT JOIN
+    tb_prod p ON r.prod_idx = p.prod_idx
+WHERE
+    r.cust_id = 1;
+    
+    
+    
+    SELECT
+    p.prod_idx AS prod_idx,
+    p.prod_name AS prod_name,
+    p.prod_price AS prod_price,
+    di.img_name AS img_name
+FROM
+    tb_favorite f
+JOIN
+    tb_prod p ON f.prod_idx = p.prod_idx
+JOIN
+    tb_prod_image di ON p.prod_idx = di.prod_idx
+WHERE
+    f.cust_id = #{cust_id};
+    
+    SELECT
+    p.prod_idx AS prod_idx,
+    p.prod_name AS prod_name,
+    p.prod_price AS prod_price,
+    di.img_name AS img_name
+FROM
+    tb_favorite f
+JOIN
+    tb_prod p ON f.prod_idx = p.prod_idx
+LEFT JOIN
+    tb_prod_image di ON p.prod_idx = di.prod_idx
+WHERE
+    f.cust_id = 1;
+    
+    
+    
+    CREATE TABLE tb_qna
+(
+    `qna_idx`        INT UNSIGNED    NOT NULL    AUTO_INCREMENT COMMENT '질답 식별자', 
+    `cust_id`        VARCHAR(30)     NOT NULL    COMMENT '회원 아이디', 
+    `prod_idx`       INT UNSIGNED    NOT NULL    COMMENT '상품 식별자', 
+    `question`       TEXT            NOT NULL    COMMENT '질문 내용', 
+    `questioned_at`  DATETIME        NOT NULL    COMMENT '질문 일시', 
+    `answer`         TEXT            NOT NULL    COMMENT '답변 내용', 
+    `answered_at`    DATETIME        NOT NULL    COMMENT '답변 일시', 
+     PRIMARY KEY (qna_idx)
+);
+
+
+insert into tb_qna (cust_id,prod_idx,question,questioned_at,answer,answered_at)
+values(1,25,'오늘 배송오나요?',NOW(),'아뇨 내일 갑니다.',NOW())
+
+
+SELECT
+    q.qna_idx AS qna_idx,
+    q.cust_id AS cust_id,
+    q.prod_idx AS prod_idx,
+    q.question AS question,
+    q.questioned_at AS questioned_at,
+    q.answer AS answer,
+    q.answered_at AS answered_at,
+    p.prod_name AS prod_name,
+    pi.img_name AS image_name,
+    p.cust_id AS product_customer_id,
+    s.company_name AS seller_company_name
+FROM
+    tb_qna q
+JOIN
+    tb_prod p ON q.prod_idx = p.prod_idx
+LEFT JOIN
+    tb_prod_image pi ON p.prod_idx = pi.prod_idx
+LEFT JOIN
+    tb_seller s ON q.cust_id = s.cust_id
+WHERE
+    q.cust_id = 9;
+    
+    select * from tb_cust where cust_id=1
+    update tb_cust set cust_role='S' where cust_id=9
+    
+  select * from tb_prod where cust_id=9
+    
+select * from tb_cust; 
+  
+
+SELECT
+    r.cust_id,
+    p.prod_name AS prod_name,
+    p.prod_price AS prod_price,
+    pi.img_name AS img_name,
+    r.prod_ratings AS prod_ratings
+FROM
+    tb_review r
+JOIN
+    tb_prod p ON r.prod_idx = p.prod_idx
+LEFT JOIN
+    tb_prod_image pi ON p.prod_idx = pi.prod_idx
+WHERE
+    p.cust_id = 9;
+  12-25  
+  select * from tb_review
+  
+  insert into tb_review (prod_idx,cust_id,review_content,prod_ratings,reviewed_at)
+values(19,1,'뭐맛있다.',5,NOW())
+
+
+CREATE TABLE tb_diary_image
+(
+    `img_idx`        INT UNSIGNED     NOT NULL    AUTO_INCREMENT COMMENT '이미지 식별자', 
+    `diary_idx`      INT UNSIGNED     NOT NULL    COMMENT '일지 식별자', 
+    `img_name`       VARCHAR(250)     NOT NULL    COMMENT '파일 이름', 
+    `img_real_name`  VARCHAR(1000)    NOT NULL    COMMENT '파일 실제 이름', 
+    `img_ext`        VARCHAR(10)      NOT NULL    COMMENT '파일 확장자', 
+    `img_size`       INT              NOT NULL    COMMENT '파일 사이즈', 
+     PRIMARY KEY (img_idx)
+);
+
+insert into tb_diary_image (diary_idx,img_name,img_real_name,img_ext,img_size)
+values(1,'푸키먼231.jpg','C:\eGovFrame-4.0.0\workspace.edu\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\HaruGreen\resources\upload','jgp',12)
+ 
+
+CREATE TABLE tb_diary
+(
+    `diary_idx`      INT UNSIGNED     NOT NULL    AUTO_INCREMENT COMMENT '일지 식별자', 
+    `cust_id`        VARCHAR(30)      NOT NULL    COMMENT '회원 아이디', 
+    `diary_title`    VARCHAR(1000)    NOT NULL    COMMENT '일지 제목', 
+    `diary_content`  TEXT             NOT NULL    COMMENT '일지 내용', 
+    `created_at`     DATETIME         NOT NULL    COMMENT '작성일자', 
+    `diary_likes`    INT              NOT NULL    COMMENT '일지 추천수', 
+     PRIMARY KEY (diary_idx)
+);
+
+insert into tb_diary (cust_id,diary_title,diary_content,created_at,diary_likes)
+values(9,'싱싱한 사과','맛좋은 사과1',NOW(),25);
+
+
+SELECT
+    d.cust_id AS diary_cust_id,
+    d.diary_idx,
+    d.diary_title,
+    d.diary_content,
+    d.created_at AS diary_created_at,
+    d.diary_likes,
+    di.img_idx,
+    di.img_name,
+    di.img_real_name,
+    di.img_ext,
+    di.img_size,
+    s.cust_id AS seller_cust_id,
+    s.company_name
+FROM
+    tb_diary d
+LEFT JOIN
+    tb_diary_image di ON d.diary_idx = di.diary_idx
+LEFT JOIN
+    tb_seller s ON d.cust_id = s.cust_id
+WHERE
+    d.cust_id = 9;
+    
+    select * from tb_cust
+    
+SELECT q.*, p.*, i.img_name AS prod_img_name
+FROM tb_qna q
+JOIN tb_prod p ON q.prod_idx = p.prod_idx
+LEFT JOIN tb_prod_image i ON p.prod_idx = i.prod_idx
+WHERE p.cust_id = 9;
+    
+select * from tb_qna
+update tb_qna set answer='뉘예' where prod_idx =25 and qna_idx=2 
+
+
+SELECT 
+    p.prod_idx,
+    p.prod_name,
+    p.prod_desc,
+    p.prod_type,
+    p.prod_price,
+    p.prod_stock,
+    p.cust_id,
+    s.seller_idx,
+    s.company_name,
+    s.business_type,
+    s.certified_yn,
+    s.created_at AS seller_created_at,
+    i.img_idx,
+    i.img_name
+FROM
+    tb_prod p
+JOIN
+    tb_seller s ON p.cust_id = s.cust_id
+LEFT JOIN
+    tb_prod_image i ON p.prod_idx = i.prod_idx
+WHERE
+    p.prod_idx = 25;
+
+    select * from tb_qna
+
+    
+    SELECT
+    q.qna_idx AS qna_idx,
+    q.cust_id AS cust_id,
+    q.prod_idx AS prod_idx,
+    q.question AS question,
+    q.questioned_at AS questioned_at,
+    q.answer AS answer,
+    q.answered_at AS answered_at,
+    p.prod_name AS prod_name,
+    pi.img_name AS prod_image_name,
+    p.cust_id AS product_customer_id,
+    s.company_name AS seller_company_name
+FROM
+    tb_qna q
+JOIN
+    tb_prod p ON q.prod_idx = p.prod_idx
+LEFT JOIN
+    tb_prod_image pi ON p.prod_idx = pi.prod_idx
+LEFT JOIN
+    tb_seller s ON q.cust_id = s.cust_id
+WHERE
+    p.prod_idx = 25;
+
+    
+    SELECT
+    r.*,
+    
+    p.prod_name AS prod_name,
+    p.prod_idx AS prod_idx,
+    pi_product.img_name AS product_img_name
+FROM
+    tb_review r
+LEFT JOIN
+    tb_prod_image pi_review ON r.prod_idx = pi_review.prod_idx
+LEFT JOIN
+    tb_prod p ON r.prod_idx = p.prod_idx
+LEFT JOIN
+    tb_prod_image pi_product ON p.prod_idx = pi_product.prod_idx
+WHERE
+    p.prod_idx = 5;
+    
+    SELECT
+    r.*,
+    pi_review.img_name AS review_img_name,
+    p.prod_name AS prod_name,
+    p.prod_idx AS prod_idx,
+    c.cust_nick AS cust_nick
+   
+FROM
+    tb_review r
+LEFT JOIN
+    tb_prod_image pi_review ON r.prod_idx = pi_review.prod_idx
+LEFT JOIN
+    tb_prod p ON r.prod_idx = p.prod_idx
+LEFT JOIN
+    tb_cust c ON r.cust_id = c.cust_id
+LEFT JOIN
+    tb_prod_image pi_product ON p.prod_idx = pi_product.prod_idx
+WHERE
+    p.prod_idx = 25;
+    
+    
+    select * from tb_cust
+    delete from tb_qna where qna_idx=3
+    
+    
+     SELECT
+    q.qna_idx AS qna_idx,
+    q.cust_id AS cust_id,
+    q.prod_idx AS prod_idx,
+    q.question AS question,
+    q.questioned_at AS questioned_at,
+    q.answer AS answer,
+    q.answered_at AS answered_at,
+    p.prod_name AS prod_name,
+    pi.img_name AS prod_image_name,
+    p.cust_id AS product_customer_id,
+    s.company_name AS seller_company_name
+FROM
+    tb_qna q
+JOIN
+    tb_prod p ON q.prod_idx = p.prod_idx
+LEFT JOIN
+    tb_prod_image pi ON p.prod_idx = pi.prod_idx
+LEFT JOIN
+    tb_seller s ON q.cust_id = s.cust_id
+WHERE
+    p.prod_idx = 25;
+    
+    select * from tb_review
+    
+SELECT 
+    P.*,
+    R.*,
+    PI.*
+FROM 
+    tb_prod P
+LEFT JOIN 
+    tb_review R ON P.prod_idx = R.prod_idx
+LEFT JOIN 
+    tb_prod_image PI ON P.prod_idx = PI.prod_idx
+WHERE 
+    P.prod_idx = 25;
+    
+    
+    
+    SELECT
+    r.*,
+    pi_review.img_name AS review_img_name,
+    p.prod_name AS prod_name,
+    p.prod_idx AS prod_idx,
+    c.cust_nick AS cust_nick
+   
+FROM
+    tb_review r
+LEFT JOIN
+    tb_prod_image pi_review ON r.prod_idx = pi_review.prod_idx
+LEFT JOIN
+    tb_prod p ON r.prod_idx = p.prod_idx
+LEFT JOIN
+    tb_cust c ON r.cust_id = c.cust_id
+LEFT JOIN
+    tb_prod_image pi_product ON p.prod_idx = pi_product.prod_idx
+WHERE
+    p.prod_idx = 25;
+    
+    select * from tb_mycart
+    
+    
+    CREATE TABLE tb_prod_image
+(
+    `img_idx`        INT UNSIGNED     NOT NULL    AUTO_INCREMENT COMMENT '이미지 식별자', 
+    `prod_idx`       INT UNSIGNED     NOT NULL    COMMENT '상품 식별자', 
+    `img_name`       VARCHAR(250)     NOT NULL    COMMENT '파일 이름', 
+    `img_real_name`  VARCHAR(1000)    NOT NULL    COMMENT '파일 실제 이름', 
+    `img_ext`        VARCHAR(10)      NOT NULL    COMMENT '파일 확장자', 
+    `img_size`       INT              NOT NULL    COMMENT '파일 사이즈', 
+     PRIMARY KEY (img_idx)
+);
+
+
+select * from tb_cust
+   
+insert into tb_prod_image (prod_idx,img_name,img_real_name,img_ext,img_size)
+values(30,'푸키먼11.jpg','C:\eGovFrame-4.0.0\workspace.edu\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\HaruGreen\resources\upload','jpg',12)
+    
+
+
+
+SELECT 
+    p.prod_idx,
+    p.prod_name,
+    p.prod_desc,
+    p.prod_type,
+    p.prod_price,
+    p.prod_stock,
+    p.cust_id,
+    s.seller_idx,
+    s.company_name,
+    s.business_type,
+    s.certified_yn,
+    s.created_at AS seller_created_at,
+    i.img_idx,
+    i.img_name
+FROM
+    tb_prod p
+JOIN
+    tb_seller s ON p.cust_id = s.cust_id
+LEFT JOIN
+    tb_prod_image i ON p.prod_idx = i.prod_idx
+WHERE
+    p.prod_idx = 30;
+
+select * from tb_diary
+
+SELECT q.*, p.*, i.img_name AS prod_img_name
+FROM tb_qna q
+JOIN tb_prod p ON q.prod_idx = p.prod_idx
+LEFT JOIN tb_prod_image i ON p.prod_idx = i.prod_idx
+WHERE p.cust_id = 9;
+
+-- tb_seller 테이블에서는 company_name만 선택
+SELECT company_name AS company_name, NULL AS diary_title, NULL AS diary_content, NULL AS created_at, NULL AS diary_likes, NULL AS img_name
+FROM tb_seller
+
+UNION
+
+-- tb_diary 테이블에서는 전체 열 선택
+SELECT NULL, diary_title, diary_content, created_at, diary_likes, NULL
+FROM tb_diary
+
+UNION
+
+-- tb_diary_image 테이블에서는 전체 열 선택
+SELECT NULL, NULL, NULL, NULL, NULL, img_name
+FROM tb_diary_image;
+
+
+                  
+SELECT
+    q.qna_idx AS qna_idx,
+    q.cust_id AS cust_id,
+    q.prod_idx AS prod_idx,
+    q.question AS question,
+    q.questioned_at AS questioned_at,
+    q.answer AS answer,
+    q.answered_at AS answered_at,
+    p.prod_name AS prod_name,
+    pi.img_name AS prod_image_name,
+    p.cust_id AS product_customer_id,
+    s.company_name AS seller_company_name
+FROM
+    tb_qna q
+JOIN
+    tb_prod p ON q.prod_idx = p.prod_idx
+LEFT JOIN
+    tb_prod_image pi ON p.prod_idx = pi.prod_idx
+LEFT JOIN
+    tb_seller s ON q.cust_id = s.cust_id
+WHERE
+    p.prod_idx = 25;
+    
+  
+    SELECT
+    tb_prod.prod_idx AS prod_idx,
+    tb_prod.prod_name AS prod_name,
+    tb_prod.prod_desc AS prod_desc,
+    tb_prod.prod_type,
+    tb_prod.prod_price AS prod_price,
+    tb_prod.prod_stock AS prod_stock,
+    tb_prod.cust_id AS prod_cust_id,
+    tb_prod.created_at AS prod_created_at,
+    tb_cust.cust_name,
+    tb_cust.cust_nick,
+    tb_cust.cust_phone,
+    tb_cust.cust_addr,
+    tb_review.review_idx,
+    tb_review.review_content,
+    tb_review.prod_ratings AS prod_ratings,
+    tb_review.reviewed_at,
+    tb_prod_image.img_name AS img_name
+FROM
+    tb_prod
+JOIN
+    tb_cust ON tb_prod.cust_id = tb_cust.cust_id
+JOIN
+    tb_review ON tb_prod.prod_idx = tb_review.prod_idx
+LEFT JOIN
+    tb_prod_image ON tb_prod.prod_idx = tb_prod_image.prod_idx
+WHERE
+    tb_prod.prod_name LIKE '토마토'
+ORDER BY
+    tb_review.prod_ratings DESC;
+
+    
+    

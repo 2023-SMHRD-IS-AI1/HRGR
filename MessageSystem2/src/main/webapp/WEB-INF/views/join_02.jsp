@@ -1,3 +1,4 @@
+<%@page import="kr.smhrd.entity.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,15 +18,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/vendor.css">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/stylejm.css">
+    <link rel="stylesheet" href="./resources/assets/css/login_01.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:500,800" rel="stylesheet">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-    <link rel="stylesheet" href="./resources/assets/css/login_01.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
+<%
+	Member Memberlogin = (Member) session.getAttribute("loginMember");
+	%>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <defs>
       <symbol xmlns="http://www.w3.org/2000/svg" id="link" viewBox="0 0 24 24">
@@ -117,32 +122,21 @@
           
           <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
             <div class="support-box text-end d-none d-xl-block">
-                  <%
-                  if (Memberlogin == null) {
-                  %>
-                  <a class="fs-6 text-muted" href="goLogin">로그인</a>
-                  <%
-                  } else {
-                  %>
-                  <!-- Q7. 개인정보수정 기능 만들기 -->
-                  <!-- Q8. 로그아웃 기능 만들기 -->
-                  <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-                  <% if (!Memberlogin.getCust_role().equals("S")) {%>
-                  <a href="goSeller">판매자 등록</a> <a href="goLogout">로그아웃</a>
-                  <%
-                  } else {
-                  %>
-                     <a href=goLogout>로그아웃</a>
-
-                     <%}%>
-
-                  <%}%>
-                  <h5 class="mb-0"></h5>
+                              <h5 class="mb-0"></h5>
                </div>
-
-               <ul class="d-flex justify-content-end list-unstyled m-0">
-                  <li>
-                     <%
+            <ul class="d-flex justify-content-end list-unstyled m-0">
+              <li><%
+                if (Memberlogin == null) {
+                %>
+                <a href="goLogin" style="font-size: 20px; color: green; font-weight: bold;"><i class="fa fa-sign-in" aria-hidden="true"> 로그인</i></a>
+                <%
+                } else {
+                %>
+                <a href="goLogout" style="font-size: 20px; color: green; font-weight: bold;"><i class="fa fa-sign-out" aria-hidden="true"> 로그아웃</i></a>
+                <%}%>
+              </li>
+              <li>
+                <%
                      if (Memberlogin == null) {
                      %> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
                         <svg width="24" height="24" viewBox="0 0 24 24">
@@ -157,28 +151,27 @@
                   </svg></a> <%
  }
  %>
-                  </li>
-                  <li>
-                     <%
-                     if (Memberlogin == null) {
-                     %><a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
-                        <svg width="24" height="24" viewBox="0 0 24 24">
-                    <use xlink:href="#cart"></use>
-                  </svg>
-                  </a> <%
- } else {
- %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-                     <a href="goLike" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
-                           width="24" height="24" viewBox="0 0 24 24">
-                    <use xlink:href="#cart"></use>
-                  </svg></a> <%
- }
- %>
-              
+              </li>
+              <li>
+                <%
+                if (Memberlogin == null) {
+                %><a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
+                  <svg width="24" height="24" viewBox="0 0 24 24">
+                <use xlink:href="#cart"></use>
+              </svg>
+              </a> <%
+   } else {%>
+            <a href="goMyCart" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
+              width="24" height="24" viewBox="0 0 24 24">
+              <use xlink:href="#cart"></use>
+              </svg></a> 
+              <%}%>
+              </li>
             </ul>
 
            
           </div>
+          
 
         </div>
       </div>
@@ -234,7 +227,7 @@
         </div>
       </div>
     </header>
-
+      <!-- 여기에 본문 내용 채우면 됩니다~ -->
       <!-- 여기에 본문 내용 채우면 됩니다~ -->
       <div class="container">
         <!-- Heading -->
@@ -243,10 +236,10 @@
         <!-- Links -->
         <ul class="links">
           <li>
-            <a href="join_01.html" id="signup">회원가입</a>
+            <a href="goLogin" id="signup">회원가입</a>
           </li>
           <li>
-            <a href="login_01.html" id="signin">로그인</a>
+            <a href="goJoin" id="signin">로그인</a>
           </li>
           <li>
             <a href="#" id="reset">초기화</a>
@@ -254,32 +247,40 @@
         </ul>
         
         <!-- Form -->
-        <form  action="" method="post">
+        <form  action="memberInsert" onsubmit="return Check()">
 
 
           <!-- 새로 -->
           <div class="form-floating join_form">
-            <input type="tel" class="form-control" id="" placeholder="" >
+            <input type="tel" class="form-control" name="cust_phone" id="cust_phone">
             <label for="floatingInput">전화번호(숫자만 입력해주세요)</label>
+            <h4 id="resultCheck"></h4>
+            <input type="button" onclick="checkE()" value="중복체크" class="form-control">
           </div>
           <div class="form-floating join_form">
-            <input type="password" class="form-control" id="" placeholder="">
+            <input type="password" class="form-control" id="cust_pw" name="cust_pw">
             <label for="floatingPassword">비밀번호</label>
           </div>
           <div class="form-floating join_form">
-            <input type="password" class="form-control" id="" placeholder="">
+            <input type="password" class="form-control" id="pwCheck" name="pwCheck">
             <label for="floatingPassword">비밀번호 확인</label>
+            <h4 id="passwordMessage"></h4>
+            <input type="button" value="비밀번호 확인" onclick="checkPasswordMatch()" class="form-control">
           </div>
           <div class="form-floating join_form">
-            <input type="text" class="form-control" id="" placeholder="">
+            <input type="text" class="form-control"  id="cust_nick" name= "cust_nick">
+            <label for="floatingPassword">닉네임</label>
+          </div>
+          <div class="form-floating join_form">
+            <input type="text" class="form-control" name="cust_name" id="cust_name">
             <label for="floatingPassword">이름</label>
           </div>
           <div class="join_form" style="display: flex; justify-content: space-between; height: 58px;">
             <div class="form-floating">
-              <input type="text" class="form-control" id="" placeholder="" style="width: 300px;">
+              <input type="text" class="form-control" name="cust_email" id="cust_email" style="width: 300px;">
               <label for="floatingPassword">이메일</label>
             </div>
-            <select name="email_domain" class="form-select" id="email_domain" onchange="updateEmail()" style="width :250px;">
+            <select class="form-select" name="email_domain" id="email_domain" onchange="updateEmail()" style="width :250px;">
                 <option value="naver.com">@naver.com</option>
                 <option value="gmail.com">@gmail.com</option>
                 <option value="daum.net">@daum.net</option>
@@ -289,20 +290,20 @@
             </select>
           </div>
           <div class="form-floating join_form">
-            <input type="text" class="form-control" id="" placeholder="">
+            <input type="text" class="form-control" name="cust_addr" id="cust_addr">
             <label for="floatingPassword">주소</label>
           </div>
           <div class="form-floating join_form">
-            <input type="date" class="form-control" id="" placeholder="">
+            <input type="date" class="form-control" name="cust_birthdate" id="cust_birthdate">
             <label for="floatingPassword">생년월일</label>
           </div>
           <div class="join_form row" style="height: 58px; display: flex; justify-content: space-around; align-items: center;" >
             <div class="col-4">성별</div>
             <div class="form-check col-4">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="M">남성
+                  <input class="form-check-input" type="radio" name="cust_gender" id="inlineRadio1" value="M">남성
                 </div>
                 <div class="form-check col-4">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="F">여성
+                  <input class="form-check-input" type="radio" name="cust_gender" id="inlineRadio2" value="F">여성
             </div>
 
           </div>
@@ -310,7 +311,7 @@
           <!-- 새로 -->
           
           <!-- sign in button -->
-          <button class="signin__btn" type="submit">
+          <button class="signin__btn" type="submit" id="joinUsButton" value="JoinUs" >
             회원가입
           </button>
         </form>
@@ -328,8 +329,9 @@
       
       <!-- partial -->
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-        <script  src="./resources/assets/js/login_01.js"></script>
+        <script  src="./js/login_01.js"></script>
       
+
 
 
       <footer class="py-5">
@@ -455,5 +457,85 @@
     window.location.href = 'gosearch?searchInput=' + encodeURIComponent(inputValue);
   });
 </script>
+<script >
+// 생년월일 현재 시간이후로는 설정 불가
+var currentDate = new Date().toISOString().split('T')[0];
+document.getElementById('cust_birthdate').setAttribute('max', currentDate);
+
+// 비밀번호 확인
+var passwordChecked = false; // 비밀번호 확인 여부를 저장하는 변수 추가
+
+function checkPasswordMatch() {
+    var pw = document.getElementById('cust_pw').value;
+    var pwCheck = document.getElementById('pwCheck').value;
+    var passwordMessage = document.getElementById('passwordMessage');
+    var joinUsButton = document.getElementById('joinUsButton');
+
+    if (pw === pwCheck) {
+        passwordMessage.innerHTML = '비밀번호가 일치합니다.';
+        passwordChecked = true; // 비밀번호 확인됨
+    } else {
+        passwordMessage.innerHTML = '비밀번호가 일치하지 않습니다.';
+        passwordChecked = false; // 비밀번호 불일치
+    }
+
+    joinUsButton.disabled = !passwordChecked; // 버튼 활성화 여부 설정
+}
+function checkAll() {
+    // 필수 입력 필드 배열
+    var requiredFields = ['cust_email', 'cust_pw', 'pwCheck', 'cust_addr', 'cust_name', 'cust_phone', 'cust_birthdate'];
+
+    // 배열을 순회하면서 각 필드가 비어있는지 확인
+    for (var i = 0; i < requiredFields.length; i++) {
+        // 필드의 값을 가져오고 양 끝의 공백을 제거하여 비어있는지 확인
+        var fieldValue = document.getElementById(requiredFields[i]).value.trim();
+
+        // 만약 필드가 비어있다면 false를 반환하고 함수 종료
+        if (fieldValue === '') {
+            return false;
+        }
+    }
+
+    // 모든 필드가 비어있지 않다면 true 반환
+    return true;
+}
+</script>
+<script type="text/javascript">
+			
+				function checkE(){ /* $ : jQuery */
+					
+					var inputE = $('#cust_phone').val()
+					console.log(inputE)
+					
+					 $.ajax({ // json 형식-> {key : value, key : value}
+						// 어디로 요청할 것인지(요청 url)
+						url : 'phoneCheck',
+						// 요청 데이터
+						
+						data : { 'cust_phone' : inputE },
+						// 요청방식
+						type : 'get',
+						// 요청-응답 성공
+						success : function(data){
+							// 불가능 : 0, 가능 : 1
+							// alert(data)
+							if(data == 0){
+								$('#resultCheck').text('사용 불가능한 핸드폰번호')
+							}else{
+								$('#resultCheck').text('사용 가능한 핸드폰번호')
+							}
+						},
+						// 요청-응답 실패
+						error : function(){
+							alert("통신실패")
+						}
+					}) 
+					
+					
+					
+				}
+			
+			
+			</script>
 </body>
 </html>

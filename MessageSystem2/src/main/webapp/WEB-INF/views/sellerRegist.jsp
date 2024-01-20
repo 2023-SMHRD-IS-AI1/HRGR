@@ -1,5 +1,9 @@
+<%@page import="kr.smhrd.entity.Product"%>
+<%@page import="java.util.List"%>
+<%@page import="kr.smhrd.entity.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,6 +28,14 @@
 
 </head>
 <body>
+<%
+	Member Memberlogin = (Member) session.getAttribute("loginMember");
+
+String savePath = "./resources/upload";
+
+List<Product> prodList = (List<Product>)request.getAttribute("prodList");
+List<Member> reviewList = (List<Member>)request.getAttribute("reviewList");
+	%>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <defs>
           <symbol xmlns="http://www.w3.org/2000/svg" id="link" viewBox="0 0 24 24">
@@ -75,144 +87,182 @@
       </svg>
 
       <header>
-        <div class="container-fluid">
-          <div class="row py-3 border-bottom">
-            
-            <div class="col-sm-4 col-lg-3 text-center text-sm-start">
-              <div class="main-logo">
-                <a href="index.html">
-                  <img src="./resources/images/harugreen.png" alt="logo" class="img-fluid" style="max-width: 60%;">
-                </a>
-              </div>
+      <div class="container-fluid">
+        <div class="row py-3 border-bottom">
+          
+          <div class="col-sm-4 col-lg-3 text-center text-sm-start">
+            <div class="main-logo">
+              <a href="goMain">
+                <img src="./resources/images/harugreen.png" alt="logo" class="img-fluid" style="max-width: 60%;">
+              </a>
             </div>
-            
-            <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
-              <div class="search-bar row bg-light p-2 my-2 rounded-4">
-                <div class="col-md-4 d-none d-md-block">
-                  <select class="form-select border-0 bg-transparent">
-                    <option>전체상품</option>
-                    <option>농산물</option>
-                    <option>수산물</option>
-                    <option>가공식품</option>
-                  </select>
-                </div>
-                <div class="col-11 col-md-7">
-                  <form id="search-form" class="text-center" action="index.html" method="post">
-                    <input type="text" class="form-control border-0 bg-transparent" placeholder="검색어를 입력해주세요!" />
-                  </form>
-                </div>
-                <div class="col-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z"/></svg>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
-              <div class="support-box text-end d-none d-xl-block">
-                <span class="fs-6 text-muted"></span>
-                <h5 class="mb-0"></h5>
-              </div>
-  
-              <ul class="d-flex justify-content-end list-unstyled m-0">
-                <li>
-                  <a href="#" class="rounded-circle bg-light p-2 mx-1">
-                    <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#user"></use></svg>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="rounded-circle bg-light p-2 mx-1">
-                    <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#heart"></use></svg>
-                  </a>
-                </li>
-                <li class="d-lg-none">
-                  <a href="#" class="rounded-circle bg-light p-2 mx-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-                    <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#cart"></use></svg>
-                  </a>
-                </li>
-                <li class="d-lg-none">
-                  <a href="#" class="rounded-circle bg-light p-2 mx-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch">
-                    <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#search"></use></svg>
-                  </a>
-                </li>
-              </ul>
-  
-              <div class="cart text-end d-none d-lg-block dropdown">
-                <button class="border-0 bg-transparent d-flex flex-column gap-2 lh-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-                  <span class="fs-6 text-muted dropdown-toggle">장바구니</span>
-                  <span class="cart-total fs-5 fw-bold">현재가격</span>
-                </button>
-              </div>
-            </div>
-  
           </div>
-        </div>
-        <div class="container-fluid">
-          <div class="row py-3">
-            <div class="d-flex  justify-content-center justify-content-sm-between align-items-center">
-              <nav class="main-menu d-flex navbar navbar-expand-lg">
-  
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                  aria-controls="offcanvasNavbar">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-  
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-  
-                  <div class="offcanvas-header justify-content-center">
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                  </div>
-  
-                  <div class="offcanvas-body">
+          
+          <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
+            <div class="search-bar row bg-light p-2 my-2 rounded-4">
+              <div class="col-md-4 d-none d-md-block">
+                <select class="form-select border-0 bg-transparent">
+                  <option>전체상품</option>
+                  <option>농산물</option>
+                  <option>수산물</option>
+                  <option>가공식품</option>
+                </select>
+              </div>
+              <div class="col-11 col-md-7">
+                <form id="search-form" class="text-center" action="gosearch" method="post">
+                  <input type="text" class="form-control border-0 bg-transparent" name="searchInput" id="searchInput" placeholder="검색어를 입력해주세요!"/>
+                </form>
+              </div>
+              <div class="col-1">
+                <div id="svg-container">
                 
-                    <ul class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
-                      <li class="nav-item active">
-                        <a href="#" class="nav-link">전체</a>
-                      </li>
-                      <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">농산물</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">수산물</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">가공식품</a>
-                      </li>
-                  
-                      <a href="#" target="_blank" class="nav-link btn-coupon-code">
-                  <img src="./resources/images/book-half.svg" alt="gift icon">
-                  <strong class="ms-2 text-dark">영농일지 보러가기</strong>
-                </a>
-                    </ul>
-                  
-                  </div>
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z"/>
+                 </svg>
+              
+            </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
+            <div class="support-box text-end d-none d-xl-block">
+						<%
+						if (Memberlogin == null) {
+						%>
+						<a class="fs-6 text-muted" href="goLogin">로그인</a>
+						<%
+						} else {
+						%> <a href=goLogout>로그아웃</a>
+						<!-- Q7. 개인정보수정 기능 만들기 -->
+						<!-- Q8. 로그아웃 기능 만들기 -->
+						<!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
+							<% if (Memberlogin.getCust_role().equals("U")) {%>
+									<a href="goSeller">판매자 등록</a>
+							<%}else {%>	
+									<a href=goSell>상품등록</a>
+							<%}%>
+
+						<%}%>
+						<h5 class="mb-0"></h5>
+					</div>
+
+					<ul class="d-flex justify-content-end list-unstyled m-0">
+						<li>
+							<%
+							if (Memberlogin == null) {
+							%> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
+								<svg width="24" height="24" viewBox="0 0 24 24">
+  						<use xlink:href="#user"></use>
+						</svg>
+						</a> <%
+ } else {
+ %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
+							<a href="gomyPage" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
+									width="24" height="24" viewBox="0 0 24 24">
+  						<use xlink:href="#user"></use>
+						</svg></a> <%
+ }
+ %>
+						</li>
+						<li>
+							<%
+							if (Memberlogin == null) {
+							%><a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
+								<svg width="24" height="24" viewBox="0 0 24 24">
+  						<use xlink:href="#cart"></use>
+						</svg>
+						</a> <%
+ } else {
+ %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
+							<a href="goLike" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
+									width="24" height="24" viewBox="0 0 24 24">
+  						<use xlink:href="#cart"></use>
+						</svg></a> <%
+ }
+ %>
+              
+            </ul>
+
+           
+          </div>
+
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div class="row py-3">
+          <div class="d-flex  justify-content-center justify-content-sm-between align-items-center">
+            <nav class="main-menu d-flex navbar navbar-expand-lg">
+
+              <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+
+                <div class="offcanvas-header justify-content-center">
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
-              </nav>
+
+                <div class="offcanvas-body">
+              
+               
+              
+                  <ul class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
+                    <li class="nav-item active">
+                      <a href="#" class="nav-link">전체</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a href="#" class="nav-link">농산물</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">수산물</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">가공식품</a>
+                    </li>
+                   
+                    <a href="#" target="_blank" class="nav-link btn-coupon-code">
+                <img src="./resources/images/book-half.svg" alt="gift icon">
+                <strong class="ms-2 text-dark">영농일지 보러가기</strong>
+              </a>
+                  </ul>
+                
+                </div>
+
+              </div>
+
+            </nav>
+            <div class="d-none d-lg-block">
+             
             </div>
           </div>
         </div>
-      </header>
+      </div>
+    </header>
       
 
 
       <main>
-      <div class="form-container">
-        <form action="/submit-form" method="post">
+      <div class="#">
+        <form action="insertSeller" method="post">
           <div class="form-group">
             <label for="inputName">사업자등록번호:</label>
-            <input type="text" id="inputNumber" name="businessNumber" placeholder="사업자등록번호를 입력해주세요.">
+            <input type="text" id="company_bno" name="company_bno" placeholder="사업자등록번호를 입력해주세요.">
           </div>
           <div class="form-group">
             <label for="inputEmail">사업장 이름:</label>
-            <input type="text" id="inputName" name="businessName" placeholder="사업장 등록 이름을 입력해주세요.">
+            <input type="text" id="company_name" name="company_name" placeholder="사업장 등록 이름을 입력해주세요.">
           </div>
           <div class="form-group">
             <label for="inputSubject">사업장 주소:</label>
-            <input type="text" id="inputAddr" name="businessAddress"
+            <input type="text" id="company_addr" name="company_addr"
             placeholder="사업장 주소를 입력해주세요.">
           </div>
           <div class="form-group">
-            <label for="inputMessage">연락처:</label>
-            <input type="text" id="inputPhone" name="contact"
+            <label for="inputMessage">판매할 상품의 종류</label>
+            <input type="text" id="business_type" name="business_type"
             placeholder="연락처를 입력해주세요.">
           </div>
 
@@ -313,5 +363,21 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
       <script src="./resources/assets/js/plugins.js"></script>
       <script src="./resources/assets/js/script.js"></script>
+             <script>
+    document.getElementById("userIcon").addEventListener("click", function() {
+       window.location.href = "goLogin";
+  });
+    
+    </script>
+    <script>
+  // 검색창 눌렀을때 페이지 이동
+   document.getElementById('svg-container').addEventListener('click', function() {
+    // 현재 검색어 입력란의 값을 가져옴
+    var inputValue = document.getElementById('searchInput').value;
+    // 현재 페이지 URL에 검색어를 추가하여 페이지 이동
+    window.location.href = 'gosearch?searchInput=' + encodeURIComponent(inputValue);
+  });
+</script>
+    
 </body>
 </html>

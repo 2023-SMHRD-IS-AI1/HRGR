@@ -1,5 +1,11 @@
+
+<%@page import="java.util.List"%>
+<%@page import="kr.smhrd.entity.Member"%>
+<%@page import="kr.smhrd.entity.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.text.NumberFormat" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,15 +21,28 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="./resources/assets/css/vendor.css">
+    <link rel="stylesheet" type="text/css" href="css/vendor.css">
+    <link rel="stylesheet" type="text/css" href="stylejm.css">
+  <link rel="stylesheet" type="text/css" href="./resources/assets/css/vendor.css">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/stylejm.css">
+    <link rel="stylesheet" href="./resources/assets/css/login_01.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./resources/assets/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,800" rel="stylesheet"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="./css/login_01.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 </head>
 <body>
+<%
+	Member Memberlogin = (Member) session.getAttribute("loginMember");
+    List<Product> prodList = (List<Product>) request.getAttribute("prodList");
+    System.out.println("dasff:   "+prodList);
+   
+	%>
+	
+
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <defs>
           <symbol xmlns="http://www.w3.org/2000/svg" id="link" viewBox="0 0 24 24">
@@ -73,129 +92,153 @@
           </symbol>
         </defs>
       </svg>
+<header>
+      <div class="container-fluid">
+        <div class="row py-3 border-bottom">
+          
+          <div class="col-sm-4 col-lg-3 text-center text-sm-start">
+            <div class="main-logo">
+              <a href="goMain">
+                <img src="./resources/images/harugreen.png" alt="logo" class="img-fluid" style="max-width: 60%;">
+              </a>
+            </div>
+          </div>
+          
+          <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
+            <div class="search-bar row bg-light p-2 my-2 rounded-4">
+              <div class="col-md-4 d-none d-md-block">
+                <select class="form-select border-0 bg-transparent">
+                  <option>전체상품</option>
+                  <option>농산물</option>
+                  <option>수산물</option>
+                  <option>가공식품</option>
+                </select>
+              </div>
+              <div class="col-11 col-md-7">
+                <form id="search-form" class="text-center" action="gosearch" method="post">
+                  <input type="text" class="form-control border-0 bg-transparent" name="searchInput" id="searchInput" placeholder="검색어를 입력해주세요!"/>
+                </form>
+              </div>
+              <div class="col-1">
+                <div id="svg-container">
+                
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z"/>
+                 </svg>
+              
+            </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
+            <div class="support-box text-end d-none d-xl-block">
+                              <h5 class="mb-0"></h5>
+               </div>
+            <ul class="d-flex justify-content-end list-unstyled m-0">
+              <li><%
+                if (Memberlogin == null) {
+                %>
+                <a href="goLogin" style="font-size: 20px; color: green; font-weight: bold;"><i class="fa fa-sign-in" aria-hidden="true"> 로그인</i></a>
+                <%
+                } else {
+                %>
+                <a href="goLogout" style="font-size: 20px; color: green; font-weight: bold;"><i class="fa fa-sign-out" aria-hidden="true"> 로그아웃</i></a>
+                <%}%>
+              </li>
+              <li>
+                <%
+                     if (Memberlogin == null) {
+                     %> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
+                        <svg width="24" height="24" viewBox="0 0 24 24">
+                    <use xlink:href="#user"></use>
+                  </svg>
+                  </a> <%
+ } else {
+ %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
+                     <a href="gomyPage" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
+                           width="24" height="24" viewBox="0 0 24 24">
+                    <use xlink:href="#user"></use>
+                  </svg></a> <%
+ }
+ %>
+              </li>
+              <li>
+                <%
+                if (Memberlogin == null) {
+                %><a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
+                  <svg width="24" height="24" viewBox="0 0 24 24">
+                <use xlink:href="#cart"></use>
+              </svg>
+              </a> <%
+   } else {%>
+            <a href="goMyCart" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
+              width="24" height="24" viewBox="0 0 24 24">
+              <use xlink:href="#cart"></use>
+              </svg></a> 
+              <%}%>
+              </li>
+            </ul>
 
-      <header>
-        <div class="container-fluid">
-          <div class="row py-3 border-bottom">
-            
-            <div class="col-sm-4 col-lg-3 text-center text-sm-start">
-              <div class="main-logo">
-                <a href="index.html">
-                  <img src="./resources/images/harugreen.png" alt="logo" class="img-fluid" style="max-width: 60%;">
-                </a>
-              </div>
-            </div>
-            
-            <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
-              <div class="search-bar row bg-light p-2 my-2 rounded-4">
-                <div class="col-md-4 d-none d-md-block">
-                  <select class="form-select border-0 bg-transparent">
-                    <option>전체상품</option>
-                    <option>농산물</option>
-                    <option>수산물</option>
-                    <option>가공식품</option>
-                  </select>
-                </div>
-                <div class="col-11 col-md-7">
-                  <form id="search-form" class="text-center" action="index.html" method="post">
-                    <input type="text" class="form-control border-0 bg-transparent" placeholder="검색어를 입력해주세요!" />
-                  </form>
-                </div>
-                <div class="col-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z"/></svg>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
-              <div class="support-box text-end d-none d-xl-block">
-                <span class="fs-6 text-muted"></span>
-                <h5 class="mb-0"></h5>
-              </div>
-  
-              <ul class="d-flex justify-content-end list-unstyled m-0">
-                <li>
-                  <a href="#" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
-                    <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#user"></use></svg>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
-                    <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#heart"></use></svg>
-                  </a>
-                </li>
-                <li class="d-lg-none">
-                  <a href="#" class="rounded-circle bg-light p-2 mx-1" style="color: green;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-                    <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#cart"></use></svg>
-                  </a>
-                </li>
-                <li class="d-lg-none">
-                  <a href="#" class="rounded-circle bg-light p-2 mx-1" style="color: green;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch">
-                    <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#search"></use></svg>
-                  </a>
-                </li>
-              </ul>
-  
-              <div class="cart text-end d-none d-lg-block dropdown">
-                <button class="border-0 bg-transparent d-flex flex-column gap-2 lh-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-                  <span class="fs-6 text-muted dropdown-toggle">장바구니</span>
-                  <span class="cart-total fs-5 fw-bold">현재가격</span>
-                </button>
-              </div>
-            </div>
-  
+           
           </div>
+          
+
         </div>
-        <div class="container-fluid">
-          <div class="row py-3">
-            <div class="d-flex  justify-content-center justify-content-sm-between align-items-center">
-              <nav class="main-menu d-flex navbar navbar-expand-lg">
-  
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                  aria-controls="offcanvasNavbar">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-  
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-  
-                  <div class="offcanvas-header justify-content-center">
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                  </div>
-  
-                  <div class="offcanvas-body">
-                
-                
-                    <ul class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
-                      <li class="nav-item active">
-                        <a href="#" class="nav-link">전체</a>
-                      </li>
-                      <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">농산물</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">수산물</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">가공식품</a>
-                      </li>
-                      <a href="#" target="_blank" class="nav-link btn-coupon-code">
-                  <img src="./resources/images/book-half.svg" alt="gift icon">
-                  <strong class="ms-2 text-dark">영농일지 보러가기</strong>
-                </a>
-                    </ul>
-                  
-                  </div>
-  
+      </div>
+      <div class="container-fluid">
+        <div class="row py-3">
+          <div class="d-flex  justify-content-center justify-content-sm-between align-items-center">
+            <nav class="main-menu d-flex navbar navbar-expand-lg">
+
+              <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+
+                <div class="offcanvas-header justify-content-center">
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
-  
-              </nav>
-              <div class="d-none d-lg-block">
+
+                <div class="offcanvas-body">
+              
                
+              
+                  <ul class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
+                    <li class="nav-item active">
+                      <a href="#" class="nav-link">전체</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a href="#" class="nav-link">농산물</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">수산물</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">가공식품</a>
+                    </li>
+                   
+                    <a href="#" target="_blank" class="nav-link btn-coupon-code">
+                <img src="./resources/images/book-half.svg" alt="gift icon">
+                <strong class="ms-2 text-dark">영농일지 보러가기</strong>
+              </a>
+                  </ul>
+                
+                </div>
+
               </div>
+
+            </nav>
+            <div class="d-none d-lg-block">
+             
             </div>
           </div>
         </div>
-      </header>
+      </div>
+    </header>
+
 <!-- 헤더 끝 -->
       <div class="prodDetail_parent" >
         <div class="prodDetail ">
@@ -209,20 +252,32 @@
           <!-- 브레드크럼 성공함 -->
               <div class="prodDetail_content"> 
                 <!-- 메뉴바 위 박스 -->
+               
                <div class="row">
                 <div class="col-6">
-                  <img src="./resources/images/dangwi.png" alt="당귀사진임" style="max-width: 100%; padding: 10px;">
+                  <img src="./resources/upload/${prodList.get(0).getImg_name() }" alt="당귀사진임" style="max-width: 100%; padding: 10px;">
                 </div>
                 <div class="col-6 d-flex flex-column justify-content-around">
                   <div>
-                    <h3 style="font-weight: bold;">당신은 귀한사람 (당귀라는뜻)</h3>
+                    <h3 style="font-weight: bold;"><%= prodList.get(0).getProd_name() %></h3>
                   </div>
+                   <% String prodPriceStr = String.valueOf(prodList.get(0).getProd_price());
+                   NumberFormat numberFormat = NumberFormat.getInstance();
+                   String formattedPrice = numberFormat.format(Integer.parseInt(prodPriceStr)); %>
                   <div>
-                    <span style="font-size: 20px; font-weight: bold;">김연성농원<i class="fa fa-check-circle" style="color: green;"></i></span>
+                    <span style="font-size: 20px; font-weight: bold;"><%= prodList.get(0).getCompany_name() %>
+                    <%if(prodList.get(0).getCertified_yn().equals("Y")){ %>
+                    	<i class="fa fa-check-circle" style="color: green;"></i>
+                    <%}else{ %>
+                    
+                    <%} %>
+                    </span>
                   </div>
                   <hr style="color: rgb(156, 156, 156);">
                   <div style="color: grey; font-size: 12px;"> 최근 시세보다 500원↓ (최근시세 5,000원)</div>
-                  <div style="color: rgb(0, 141, 30); font-size: 30px; font-weight: bold;"> 4,500원</div>
+                  <div style="color: rgb(0, 141, 30); font-size: 30px; font-weight: bold;">
+  <%= formattedPrice %>원
+</div>
                   <hr style="color: rgb(156, 156, 156);">
                   <div style="font-size: 12px;">
                     배송비 3,000원
@@ -230,9 +285,10 @@
                   </div>
                   <hr style="color: rgb(156, 156, 156);">
                   <div style="display: flex; justify-content: space-around;">
-                    <input type="number" class="form-control" value="1" min="1" style="width: 60px;">
-                    <button type="button" class="btn btn-lg btn-outline-success">찜</button>
-                    <button type="button" class="btn btn-lg btn-outline-success">장바구니담기</button>
+                    <input type="number"  min="1" style="width: 60px;" id="quantity" name="quantity${loopStatus.index}"
+																class="form-control input-number" value="1">
+                    <button type="button" class="btn btn-lg btn-outline-success" onclick="addToWishlist(event, '${prodList.get(0).getProd_name()}',${prodList.get(0).getProd_stock()}, ${prodList.get(0).getProd_price()}, ${prodList.get(0).getProd_ratings()},${prodList.get(0).getProd_idx()})">찜</button>
+                    <button type="button" class="btn btn-lg btn-outline-success" onclick="addToCart(event,${prodList.get(0).getProd_idx()}, ${prodList.get(0).getProd_price()}, 'quantity${loopStatus.index}')">장바구니담기</button>
                     <button type="button" class="btn btn-lg btn-success">바로구매</button>
                   </div>
                 </div>
@@ -264,110 +320,62 @@
         <!-- 후기페이지시작 -->
         <div>
           <div class="myReview_box">
+          <c:forEach var="reviewList" items="${reviewList }" varStatus="i">
+			<c:if test="${i.index < 10}">
 <div style="padding: 20px 40px;">
   <div class="row d-flex justify-content-between">
     <div class="col-3 review-img-wrapper">
-      <img src="https://cdn.nongupin.co.kr/news/photo/202304/98428_56733_2050.jpg" alt="리뷰사진인데용" style="max-width: 100%;">
+      <img src="./resources/upload/${reviewList.review_img_name }" alt="리뷰사진인데용" style="max-width: 100%;">
     </div>
     <div class="col-9 d-flex flex-column justify-content-between">
-        <div>엄*은<br>
-          ★★★★☆</div>
+        <div>${reviewList.cust_nick }<br>
+          ★${reviewList.prod_ratings }</div>
         <hr style="color: rgb(156, 156, 156); margin: 0px;">
-        <div>사장님이 신선하고 토마토가 친절해요<br>근데 저 토마토 안좋아해요</div>
-        <div>2024. 01. 15</div>
+        <div>${reviewList.review_content }</div>
+        <div>${reviewList.reviewed_at }</div>
     </div>
   </div>
 </div>
-<hr style="color: rgb(156, 156, 156); margin: 0px;">
-<div style="padding: 20px 40px;">
-  <div class="row d-flex justify-content-between">
-    <div class="col-3 review-img-wrapper">
-      <img src="https://cdn.nongupin.co.kr/news/photo/202304/98428_56733_2050.jpg" alt="리뷰사진인데용" style="max-width: 100%;">
-    </div>
-    <div class="col-9 d-flex flex-column justify-content-between">
-        <div>엄*은<br>
-          ★★★★☆</div>
-        <hr style="color: rgb(156, 156, 156); margin: 0px;">
-        <div>사장님이 신선하고 토마토가 친절해요<br>근데 저 토마토 안좋아해요</div>
-        <div>2024. 01. 15</div>
-    </div>
-  </div>
-</div>
-<hr style="color: rgb(156, 156, 156); margin: 0px;">
-<div style="padding: 20px 40px;">
-  <div class="row d-flex justify-content-between">
-    <div class="col-3 review-img-wrapper">
-      <img src="https://cdn.nongupin.co.kr/news/photo/202304/98428_56733_2050.jpg" alt="리뷰사진인데용" style="max-width: 100%;">
-    </div>
-    <div class="col-9 d-flex flex-column justify-content-between">
-        <div>엄*은<br>
-          ★★★★☆</div>
-        <hr style="color: rgb(156, 156, 156); margin: 0px;">
-        <div>사장님이 신선하고 토마토가 친절해요<br>근데 저 토마토 안좋아해요</div>
-        <div>2024. 01. 15</div>
-    </div>
-  </div>
-</div>
-<hr style="color: rgb(156, 156, 156); margin: 0px;">
-<div style="padding: 20px 40px;">
-  <div class="row d-flex justify-content-between">
-    <div class="col-3 review-img-wrapper">
-      <img src="https://cdn.nongupin.co.kr/news/photo/202304/98428_56733_2050.jpg" alt="리뷰사진인데용" style="max-width: 100%;">
-    </div>
-    <div class="col-9 d-flex flex-column justify-content-between">
-        <div>엄*은<br>
-          ★★★★☆</div>
-        <hr style="color: rgb(156, 156, 156); margin: 0px;">
-        <div>사장님이 신선하고 토마토가 친절해요</div>
-        <div>2024. 01. 15</div>
-    </div>
-  </div>
-</div>
-</div>
-          </div>
+</c:if>
+		</c:forEach>
+
+
           <!-- 후기페이지끝~ -->
         </div>
         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
           <!-- 문의페이지시작 -->
           <div>
             <!-- 문의 하나 -->
+            <c:forEach var="qnaList" items="${qnaList }" varStatus="i">
+			<c:if test="${i.index < 10}">
             <div class="prodReview_box" style="padding: 20px 20px 0px 20px;">
+                          <div style="display: flex; justify-content: space-between;">
+                <h2 style="padding-top: 10px;">상품문의</h2>
+                <a href="#">
+                  <button type="button" class="btn btn-lg btn-success">문의하기</button>
+                </a>
+              </div>
+              <hr style="color: rgb(156, 156, 156);">
               <div style="padding: 10px 20px;">
                <div style="font-weight: bold; margin-bottom: 10px;">문의내용</div> 
-               <div> 저 반정도 먹었는데 반품할수있나요? 저 사실 토마토 안좋아하거든용</div>
-               <div style="font-size: 13px; color: rgb(145, 145, 145);">2024. 01. 14</div>
+               <div> ${qnaList.question }</div>
+               <div style="font-size: 13px; color: rgb(145, 145, 145);">${qnaList.questioned_at }</div>
               </div>
               <hr style="color: rgb(156, 156, 156);">
               <div style="padding: 10px 50px;">
                 <div style="font-weight: bold; margin-bottom: 10px;">
                   <svg width="16" height="16" focusable="false" viewBox="0 0 20 20" aria-hidden="true" role="presentation" style="fill: rgb(136, 136, 136);"><g fill="none" fill-rule="evenodd"><path d="M0 0H20V20H0z"></path><path stroke="#888888" d="M5 3.333L5 13.333 15 13.333"></path></g></svg>
-                  김연성농원
+                  ${qnaList.seller_company_name }
                 </div> 
-                   <div style="margin-left: 20px;"> 죄송하지만 상품에 문제가 없다면 반품은 불가합니다.
-                    <div style="font-size: 13px; color: rgb(145, 145, 145);">2024. 01. 14</div>
+                   <div style="margin-left: 20px;"> ${qnaList.answer }
+                    <div style="font-size: 13px; color: rgb(145, 145, 145);">${qnaList.answered_at }</div>
                   </div>
                </div>
             </div>
+           </c:if>
+		</c:forEach>
             <!-- 문의 하나 끝 -->
-            <hr style="color: rgb(127, 127, 127);">
-            <!-- 문의 하나 -->
-            <div class="prodReview_box" style="padding: 0px 20px;">
-              <div style="padding: 10px 20px;">
-               <div style="font-weight: bold; margin-bottom: 10px;">문의내용</div>
-               <div> 저 반정도 먹었는데 반품할수있나요? 저 사실 토마토 안좋아하거든용</div>
-               <div style="font-size: 13px; color: rgb(145, 145, 145);">2024. 01. 14</div>
-              </div>
-              <hr style="color: rgb(156, 156, 156);">
-              <div style="padding: 10px 50px;">
-                <div style="font-weight: bold; margin-bottom: 10px;">
-                  <svg width="16" height="16" focusable="false" viewBox="0 0 20 20" aria-hidden="true" role="presentation" style="fill: rgb(136, 136, 136);"><g fill="none" fill-rule="evenodd"><path d="M0 0H20V20H0z"></path><path stroke="#888888" d="M5 3.333L5 13.333 15 13.333"></path></g></svg>
-                  김연성농원
-                </div> 
-                   <div style="margin-left: 20px;"> 죄송하지만 상품에 문제가 없다면 반품은 불가합니다.
-                    <div style="font-size: 13px; color: rgb(145, 145, 145);">2024. 01. 14</div>
-                  </div>
-               </div>
-            </div>
+            
             <!-- 문의 하나 끝 -->
           </div>
             <!-- 문의페이지끝~ -->
@@ -377,19 +385,29 @@
   <hr style="color: rgb(156, 156, 156);">
   <div style="padding: 15px;">
       <div class="d-flex justify-content-between" style="margin-bottom: 20px;">
-  <span style="font-size: 20px;">김연성농원<i class="fa fa-check-circle" style="color: green;"></i>의 영농일기</span><a href="#" style="text-decoration: none; color: green;">더보기 ></a>
+  <span style="font-size: 20px;"><%= prodList.get(0).getCompany_name() %>
+  					<%if(prodList.get(0).getCertified_yn().equals("Y")){ %>
+                    		<i class="fa fa-check-circle" style="color: green;"></i>
+                    <%}else{ %>
+                    
+                    <%} %>의 영농일기</span><a href="#" style="text-decoration: none; color: green;">더보기 ></a>
   </div>
   <div style="display: flex; justify-content: space-between;">
-    <div class="img-wrapper"><a href="#"><img src="https://live.staticflickr.com/65535/52936778608_aaa8d1f174_z.jpg" alt=""></a></div>
-    <div class="img-wrapper"><a href="#"><img src="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202007/18/360c160f-1a4c-4ac7-a60d-3c5fd18d9430.jpg" alt="" style="width: 200px; height: 200px;"></a></div>
-    <div class="img-wrapper"><a href="#"><img src="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fd03CiC%2Fbtq1tDcgfXn%2FkwMJOkcIH4T4RCBBTHgVS1%2Fimg.jpg" alt="" style="width: 200px; height: 200px;"></a></div>
-    <div class="img-wrapper"><a href="#"><img src="https://cdn.thekpm.com/news/photo/202111/102498_82309_0220.jpg" alt="" style="width: 200px; height: 200px;"></a></div>
+    <div class="img-wrapper"><a href="goSellerdiary"><img src="https://live.staticflickr.com/65535/52936778608_aaa8d1f174_z.jpg" alt=""></a></div>
+    <div class="img-wrapper"><a href="goSellerdiary"><img src="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202007/18/360c160f-1a4c-4ac7-a60d-3c5fd18d9430.jpg" alt="" style="width: 200px; height: 200px;"></a></div>
+    <div class="img-wrapper"><a href="goSellerdiary"><img src="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fd03CiC%2Fbtq1tDcgfXn%2FkwMJOkcIH4T4RCBBTHgVS1%2Fimg.jpg" alt="" style="width: 200px; height: 200px;"></a></div>
+    <div class="img-wrapper"><a href="goSellerdiary"><img src="https://cdn.thekpm.com/news/photo/202111/102498_82309_0220.jpg" alt="" style="width: 200px; height: 200px;"></a></div>
   </div>
   </div>
     <hr style="color: rgb(156, 156, 156);">
     <div style="padding: 15px;">
       <div class="d-flex justify-content-between" style="margin-bottom: 20px;">
-    <span style="font-size: 20px;">김연성농원<i class="fa fa-check-circle" style="color: green;"></i>의 모든상품</span><a href="#" style="text-decoration: none; color: green;">더보기 ></a>
+    <span style="font-size: 20px;"><%= prodList.get(0).getCompany_name() %>
+  					<%if(prodList.get(0).getCertified_yn().equals("Y")){ %>
+                    		<i class="fa fa-check-circle" style="color: green;"></i>
+                    <%}else{ %>
+                    
+                    <%} %>의 상품보기</span><a href="#" style="text-decoration: none; color: green;">더보기 ></a>
     </div>
     <div style="display: flex; justify-content: space-between;">
       <div class="img-wrapper"><a href="#"><img src="https://cdn.aflnews.co.kr/news/photo/201612/125752_8499_3111.jpg" alt="" style="width: 200px; height: 200px;"></a></div>
@@ -480,5 +498,85 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
       <script src="js/plugins.js"></script>
       <script src="js/script.js"></script>
+       <script>
+    document.getElementById("userIcon").addEventListener("click", function() {
+       window.location.href = "goLogin";
+  });
+    
+    </script>
+    <script>
+  // 검색창 눌렀을때 페이지 이동
+   document.getElementById('svg-container').addEventListener('click', function() {
+    // 현재 검색어 입력란의 값을 가져옴
+    var inputValue = document.getElementById('searchInput').value;
+    // 현재 페이지 URL에 검색어를 추가하여 페이지 이동
+    window.location.href = 'gosearch?searchInput=' + encodeURIComponent(inputValue);
+  });
+</script>
+<script>
+	function addToWishlist(event, prodName, prodStock, prodPrice, prodRatings, prod_idx) {
+		
+	    var wishlistItem = {
+	        prodName: prodName,
+	        prodStock: prodStock,
+	        prodPrice: prodPrice,
+	        prodRatings: prodRatings,
+	        prod_idx: prod_idx,
+	        
+	    };
+		console.log(wishlistItem)
+		
+	    // AJAX를 사용하여 서버로 데이터 전송
+	    $.ajax({
+	        type: 'POST',
+	        url: 'searchLike',
+	        data: wishlistItem,
+	        success: function(response) {
+	            console.log('Server response:',response);
+	            // TODO: 서버 응답에 따른 동작 수행
+	            alert('찜 완료')
+	        },
+	        error: function(error) {
+	            console.error('Error:', error);
+	        }
+	    });
+	// 기본 동작 막기
+	    event.preventDefault();
+	   };
+	</script>
+	<script >
+	function addToCart(event, prod_idx, prod_price, name) {
+
+		var quantityElement = document.getElementsByName(name)[0];
+		var quantityValue = quantityElement.value;
+	    
+	        var prodInfo = {
+	    		    prod_idx: prod_idx,
+	    		    cart_count: parseInt(quantityValue, 10),
+	    		    prod_price: prod_price
+	    		};
+	    			console.log(prodInfo);
+	    		    // AJAX를 사용하여 서버로 데이터 전송
+	    		    $.ajax({
+	    		        type: 'POST',
+	    		        url: 'http://localhost:8081/controller/insertCart',
+	    		      
+	    		        data: JSON.stringify(prodInfo),
+	    		        contentType: 'application/json',
+	    		        success: function(response) {
+	    		            console.log('Server response:',response);
+	    		            /* location.reload(); */
+	    		            // TODO: 서버 응답에 따른 동작 수행
+	    		            alert('장바구니 담기 성공')
+	    		        },
+	    		        error: function(error) {
+	    		            console.error('Error:', error);
+	    		        }
+	    			});
+	    // 기본 동작 막기
+	    event.preventDefault();
+		};
+	</script>
+
 </body>
 </html>

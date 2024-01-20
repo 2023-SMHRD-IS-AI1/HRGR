@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.smhrd.mapper.ProductMapper">
 <select id="searchTopList" resultType="kr.smhrd.entity.Product">
- SELECT
+SELECT
     tb_prod.prod_idx AS prod_idx,
     tb_prod.prod_name AS prod_name,
     tb_prod.prod_desc AS prod_desc,
@@ -128,6 +128,85 @@ WHERE tb_order.cust_id = #{cust_id};
 	select img_name from tb_prod_image where prod_idx=#{prod_idx}
 </select>
 
+
+<select id="prodDetail" parameterType="Int" resultType="kr.smhrd.entity.Product">
+SELECT 
+    p.prod_idx,
+    p.prod_name,
+    p.prod_desc,
+    p.prod_type,
+    p.prod_price,
+    p.prod_stock,
+    p.cust_id,
+    s.seller_idx,
+    s.company_name,
+    s.business_type,
+    s.certified_yn,
+    s.created_at AS seller_created_at,
+    i.img_idx,
+    i.img_name
+FROM
+    tb_prod p
+JOIN
+    tb_seller s ON p.cust_id = s.cust_id
+LEFT JOIN
+    tb_prod_image i ON p.prod_idx = i.prod_idx
+WHERE
+    p.prod_idx = #{prod_idx};
+</select>
+
+<select id="searchQna" parameterType="Int" resultType="kr.smhrd.entity.Product">
+ SELECT
+    q.qna_idx AS qna_idx,
+    q.cust_id AS cust_id,
+    q.prod_idx AS prod_idx,
+    q.question AS question,
+    q.questioned_at AS questioned_at,
+    q.answer AS answer,
+    q.answered_at AS answered_at,
+    p.prod_name AS prod_name,
+    pi.img_name AS prod_image_name,
+    p.cust_id AS product_customer_id,
+    s.company_name AS seller_company_name
+FROM
+    tb_qna q
+JOIN
+    tb_prod p ON q.prod_idx = p.prod_idx
+LEFT JOIN
+    tb_prod_image pi ON p.prod_idx = pi.prod_idx
+LEFT JOIN
+    tb_seller s ON q.cust_id = s.cust_id
+WHERE
+    p.prod_idx = #{prod_idx};
+
+</select>
+
+<select id="searchReview" parameterType="Int" resultType="kr.smhrd.entity.Product">
+  SELECT
+    r.*,
+    pi_review.img_name AS review_img_name,
+    p.prod_name AS prod_name,
+    p.prod_idx AS prod_idx,
+    c.cust_nick AS cust_nick
+   
+FROM
+    tb_review r
+LEFT JOIN
+    tb_prod_image pi_review ON r.prod_idx = pi_review.prod_idx
+LEFT JOIN
+    tb_prod p ON r.prod_idx = p.prod_idx
+LEFT JOIN
+    tb_cust c ON r.cust_id = c.cust_id
+LEFT JOIN
+    tb_prod_image pi_product ON p.prod_idx = pi_product.prod_idx
+WHERE
+    p.prod_idx = #{prod_idx};
+
+</select>
+
+
+
+
 <!-- 농산물 유형 상품 조회 쿼리 -->
 <select id="selectProducts" resultType="kr.smhrd.entity.Product">
 SELECT * FROM tb_prod ORDER BY created_at DESC LIMIT 10
@@ -172,6 +251,14 @@ WHERE prod_idx=#{prod_idx}
 <insert id="insertQna" parameterType="kr.smhrd.entity.Product" >
 INSERT INTO tb_qna (prod_idx, cust_id, question, questioned_at)
         VALUES (#{prod_idx}, #{cust_id}, #{question}, #{questioned_at})
+</insert>
+
+
+
+<!-- 후기등록하기 -->
+<insert id="insertReview" parameterType="kr.smhrd.entity.Product">
+INSERT INTO tb_review (prod_idx, cust_id, review_content,prod_ratings,reviewed_at,image_name)
+		VALUES (#{prod_idx},#{cust_id},#{review_content},#{prod_ratings},#{reviewed_at},#{image_name})
 </insert>
 
 </mapper>

@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import="kr.smhrd.entity.Member"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,13 +18,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/vendor.css">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/stylejm.css">
-
+    <link rel="stylesheet" href="./resources/assets/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
 </head>
 <body>
+<%
+	Member Memberlogin = (Member) session.getAttribute("loginMember");
+	%>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <defs>
           <symbol xmlns="http://www.w3.org/2000/svg" id="link" viewBox="0 0 24 24">
@@ -230,8 +234,8 @@
               <hr style="margin-top: 50px; margin-bottom: 50px;">
               <p align="center" style="font-size:40px;">회원가입이 완료되었습니다!</p>
               <div align="center" style="margin-top: 50px;">
-              <button type="button" class="btn btn-outline-success btn-lg">홈으로 가기</button>
-              <button type="button" class="btn btn-success btn-lg">로그인 하기</button>
+				<a href="goMain"><button type="button" class="btn btn-outline-success btn-lg">홈으로 가기</button></a>
+				<a href="memberlogin"><button type="button" class="btn btn-success btn-lg">로그인 하기</button></a>
             </div>
             </div>
             <!-- 글 하나 끝 -->

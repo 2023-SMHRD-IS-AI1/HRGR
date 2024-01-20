@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -222,6 +223,9 @@
                   <option>수산물</option>
                   <option>가공식품</option>
                 </select>
+                  <!-- 모달 내용을 원하는 대로 추가하세요 -->
+ 
+             
               </div>
               <div class="col-11 col-md-7">
                 <form id="search-form" class="text-center" action="gosearch" method="post">
@@ -413,12 +417,12 @@
 														</a>
 													</figure>
 													<h3>${product.prod_name}</h3>
-													<h2>${product.prod_idx}</h2>
+													
 													<span class="qty">${product.prod_stock }</span><span
 														class="rating"><svg width="24" height="24"
 															class="text-primary">
 															<use xlink:href="#star-solid"></use></svg>
-														${product.prod_ratings }</span> <span class="price">${product.prod_price}</span>
+														${product.prod_ratings }</span> <span class="price"><fmt:formatNumber value="${product.prod_price}" type="price" pattern="#,###"/>원</span>
 													<div
 														class="d-flex align-items-center justify-content-between">
 														<div class="input-group product-qty">
@@ -440,8 +444,8 @@
 																</button>
 															</span>
 														</div>
-														<a href="#" class="nav-link" onclick="addToCart(event,${product.prod_idx}, ${product.prod_price}, 'quantity${loopStatus.index}')">Add to Cart <iconify-icon
-																icon="uil:shopping-cart"></a>
+														<a href="#" class="nav-link" onclick="addToCart(event,${product.prod_idx}, ${product.prod_price}, 'quantity(2)${loopStatus.index}')">Add to Cart <iconify-icon
+                                                icon="uil:shopping-cart"></a>
 													</div>
 												</div>
 											</div>
@@ -523,7 +527,7 @@
 														class="rating"><svg width="24" height="24"
 															class="text-primary">
 															<use xlink:href="#star-solid"></use></svg>
-														${ProductNew.prod_ratings }</span> <span class="price">${ProductNew.prod_price}</span>
+														${ProductNew.prod_ratings }</span> <span class="price"><fmt:formatNumber value="${ProductNew.prod_price}" type="price" pattern="#,###"/>원</span>
 													<div
 														class="d-flex align-items-center justify-content-between">
 														<div class="input-group product-qty">
@@ -546,7 +550,7 @@
 															</span>
 														</div>
 														<a href="#" class="nav-link" onclick="addToCart(event,${ProductNew.prod_idx}, ${ProductNew.prod_price}, 'quantity(2)${loopStatus.index}')">Add to Cart <iconify-icon
-																icon="uil:shopping-cart"></a>
+                                                icon="uil:shopping-cart"></a>
 													</div>
 												</div>
 											</div>
@@ -681,34 +685,34 @@
 	// 장바구니 추가
 	function addToCart(event, prod_idx, prod_price, name) {
 
-		var quantityElement = document.getElementsByName(name)[0];
-		var quantityValue = quantityElement.value;
-	    
-	        var prodInfo = {
-	    		    prod_idx: prod_idx,
-	    		    cart_count: parseInt(quantityValue, 10),
-	    		    prod_price: prod_price
-	    		};
-	    			console.log(prodInfo);
-	    		    // AJAX를 사용하여 서버로 데이터 전송
-	    		    $.ajax({
-	    		        type: 'POST',
-	    		        url: 'http://localhost:8081/controller/insertCart',
-	    		      
-	    		        data: JSON.stringify(prodInfo),
-	    		        contentType: 'application/json',
-	    		        success: function(response) {
-	    		            console.log('Server response:',response);
-	    		            /* location.reload(); */
-	    		            // TODO: 서버 응답에 따른 동작 수행
-	    		        },
-	    		        error: function(error) {
-	    		            console.error('Error:', error);
-	    		        }
-	    			});
-	    // 기본 동작 막기
-	    event.preventDefault();
-		};
+      var quantityElement = document.getElementsByName(name)[0];
+      var quantityValue = quantityElement.value;
+       
+           var prodInfo = {
+                 prod_idx: prod_idx,
+                 cart_count: parseInt(quantityValue, 10),
+                 prod_price: prod_price
+             };
+                console.log(prodInfo);
+                 // AJAX를 사용하여 서버로 데이터 전송
+                 $.ajax({
+                     type: 'POST',
+                     url: 'http://localhost:8081/controller/insertCart',
+                   
+                     data: JSON.stringify(prodInfo),
+                     contentType: 'application/json',
+                     success: function(response) {
+                         console.log('Server response:',response);
+                         /* location.reload(); */
+                         // TODO: 서버 응답에 따른 동작 수행
+                     },
+                     error: function(error) {
+                         console.error('Error:', error);
+                     }
+                });
+       // 기본 동작 막기
+       event.preventDefault();
+      };
 		
 		/* function addToCart(event, prod_idx, name) {
 		    var quantityElement = document.getElementsByName(name)[0];
@@ -756,6 +760,9 @@
     }
   });
 </script>
+
+
+
 
 </body>
 

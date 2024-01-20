@@ -273,6 +273,8 @@ public class MemberController {
 			
 			List<Member> qnaList = memberMapper.qnaList(cust_id);
 			model.addAttribute("qnaList",qnaList);
+			System.out.println("SDagasdgasdgasdg!!! @!@       "+qnaList);
+			
 			
 			return "sellerMyPage";
 		}
@@ -352,6 +354,7 @@ public class MemberController {
 		member.setProd_idx(prod_idx);
 		member.setQna_idx(qna_idx);
 		System.out.println(prod_idx);
+		
 		memberMapper.updateAnswer(member);
 		return true;
 	}

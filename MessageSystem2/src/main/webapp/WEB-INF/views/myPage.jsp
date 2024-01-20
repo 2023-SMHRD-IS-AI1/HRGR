@@ -30,6 +30,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:500,800" rel="stylesheet">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    
+    <style>
+    .modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+    }
+</style>
+    
+    
+    
 </head>
 <body>
 	<% 
@@ -279,22 +296,54 @@
                       
                     </div>
                   <div class="myOrder_box_box row border rounded ">
-                    <div class="col-lg-2" style="padding: 0px;"> <img src="./resources/upload/${prodList.img_name }" alt="" style="max-width: 100%;" ></div>
+                    <div class="col-lg-2" style="padding: 0px;"> 
+                    <input type="hidden" id="prod_idx" name="${prodList.prod_idx }">
+      <a href="goprodDetail?prod_idx=${prodList.prod_idx}"><img src="./resources/upload/${prodList.img_name }" alt="" style="max-width: 100%;" ></a></div>
                     <div class="col-lg-7 d-grid gap-3 align-content-center" style="padding-left: 25px;">
                       <div>${prodList.order_status }</div>
                       <div><p style="font-size: 20px; font-weight: bold;">${prodList.prod_name }</p></div>
                       <div>${prodList.paid_amount }</div>
                     </div>
                     <div class="col-lg-3 d-grid gap-2 my-auto">
-                      <button type="button" class="btn btn-outline-success">배송조회</button>
+                      <button type="button" class="btn btn-outline-success" onclick="openModal()" >배송조회</button>
                       <button type="button" class="btn btn-outline-secondary">후기 작성하기</button>
                     </div>
-                  </div>
+                    </div>
                 </div>
                </c:if>
 			</c:forEach>
-                <!-- 주문내역 한박스 끝 -->
                 
+                
+               <!-- 주문내역 한박스 끝 -->
+                
+                
+                
+         <div id="myModal" class="modal">
+    <!-- 모달 내용 -->
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <!-- 모달 내용을 원하는 대로 추가하세요 -->
+          <form action="http://info.sweettracker.co.kr/tracking/5" method="post">
+            <div class="form-group">
+              
+              <input type="hidden" class="form-control" id="t_key" name="B4Da6lFBr4BEDW1e6cvSBw" placeholder="제공받은 APIKEY">
+            </div>
+            <div class="form-group">
+              <label for="t_code">택배사 코드</label>
+              <input type="text" class="form-control" name="t_code" id="t_code" placeholder="택배사 코드">
+            </div>
+            <div class="form-group">
+              <label for="t_invoice">운송장 번호</label>
+              <input type="text" class="form-control" name="t_invoice" id="t_invoice" placeholder="운송장 번호">
+            </div>
+            <button type="submit" class="btn btn-default">조회하기</button>
+        </form>
+    </div>
+</div>
+
+
+
+
                 <!-- 페이지네이션 -->
     <div style="margin-top: 30px;">
       <nav aria-label="Page navigation example">
@@ -347,7 +396,7 @@
                             <input type="hidden" id="prod_idx" name="${likeList.prod_idx }">
                         </div>
                         <div class="col-11"><!-- ./resources/images/thumb-tuna.jpg -->
-                            <img class="prodLike_img-wrapper" src="./resources/upload/${likeList.img_name }" alt="">
+                            <a href="goprodDetail?prod_idx=${likeList.prod_idx}"><img class="prodLike_img-wrapper" src="./resources/upload/${likeList.img_name }" alt=""></a>
                         </div>
                     </div>
                 </div>
@@ -407,7 +456,8 @@
             <div class="myReview_box border-bottom border-top border-success">
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-1">
-                  <img class="rounded" src="./resources/upload/${reviewList.product_img_name }" alt="" style="max-width: 100%;" >
+                  <input type="hidden" id="prod_idx" name="${reviewList.prod_idx }">
+      <a href="goprodDetail?prod_idx=${reviewList.prod_idx}"><img class="rounded" src="./resources/upload/${reviewList.product_img_name }" alt="" style="max-width: 100%;" ></a>
                 </div>
                 <div class="col-10">${reviewList.prod_name}</div>
                   <div class="col-1"><a href="#" style="text-decoration: none; color: green;" onclick="deletereview(${reviewList.prod_idx})">삭제</a></div>
@@ -474,7 +524,8 @@
             <div class="myReview_box border-bottom border-top border-success">
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-1">
-                  <img class="rounded" src="./resources/upload/${searchQna.prod_image_name }" alt="" style="max-width: 100%;" >
+                  <input type="hidden" id="prod_idx" name="${searchQna.prod_idx }">
+      <a href="goprodDetail?prod_idx=${searchQna.prod_idx}"><img class="rounded" src="./resources/upload/${searchQna.prod_image_name }" alt="" style="max-width: 100%;" ></a>
                 </div>
                 <div class="col-10">${searchQna.prod_name }</div>
                   <div class="col-1"><a href="#" style="text-decoration: none; color: green;" onclick="deleteQna(${searchQna.prod_idx})">삭제</a></div>
@@ -801,5 +852,19 @@ function checkPasswordMatch() {
     joinUsButton.disabled = !passwordChecked; // 버튼 활성화 여부 설정
 }
 </script>
+<script>
+    // 모달 열기 함수
+    function openModal() {
+        var modal = document.getElementById('myModal');
+        modal.style.display = 'block';
+    }
+
+    // 모달 닫기 함수
+    function closeModal() {
+        var modal = document.getElementById('myModal');
+        modal.style.display = 'none';
+    }
+</script>
+
 </body>
 </html>

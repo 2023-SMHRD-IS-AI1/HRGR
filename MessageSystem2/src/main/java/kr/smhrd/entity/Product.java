@@ -26,6 +26,8 @@ public class Product {
 	private int prod_ratings;
 	private int cart_count;
 	
+	
+	
    
     private int seller_idx;
   

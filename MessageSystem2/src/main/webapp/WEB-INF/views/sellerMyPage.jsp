@@ -277,10 +277,10 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
         </div>
         <div class="col-2 showDetail" style="font-size: 10px;">
           <a href="#" style="text-decoration-line: none; color: rgb(0, 180, 39);">주문 상세보기 ></a>
-          
+          <input type="hidden" id="prod_idx" name="${prodList.prod_idx }">
         </div>
       <div class="myOrder_box_box row border rounded ">
-        <div class="col-lg-2" style="padding: 0px;"> <img src="//thumbnail7.coupangcdn.com/thumbnails/remote/300x300ex/image/vendor_inventory/3347/38dbf382340fbf1c4f44405591e08a5175b383431326b32be42d8dfa68ad.jpg" alt="" style="max-width: 100%;" ></div>
+        <div class="col-lg-2" style="padding: 0px;"><a href="goprodDetail?prod_idx=${prodList.prod_idx}"> <img src="./resources/upload/${prodList.img_name }" alt="" style="max-width: 100%;" ></a></div>
         <div class="col-lg-7 d-grid gap-3 align-content-center" style="padding-left: 25px;">
           <div>${prodList.order_status }</div>
           <div><p style="font-size: 20px; font-weight: bold;">${prodList.prod_name }</p></div>
@@ -288,13 +288,21 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
         </div>
         <div class="col-lg-3 d-grid gap-2 my-auto">
           <button type="button" class="btn btn-outline-success">배송조회</button>
-          <button type="button" class="btn btn-outline-secondary">후기 작성하기</button>
-        </div>
+          <button type="button" class="btn btn-outline-secondary" >후기 작성하기</button>
+  
+
+          </div>
       </div>
     </div>
     <!-- 주문내역 반복되는곳 끝 -->
   </c:if>
 </c:forEach>
+
+    <!-- 모달 내용을 원하는 대로 추가하세요 -->
+      
+        
+
+
       
 
 
@@ -347,7 +355,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <input type="hidden" id="prod_idx" name="${likeList.prod_idx }">
           <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-          <img class="prodLike_img-wrapper" src="./resources/upload/${likeList.img_name }" alt="" style="margin: 0px;">
+          <a href="goprodDetail?prod_idx=${likeList.prod_idx}"><img class="prodLike_img-wrapper" src="./resources/upload/${likeList.img_name }" alt="" style="margin: 0px;"></a>
         </div>
       </div>
       <div class="col-lg-7 d-grid gap-2 my-auto">
@@ -408,7 +416,8 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
 
   <div class="row" style="display: flex; align-items: center; margin: 0;" >
     <div class="col-1">
-      <img class="rounded" src="./resources/upload/${reviewList.product_img_name }" alt="" style="max-width: 100%;" >
+    <input type="hidden" id="prod_idx" name="${reviewList.prod_idx }">
+      <a href="goprodDetail?prod_idx=${reviewList.prod_idx}"> <img class="rounded" src="./resources/upload/${reviewList.product_img_name }" alt="" style="max-width: 100%;" ></a>
     </div>
     <div class="col-10">${reviewList.prod_name}</div>
       <div class="col-1"><a href="#" style="text-decoration: none; color: green;" onclick="deletereview(${reviewList.prod_idx})">삭제</a></div>
@@ -478,7 +487,9 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
 <div class="myReview_box">
   <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
     <div class="col-1">
-      <img class="rounded" src="./resources/upload/${searchQna.prod_image_name }" alt="" style="max-width: 100%;" >
+    <input type="hidden" id="prod_idx" name="${searchQna.prod_idx }">
+      <a href="goprodDetail?prod_idx=${searchQna.prod_idx}">
+      <img class="rounded" src="./resources/upload/${searchQna.prod_image_name }" alt="" style="max-width: 100%;" ></a>
     </div>
     <div class="col-10">${searchQna.prod_name }</div>
       <div class="col-1"><a href="#" style="text-decoration: none; color: green;" onclick="deleteQna(${searchQna.prod_idx})">삭제</a></div>
@@ -621,7 +632,8 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
           <c:if test="${i.index < 30}"> 
         
         <div class="img-wrapper">
-          <a href="#"><img src="./resources/upload/${sellList.img_name }" alt="" style="width: 200px; height: 200px;"></a>
+          <input type="hidden" id="prod_idx" name="${sellList.prod_idx }">
+      <a href="goprodDetail?prod_idx=${sellList.prod_idx}"><img src="./resources/upload/${sellList.img_name }" alt="" style="width: 200px; height: 200px;"></a>
           <div>${sellList.prod_name }</div>
           <span class="rating"><svg width="24" height="24" class="text-primary"><use xlink:href="#star-solid"></use></svg>  ${sellList.prod_ratings }</span>
           <span class="price">${sellList.prod_price }</span>
@@ -680,11 +692,13 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
                       <c:if test="${i.index < 10}"> 
             <div class="row">
               <div class="col-2">
-                <div class="prodLike_img-wrapper" style="position: relative; width: 130px; height: 130px;"><img src="./resources/upload/${qnaList.prod_img_name }" class="rounded" alt="물품사진" style=" position: absolute; top: 0; left: 0; transform: translate(50, 50); width: 100%; height: 100%; object-fit: cover; margin: auto;"></div>
+                <div class="prodLike_img-wrapper" style="position: relative; width: 130px; height: 130px;">
+                <input type="hidden" id="prod_idx" name="${qnaList.prod_idx }">
+      <a href="goprodDetail?prod_idx=${qnaList.prod_idx}"><img src="./resources/upload/${qnaList.prod_img_name }" class="rounded" alt="물품사진" style=" position: absolute; top: 0; left: 0; transform: translate(50, 50); width: 100%; height: 100%; object-fit: cover; margin: auto;"></a></div>
               </div>
               <div class="col-5">
               <p>
-                상품 : <span>${qnaList.prod_name }</span>
+                상품 : <span>${qnaList.prod_name }</span> 상품 번호 : <span>${qnaList.prod_idx}</span> <span hidden>${qnaList.qna_idx}</span>
               </p>
               <p style="font-weight: normal;">
                 ${qnaList.question }
@@ -692,7 +706,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
               </div>
               <div class="col-5" style="display: flex; justify-content: space-between; align-items: center;">
                 <textarea name="" id="" class="form-control" rows="4" style="width: 320px;">${qnaList.answer}</textarea>
-                <button type="submit" class="btn btn-sm btn-success" style="height: 30px;" onclick="updateAnswer(${qnaList.answer},${qnaList.prod_idx},${qnaList.qna_idx})">확인</button></button>
+                <button type="submit" class="btn btn-sm btn-success" style="height: 30px;" onclick="updateAnswer('${qnaList.answer}',${qnaList.prod_idx},${qnaList.qna_idx})">확인</button></button>
               </div>
             </div>
             <hr>
@@ -908,7 +922,7 @@ function updateAnswer(answer,prod_idx,qna_idx) {
             url: 'updateAnswer',
             data: Answer, 
             success: function (data) {
-                
+                alert('수정 성공!');
                 location.reload(); // 예시로 페이지를 리로드하는 방법
             },
             error: function (error) {
@@ -918,6 +932,24 @@ function updateAnswer(answer,prod_idx,qna_idx) {
     }
 }
 
+</script>
+
+<script>
+  function openModal() {
+    document.getElementById('myModal').style.display = 'block';
+  }
+
+  function closeModal() {
+    document.getElementById('myModal').style.display = 'none';
+  }
+
+  // 모달 외부를 클릭하면 모달이 닫히도록 추가
+  window.onclick = function (event) {
+    var modal = document.getElementById('myModal');
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  }
 </script>
 
 </body>

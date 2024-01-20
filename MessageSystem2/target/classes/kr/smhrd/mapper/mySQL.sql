@@ -716,7 +716,7 @@ LEFT JOIN
 LEFT JOIN
     tb_prod_image pi_product ON p.prod_idx = pi_product.prod_idx
 WHERE
-    p.prod_idx = 9;
+    p.prod_idx = 25;
     
     select * from tb_mycart
     
@@ -767,6 +767,12 @@ WHERE
 
 select * from tb_diary
 
+SELECT q.*, p.*, i.img_name AS prod_img_name
+FROM tb_qna q
+JOIN tb_prod p ON q.prod_idx = p.prod_idx
+LEFT JOIN tb_prod_image i ON p.prod_idx = i.prod_idx
+WHERE p.cust_id = 9;
+
 -- tb_seller 테이블에서는 company_name만 선택
 SELECT company_name AS company_name, NULL AS diary_title, NULL AS diary_content, NULL AS created_at, NULL AS diary_likes, NULL AS img_name
 FROM tb_seller
@@ -786,16 +792,59 @@ FROM tb_diary_image;
 
                   
 SELECT
-    S.company_name,
-    D.diary_content,
-    D.diary_likes,
-    DI.img_name,
-    D.diary_idx
+    q.qna_idx AS qna_idx,
+    q.cust_id AS cust_id,
+    q.prod_idx AS prod_idx,
+    q.question AS question,
+    q.questioned_at AS questioned_at,
+    q.answer AS answer,
+    q.answered_at AS answered_at,
+    p.prod_name AS prod_name,
+    pi.img_name AS prod_image_name,
+    p.cust_id AS product_customer_id,
+    s.company_name AS seller_company_name
 FROM
-    tb_diary D
+    tb_qna q
 JOIN
-    tb_seller S ON D.cust_id = S.cust_id
+    tb_prod p ON q.prod_idx = p.prod_idx
 LEFT JOIN
-    tb_diary_image DI ON D.diary_idx = DI.diary_idx;
+    tb_prod_image pi ON p.prod_idx = pi.prod_idx
+LEFT JOIN
+    tb_seller s ON q.cust_id = s.cust_id
+WHERE
+    p.prod_idx = 25;
+    
+  
+    SELECT
+    tb_prod.prod_idx AS prod_idx,
+    tb_prod.prod_name AS prod_name,
+    tb_prod.prod_desc AS prod_desc,
+    tb_prod.prod_type,
+    tb_prod.prod_price AS prod_price,
+    tb_prod.prod_stock AS prod_stock,
+    tb_prod.cust_id AS prod_cust_id,
+    tb_prod.created_at AS prod_created_at,
+    tb_cust.cust_name,
+    tb_cust.cust_nick,
+    tb_cust.cust_phone,
+    tb_cust.cust_addr,
+    tb_review.review_idx,
+    tb_review.review_content,
+    tb_review.prod_ratings AS prod_ratings,
+    tb_review.reviewed_at,
+    tb_prod_image.img_name AS img_name
+FROM
+    tb_prod
+JOIN
+    tb_cust ON tb_prod.cust_id = tb_cust.cust_id
+JOIN
+    tb_review ON tb_prod.prod_idx = tb_review.prod_idx
+LEFT JOIN
+    tb_prod_image ON tb_prod.prod_idx = tb_prod_image.prod_idx
+WHERE
+    tb_prod.prod_name LIKE '토마토'
+ORDER BY
+    tb_review.prod_ratings DESC;
 
-    update tb_diary set diary_likes=50232 where diary_idx=1
+    
+    

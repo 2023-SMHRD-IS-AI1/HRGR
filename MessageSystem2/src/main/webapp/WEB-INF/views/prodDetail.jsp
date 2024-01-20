@@ -5,6 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.text.NumberFormat" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -38,7 +39,7 @@
 	Member Memberlogin = (Member) session.getAttribute("loginMember");
     List<Product> prodList = (List<Product>) request.getAttribute("prodList");
     System.out.println("dasff:   "+prodList);
-    
+   
 	%>
 	
 
@@ -260,6 +261,9 @@
                   <div>
                     <h3 style="font-weight: bold;"><%= prodList.get(0).getProd_name() %></h3>
                   </div>
+                   <% String prodPriceStr = String.valueOf(prodList.get(0).getProd_price());
+                   NumberFormat numberFormat = NumberFormat.getInstance();
+                   String formattedPrice = numberFormat.format(Integer.parseInt(prodPriceStr)); %>
                   <div>
                     <span style="font-size: 20px; font-weight: bold;"><%= prodList.get(0).getCompany_name() %>
                     <%if(prodList.get(0).getCertified_yn().equals("Y")){ %>
@@ -271,7 +275,9 @@
                   </div>
                   <hr style="color: rgb(156, 156, 156);">
                   <div style="color: grey; font-size: 12px;"> 최근 시세보다 500원↓ (최근시세 5,000원)</div>
-                  <div style="color: rgb(0, 141, 30); font-size: 30px; font-weight: bold;"><%= prodList.get(0).getProd_price() %>원</div>
+                  <div style="color: rgb(0, 141, 30); font-size: 30px; font-weight: bold;">
+  <%= formattedPrice %>원
+</div>
                   <hr style="color: rgb(156, 156, 156);">
                   <div style="font-size: 12px;">
                     배송비 3,000원
@@ -319,7 +325,7 @@
 <div style="padding: 20px 40px;">
   <div class="row d-flex justify-content-between">
     <div class="col-3 review-img-wrapper">
-      <img src="#" alt="리뷰사진인데용" style="max-width: 100%;">
+      <img src="./resources/upload/${reviewList.review_img_name }" alt="리뷰사진인데용" style="max-width: 100%;">
     </div>
     <div class="col-9 d-flex flex-column justify-content-between">
         <div>${reviewList.cust_nick }<br>
@@ -352,7 +358,7 @@
               <div style="padding: 10px 50px;">
                 <div style="font-weight: bold; margin-bottom: 10px;">
                   <svg width="16" height="16" focusable="false" viewBox="0 0 20 20" aria-hidden="true" role="presentation" style="fill: rgb(136, 136, 136);"><g fill="none" fill-rule="evenodd"><path d="M0 0H20V20H0z"></path><path stroke="#888888" d="M5 3.333L5 13.333 15 13.333"></path></g></svg>
-                  ${qnaList.company_name }
+                  ${qnaList.seller_company_name }
                 </div> 
                    <div style="margin-left: 20px;"> ${qnaList.answer }
                     <div style="font-size: 13px; color: rgb(145, 145, 145);">${qnaList.answered_at }</div>
@@ -372,19 +378,29 @@
   <hr style="color: rgb(156, 156, 156);">
   <div style="padding: 15px;">
       <div class="d-flex justify-content-between" style="margin-bottom: 20px;">
-  <span style="font-size: 20px;">김연성농원<i class="fa fa-check-circle" style="color: green;"></i>의 영농일기</span><a href="#" style="text-decoration: none; color: green;">더보기 ></a>
+  <span style="font-size: 20px;"><%= prodList.get(0).getCompany_name() %>
+  					<%if(prodList.get(0).getCertified_yn().equals("Y")){ %>
+                    		<i class="fa fa-check-circle" style="color: green;"></i>
+                    <%}else{ %>
+                    
+                    <%} %>의 영농일기</span><a href="#" style="text-decoration: none; color: green;">더보기 ></a>
   </div>
   <div style="display: flex; justify-content: space-between;">
-    <div class="img-wrapper"><a href="#"><img src="https://live.staticflickr.com/65535/52936778608_aaa8d1f174_z.jpg" alt=""></a></div>
-    <div class="img-wrapper"><a href="#"><img src="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202007/18/360c160f-1a4c-4ac7-a60d-3c5fd18d9430.jpg" alt="" style="width: 200px; height: 200px;"></a></div>
-    <div class="img-wrapper"><a href="#"><img src="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fd03CiC%2Fbtq1tDcgfXn%2FkwMJOkcIH4T4RCBBTHgVS1%2Fimg.jpg" alt="" style="width: 200px; height: 200px;"></a></div>
-    <div class="img-wrapper"><a href="#"><img src="https://cdn.thekpm.com/news/photo/202111/102498_82309_0220.jpg" alt="" style="width: 200px; height: 200px;"></a></div>
+    <div class="img-wrapper"><a href="goSellerdiary"><img src="https://live.staticflickr.com/65535/52936778608_aaa8d1f174_z.jpg" alt=""></a></div>
+    <div class="img-wrapper"><a href="goSellerdiary"><img src="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202007/18/360c160f-1a4c-4ac7-a60d-3c5fd18d9430.jpg" alt="" style="width: 200px; height: 200px;"></a></div>
+    <div class="img-wrapper"><a href="goSellerdiary"><img src="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fd03CiC%2Fbtq1tDcgfXn%2FkwMJOkcIH4T4RCBBTHgVS1%2Fimg.jpg" alt="" style="width: 200px; height: 200px;"></a></div>
+    <div class="img-wrapper"><a href="goSellerdiary"><img src="https://cdn.thekpm.com/news/photo/202111/102498_82309_0220.jpg" alt="" style="width: 200px; height: 200px;"></a></div>
   </div>
   </div>
     <hr style="color: rgb(156, 156, 156);">
     <div style="padding: 15px;">
       <div class="d-flex justify-content-between" style="margin-bottom: 20px;">
-    <span style="font-size: 20px;">김연성농원<i class="fa fa-check-circle" style="color: green;"></i>의 모든상품</span><a href="#" style="text-decoration: none; color: green;">더보기 ></a>
+    <span style="font-size: 20px;"><%= prodList.get(0).getCompany_name() %>
+  					<%if(prodList.get(0).getCertified_yn().equals("Y")){ %>
+                    		<i class="fa fa-check-circle" style="color: green;"></i>
+                    <%}else{ %>
+                    
+                    <%} %>의 상품보기</span><a href="#" style="text-decoration: none; color: green;">더보기 ></a>
     </div>
     <div style="display: flex; justify-content: space-between;">
       <div class="img-wrapper"><a href="#"><img src="https://cdn.aflnews.co.kr/news/photo/201612/125752_8499_3111.jpg" alt="" style="width: 200px; height: 200px;"></a></div>

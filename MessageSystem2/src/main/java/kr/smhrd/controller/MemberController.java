@@ -104,7 +104,7 @@ public class MemberController {
 
 	            System.out.println("세션값 tostring : "+loginMember.toString());
 
-	            return "Main2";
+	            return "redirect:/";
 	        } else {
 	            // 로그인 실패
 	            System.out.println("로그인 실패");

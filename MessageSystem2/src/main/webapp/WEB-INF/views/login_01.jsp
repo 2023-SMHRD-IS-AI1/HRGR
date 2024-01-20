@@ -289,7 +289,7 @@
   
             <div class="col-lg-3 col-md-6 col-sm-6">
               <div class="footer-menu">
-                <img src="images/harugreen.png" alt="logo">
+                <img src="./resources/images/harugreen.png" alt="logo">
                 <div class="social-links mt-5">
                   <ul class="d-flex list-unstyled gap-2">
                     <li>

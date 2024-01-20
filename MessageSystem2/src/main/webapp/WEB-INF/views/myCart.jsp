@@ -267,7 +267,7 @@
                           <!-- 페이지네이션 -->
 <div style="margin-top: 30px;" align="center">
   <button type="button" class="btn btn-outline-secondary">계속 쇼핑하기</button>
-  <button type="button" class="btn btn-success" onclick="iamport()">구매하기</button>
+  <button type="button" class="btn btn-success" onclick="iamport(<%=${product.prod_name}%>)">구매하기</button>
 </div>
 <!-- 페이지네이션 끝 -->
             </div>
@@ -442,15 +442,15 @@ $(document).ready(function() {
 	}
   
   // 결제 구현
-  function iamport(){
-
+  function iamport(prod_name){
 	    //가맹점 식별코드
+	    console.log(product.getProd_name())
 	    IMP.init('imp44183336'); // 가맹점 식별코드로 Iamport 초기화
         IMP.request_pay({ // 결제 요청
             pg: "kakaopay",   // PG사 설정
             pay_method : "card", // 결제 방법
             merchant_uid : "20230901ABDE", // 주문 번호
-            name : "상품1", // 상품 이름
+            name : ", // 상품 이름
             amount: 3000, // 결제 가격
             buyer_name : "홍길동", // 구매자 이름 (buyer_ 부분은 꼭 작성하지 않아도된다. (선택사항))
             buyer_tel : "010-5555-1111", // 구매자 연락처

@@ -194,4 +194,25 @@ LEFT JOIN
 
 </select>
 
+<select id="mydiaryList" parameterType="String" resultType="kr.smhrd.entity.Member">
+ SELECT
+    S.company_name AS seller_company_name,
+    D.diary_content AS diary_content,
+    D.diary_likes AS diary_likes,
+    DI.img_name AS diary_img_name
+FROM
+    tb_diary D
+JOIN
+    tb_seller S ON D.cust_id = S.cust_id
+LEFT JOIN
+    tb_diary_image DI ON D.diary_idx = DI.diary_idx
+where D.cust_id=#{cust_id}
+
+</select>
+
+<select id="checkPhoneNumber" parameterType="String" resultType="kr.smhrd.entity.Member">
+ select * from tb_cust where cust_phone=#{cust_phone}
+
+</select>
+
 </mapper>

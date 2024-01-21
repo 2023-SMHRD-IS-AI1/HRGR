@@ -15,11 +15,17 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.client.RestTemplate;
 
 import com.oreilly.servlet.MultipartRequest;
 
@@ -366,5 +372,20 @@ public class MemberController {
 		System.out.println(model);
 		return "diary";
 	}
+	
+	
+	@RequestMapping("/goSellerDiary/{cust_id}/")
+	public String goSellerDiary(@PathVariable("cust_id") String cust_id, Model model,HttpSession session) {
+		List<Member> mydiaryList =memberMapper.mydiaryList(cust_id);
+		model.addAttribute("mydiaryList",mydiaryList);
+		System.out.println(mydiaryList);
+		return "diary";
+	}
+	
+
+	
+	
+	
+	
 	
 }

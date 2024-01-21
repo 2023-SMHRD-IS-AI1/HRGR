@@ -6,6 +6,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.text.NumberFormat" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -39,6 +40,7 @@
 	Member Memberlogin = (Member) session.getAttribute("loginMember");
     List<Product> prodList = (List<Product>) request.getAttribute("prodList");
     System.out.println("dasff:   "+prodList);
+    
    
 	%>
 	
@@ -220,7 +222,7 @@
                       <a href="#" class="nav-link">가공식품</a>
                     </li>
                    
-                    <a href="#" target="_blank" class="nav-link btn-coupon-code">
+                    <a href="godiary"  class="nav-link btn-coupon-code">
                 <img src="./resources/images/book-half.svg" alt="gift icon">
                 <strong class="ms-2 text-dark">영농일지 보러가기</strong>
               </a>
@@ -332,7 +334,11 @@
           ★${reviewList.prod_ratings }</div>
         <hr style="color: rgb(156, 156, 156); margin: 0px;">
         <div>${reviewList.review_content }</div>
-        <div>${reviewList.reviewed_at }</div>
+        <div>
+        	<!--   fmt 태그 라이브러리 선언후 원하는 방식으로 가져오기 -->
+            <fmt:formatDate value="${reviewList.reviewed_at}" pattern="yyyy-MM-dd" var="formattedDate" />
+            ${formattedDate}
+          </div>
     </div>
   </div>
 </div>
@@ -390,7 +396,7 @@
                     		<i class="fa fa-check-circle" style="color: green;"></i>
                     <%}else{ %>
                     
-                    <%} %>의 영농일기</span><a href="#" style="text-decoration: none; color: green;">더보기 ></a>
+                    <%} %>의 영농일기</span><a href="#" style="text-decoration: none; color: green;" >더보기 ></a>
   </div>
   <div style="display: flex; justify-content: space-between;">
     <div class="img-wrapper"><a href="goSellerdiary"><img src="https://live.staticflickr.com/65535/52936778608_aaa8d1f174_z.jpg" alt=""></a></div>
@@ -482,7 +488,7 @@
                             <a href="#" class="nav-link">가공식품</a>
                           </li>
                           <li class="menu-item">
-                            <a href="#" class="nav-link">영농일지</a>
+                            <a href="godiary" class="nav-link">영농일지</a>
                           </li>
                         </ul>
                       </div>
@@ -577,6 +583,7 @@
 	    event.preventDefault();
 		};
 	</script>
-
+	
+	
 </body>
 </html>

@@ -78,7 +78,7 @@
           success: function (res) {
               console.log(res);
               // 이메일, 성별, 닉네임, 프로필이미지
-              var email = res.kakao_account.email;
+              var cust_phone = res.kakao_account.phone;
               var gender = res.kakao_account.gender;
               var profile_nickname = res.kakao_account.profile.nickname;
               var profile_image = res.kakao_account.profile.thumbnail_image_url;

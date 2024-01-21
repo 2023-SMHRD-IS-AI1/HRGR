@@ -845,6 +845,20 @@ WHERE
     tb_prod.prod_name LIKE '토마토'
 ORDER BY
     tb_review.prod_ratings DESC;
-
     
+    
+    SELECT
+    S.company_name AS seller_company_name,
+    D.diary_content AS diary_content,
+    D.diary_likes AS diary_likes,
+    DI.img_name AS diary_img_name
+FROM
+    tb_diary D
+JOIN
+    tb_seller S ON D.cust_id = S.cust_id
+LEFT JOIN
+    tb_diary_image DI ON D.diary_idx = DI.diary_idx
+where D.cust_id=1
+
+    select * from tb_cust where cust_phone=#{cust_phone}
     

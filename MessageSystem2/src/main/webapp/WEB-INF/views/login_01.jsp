@@ -1,6 +1,9 @@
 <%@page import="kr.smhrd.entity.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.math.BigInteger" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -25,7 +28,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:500,800" rel="stylesheet"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="./css/login_01.css">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+
+  
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
 </head>
 <body>
@@ -211,7 +218,7 @@
                       <a href="#" class="nav-link">가공식품</a>
                     </li>
                    
-                    <a href="#" target="_blank" class="nav-link btn-coupon-code">
+                    <a href="godiary"  class="nav-link btn-coupon-code">
                 <img src="./resources/images/book-half.svg" alt="gift icon">
                 <strong class="ms-2 text-dark">영농일지 보러가기</strong>
               </a>
@@ -257,7 +264,7 @@
             <label for="floatingInput">전화번호</label>
           </div>
           <div class="form-floating join_form">
-            <input type="password" class="form-control" id="" placeholder=""  name="cust_pw" id="cust_pw">
+            <input type="password" class="form-control" id="" placeholder=""  name="cust_pw" id="cust_pw" >
             <label for="floatingPassword">비밀번호</label>
           </div>
    
@@ -269,13 +276,72 @@
         <!-- separator -->
         <div class="separator">
           <p>또는</p>
+          
         </div>
         <!-- google button -->
-        <button class="github__btn">
-          <i class="fa fa- fa-comment"></i>
-          카카오톡으로 로그인
-        </button>
-      </div>
+	
+
+        
+      
+     
+     
+      <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js"
+  integrity="sha384-6MFdIr0zOira1CHQkedUqJVql0YtcZA1P0nbPrQYJXVJZUkTk/oX4U9GhUIs3/z8" crossorigin="anonymous"></script>
+<script>
+  Kakao.init('2f5e21c8e3960c92cbdd998a39f43cc8'); // 사용하려는 앱의 JavaScript 키 입력
+</script>
+
+<a id="kakao-login-btn" href="javascript:loginWithKakao()">
+  <img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222"
+    alt="카카오 로그인 버튼" />
+</a>
+<p id="token-result"></p>
+</div>
+<script>
+function loginWithKakao() {
+    Kakao.Auth.authorize({
+        redirectUri: 'http://localhost:8082/controller/',
+        
+    });
+}
+
+  // 아래는 데모를 위한 UI 코드입니다.
+  displayToken();
+  function displayToken() {
+    var token = getCookie('authorize-access-token');
+
+    if (token) {
+      Kakao.Auth.setAccessToken(token);
+      Kakao.API.request({
+        url: 'Main2',
+        data: {
+          property_keys: ['kakao_account.phone_number'], // 핸드폰 번호 추가
+        },
+      })
+        .then(function (response) {
+          if (response.kakao_account) {
+            // 사용자 정보에 핸드폰 번호가 있는 경우 처리
+            console.log('User phone number:', response.kakao_account.phone_number);
+          }
+
+          if (response.status === 'connected') {
+            document.getElementById('token-result').innerText =
+              'login success, token: ' + Kakao.Auth.getAccessToken();
+          }
+        })
+        .catch(function (err) {
+          Kakao.Auth.setAccessToken(null);
+        });
+    }
+  }
+
+  function getCookie(name) {
+    var parts = document.cookie.split(name + '=');
+    if (parts.length === 2) {
+      return parts[1].split(';')[0];
+    }
+  }
+</script>
       
       
       <!-- partial -->
@@ -293,7 +359,6 @@
                 <div class="social-links mt-5">
                   <ul class="d-flex list-unstyled gap-2">
                     <li>
-                      <a href="#" class="btn btn-outline-light">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M15.12 5.32H17V2.14A26.11 26.11 0 0 0 14.26 2c-2.72 0-4.58 1.66-4.58 4.7v2.62H6.61v3.56h3.07V22h3.68v-9.12h3.06l.46-3.56h-3.52V7.05c0-1.05.28-1.73 1.76-1.73Z"/></svg>
                       </a>
                     </li>
@@ -339,7 +404,7 @@
                     <a href="#" class="nav-link">가공식품</a>
                   </li>
                   <li class="menu-item">
-                    <a href="#" class="nav-link">영농일지</a>
+                    <a href="godiary" class="nav-link">영농일지</a>
                   </li>
                 </ul>
               </div>
@@ -364,5 +429,11 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
       <script src="js/plugins.js"></script>
       <script src="js/script.js"></script>
+      
+      
+      
+
+ 
+
 </body>
 </html>

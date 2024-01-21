@@ -4,6 +4,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -327,6 +328,27 @@
 
 									<div class="swiper-slide">
 										<div class="row banner-content p-5">
+										        				<body>
+    <table>
+        <thead>
+            <tr>
+                <th>농산물</th>
+                <th>수산물</th>
+                <th>판매량 TOP10</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach var="data" items="${dataList}">
+                <tr>
+                    <td>${data.datalabAgri}</td>
+                    <td>${data.datalabAqua}</td>
+                    <td>${data.rankingIdx} ${data.nongla}</td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+</body>
+										
 											<div class="content-wrapper col-md-7">
 												<div class="categories my-3">영농일지</div>
 												<h3 class="display-4">판매자가 키운 작물들을 구경하세요!</h3>

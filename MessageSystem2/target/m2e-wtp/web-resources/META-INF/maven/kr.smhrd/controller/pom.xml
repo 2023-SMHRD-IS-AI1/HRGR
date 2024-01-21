@@ -199,6 +199,11 @@
 	        <version>2.6.3</version> <!-- 예시 버전, 사용 중인 버전에 따라 수정 -->
 		</dependency>
     <!-- 다른 의존성들... -->
+     <dependency>
+    <groupId>jstl</groupId>
+    <artifactId>jstl</artifactId>
+    <version>1.2</version>
+</dependency>
     <dependency>
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>

@@ -27,10 +27,12 @@ import kr.smhrd.entity.Board;
 import kr.smhrd.entity.Member;
 import kr.smhrd.entity.Message;
 import kr.smhrd.entity.Product;
+import kr.smhrd.entity.RankingData;
 import kr.smhrd.mapper.BoardMapper;
 import kr.smhrd.mapper.MemberMapper;
 import kr.smhrd.mapper.MessageMapper;
 import kr.smhrd.mapper.ProductMapper;
+import kr.smhrd.mapper.RankingMapper;
 
 // POJO를 찾기위해 @(어노테이션)으로 Controller라고 명시해야 함
 // 어떤 패키지에서 Controller를 찾을 건지 servlet-context.xml 파일에도 명시해야 함
@@ -47,7 +49,8 @@ public class MemberController {
 	private HttpServletRequest request;
 	@Autowired
 	private ProductMapper ProductMapper;
-	
+	@Autowired
+	private RankingMapper RankingMapper;
 	
 	// @RequestMapping : get방식, post방식 요청을 다 받을 수 있음
 	// @GetMapping : get방식 요청만 받을 수 있음
@@ -74,6 +77,8 @@ public class MemberController {
 			
 			List<Product> editorPick = ProductMapper.selectEditor();
 			model.addAttribute("editorPick",editorPick);
+			List<RankingData> dataList = RankingMapper.selectranking();
+			model.addAttribute("dataList", dataList);
 		return "Main2";
 	}
 	

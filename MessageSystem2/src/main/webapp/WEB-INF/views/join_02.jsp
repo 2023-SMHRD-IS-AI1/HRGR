@@ -236,10 +236,10 @@
         <!-- Links -->
         <ul class="links">
           <li>
-            <a href="goLogin" id="signup">회원가입</a>
+            <a href="goJoin" id="signup">회원가입</a>
           </li>
           <li>
-            <a href="goJoin" id="signin">로그인</a>
+            <a href="goLogin" id="signin">로그인</a>
           </li>
           <li>
             <a href="#" id="reset">초기화</a>
@@ -254,7 +254,7 @@
           <div class="form-floating join_form">
             <input type="tel" class="form-control" name="cust_phone" id="cust_phone">
             <label for="floatingInput">전화번호(숫자만 입력해주세요)</label>
-            <h4 id="resultCheck"></h4>
+            <h6 id="resultCheck"></h6>
             <input type="button" onclick="checkE()" value="중복체크" class="form-control">
           </div>
           <div class="form-floating join_form">
@@ -264,7 +264,7 @@
           <div class="form-floating join_form">
             <input type="password" class="form-control" id="pwCheck" name="pwCheck">
             <label for="floatingPassword">비밀번호 확인</label>
-            <h4 id="passwordMessage"></h4>
+            <h6 id="passwordMessage"></h6>
             <input type="button" value="비밀번호 확인" onclick="checkPasswordMatch()" class="form-control">
           </div>
           <div class="form-floating join_form">
@@ -372,31 +372,7 @@
                 </div>
               </div>
             </div>
-  
-              <div class="footer-menu">
-                <h5 class="widget-title">Customer Service</h5>
-                <ul class="menu-list list-unstyled">
-                  <li class="menu-item">
-                    <a href="#" class="nav-link">FAQ</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="#" class="nav-link">Contact</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="#" class="nav-link">Privacy Policy</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="#" class="nav-link">Returns & Refunds</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="#" class="nav-link">Cookie Guidelines</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="#" class="nav-link">Delivery Information</a>
-                  </li>
-                </ul>
-              </div>
-            </div> -->
+
             <div class="col-md-2 col-sm-6">
               <div class="footer-menu">
                 <h5 class="widget-title">서비스맵</h5>
@@ -411,9 +387,6 @@
                     <a href="#" class="nav-link">수산물</a>
                   </li>
                   <li class="menu-item">
-                    <a href="#" class="nav-link">축산물</a>
-                  </li>
-                  <li class="menu-item">
                     <a href="#" class="nav-link">가공식품</a>
                   </li>
                   <li class="menu-item">
@@ -422,7 +395,8 @@
                 </ul>
               </div>
             </div>
-                        
+
+            
           </div>
         </div>
       </footer>

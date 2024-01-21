@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- resources/mapper/RankingMapper.xml -->
+
+<mapper namespace="kr.smhrd.mapper.RankingMapper">
+
+	 <resultMap id="rankingResultMap" type="kr.smhrd.entity.RankingData">
+        <result property="datalabAgri" column="datalab_agri"/>
+        <result property="datalabAqua" column="datalab_aqua"/>
+        <result property="rankingIdx" column="ranking_idx"/>
+        <result property="nongla" column="nongla"/>
+    </resultMap>
+    
+    <select id="selectranking" resultMap="rankingResultMap">
+        SELECT datalab_agri, datalab_aqua, ranking_idx, nongla
+        FROM TB_RANKING LIMIT 10;
+    </select>
+</mapper>
+

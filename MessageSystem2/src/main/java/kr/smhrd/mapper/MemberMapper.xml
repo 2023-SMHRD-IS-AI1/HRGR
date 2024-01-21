@@ -124,21 +124,23 @@ delete from tb_qna where cust_id = #{cust_id} and prod_idx = #{prod_idx}
 </delete>
 
 <select id="searchMysell" parameterType="String" resultType="kr.smhrd.entity.Member">
-SELECT
-    r.cust_id,
+   SELECT
+    p.cust_id,
     p.prod_name AS prod_name,
+    p.prod_idx AS prod_idx,
     p.prod_price AS prod_price,
     pi.img_name AS img_name,
     r.prod_ratings AS prod_ratings,
     r.review_content AS review_content
 FROM
-    tb_review r
-JOIN
-    tb_prod p ON r.prod_idx = p.prod_idx
+    tb_prod p
+LEFT JOIN
+    tb_review r ON p.prod_idx = r.prod_idx
 LEFT JOIN
     tb_prod_image pi ON p.prod_idx = pi.prod_idx
 WHERE
     p.cust_id = #{cust_id};
+    
 </select>
 
 <select id="searchDia" parameterType="String" resultType="kr.smhrd.entity.Member">

@@ -24,8 +24,6 @@
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/vendor.css">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/stylejm.css">
 
-    <link rel="stylesheet" href="./resources/assets/css/login_01.css">
-
     <link rel="stylesheet" href="./resources/assets/css/font-awesome.min.css">
     
 
@@ -307,7 +305,7 @@
                     <div class="col-lg-7 d-grid gap-3 align-content-center" style="padding-left: 25px;">
                       <div>${prodList.order_status }</div>
                       <div><p style="font-size: 20px; font-weight: bold;">${prodList.prod_name }</p></div>
-                      <div>${prodList.paid_amount }</div>
+                      <div>${prodList.paid_amount }원</div>
                     </div>
                     <div class="col-lg-3 d-grid gap-2 my-auto">
                       <button type="button" class="btn btn-outline-success" onclick="openModal()" >배송조회</button>
@@ -607,7 +605,7 @@
               <div class="edit_box border-bottom border-top border-success">
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-2 border-end" align="right">연락처</div>
-                <div class="col-10"><input type="text" placeholder="숫자만 입력해주세요" class="form-control" style="width: 250px;" name="cust_phone"></div>
+                <div class="col-10"><span><%=Memberlogin.getCust_phone() %></span></div>
               </div>
               <hr style="margin: 0px; color: rgb(188, 188, 188);">
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
@@ -619,7 +617,7 @@
                 <div class="col-2 border-end" align="right">비밀번호 확인</div>
                 <div class="col-10 d-flex gap-2"><input type="password" placeholder="PW확인" id="pwCheck" class="form-control" style="width: 250px;" name="pwCheck">  
   <input type="button" value="비밀번호 확인" onclick="checkPasswordMatch()" style="background-color: #4CAF50; /* Lighter green color */ color: white; padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer;">
-           <h4 id="passwordMessage">
+           <h6 style="padding-top:10px" id="passwordMessage">
            </div>
               </div>
               <hr style="margin: 0px; color: rgb(188, 188, 188);">
@@ -868,19 +866,7 @@ function checkPasswordMatch() {
     joinUsButton.disabled = !passwordChecked; // 버튼 활성화 여부 설정
 }
 </script>
-<script>
-    // 모달 열기 함수
-    function openModal() {
-        var modal = document.getElementById('myModal');
-        modal.style.display = 'block';
-    }
 
-    // 모달 닫기 함수
-    function closeModal() {
-        var modal = document.getElementById('myModal');
-        modal.style.display = 'none';
-    }
-</script>
 
 </body>
 </html>

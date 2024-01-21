@@ -256,7 +256,7 @@
           <c:forEach var="diaryList" items="${diaryList }" varStatus="i">
                       <c:if test="${i.index < 10}">
           <div class="diary_content">
-              <h2 style="font-weight: bold;">농사일기</h2>
+              <h2 style="font-weight: bold;">농사뿡뿡일기</h2>
               <hr>
                 <div class="diary_img" style="padding: 30px;">
                   <img src="./resources/upload/${diaryList.diary_img_name }" alt="이미지에용">

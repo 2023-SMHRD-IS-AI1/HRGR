@@ -22,7 +22,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/vendor.css">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/stylejm.css">
-    <link rel="stylesheet" href="./resources/assets/css/login_01.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -261,7 +260,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
               </div>
             </nav>
       <div class="tab-content" id="nav-tabContent">
-            
+  <!-- 바뀌는 탭 공간 -->          
   <div class="tab-pane fade show active" id="nav-myOder" role="tabpanel" aria-labelledby="nav-myOder-tab" tabindex="0">
               
   <!-- 메뉴바1내용 주문내역 -->
@@ -284,7 +283,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
         <div class="col-lg-7 d-grid gap-3 align-content-center" style="padding-left: 25px;">
           <div>${prodList.order_status }</div>
           <div><p style="font-size: 20px; font-weight: bold;">${prodList.prod_name }</p></div>
-          <div>${prodList.paid_amount }</div>
+          <div>${prodList.paid_amount }원</div>
         </div>
         <div class="col-lg-3 d-grid gap-2 my-auto">
           <button type="button" class="btn btn-outline-success">배송조회</button>
@@ -556,60 +555,65 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
 
 
   <!-- 회원정보수정 시작 -->
-<div class="edit_content">
-<h2 style="font-weight: bold; margin-bottom: 14px;">회원정보 수정</h2>
-<!-- 제목 아래 큰틀 -->
-<form action="updateMember"  method="post">  
-  <input type="hidden" value="<%=Memberlogin.getCust_id() %>" name="cust_id">
-  <div class="edit_box border-bottom border-top border-success">
-  <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-    <div class="col-2 border-end" align="right">연락처</div>
-<div class="col-10"><input type="text" value="harugreen" class="form-control-plaintext" style="width: 250px;"  placeholder="숫자만 입력해주세요" readonly  name="cust_phone"></div>              
-  </div>
-  <hr style="margin: 0px; color: rgb(188, 188, 188);">
-  <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-    <div class="col-2 border-end" align="right">비밀번호</div>
-    <div class="col-10"><input type="password" placeholder="수정할 비밀번호를 입력하세요" class="form-control" style="width: 250px;" id="cust_pw" name="cust_pw"></div>                
-  </div>
-  <hr style="margin: 0px; color: rgb(188, 188, 188);">
-  <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-    <div class="col-2 border-end" align="right">비밀번호 확인</div>
-    <div class="col-10"><input type="password" placeholder="비밀번호를 확인하세요" class="form-control" style="width: 250px;" id="pwCheck" name="pwCheck"></div>                
-    <h4 id="passwordMessage"></h4>
-    <input type="button" value="비밀번호 확인" onclick="checkPasswordMatch()" style="background-color: #4CAF50; /* Lighter green color */ color: white; padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer;">
-</div>  
-  </div>
-  <hr style="margin: 0px; color: rgb(188, 188, 188);">
-  <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-    <div class="col-2 border-end" align="right">이름</div>
-    <div class="col-10"><span><%=Memberlogin.getCust_name() %></span></div>
-  </div>
-  <hr style="margin: 0px; color: rgb(188, 188, 188);">
-  <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-    <div class="col-2 border-end" align="right">닉네임</div>
-    <div class="col-10"><input type="text" placeholder="수정할 닉네임을 입력하세요" class="form-control" style="width: 250px;" name="cust_nick"></div>              </div>
-  <hr style="margin: 0px; color: rgb(188, 188, 188);">
-  <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-    <div class="col-2 border-end" align="right">이메일</div>
-    <div class="col-10"><input type="email" class="form-control" placeholder="name@example.com"  style="width: 250px;" name="cust_email"></div>                
-  </div>
-  
-  <hr style="margin: 0px; color: rgb(188, 188, 188);">
-  <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-    <div class="col-2 border-end" align="right">생년월일</div>
-    <div class="col-10"><input type="date" class="form-control" style="width: 250px;" name="cust_birthdate"></div>
-  </div>
-  <hr style="margin: 0px; color: rgb(188, 188, 188);">
-  <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-    <div class="col-2 border-end" align="right">주소</div>
-    <div class="col-10">
-        <input type="text" placeholder="도로명주소를 입력해주세요" class="form-control" style="width: 400px; margin-bottom: 5px;" >
-        <input type="text" placeholder="상세주소를 입력해주세요" class="form-control" style="width: 400px;">
-      </div>
-    </div>           
-        </div>
-     
-     <div class="myReview_box" align="center">
+          <div class="edit_content">
+            <h2 style="font-weight: bold; margin-bottom: 14px;">회원정보 수정</h2>
+            <!-- 제목 아래 큰틀 -->
+            <form action="updateMember" method="post">  
+				<input type="hidden" value="<%=Memberlogin.getCust_id() %>" name="cust_id" readonly>
+              <div class="edit_box border-bottom border-top border-success">
+              <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
+                <div class="col-2 border-end" align="right">연락처</div>
+                <div class="col-10"><span><%=Memberlogin.getCust_phone() %></span></div>
+              </div>
+              <hr style="margin: 0px; color: rgb(188, 188, 188);">
+              <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
+                <div class="col-2 border-end" align="right">비밀번호</div>
+                <div class="col-10"><input type="password" placeholder="PW를 입력하세요" class="form-control" style="width: 250px;" id="cust_pw" name="cust_pw"></div>                
+              </div>
+              <hr style="margin: 0px; color: rgb(188, 188, 188);">
+              <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
+                <div class="col-2 border-end" align="right">비밀번호 확인</div>
+                <div class="col-10 d-flex gap-2"><input type="password" placeholder="PW확인" id="pwCheck" class="form-control" style="width: 250px;" name="pwCheck">  
+  <input type="button" value="비밀번호 확인" onclick="checkPasswordMatch()" style="background-color: #4CAF50; /* Lighter green color */ color: white; padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer;">
+           <h6 style="padding-top:10px" id="passwordMessage">
+           </div>
+              </div>
+              <hr style="margin: 0px; color: rgb(188, 188, 188);">
+              <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
+                <div class="col-2 border-end" align="right">이름</div>
+                <div class="col-10"><span><%=Memberlogin.getCust_name() %></span></div>
+              </div>
+              <hr style="margin: 0px; color: rgb(188, 188, 188);">
+              <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
+                <div class="col-2 border-end" align="right">닉네임</div>
+                <div class="col-10"><input type="text" placeholder="수정할 닉네임을 입력하세요" class="form-control" style="width: 250px;" name="cust_nick"></div>              </div>
+              <hr style="margin: 0px; color: rgb(188, 188, 188);">
+              <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
+                <div class="col-2 border-end" align="right">이메일</div>
+                <div class="col-10"><input type="email" class="form-control" placeholder="name@example.com"  style="width: 250px;" name="cust_email"></div>                
+              </div>
+            
+              <hr style="margin: 0px; color: rgb(188, 188, 188);">
+              <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
+                <div class="col-2 border-end" align="right">생년월일</div>
+                <div class="col-10"><input type="date" class="form-control" style="width: 250px;" name="cust_birthdate"></div>
+              </div>
+              <hr style="margin: 0px; color: rgb(188, 188, 188);">
+              <!-- <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
+                <div class="col-2 border-end" align="right">성별</div>
+                <div class="col-10"><input type="text" value="남" class="form-control-plaintext" style="width: 250px;" readonly></div>
+              </div>
+              <hr style="margin: 0px; color: rgb(188, 188, 188);"> -->
+              <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
+                <div class="col-2 border-end" align="right">주소</div>
+                <div class="col-10">
+                  <input type="text" placeholder="광주광역시 어쩌구 저쩌구" class="form-control" style="width: 400px; margin-bottom: 5px;" name="cust_addr" >
+                  <input type="text" placeholder="상세주소" class="form-control" style="width: 400px;">
+                </div>
+              </div>           
+                  </div>
+               </div>    
+  <div class="myReview_box" align="center">
        <!-- 페이지네이션 -->
        <button type="button" class="btn btn-outline-secondary">취소하기</button>
        <button type="button" class="btn btn-success">수정하기</button>
@@ -636,7 +640,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
       <a href="goprodDetail?prod_idx=${sellList.prod_idx}"><img src="./resources/upload/${sellList.img_name }" alt="" style="width: 200px; height: 200px;"></a>
           <div>${sellList.prod_name }</div>
           <span class="rating"><svg width="24" height="24" class="text-primary"><use xlink:href="#star-solid"></use></svg>  ${sellList.prod_ratings }</span>
-          <span class="price">${sellList.prod_price }</span>
+          <span class="price">${sellList.prod_price }원</span>
         </div>
       </c:if>
     </c:forEach>

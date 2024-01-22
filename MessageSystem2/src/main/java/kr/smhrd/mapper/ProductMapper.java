@@ -54,5 +54,11 @@ import kr.smhrd.entity.Product;
 	public void insertReview(Product product);
 
 	public List<Product> sellerDiaryimg(int prod_idx);
+
+	public String searchName(String searchInput);
+	
+	
+	
+	
 	 }
  

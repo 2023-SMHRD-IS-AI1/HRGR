@@ -121,7 +121,7 @@ public class Product {
 	   private String product_customer_id;
 	   private String seller_company_name;
 	
-	  
+	   private int avg_ratings;
 	   
 	   private String review_img_name;
 	   private String product_img_name;

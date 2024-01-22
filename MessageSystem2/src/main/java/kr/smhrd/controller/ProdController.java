@@ -2,6 +2,9 @@ package kr.smhrd.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -9,6 +12,14 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.text.Normalizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.GenericServlet;
 import javax.servlet.ServletContext;
@@ -19,6 +30,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FilenameUtils;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -53,7 +68,7 @@ public class ProdController {
 	private ProductMapper ProductMapper;
 	
 	@RequestMapping("/gosearch")
-	public String gosearch(Model model, @RequestParam("searchInput") String searchInput,HttpSession session) {
+	public String gosearch(Model model, @RequestParam("searchInput") String searchInput,HttpSession session) throws IOException, ParseException{
 		// if 문으로 검색 결과 없을때 창 만들어야함;
 		List<Product> prodlist = ProductMapper.searchTopList(searchInput);
 		List<Product> prodNewlist = ProductMapper.searchNewList(searchInput);
@@ -63,6 +78,80 @@ public class ProdController {
 		model.addAttribute("Product", prodlist);
 		model.addAttribute("ProductNew", prodNewlist);
 		System.out.println(model.toString());
+		String name =ProductMapper.searchName(searchInput);
+		try {
+		    String apiUrl = "http://www.kamis.co.kr/service/price/xml.do?action=dailySalesList";
+
+		    // URL에 추가할 매개변수
+		    String certKey = "c31815c7-3cd7-49eb-ab85-83f0139faeab"; // OPEN-API 신청내용의 API-KEY 값 작성
+		    String certId = "sdee153"; // OPEN-API 신청내용의 아이디 작성
+		    String returnType = "json"; // json:Json 데이터 형식, xml:XML데이터형식 중 원하는 데이터 형식 작성
+
+		    // URL 생성
+		    StringBuilder urlBuilder = new StringBuilder(apiUrl);
+		    urlBuilder.append("&" + URLEncoder.encode("p_cert_key", "UTF-8") + "=" + certKey);
+		    urlBuilder.append("&" + URLEncoder.encode("p_cert_id", "UTF-8") + "=" + URLEncoder.encode(certId, "UTF-8"));
+		    urlBuilder.append("&" + URLEncoder.encode("p_returntype", "UTF-8") + "=" + URLEncoder.encode(returnType, "UTF-8"));
+
+		    // URL 연결 설정
+		    URL url = new URL(urlBuilder.toString());
+		    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		    conn.setRequestMethod("GET");
+
+		    // 응답 코드 확인
+		    int responseCode = conn.getResponseCode();
+		    System.out.println("Response Code: " + responseCode);
+
+		    // 응답 내용 읽기
+		    BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		    String inputLine;
+		    StringBuilder response = new StringBuilder();
+
+		    while ((inputLine = in.readLine()) != null) {
+		        response.append(inputLine);
+		    }
+		    in.close();
+
+		    // 응답 내용 출력
+		    JSONParser parser = new JSONParser();
+		    JSONObject obj = (JSONObject) parser.parse(response.toString());
+		    JSONArray priceArray = (JSONArray) obj.get("price");
+
+		    // "price" 배열에서 각 객체의 "item_name", "dpr1", "dpr2" 값을 추출하여 출력
+		    for (Object priceObj : priceArray) {
+		        JSONObject priceObject = (JSONObject) priceObj;
+		        String itemName = (String) priceObject.get("item_name");
+		        String dpr1Value = (String) priceObject.get("dpr1");
+		        String dpr2Value = (String) priceObject.get("dpr2");
+		        String unitValue = (String) priceObject.get("unit");
+		        String product_cls_name = (String) priceObject.get("product_cls_name");
+		        // itemName에 "당근"이 포함되어 있으면 출력 및 모델에 추가
+		        int index = itemName.indexOf('/');
+	            if (index != -1) {
+	                itemName = itemName.substring(0, index);
+	                if (name.contains(itemName)) {
+			            // "/" 앞의 문자열만 추출
+			            if(product_cls_name.equals("소매")) {
+
+	                	System.out.println("Item Name: " + itemName);
+	                	System.out.println("dpr1 value: " + dpr1Value);
+	                	System.out.println("dpr2 value: " + dpr2Value);
+	                	System.out.println();
+	                	model.addAttribute("today", dpr1Value);
+	                	model.addAttribute("yesterday", dpr2Value);
+	                	model.addAttribute("name", itemName);
+	                	model.addAttribute("unit", unitValue);
+			            }
+			        }
+	            }
+		      
+		    }
+
+		
+
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
 		return "searchResult" ;
 	}
 

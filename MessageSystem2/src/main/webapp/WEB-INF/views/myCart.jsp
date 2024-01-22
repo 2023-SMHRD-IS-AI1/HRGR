@@ -19,7 +19,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/vendor.css">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/stylejm.css">
-    <link rel="stylesheet" href="./resources/assets/css/login_01.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -251,8 +250,10 @@
             <div class="col-3">
             
                 <div style="display: flex; justify-content: space-between;">
-                    <input type="checkbox" value="" id="flexCheckDefault">
-                    <img class="prodLike_img-wrapper" src="resources/upload/<c:out value="${cart.img_name}" />" alt="" style="margin-top: 0px; margin-bottom: 0px;">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <div class="prodLike_img-wrapper">
+                    <img src="resources/upload/<c:out value="${cart.img_name}" />" alt="" style="margin-top: 0px; margin-bottom: 0px;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
+                    </div>
                 </div>
             
             </div>
@@ -283,6 +284,7 @@
             </div>
         </div>
     </div>
+</form>
 </c:forEach>
 
               <!-- 상품 끝 -->
@@ -301,7 +303,6 @@
 </div>
 <!-- 페이지네이션 끝 -->
             </div>
-          </form>
         </div>
       </div>
 

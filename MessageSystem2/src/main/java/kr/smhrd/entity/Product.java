@@ -137,9 +137,9 @@ public class Product {
 		private String certified_yn;
 
 
-
+		// 메인 영농일지 캡슐
 		public Product(String created_at, String cust_id, String diary_title, String diary_content, int diary_likes
-				, String company_name) {
+				, String company_name,String img_name) {
 			super();
 			this.created_at = created_at;
 			this.cust_id = cust_id;
@@ -147,26 +147,28 @@ public class Product {
 			this.diary_content = diary_content;
 			this.diary_likes = diary_likes;
 			this.company_name=company_name;
-			
+			this.img_name=img_name;
 		}
 
 
-
-		public Product(String prod_name, String prod_price, int prod_ratings, @NonNull int prod_idx) {
+		// 메인 구매량 top5 캡슐
+		public Product(String prod_name, String prod_price, int prod_ratings, @NonNull int prod_idx,String img_name) {
 			super();
 			this.prod_name = prod_name;
 			this.prod_price = prod_price;
 			this.prod_ratings = prod_ratings;
 			this.prod_idx = prod_idx;
+			this.img_name=img_name;
 		}
 
 
-
-		public Product(String prod_name, String prod_desc, String created_at) {
+		// 메인 에디터 추천 캡슐
+		public Product(String prod_name, String prod_desc, String created_at,String img_name) {
 			super();
 			this.prod_name = prod_name;
 			this.prod_desc = prod_desc;
 			this.created_at = created_at;
+			this.img_name=img_name;
 		}
 		
 		private String question;
@@ -186,7 +188,7 @@ public class Product {
 
 
 
-
+		
 		public Product(int prod_ratings, String cust_id, @NonNull int prod_idx, String review_content,
 				Date reviewed_at, String image_name) {
 			super();

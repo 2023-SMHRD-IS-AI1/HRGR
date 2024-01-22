@@ -301,7 +301,7 @@
                   <div class="myOrder_box_box row border rounded ">
                     <div class="col-lg-2" style="padding: 0px;"> 
                     <input type="hidden" id="prod_idx" name="${prodList.prod_idx }">
-      <a href="goprodDetail?prod_idx=${prodList.prod_idx}"><img src="./resources/upload/${prodList.img_name }" alt="" style="max-width: 100%;" ></a></div>
+      <a href="goprodDetail?prod_idx=${prodList.prod_idx}"><img src="./resources/upload/${prodList.img_name }" alt="" style="max-width: 100%;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';"></a></div>
                     <div class="col-lg-7 d-grid gap-3 align-content-center" style="padding-left: 25px;">
                       <div>${prodList.order_status }</div>
                       <div><p style="font-size: 20px; font-weight: bold;">${prodList.prod_name }</p></div>
@@ -399,7 +399,7 @@
                             <input type="hidden" id="prod_idx" name="${likeList.prod_idx }">
                         </div>
                         <div class="col-11"><!-- ./resources/images/thumb-tuna.jpg -->
-                            <a href="goprodDetail?prod_idx=${likeList.prod_idx}"><img class="prodLike_img-wrapper" src="./resources/upload/${likeList.img_name }" alt=""></a>
+                            <a href="goprodDetail?prod_idx=${likeList.prod_idx}"><img class="prodLike_img-wrapper" src="./resources/upload/${likeList.img_name }" alt="" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';"></a>
                         </div>
                     </div>
                 </div>
@@ -460,7 +460,7 @@
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-1">
                   <input type="hidden" id="prod_idx" name="${reviewList.prod_idx }">
-      <a href="goprodDetail?prod_idx=${reviewList.prod_idx}"><img class="rounded" src="./resources/upload/${reviewList.product_img_name }" alt="" style="max-width: 100%;" ></a>
+      <a href="goprodDetail?prod_idx=${reviewList.prod_idx}"><img class="rounded" src="./resources/upload/${reviewList.product_img_name }" alt="" style="max-width: 100%;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';"></a>
                 </div>
                 <div class="col-10">${reviewList.prod_name}</div>
                   <div class="col-1"><a href="#" style="text-decoration: none; color: green;" onclick="deletereview(${reviewList.prod_idx})">삭제</a></div>
@@ -476,7 +476,7 @@
                 <div align="center" style="margin: 10px 0px">
                   <!-- 리뷰사진이 없을때는 사진가리기 -->
                   <c:if test="${not empty reviewList.review_img_name}">
-    				<img src="./resources/upload/${reviewList.review_img_name}" alt="리뷰사진인데용" style="max-width: 100%;">
+    				<img src="./resources/upload/${reviewList.review_img_name}" alt="리뷰사진인데용" style="max-width: 100%;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
 					</c:if>
                 </div>
                 <div>
@@ -520,7 +520,7 @@
                 
 <!-- 나의 문의 시작 -->
           <div class="myReview_content">
-            <h2 style="font-weight: bold; margin-bottom: 14px;">나문희 (나의 문의라는 뜻)</h2>
+            <h2 style="font-weight: bold; margin-bottom: 14px;">나의 문의</h2>
             <!-- 제목 아래 큰틀 -->
 			<c:forEach var="searchQna" items="${searchQna }" varStatus="i">
     		<c:if test="${i.index < 10}"> 
@@ -528,7 +528,7 @@
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-1">
                   <input type="hidden" id="prod_idx" name="${searchQna.prod_idx }">
-      <a href="goprodDetail?prod_idx=${searchQna.prod_idx}"><img class="rounded" src="./resources/upload/${searchQna.prod_image_name }" alt="" style="max-width: 100%;" ></a>
+      <a href="goprodDetail?prod_idx=${searchQna.prod_idx}"><img class="rounded" src="./resources/upload/${searchQna.prod_image_name }" alt="" style="max-width: 100%;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';"></a>
                 </div>
                 <div class="col-10">${searchQna.prod_name }</div>
                   <div class="col-1"><a href="#" style="text-decoration: none; color: green;" onclick="deleteQna(${searchQna.prod_idx})">삭제</a></div>
@@ -655,10 +655,13 @@
               </div>           
                   </div>
                </div>
-              <div class="myReview_box" align="center">
+              <div class="myReview_box position-relative" align="center">
                               <!-- 페이지네이션 -->
-                              <button type="button" class="btn btn-outline-secondary">취소하기</button>
-                              <button type="submit" class="btn btn-success">수정하기</button>
+                                <button type="button" class="btn btn-outline-secondary">취소하기</button>
+                                <button type="submit" class="btn btn-success">수정하기</button>
+                                <div class="position-absolute bottom-0 end-0" style="padding: 6px 50px;">
+                                  <a href="goSeller" style="color: green; text-decoration: none; font-weight: normal; font-size: 20px;">판매자등록하기</a>
+                                </div>
                               
                               <!-- 페이지네이션 끝 -->
               </div>

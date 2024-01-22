@@ -255,7 +255,7 @@
             <input type="tel" class="form-control" name="cust_phone" id="cust_phone">
             <label for="floatingInput">전화번호(숫자만 입력해주세요)</label>
             <h6 id="resultCheck"></h6>
-            <input type="button" onclick="checkE()" value="중복체크" class="form-control">
+            <input type="button" onclick="checkE()" value="중복체크" class="form-control" style="padding-top: 10px;">
           </div>
           <div class="form-floating join_form">
             <input type="password" class="form-control" id="cust_pw" name="cust_pw">
@@ -265,7 +265,7 @@
             <input type="password" class="form-control" id="pwCheck" name="pwCheck">
             <label for="floatingPassword">비밀번호 확인</label>
             <h6 id="passwordMessage"></h6>
-            <input type="button" value="비밀번호 확인" onclick="checkPasswordMatch()" class="form-control">
+            <input type="button" value="비밀번호 확인" onclick="checkPasswordMatch()" class="form-control" style="padding-top: 10px;">
           </div>
           <div class="form-floating join_form">
             <input type="text" class="form-control"  id="cust_nick" name= "cust_nick">
@@ -329,7 +329,7 @@
       
       <!-- partial -->
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-        <script  src="./js/login_01.js"></script>
+        <script  src=".resources/assets/js/login_01.js"></script>
       
 
 

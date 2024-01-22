@@ -252,7 +252,7 @@
                 <div style="display: flex; justify-content: space-between;">
                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                     <div class="prodLike_img-wrapper">
-                    <img src="resources/upload/<c:out value="${cart.img_name}" />" alt="" style="margin-top: 0px; margin-bottom: 0px;">
+                    <img src="resources/upload/<c:out value="${cart.img_name}" />" alt="" style="margin-top: 0px; margin-bottom: 0px;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
                     </div>
                 </div>
             

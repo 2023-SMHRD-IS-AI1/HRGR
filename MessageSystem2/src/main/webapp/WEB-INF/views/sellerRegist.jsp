@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/vendor.css">
-    <link rel="stylesheet" type="text/css" href="./resources/assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="./resources/assets/css/stylejm.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -244,37 +244,36 @@ List<Member> reviewList = (List<Member>)request.getAttribute("reviewList");
       
 
 
-      <main>
-      <div class="#">
+<div class="diary_parent">
+<div class="diary">
+      <div class="diary_content">
         <form action="insertSeller" method="post">
-          <div class="form-group">
-            <label for="inputName">사업자등록번호:</label>
-            <input type="text" id="company_bno" name="company_bno" placeholder="사업자등록번호를 입력해주세요.">
-          </div>
-          <div class="form-group">
-            <label for="inputEmail">사업장 이름:</label>
-            <input type="text" id="company_name" name="company_name" placeholder="사업장 등록 이름을 입력해주세요.">
-          </div>
-          <div class="form-group">
-            <label for="inputSubject">사업장 주소:</label>
-            <input type="text" id="company_addr" name="company_addr"
-            placeholder="사업장 주소를 입력해주세요.">
-          </div>
-          <div class="form-group">
-            <label for="inputMessage">판매할 상품의 종류</label>
-            <input type="text" id="business_type" name="business_type"
-            placeholder="연락처를 입력해주세요.">
-          </div>
 
+      <div style="padding: 0px 300px; margin-bottom: 30px; font-size: 20px">
+      <h2 align="center">판매자등록</h2>
+      <hr>
+      <div style="margin-bottom:10px">사업자등록번호</div>
+                  <input class="form-control" type="text" id="business_type" name="business_type" placeholder="연락처를 입력해주세요."  style="margin-bottom:20px">
+      <div style="margin-bottom:10px">사업장 이름</div>
+                  <input class="form-control" type="text" id="business_type" name="business_type" placeholder="연락처를 입력해주세요." style="margin-bottom:20px">
+      <div style="margin-bottom:10px">사업장 주소</div>
+                  <input class="form-control" type="text" id="business_type" name="business_type" placeholder="연락처를 입력해주세요." style="margin-bottom:20px">
+      <div style="margin-bottom:10px">판매할 상품의 종류</div>
+                  <input class="form-control" type="text" id="business_type" name="business_type" placeholder="연락처를 입력해주세요." style="margin-bottom:20px">
+      </div>
           <div class="button-group" align="center">
             <button type="button" class="btn btn-outline-success btn-lg">취소하기</button>
             <button type="button" class="btn btn-success btn-lg">등록하기</button>
           </div>
-          
         </form>
-      </div>
-      </main>
+      
+
+           </div>
+          </div>
+
           
+      </div>
+
       
 
     

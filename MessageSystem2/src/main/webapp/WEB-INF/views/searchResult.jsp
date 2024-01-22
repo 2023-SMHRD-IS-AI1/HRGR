@@ -413,7 +413,7 @@
 
 													<figure>
 														<a href="goprodDetail?prod_idx=${product.prod_idx}" title="Product Title"> <img
-															src="./resources/upload/${product.img_name }" class="tab-image">
+															src="./resources/upload/${product.img_name }" class="tab-image" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
 														</a>
 													</figure>
 													<h3>${product.prod_name}</h3>
@@ -518,7 +518,7 @@
 
 													<figure>
 														<a href="goprodDetail?prod_idx=${ProductNew.prod_idx}"title="Product Title"> <img
-															src="./resources/upload/${ProductNew.img_name }" class="tab-image">
+															src="./resources/upload/${ProductNew.img_name }" class="tab-image" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
 														</a>
 													</figure>
 													<h3>${ProductNew.prod_name}</h3>

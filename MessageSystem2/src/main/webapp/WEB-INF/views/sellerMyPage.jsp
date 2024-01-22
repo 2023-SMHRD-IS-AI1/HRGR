@@ -279,7 +279,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
           <input type="hidden" id="prod_idx" name="${prodList.prod_idx }">
         </div>
       <div class="myOrder_box_box row border rounded ">
-        <div class="col-lg-2" style="padding: 0px;"><a href="goprodDetail?prod_idx=${prodList.prod_idx}"> <img src="./resources/upload/${prodList.img_name }" alt="" style="max-width: 100%;" ></a></div>
+        <div class="col-lg-2" style="padding: 0px;"><a href="goprodDetail?prod_idx=${prodList.prod_idx}"> <img src="./resources/upload/${prodList.img_name }" alt="" style="max-width: 100%;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';"></a></div>
         <div class="col-lg-7 d-grid gap-3 align-content-center" style="padding-left: 25px;">
           <div>${prodList.order_status }</div>
           <div><p style="font-size: 20px; font-weight: bold;">${prodList.prod_name }</p></div>
@@ -354,7 +354,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <input type="hidden" id="prod_idx" name="${likeList.prod_idx }">
           <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-          <a href="goprodDetail?prod_idx=${likeList.prod_idx}"><img class="prodLike_img-wrapper" src="./resources/upload/${likeList.img_name }" alt="" style="margin: 0px;"></a>
+          <a href="goprodDetail?prod_idx=${likeList.prod_idx}"><img class="prodLike_img-wrapper" src="./resources/upload/${likeList.img_name }" alt="" style="margin: 0px;"onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';"></a>
         </div>
       </div>
       <div class="col-lg-7 d-grid gap-2 my-auto">
@@ -416,7 +416,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
   <div class="row" style="display: flex; align-items: center; margin: 0;" >
     <div class="col-1">
     <input type="hidden" id="prod_idx" name="${reviewList.prod_idx }">
-      <a href="goprodDetail?prod_idx=${reviewList.prod_idx}"> <img class="rounded" src="./resources/upload/${reviewList.product_img_name }" alt="" style="max-width: 100%;" ></a>
+      <a href="goprodDetail?prod_idx=${reviewList.prod_idx}"> <img class="rounded" src="./resources/upload/${reviewList.product_img_name }" alt="" style="max-width: 100%;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';"></a>
     </div>
     <div class="col-10">${reviewList.prod_name}</div>
       <div class="col-1"><a href="#" style="text-decoration: none; color: green;" onclick="deletereview(${reviewList.prod_idx})">삭제</a></div>
@@ -428,7 +428,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
 
 
       <div class="col-6">
-        <img src="./resources/upload/${reviewList.review_img_name}" alt="리뷰사진인데용" style="max-width: 100%;">
+        <img src="./resources/upload/${reviewList.review_img_name}" alt="리뷰사진인데용" style="max-width: 100%;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
       </div>
       
       <div class="col-6 position-relative" >
@@ -478,7 +478,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
     
 <!-- 나의 문의 시작 -->
 <div class="myReview_content">
-<h2 style="font-weight: bold; margin-bottom: 14px;">나문희 (나의 문의라는 뜻)</h2>
+<h2 style="font-weight: bold; margin-bottom: 14px;">나의 문의</h2>
 <hr style="margin: 0; color: darkgreen;">
 <!-- 제목 아래 큰틀 -->
 <c:forEach var="searchQna" items="${searchQna }" varStatus="i">
@@ -488,7 +488,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
     <div class="col-1">
     <input type="hidden" id="prod_idx" name="${searchQna.prod_idx }">
       <a href="goprodDetail?prod_idx=${searchQna.prod_idx}">
-      <img class="rounded" src="./resources/upload/${searchQna.prod_image_name }" alt="" style="max-width: 100%;" ></a>
+      <img class="rounded" src="./resources/upload/${searchQna.prod_image_name }" alt="" style="max-width: 100%;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';"></a>
     </div>
     <div class="col-10">${searchQna.prod_name }</div>
       <div class="col-1"><a href="#" style="text-decoration: none; color: green;" onclick="deleteQna(${searchQna.prod_idx})">삭제</a></div>
@@ -631,7 +631,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
     </div>
       <hr>
       <!-- 한줄시작 -->
-      <div class="d-flex flex-wrap" style="display: flex; justify-content: space-between;">
+      <div class="d-flex flex-wrap" style="justify-content: space-between;">
         <c:forEach var="sellList" items="${sellList}" varStatus="i">
           <c:if test="${i.index < 30}"> 
         
@@ -669,7 +669,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
                       <c:if test="${i.index < 10}">
           <div class="shadow" style="margin-bottom: 20px;">
             <div class="diary_img" style="padding: 30px;">
-              <img src="./resources/upload/${diaryList.diary_img_name }" alt="이미지에용" style="margin: 0px;">
+              <img src="./resources/upload/${diaryList.diary_img_name }" alt="이미지에용" style="margin: 0px;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
             </div>
             <div class="diary_farmer row" style="padding: 0px 30px 30px 30px; margin: 0px;">
               <div class="col-10">
@@ -703,7 +703,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
               <div class="col-2">
                 <div class="prodLike_img-wrapper" style="position: relative; width: 130px; height: 130px;">
                 <input type="hidden" id="prod_idx" name="${qnaList.prod_idx }">
-      <a href="goprodDetail?prod_idx=${qnaList.prod_idx}"><img src="./resources/upload/${qnaList.prod_img_name }" class="rounded" alt="물품사진" style=" position: absolute; top: 0; left: 0; transform: translate(50, 50); width: 100%; height: 100%; object-fit: cover; margin: auto;"></a></div>
+      <a href="goprodDetail?prod_idx=${qnaList.prod_idx}"><img src="./resources/upload/${qnaList.prod_img_name }" class="rounded" alt="물품사진" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';" style=" position: absolute; top: 0; left: 0; transform: translate(50, 50); width: 100%; height: 100%; object-fit: cover; margin: auto;"></a></div>
               </div>
               <div class="col-5">
               <p>

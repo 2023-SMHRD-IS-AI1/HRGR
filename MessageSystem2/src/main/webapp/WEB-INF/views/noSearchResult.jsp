@@ -1,5 +1,8 @@
+<%@page import="org.springframework.ui.Model"%>
+<%@page import="ch.qos.logback.core.recovery.ResilientSyslogOutputStream"%>
 <%@page import="java.util.List"%>
 <%@page import="kr.smhrd.entity.Member"%>
+<%@page import="kr.smhrd.entity.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -16,42 +19,52 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
 
-    <link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
-	crossorigin="anonymous">
-<link rel="stylesheet" type="text/css"
-	href="./resources/assets/css/vendor.css">
-<link rel="stylesheet" type="text/css"
-	href="./resources/assets/css/style.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<linkhref="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/vendor.css">
-    <link rel="stylesheet" type="text/css" href="stylejm.css">
-  <link rel="stylesheet" type="text/css" href="./resources/assets/css/vendor.css">
+    <link rel="stylesheet" type="text/css" href="./resources/assets/css/vendor.css">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/stylejm.css">
-    <link rel="stylesheet" href="./resources/assets/css/login_01.css">
+
+    <link rel="stylesheet" href="./resources/assets/css/font-awesome.min.css">
+    
+
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,800" rel="stylesheet"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="./css/login_01.css">
-
-	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,800" rel="stylesheet">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    
+    <style>
+    .modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+    }
+</style>
+    
+    
+    
 </head>
 <body>
-<%
-	Member Memberlogin = (Member) session.getAttribute("loginMember");
+	<% 
+  	Member Memberlogin = (Member)session.getAttribute("loginMember");
 	
-	%>
-
+	
+	System.out.println(Memberlogin.toString());
+	String savePath = "./resources/upload";
+	
+	List<Product> prodList = (List<Product>)request.getAttribute("prodList");
+	List<Member> reviewList = (List<Member>)request.getAttribute("reviewList");
+	
+	
+			
+  %>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <defs>
           <symbol xmlns="http://www.w3.org/2000/svg" id="link" viewBox="0 0 24 24">
@@ -102,7 +115,7 @@
         </defs>
       </svg>
 
-     <header>
+       <header>
       <div class="container-fluid">
         <div class="row py-3 border-bottom">
           
@@ -249,95 +262,168 @@
       </div>
     </header>
 
+<!-- 헤더 끝 -->
+      <div class="myOrder_parent" >
+        <div class="myOrder ">
+		<img src="https://www.turista.co.kr/images/user/nodata.png" alt="nodata" style="width: 1000px;">
+            </div>          
+            </div>          
+                    
+              <!-- 푸터 시작 -->
+	<footer class="py-5">
+		<div class="container-fluid">
+			<div class="row">
 
-      <div class="diary_parent" >
-        <div class="diary">
-             <!-- 새거 -->
-             <div class="diary_content">
-              <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
-                <h2 style="font-weight: bold;">영농일지<i style="color: green;" class="fa fa-pagelines" aria-hidden="true"></i></h2>
-              </div>
-              <!-- 글 하나 시작 반복 -->
-              <c:forEach var="diaryList" items="${diaryList }" varStatus="i">
-                <c:if test="${i.index < 10}">
-              <div class="shadow" style="margin-bottom: 20px;">
-                <div class="diary_img" style="padding: 30px;">
-                  <img src="./resources/upload/${diaryList.diary_img_name }" alt="이미지에용" style="margin: 0px;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
-                </div>
-                <div class="diary_farmer row" style="padding: 0px 30px 30px 30px; margin: 0px;">
-                  <div class="col-10">
-                    <h3>${diaryList.seller_company_name }</h3>
-                    <h5>${diaryList.diary_content }</h5>
-                  </div>
-                  <div class="col-2" align="right"><i class="fa fa-heart red-heart" aria-hidden="true" style="color: red; font-size: 30px;"><span style="color: black;"> ${diaryList.diary_likes }</span></i></div>
-                </div>
-              </div>
-            </c:if>
-          </c:forEach> 
-              <!-- 글 하나 끝 -->
-                                 
-            </div>
-             <!-- 새거임 -->
-        </div>
+				<div class="col-md-2 col-sm-6">
+					<div class="footer-menu">
+						<h5 class="widget-title">사이트맵</h5>
+						<ul class="menu-list list-unstyled">
+							<li class="menu-item"><a href="#" class="nav-link">농산물</a></li>
+							<li class="menu-item"><a href="#" class="nav-link">수산물</a></li>
+							<li class="menu-item"><a href="#" class="nav-link">가공식품</a>
+							</li>
+							<li class="menu-item"><a href="godiary" class="nav-link">영농일지</a>
+							</li>
 
-      </div>
+						</ul>
+					</div>
+				</div>
 
-
-
-      <footer class="py-5">
-        <div class="container-fluid">
-          <div class="row">
-  
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="footer-menu">
-                <img src="./resources/images/harugreen.png" alt="logo">
-
-              </div>
-            </div>
-  
-            <div class="col-md-2 col-sm-6">
-              <div class="footer-menu">
-                <h5 class="widget-title">서비스맵</h5>
-                <ul class="menu-list list-unstyled">
-                  <li class="menu-item">
-                    <a href="#" class="nav-link">전체식품</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="#" class="nav-link">농산물</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="#" class="nav-link">수산물</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="#" class="nav-link">축산물</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="#" class="nav-link">가공식품</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="#" class="nav-link">영농일지</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div id="footer-bottom">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-6 copyright">
-                <p>©그린허브 핵심프로젝트.</p>
-              </div>
-              
-            </div>
-          </div>
-        </div>
-      </footer>
-      <script src="./resources/assets/js/jquery-1.11.0.min.js"></script>
+			</div>
+		</div>
+	</footer>
+	<div id="footer-bottom">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-6 copyright">
+					<p>©그린허브 핵심프로젝트.</p>
+				</div>
+				<div class="col-md-6 credit-link text-start text-md-end"></div>
+			</div>
+		</div>
+	</div>
+	<script src="./resources/assets/js/jquery-1.11.0.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+		crossorigin="anonymous"></script>
+	<script src="./resources/assets/js/plugins.js"></script>
+	<script src="./resources/assets/js/script.js"></script>
+          
+      <script src="js/jquery-1.11.0.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-      <script src="./resources/assets/js/plugins.js"></script>
-      <script src="./resources/assets/js/script.js"></script>
+      <script src="js/plugins.js"></script>
+      <script src="js/script.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+       <script>
+    document.getElementById("userIcon").addEventListener("click", function() {
+       window.location.href = "goLogin";
+  });
+    
+    </script>
+    <script>
+  // 검색창 눌렀을때 페이지 이동
+   document.getElementById('svg-container').addEventListener('click', function() {
+    // 현재 검색어 입력란의 값을 가져옴
+    var inputValue = document.getElementById('searchInput').value;
+    // 현재 페이지 URL에 검색어를 추가하여 페이지 이동
+    window.location.href = 'gosearch?searchInput=' + encodeURIComponent(inputValue);
+  });
+</script>
+      <script>
+    // 찜 상품 삭제 함수
+    function searchLikeList(prod_idx) {
+        if (confirm('정말로 찜 상품을 삭제하시겠습니까?')) {
+            // Ajax를 사용하여 서버에 삭제 요청 전송
+            $.ajax({
+                type: 'POST',
+                url: 'searchLikeList', // 서버에서 처리할 URL (searchLike.jsp 경로에 따라 수정 필요)
+                data: { prod_idx: prod_idx },
+                success: function (data) {
+                    // 삭제에 성공하면 페이지 리로드 또는 화면에서 삭제된 항목 제거 등을 수행
+                    location.reload(); // 예시로 페이지를 리로드하는 방법
+                },
+                error: function (error) {
+                    console.error('찜 상품 삭제 실패', error);
+                }
+            });
+        }
+    }
+
+    // 선택된 항목 삭제 함수
+    function deleteSelected(index) {
+        // 여기에 선택된 항목을 삭제하는 로직 추가
+        console.log('선택된 항목 삭제 - 인덱스: ' + index);
+    }
+</script>
+<script>
+    // 후기 삭제 함수
+   function deletereview(prod_idx) {
+    if (confirm('정말로 후기를 삭제하시겠습니까?')) {
+        // Ajax를 사용하여 서버에 삭제 요청 전송
+        $.ajax({
+            type: 'POST',
+            url: 'reviewDelete',
+            data: { prod_idx: prod_idx }, // 'prod_idx'를 데이터로 전송
+            success: function (data) {
+                // 삭제에 성공하면 페이지 리로드 또는 화면에서 삭제된 항목 제거 등을 수행
+                location.reload(); // 예시로 페이지를 리로드하는 방법
+            },
+            error: function (error) {
+                console.error('후기 삭제 실패', error);
+            }
+        });
+    }
+}
+
+</script>
+<script>
+    // qna 삭제 함수
+   function deleteQna(prod_idx) {
+    if (confirm('정말로 문의를 삭제하시겠습니까?')) {
+        // Ajax를 사용하여 서버에 삭제 요청 전송
+        $.ajax({
+            type: 'POST',
+            url: 'qnaDelete',
+            data: { prod_idx: prod_idx }, // 'prod_idx'를 데이터로 전송
+            success: function (data) {
+                // 삭제에 성공하면 페이지 리로드 또는 화면에서 삭제된 항목 제거 등을 수행
+                location.reload(); // 예시로 페이지를 리로드하는 방법
+            },
+            error: function (error) {
+                console.error('후기 삭제 실패', error);
+            }
+        });
+    }
+}
+
+</script>
+
+
+<script >
+var passwordChecked = false; // 비밀번호 확인 여부를 저장하는 변수 추가
+
+function checkPasswordMatch() {
+    var pw = document.getElementById('cust_pw').value;
+    var pwCheck = document.getElementById('pwCheck').value;
+    var passwordMessage = document.getElementById('passwordMessage');
+    var joinUsButton = document.getElementById('joinUsButton');
+
+    if (pw === pwCheck) {
+        passwordMessage.innerHTML = '비밀번호가 일치합니다.';
+        passwordChecked = true; // 비밀번호 확인됨
+    } else {
+        passwordMessage.innerHTML = '비밀번호가 일치하지 않습니다.';
+        passwordChecked = false; // 비밀번호 불일치
+    }
+
+    joinUsButton.disabled = !passwordChecked; // 버튼 활성화 여부 설정
+}
+</script>
+
+
 </body>
 </html>

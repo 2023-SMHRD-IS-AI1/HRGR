@@ -291,9 +291,11 @@
   Kakao.init('2f5e21c8e3960c92cbdd998a39f43cc8'); // 사용하려는 앱의 JavaScript 키 입력
 </script>
 
-<a id="kakao-login-btn" href="javascript:loginWithKakao()">
-  <img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222"
-    alt="카카오 로그인 버튼" />
+<a id="kakao-login-btn" href="javascript:loginWithKakao()" style="text-decoration: none;">
+        <button class="github__btn">
+          <i class="fa fa- fa-comment"></i>
+          카카오 로그인
+        </button>
 </a>
 <p id="token-result"></p>
 </div>
@@ -359,6 +361,7 @@ function loginWithKakao() {
                 <div class="social-links mt-5">
                   <ul class="d-flex list-unstyled gap-2">
                     <li>
+                      <a href="#" class="btn btn-outline-light">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M15.12 5.32H17V2.14A26.11 26.11 0 0 0 14.26 2c-2.72 0-4.58 1.66-4.58 4.7v2.62H6.61v3.56h3.07V22h3.68v-9.12h3.06l.46-3.56h-3.52V7.05c0-1.05.28-1.73 1.76-1.73Z"/></svg>
                       </a>
                     </li>
@@ -404,7 +407,7 @@ function loginWithKakao() {
                     <a href="#" class="nav-link">가공식품</a>
                   </li>
                   <li class="menu-item">
-                    <a href="godiary" class="nav-link">영농일지</a>
+                    <a href="#" class="nav-link">영농일지</a>
                   </li>
                 </ul>
               </div>

@@ -18,6 +18,7 @@ SELECT
     tb_review.review_idx,
     tb_review.review_content,
     tb_review.prod_ratings AS prod_ratings,
+    ROUND(AVG(tb_review.prod_ratings), 1) AS avg_ratings,
     tb_review.reviewed_at,
     tb_prod_image.img_name AS img_name
 FROM
@@ -30,8 +31,14 @@ LEFT JOIN
     tb_prod_image ON tb_prod.prod_idx = tb_prod_image.prod_idx
 WHERE
     tb_prod.prod_name LIKE CONCAT('%', #{searchInput}, '%')
+GROUP BY
+    tb_prod.prod_idx, tb_prod.prod_name, tb_prod.prod_desc, tb_prod.prod_type,
+    tb_prod.prod_price, tb_prod.prod_stock, tb_prod.cust_id, tb_prod.created_at,
+    tb_cust.cust_name, tb_cust.cust_nick, tb_cust.cust_phone, tb_cust.cust_addr,
+    tb_review.review_idx, tb_review.review_content, tb_review.prod_ratings,
+    tb_review.reviewed_at, tb_prod_image.img_name
 ORDER BY
-    tb_review.prod_ratings DESC;
+    avg_ratings DESC;
 </select>
 
 
@@ -44,7 +51,8 @@ ORDER BY
     tb_prod.prod_stock AS prod_stock,
     tb_prod.cust_id AS prod_cust_id,
     tb_prod.created_at AS prod_created_at,
-    tb_prod_image.img_name AS img_name
+    tb_prod_image.img_name AS img_name,
+    AVG(tb_review.prod_ratings) AS avg_ratings
 FROM
     tb_prod
 LEFT JOIN
@@ -55,17 +63,23 @@ LEFT JOIN
     tb_prod_image ON tb_prod.prod_idx = tb_prod_image.prod_idx
 WHERE
     tb_prod.prod_name LIKE CONCAT('%', #{searchInput}, '%')
+GROUP BY
+    tb_prod.prod_idx, tb_prod.prod_name, tb_prod.prod_desc,
+    tb_prod.prod_price, tb_prod.prod_stock, tb_prod.cust_id,
+    tb_prod.created_at, tb_prod_image.img_name
+
 UNION
+
 SELECT
     tb_prod.prod_idx AS prod_idx,
     tb_prod.prod_name AS prod_name,
     tb_prod.prod_desc AS prod_desc,
     tb_prod.prod_price AS prod_price,
     tb_prod.prod_stock AS prod_stock,
-    
     tb_prod.cust_id AS prod_cust_id,
     tb_prod.created_at AS prod_created_at,
-    tb_prod_image.img_name AS img_name
+    tb_prod_image.img_name AS img_name,
+    AVG(tb_review.prod_ratings) AS avg_ratings
 FROM
     tb_review
 RIGHT JOIN
@@ -76,9 +90,12 @@ LEFT JOIN
     tb_prod_image ON tb_prod.prod_idx = tb_prod_image.prod_idx
 WHERE
     tb_prod.prod_name LIKE CONCAT('%', #{searchInput}, '%')
+GROUP BY
+    tb_prod.prod_idx, tb_prod.prod_name, tb_prod.prod_desc,
+    tb_prod.prod_price, tb_prod.prod_stock, tb_prod.cust_id,
+    tb_prod.created_at, tb_prod_image.img_name
 ORDER BY
     prod_created_at DESC;
-
 </select>
 
 
@@ -297,6 +314,123 @@ JOIN tb_diary_image di ON d.diary_idx = di.diary_idx
 WHERE p.prod_idx = #{prod_idx};
 </select>
 
+<select id="searchName" parameterType="String" resultType="String">
+SELECT prod_name FROM tb_prod WHERE prod_name LIKE CONCAT('%', #{searchInput}, '%') LIMIT 1;
+</select>
+
+<!-- 농수산물 상품 따로 보기 -->
+<select id="searchno" parameterType="String" resultType="kr.smhrd.entity.Product" >
+
+    SELECT
+    tb_prod.prod_idx AS prod_idx,
+    tb_prod.prod_name AS prod_name,
+    tb_prod.prod_desc AS prod_desc,
+    tb_prod.prod_price AS prod_price,
+    tb_prod.prod_stock AS prod_stock,
+    tb_prod.cust_id AS prod_cust_id,
+    tb_prod.created_at AS prod_created_at,
+    tb_prod_image.img_name AS img_name,
+    ROUND(AVG(tb_review.prod_ratings), 1) AS avg_ratings
+FROM
+    tb_prod
+LEFT JOIN
+    tb_review ON tb_prod.prod_idx = tb_review.prod_idx
+LEFT JOIN
+    tb_cust ON tb_prod.cust_id = tb_cust.cust_id
+LEFT JOIN
+    tb_prod_image ON tb_prod.prod_idx = tb_prod_image.prod_idx
+WHERE
+    tb_prod.prod_type = #{prod_type}
+GROUP BY
+    tb_prod.prod_idx, tb_prod.prod_name, tb_prod.prod_desc,
+    tb_prod.prod_price, tb_prod.prod_stock, tb_prod.cust_id,
+    tb_prod.created_at, tb_prod_image.img_name
+
+UNION
+
+SELECT
+    tb_prod.prod_idx AS prod_idx,
+    tb_prod.prod_name AS prod_name,
+    tb_prod.prod_desc AS prod_desc,
+    tb_prod.prod_price AS prod_price,
+    tb_prod.prod_stock AS prod_stock,
+    tb_prod.cust_id AS prod_cust_id,
+    tb_prod.created_at AS prod_created_at,
+    tb_prod_image.img_name AS img_name,
+    ROUND(AVG(tb_review.prod_ratings), 1) AS avg_ratings
+FROM
+    tb_review
+RIGHT JOIN
+    tb_prod ON tb_review.prod_idx = tb_prod.prod_idx
+LEFT JOIN
+    tb_cust ON tb_prod.cust_id = tb_cust.cust_id
+LEFT JOIN
+    tb_prod_image ON tb_prod.prod_idx = tb_prod_image.prod_idx
+WHERE
+    tb_prod.prod_type = #{prod_type}
+GROUP BY
+    tb_prod.prod_idx, tb_prod.prod_name, tb_prod.prod_desc,
+    tb_prod.prod_price, tb_prod.prod_stock, tb_prod.cust_id,
+    tb_prod.created_at, tb_prod_image.img_name
+ORDER BY
+    prod_created_at DESC;
+    
+
+</select>
+
+<select id="searchAll"  resultType="kr.smhrd.entity.Product">
+       SELECT
+    tb_prod.prod_idx AS prod_idx,
+    tb_prod.prod_name AS prod_name,
+    tb_prod.prod_desc AS prod_desc,
+    tb_prod.prod_price AS prod_price,
+    tb_prod.prod_stock AS prod_stock,
+    tb_prod.cust_id AS prod_cust_id,
+    tb_prod.created_at AS prod_created_at,
+    tb_prod_image.img_name AS img_name,
+    ROUND(AVG(tb_review.prod_ratings), 1) AS avg_ratings
+FROM
+    tb_prod
+LEFT JOIN
+    tb_review ON tb_prod.prod_idx = tb_review.prod_idx
+LEFT JOIN
+    tb_cust ON tb_prod.cust_id = tb_cust.cust_id
+LEFT JOIN
+    tb_prod_image ON tb_prod.prod_idx = tb_prod_image.prod_idx
+
+GROUP BY
+    tb_prod.prod_idx, tb_prod.prod_name, tb_prod.prod_desc,
+    tb_prod.prod_price, tb_prod.prod_stock, tb_prod.cust_id,
+    tb_prod.created_at, tb_prod_image.img_name
+
+UNION
+
+SELECT
+    tb_prod.prod_idx AS prod_idx,
+    tb_prod.prod_name AS prod_name,
+    tb_prod.prod_desc AS prod_desc,
+    tb_prod.prod_price AS prod_price,
+    tb_prod.prod_stock AS prod_stock,
+    tb_prod.cust_id AS prod_cust_id,
+    tb_prod.created_at AS prod_created_at,
+    tb_prod_image.img_name AS img_name,
+    ROUND(AVG(tb_review.prod_ratings), 1) AS avg_ratings
+FROM
+    tb_review
+RIGHT JOIN
+    tb_prod ON tb_review.prod_idx = tb_prod.prod_idx
+LEFT JOIN
+    tb_cust ON tb_prod.cust_id = tb_cust.cust_id
+LEFT JOIN
+    tb_prod_image ON tb_prod.prod_idx = tb_prod_image.prod_idx
+
+GROUP BY
+    tb_prod.prod_idx, tb_prod.prod_name, tb_prod.prod_desc,
+    tb_prod.prod_price, tb_prod.prod_stock, tb_prod.cust_id,
+    tb_prod.created_at, tb_prod_image.img_name
+ORDER BY
+    prod_created_at DESC;
+</select>
 
 
 </mapper>

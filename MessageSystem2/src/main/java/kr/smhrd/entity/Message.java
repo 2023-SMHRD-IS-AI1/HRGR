@@ -2,6 +2,8 @@ package kr.smhrd.entity;
 
 import java.util.Date;
 
+
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +24,6 @@ public class Message {
 	@NonNull private String sendE;
 	@NonNull private String receiveE;
 	@NonNull private String message;
-	private Date senddate;
+	
 	
 }

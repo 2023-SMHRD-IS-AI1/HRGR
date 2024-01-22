@@ -1,7 +1,14 @@
 package kr.smhrd.controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.List;
+
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -27,6 +34,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.client.RestTemplate;
 
+import com.google.protobuf.TextFormat.ParseException;
 import com.oreilly.servlet.MultipartRequest;
 
 import kr.smhrd.entity.Board;
@@ -388,7 +396,7 @@ public class MemberController {
 	}
 	
 	
-	
+
 	
 	
 	

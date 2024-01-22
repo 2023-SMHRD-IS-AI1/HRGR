@@ -635,13 +635,18 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
         <c:forEach var="sellList" items="${sellList}" varStatus="i">
           <c:if test="${i.index < 30}"> 
         
-        <div class="img-wrapper">
-          <input type="hidden" id="prod_idx" name="${sellList.prod_idx }">
-      <a href="goprodDetail?prod_idx=${sellList.prod_idx}"><img src="./resources/upload/${sellList.img_name }" alt="" style="width: 200px; height: 200px;"></a>
-          <div>${sellList.prod_name }</div>
-          <span class="rating"><svg width="24" height="24" class="text-primary"><use xlink:href="#star-solid"></use></svg>  ${sellList.prod_ratings }</span>
-          <span class="price">${sellList.prod_price }원</span>
-        </div>
+<div style="width: 200px; height: 300px;">
+  <input type="hidden" id="prod_idx" name="${sellList.prod_idx }">
+  <div class="prodLike_img-wrapper" style="position: relative; width: 200px; height: 200px;">
+<a href="goprodDetail?prod_idx=${sellList.prod_idx}">
+  <img src="./resources/upload/${sellList.img_name }" alt="" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
+</a>
+  </div>
+<div style="overflow: hidden;">${sellList.prod_name }</div>
+  <span class="rating"><svg width="24" height="24" class="text-primary"><use xlink:href="#star-solid"></use></svg>${sellList.prod_ratings }</span>
+  <span class="price">${sellList.prod_price }원</span>
+</div>
+
       </c:if>
     </c:forEach>
       </div>

@@ -211,7 +211,7 @@
                       <a href="#" class="nav-link">가공식품</a>
                     </li>
                    
-                    <a href="#" target="_blank" class="nav-link btn-coupon-code">
+                    <a href="godiary" class="nav-link btn-coupon-code">
                 <img src="./resources/images/book-half.svg" alt="gift icon">
                 <strong class="ms-2 text-dark">영농일지 보러가기</strong>
               </a>

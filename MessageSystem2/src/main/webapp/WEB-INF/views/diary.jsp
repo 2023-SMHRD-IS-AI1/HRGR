@@ -349,7 +349,7 @@
                     <a href="#" class="nav-link">가공식품</a>
                   </li>
                   <li class="menu-item">
-                    <a href="#" class="nav-link">영농일지</a>
+                    <a href="godiary" class="nav-link">영농일지</a>
                   </li>
                 </ul>
               </div>
@@ -361,8 +361,8 @@
           <div class="container-fluid">
             <div class="row">
               <div class="col-md-6 copyright">
-                <p>©그린허브 핵심프로젝트.</p>
               </div>
+              
               
             </div>
           </div>

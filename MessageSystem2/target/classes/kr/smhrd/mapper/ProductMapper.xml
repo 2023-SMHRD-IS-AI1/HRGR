@@ -184,7 +184,7 @@ WHERE
 <select id="searchReview" parameterType="Int" resultType="kr.smhrd.entity.Product">
   SELECT
     r.*,
-    pi_review.img_name AS review_img_name,
+    pi_review.img_name AS prod_img_name,
     p.prod_name AS prod_name,
     p.prod_idx AS prod_idx,
     c.cust_nick AS cust_nick
@@ -260,5 +260,16 @@ INSERT INTO tb_qna (prod_idx, cust_id, question, questioned_at)
 INSERT INTO tb_review (prod_idx, cust_id, review_content,prod_ratings,reviewed_at,image_name)
 		VALUES (#{prod_idx},#{cust_id},#{review_content},#{prod_ratings},#{reviewed_at},#{image_name})
 </insert>
+
+<select id="sellerDiaryimg" parameterType="int" resultType="kr.smhrd.entity.Product">
+
+  SELECT di.img_name
+FROM tb_prod p
+JOIN tb_diary d ON p.cust_id = d.cust_id
+JOIN tb_diary_image di ON d.diary_idx = di.diary_idx
+WHERE p.prod_idx = #{prod_idx};
+</select>
+
+
 
 </mapper>

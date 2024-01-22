@@ -6,6 +6,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.text.NumberFormat" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,9 +38,10 @@
 <body>
 <%
 	Member Memberlogin = (Member) session.getAttribute("loginMember");
-    List<Product> prodList = (List<Product>) request.getAttribute("prodList");
+
+    List<Product> prodList = (List<Product>)request.getAttribute("prodList");
     System.out.println("dasff:   "+prodList);
-   
+    List<Product> reviewList = (List<Product>)request.getAttribute("reviewList");
 	%>
 	
 
@@ -220,7 +222,7 @@
                       <a href="#" class="nav-link">가공식품</a>
                     </li>
                    
-                    <a href="#" target="_blank" class="nav-link btn-coupon-code">
+                    <a href="godiary"  class="nav-link btn-coupon-code">
                 <img src="./resources/images/book-half.svg" alt="gift icon">
                 <strong class="ms-2 text-dark">영농일지 보러가기</strong>
               </a>
@@ -327,14 +329,20 @@
 <div style="padding: 20px 40px;">
   <div class="row d-flex justify-content-between">
     <div class="col-3 review-img-wrapper">
-      <img src="./resources/upload/${reviewList.review_img_name }" alt="리뷰사진인데용" style="max-width: 100%;">
+      
+     <img src="./resources/upload/${reviewList.img_name}" alt="리뷰사진인데용" style="max-width: 100%;">
+                
     </div>
     <div class="col-9 d-flex flex-column justify-content-between">
         <div>${reviewList.cust_nick }<br>
           ★${reviewList.prod_ratings }</div>
         <hr style="color: rgb(156, 156, 156); margin: 0px;">
         <div>${reviewList.review_content }</div>
-        <div>${reviewList.reviewed_at }</div>
+        <div>
+        	<!--   fmt 태그 라이브러리 선언후 원하는 방식으로 가져오기 -->
+            <fmt:formatDate value="${reviewList.reviewed_at}" pattern="yyyy-MM-dd" var="formattedDate" />
+            ${formattedDate}
+          </div>
     </div>
   </div>
 </div>
@@ -396,13 +404,17 @@
                     		<i class="fa fa-check-circle" style="color: green;"></i>
                     <%}else{ %>
                     
-                    <%} %>의 영농일기</span><a href="#" style="text-decoration: none; color: green;">더보기 ></a>
+                    <%} %>의 영농일기</span>
+                    
+                    <a href="goSellerDiary?cust_id=<%=prodList.get(0).getCust_id() %>" style="text-decoration: none; color: green;" >더보기 ></a>
   </div>
   <div style="display: flex; justify-content: space-between;">
-    <div class="img-wrapper"><a href="goSellerdiary"><img src="https://live.staticflickr.com/65535/52936778608_aaa8d1f174_z.jpg" alt=""></a></div>
-    <div class="img-wrapper"><a href="goSellerdiary"><img src="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202007/18/360c160f-1a4c-4ac7-a60d-3c5fd18d9430.jpg" alt="" style="width: 200px; height: 200px;"></a></div>
-    <div class="img-wrapper"><a href="goSellerdiary"><img src="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fd03CiC%2Fbtq1tDcgfXn%2FkwMJOkcIH4T4RCBBTHgVS1%2Fimg.jpg" alt="" style="width: 200px; height: 200px;"></a></div>
-    <div class="img-wrapper"><a href="goSellerdiary"><img src="https://cdn.thekpm.com/news/photo/202111/102498_82309_0220.jpg" alt="" style="width: 200px; height: 200px;"></a></div>
+    <c:forEach var="sellerimg" items="${sellerimg}"
+										varStatus="i">
+										<c:if test="${i.index < 3}">
+    <div class="img-wrapper"><a href="#"><img src="./resources/upload/${sellerimg.img_name }" alt=""></a></div>
+   </c:if>
+   </c:forEach>
   </div>
   </div>
     <hr style="color: rgb(156, 156, 156);">
@@ -430,6 +442,9 @@
 
             
               <!-- 푸터 시작 -->
+
+              <div class="sticky-bottom"></div>
+
       <footer class="py-5">
         <div class="container-fluid">
           <div class="row">
@@ -465,6 +480,7 @@
                       </a>
                     </li>
                   </ul>
+
                 </div>
               </div>
             </div>
@@ -591,6 +607,7 @@
 	    event.preventDefault();
 		};
 	</script>
-
+	
+	
 </body>
 </html>

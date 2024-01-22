@@ -217,7 +217,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
                       <a href="#" class="nav-link">가공식품</a>
                     </li>
                    
-                    <a href="#" target="_blank" class="nav-link btn-coupon-code">
+                    <a href="godiary"  class="nav-link btn-coupon-code">
                 <img src="./resources/images/book-half.svg" alt="gift icon">
                 <strong class="ms-2 text-dark">영농일지 보러가기</strong>
               </a>
@@ -283,7 +283,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
         <div class="col-lg-7 d-grid gap-3 align-content-center" style="padding-left: 25px;">
           <div>${prodList.order_status }</div>
           <div><p style="font-size: 20px; font-weight: bold;">${prodList.prod_name }</p></div>
-          <div>${prodList.paid_amount }</div>
+          <div>${prodList.paid_amount }원</div>
         </div>
         <div class="col-lg-3 d-grid gap-2 my-auto">
           <button type="button" class="btn btn-outline-success">배송조회</button>
@@ -640,7 +640,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
       <a href="goprodDetail?prod_idx=${sellList.prod_idx}"><img src="./resources/upload/${sellList.img_name }" alt="" style="width: 200px; height: 200px;"></a>
           <div>${sellList.prod_name }</div>
           <span class="rating"><svg width="24" height="24" class="text-primary"><use xlink:href="#star-solid"></use></svg>  ${sellList.prod_ratings }</span>
-          <span class="price">${sellList.prod_price }</span>
+          <span class="price">${sellList.prod_price }원</span>
         </div>
       </c:if>
     </c:forEach>

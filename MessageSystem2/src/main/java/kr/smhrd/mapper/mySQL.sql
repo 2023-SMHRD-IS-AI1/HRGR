@@ -845,6 +845,65 @@ WHERE
     tb_prod.prod_name LIKE '토마토'
 ORDER BY
     tb_review.prod_ratings DESC;
+    
+    
+    SELECT
+    S.company_name AS seller_company_name,
+    D.diary_content AS diary_content,
+    D.diary_likes AS diary_likes,
+    DI.img_name AS diary_img_name
+FROM
+    tb_diary D
+JOIN
+    tb_seller S ON D.cust_id = S.cust_id
+LEFT JOIN
+    tb_diary_image DI ON D.diary_idx = DI.diary_idx
+where D.cust_id=1
 
+    select * from tb_cust where cust_phone=#{cust_phone}
     
     
+    SELECT di.img_name
+FROM tb_prod p
+JOIN tb_diary d ON p.cust_id = d.cust_id
+JOIN tb_diary_image di ON d.diary_idx = di.diary_idx
+WHERE p.prod_idx = 25;
+
+SELECT
+    p.cust_id,
+    p.prod_name AS prod_name,
+    p.prod_idx AS prod_idx,
+    p.prod_price AS prod_price,
+    pi.img_name AS img_name,
+    r.prod_ratings AS prod_ratings,
+    r.review_content AS review_content
+FROM
+    tb_prod p
+LEFT JOIN
+    tb_review r ON p.prod_idx = r.prod_idx
+LEFT JOIN
+    tb_prod_image pi ON p.prod_idx = pi.prod_idx
+WHERE
+    p.cust_id = 1;
+    
+    
+    SELECT
+    p.cust_id,
+    p.prod_name AS prod_name,
+    p.prod_idx AS prod_idx,
+    p.prod_price AS prod_price,
+    pi.img_name AS img_name,
+    r.prod_ratings AS prod_ratings,
+    r.review_content AS review_content
+FROM
+    tb_prod p
+LEFT JOIN
+    tb_review r ON p.prod_idx = r.prod_idx
+LEFT JOIN
+    tb_prod_image pi ON p.prod_idx = pi.prod_idx
+WHERE
+    p.cust_id = 1;
+    
+    
+    insert into tb_review (prod_idx,cust_id,review_content,prod_ratings,reviewed_at)
+    values(33,2,'괜춘',4,NOW())

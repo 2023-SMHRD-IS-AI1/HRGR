@@ -250,23 +250,20 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 		@RequestMapping("/goprodDetail")
 	       public String goprodDetail(@RequestParam("prod_idx") int prod_idx,
 	                                   HttpSession session,Model model) {
-	           // 이제 prodIdx, prodName, prodPrice, quantityInputId 값을 사용하여 로직을 수행할 수 있습니다.
-	         
-	         // 세션에서 로그인 한 사용자의 정보 가져오기
-			System.out.println("asdgasdgasdga!!!!:    "+ prod_idx);
 	          List<Product> prodList = ProductMapper.prodDetail(prod_idx);
 	          model.addAttribute("prodList",prodList);
-	          
+	          System.out.println("상품식별자 !@!@#$!@$ !@$2!#:"+ prod_idx);
 	          List<Product> qnaList = ProductMapper.searchQna(prod_idx);
 	          model.addAttribute("qnaList",qnaList);
 	          System.out.println("qnsandasnfasnf!~~~~~~~~~:" + qnaList);
 	          
 	          List<Product> reviewList = ProductMapper.searchReview(prod_idx);
 	          model.addAttribute("reviewList",reviewList);
-	          
+	          List<Product> list = ProductMapper.sellerDiaryimg(prod_idx);
+	           model.addAttribute("sellerimg",list);
+	           System.out.println("diary 사진들@@@:"+list);
 	          return "prodDetail"; // 적절한 뷰 이름을 반환합니다.
 	       }
-
 		@RequestMapping(value="/submitQna", method = RequestMethod.POST)
 		public String submitQna(@RequestParam("prod_idx") int prod_idx,@RequestParam("cust_id") String cust_id,
                 @RequestParam("question") String question) {

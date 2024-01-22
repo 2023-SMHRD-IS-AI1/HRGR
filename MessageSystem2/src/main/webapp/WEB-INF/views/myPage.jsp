@@ -305,7 +305,7 @@
                     <div class="col-lg-7 d-grid gap-3 align-content-center" style="padding-left: 25px;">
                       <div>${prodList.order_status }</div>
                       <div><p style="font-size: 20px; font-weight: bold;">${prodList.prod_name }</p></div>
-                      <div>${prodList.paid_amount }</div>
+                      <div>${prodList.paid_amount }원</div>
                     </div>
                     <div class="col-lg-3 d-grid gap-2 my-auto">
                       <button type="button" class="btn btn-outline-success" onclick="openModal()" >배송조회</button>
@@ -866,19 +866,7 @@ function checkPasswordMatch() {
     joinUsButton.disabled = !passwordChecked; // 버튼 활성화 여부 설정
 }
 </script>
-<script>
-    // 모달 열기 함수
-    function openModal() {
-        var modal = document.getElementById('myModal');
-        modal.style.display = 'block';
-    }
 
-    // 모달 닫기 함수
-    function closeModal() {
-        var modal = document.getElementById('myModal');
-        modal.style.display = 'none';
-    }
-</script>
 
 </body>
 </html>

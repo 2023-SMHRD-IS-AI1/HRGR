@@ -257,7 +257,7 @@
                
                <div class="row">
                 <div class="col-6">
-                  <img src="./resources/upload/${prodList.get(0).getImg_name() }" alt="당귀사진임" style="max-width: 100%; padding: 10px;">
+                  <img src="./resources/upload/${prodList.get(0).getImg_name() }" alt="당귀사진임" style="max-width: 100%; padding: 10px;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
                 </div>
                 <div class="col-6 d-flex flex-column justify-content-around">
                   <div>
@@ -330,7 +330,7 @@
   <div class="row d-flex justify-content-between">
     <div class="col-3 review-img-wrapper">
       
-     <img src="./resources/upload/${reviewList.img_name}" alt="리뷰사진인데용" style="max-width: 100%;">
+     <img src="./resources/upload/${reviewList.img_name}" alt="리뷰사진인데용" style="max-width: 100%;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
                 
     </div>
     <div class="col-9 d-flex flex-column justify-content-between">
@@ -412,7 +412,7 @@
     <c:forEach var="sellerimg" items="${sellerimg}"
 										varStatus="i">
 										<c:if test="${i.index < 3}">
-    <div class="img-wrapper"><a href="#"><img src="./resources/upload/${sellerimg.img_name }" alt=""></a></div>
+    <div class="img-wrapper"><a href="#"><img src="./resources/upload/${sellerimg.img_name }" alt="" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';"></a></div>
    </c:if>
    </c:forEach>
   </div>

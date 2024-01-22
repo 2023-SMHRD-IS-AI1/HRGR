@@ -27,10 +27,9 @@
 	rel="stylesheet"
 	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
 	crossorigin="anonymous">
-<link rel="stylesheet" type="text/css"
-	href="./resources/assets/css/vendor.css">
-<link rel="stylesheet" type="text/css"
-	href="./resources/assets/css/style.css">
+<link rel="stylesheet" type="text/css" href=".resources/assets/css/vendor.css">
+<link rel="stylesheet" type="text/css" href="resources/assets/css/style.css">
+
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -383,7 +382,7 @@
 										varStatus="loopStatus">
 										<c:if test="${loopStatus.index < 10}">
 											<div class="col">
-												<div class="product-item">
+												<div class="product-item" style="box-shadow : 0px 5px 22px rgba(0, 0, 0, 0.2)">
 													<span class="badge bg-success position-absolute m-3">-30%</span>
 
 
@@ -413,7 +412,7 @@
 
 													<figure>
 														<a href="goprodDetail?prod_idx=${product.prod_idx}" title="Product Title"> <img
-															src="./resources/upload/${product.img_name }" class="tab-image">
+															src="./resources/upload/${product.img_name }" class="tab-image" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
 														</a>
 													</figure>
 													<h3>${product.prod_name}</h3>
@@ -487,7 +486,7 @@
 										varStatus="loopStatus">
 										<c:if test="${loopStatus.index < 10}">
 											<div class="col">
-												<div class="product-item">
+												<div class="product-item" style="box-shadow : 0px 5px 22px rgba(0, 0, 0, 0.2)">
 													<span class="badge bg-success position-absolute m-3">-30%</span>
 													<input type="hidden" id="i">${loopStatus.index}</input>
 
@@ -518,7 +517,7 @@
 
 													<figure>
 														<a href="goprodDetail?prod_idx=${ProductNew.prod_idx}"title="Product Title"> <img
-															src="./resources/upload/${ProductNew.img_name }" class="tab-image">
+															src="./resources/upload/${ProductNew.img_name }" class="tab-image" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
 														</a>
 													</figure>
 													<h3>${ProductNew.prod_name}</h3>

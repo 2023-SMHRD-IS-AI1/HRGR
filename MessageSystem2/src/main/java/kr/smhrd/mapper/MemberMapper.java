@@ -69,6 +69,16 @@ public interface MemberMapper { // 틀, SqlSessionFactoryBean이 MemberMapper를
 
 	public List<Member> diaryList();
 
+	public List<Member> mydiaryList(String cust_id);
+
+	public Member kakaoLgin(String cust_phone);
+
+	public static boolean checkPhoneNumber(String phoneNumber) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+
 	
 
 	

@@ -4,6 +4,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -318,45 +319,58 @@
 			<div class="row">
 				<div class="col-md-12">
 
-					<div class="banner-blocks">
+					<div class="banner-blocks" style="color: black;">
 
 						<div class="banner-ad large bg-info block-1">
 
 							<div class="swiper main-swiper">
 								<div class="swiper-wrapper">
 
-									<div class="swiper-slide">
-										<div class="row banner-content p-5">
-											<div class="content-wrapper col-md-7">
-												<div class="categories my-3">영농일지</div>
-												<h3 class="display-4">판매자가 키운 작물들을 구경하세요!</h3>
-												<p>판매자가 직접 올리는 글과 사진을 보고 구매해보세요!</p>
-												<a href="godiary"
-													class="btn btn-outline-dark btn-lg ltext-uppercase fs-6 rounded-1 px-4 py-3 mt-3">보러가기!</a>
-											</div>
-											<div class="img-wrapper col-md-5">
-												<img src="./resources/images/farmer.png" class="img-fluid">
-											</div>
-										</div>
+									<div class="swiper-slide">								
+							
+											<div class="banner-content" style="padding: 48px; width: 100%;">
+					                        <div class="row justify-content-between" style="width: 100%; margin: 0px;">
+					                          <div class="col-3" style="font-size: 22px;">
+					                            <div><h2 style="font-weight: bold;">농산물<i class="fa fa-pagelines" aria-hidden="true" style="color: green;"></i></h2></div>
+					                            <hr>
+					                            <c:forEach var="data" items="${dataList}">
+					                            <div>${data.datalabAgri}</div>
+					                            </c:forEach>
+					                          </div>
+					                          <div class="col-3" style="font-size: 22px;">
+					                            <div><h2 style="font-weight: bold;">수산물<i class="fa fa-ship" aria-hidden="true" style="color: cornflowerblue;"></i></h2></div>
+					                            <hr>
+					                            <c:forEach var="data" items="${dataList}">
+					                            <div>${data.datalabAqua}</div>	
+					                            </c:forEach>				                            
+					                          </div>
+					                          <div class="col-5" style="font-size: 22px;">
+					                            <div><h2 style="font-weight: bold;">판매량 TOP10<i class="fa fa-star" aria-hidden="true" style="color: rgb(255, 225, 0);"></i></h2></div>
+					                            <hr>
+					                            <c:forEach var="data" items="${dataList}">
+					                            <div>${data.rankingIdx} ${data.nongla}</div>
+					                            </c:forEach>
+					                          </div>
+					
+					                        </div>
+					
+					                      </div>
+
 									</div>
 
-									<div class="swiper-slide">
-										<div class="row banner-content p-5">
-											<div class="content-wrapper col-md-7">
-												<div class="categories mb-3 pb-3">100% natural</div>
-												<h3 class="banner-title">Fresh Smoothie & Summer Juice</h3>
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-													elit. Dignissim massa diam elementum.</p>
-												<a href="#"
-													class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">Shop
-													Collection</a>
-											</div>
-											<div class="img-wrapper col-md-5">
-												<img src="./resources/images/product-thumb-1.png"
-													class="img-fluid">
-											</div>
+				                    <div class="swiper-slide">
+				                      <div class="row banner-content p-5">
+				                        <div class="content-wrapper col-md-7">
+				                          <div class="categories my-3" >영농일지</div>
+				                          <h3 class="display-4">판매자가 키운 작물들을 구경하세요!</h3>
+				                          <p>김연성 농원, 민경상회, 상권농장 등 많은 판매자들이 있습니다!</p>
+				                          <a href="#" class="btn btn-outline-dark btn-lg ltext-uppercase fs-6 rounded-1 px-4 py-3 mt-3">보러가기!</a>
+				                        </div>
+										<div class="img-wrapper col-md-5">
+											<img src="./resources/images/farmer.png" class="img-fluid">
 										</div>
-									</div>
+				                      </div>
+				                    </div>
 
 									<div class="swiper-slide">
 										<div class="row banner-content p-5">
@@ -386,7 +400,7 @@
 							style="background: url('./resources/images/fish.png') no-repeat; background-position: right bottom">
 							<div class="row banner-content p-5">
 
-								<div class="content-wrapper col-md-7">
+								    <div class="content-wrapper col-md-7" style="background-color: rgba(255, 255, 255, 0.508); box-shadow: 0px 0px 15px 15px  rgba(255, 255, 255, 0.508);" >
 									<div class="categories sale mb-3 pb-3">할인행사!</div>
 									<h3 class="banner-title">신선한 수산물 시세보다 싸게!</h3>
 									<a href="#" class="d-flex align-items-center nav-link">모아보기
@@ -401,7 +415,7 @@
 						<div class="banner-ad bg-danger block-3"
 							style="background: url('./resources/images/pear.png') no-repeat; background-position: right bottom">
 							<div class="row banner-content p-5">
-								<div class="content-wrapper col-md-7">
+								<div class="content-wrapper col-md-7" style="background-color: rgba(255, 255, 255, 0.508); box-shadow: 0px 0px 15px 15px  rgba(255, 255, 255, 0.508);" >
 									<div class="categories sale mb-3 pb-3">겨울배 할인</div>
 									<h3 class="item-title">얘! 겨울배가 달아~</h3>
 									<a href="#" class="d-flex align-items-center nav-link">모아보기
@@ -468,7 +482,7 @@
 										<use xlink:href="#heart"></use></svg></a>
 								<figure>
 									<a href="single-product.html" title="Product Title"> <img
-										src="./resources/images/thumb-tomatoes.png" class="tab-image">
+										src="./resources/upload/<%=Buy.getImg_name()%>" class="tab-image" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
 									</a>
 								</figure>
 								<h3><%=Buy.getProd_name() %></h3>
@@ -540,8 +554,8 @@
 				<div class="col-md-4">
 					<article class="post-item card border-0 shadow-sm p-3">
 						<div class="image-holder zoom-effect">
-							<a> <img src="./resources/images/post-thumb-1.jpg" alt="post"
-								class="card-img-top">
+							<a> <img src="./resources/upload/<%=diary.getImg_name() %>" alt="이미지 준비중"
+								class="card-img-top" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
 							</a>
 						</div>
 						<div class="card-body">
@@ -614,8 +628,8 @@
 								<div class="card mb-3 p-3 rounded-4 shadow border-0">
 									<div class="row g-0">
 										<div class="col-md-4">
-											<img src="./resources/images/product-thumb-11.jpg"
-												class="img-fluid rounded" alt="Card title">
+											<img src="./resources/upload/<%=editor.getImg_name() %>"
+												class="img-fluid rounded" alt="Card title" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
 										</div>
 										<div class="col-md-8">
 											<div class="card-body py-0">
@@ -671,8 +685,8 @@
 													<use xlink:href="#heart"></use></svg></a>
 											<figure>
 												<a href="single-product.html" title="Product Title"> <img
-													src="./resources/images/thumb-bananas.png"
-													class="tab-image">
+													src="./resources/upload/<%=product.getImg_name() %>"
+													class="tab-image" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
 												</a>
 											</figure>
 											<h3><%=product.getProd_name()%></h3>

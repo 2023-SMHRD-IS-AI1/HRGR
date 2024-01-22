@@ -23,9 +23,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/vendor.css">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/stylejm.css">
+<<<<<<< HEAD
 
     <link rel="stylesheet" href="./resources/assets/css/login_01.css">
 
+=======
+
+>>>>>>> branch 'master' of https://github.com/2023-SMHRD-IS-AI1/HRGR.git
     <link rel="stylesheet" href="./resources/assets/css/font-awesome.min.css">
     
 
@@ -303,11 +307,11 @@
                   <div class="myOrder_box_box row border rounded ">
                     <div class="col-lg-2" style="padding: 0px;"> 
                     <input type="hidden" id="prod_idx" name="${prodList.prod_idx }">
-      <a href="goprodDetail?prod_idx=${prodList.prod_idx}"><img src="./resources/upload/${prodList.img_name }" alt="" style="max-width: 100%;" ></a></div>
+      <a href="goprodDetail?prod_idx=${prodList.prod_idx}"><img src="./resources/upload/${prodList.img_name }" alt="" style="max-width: 100%;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';"></a></div>
                     <div class="col-lg-7 d-grid gap-3 align-content-center" style="padding-left: 25px;">
                       <div>${prodList.order_status }</div>
                       <div><p style="font-size: 20px; font-weight: bold;">${prodList.prod_name }</p></div>
-                      <div>${prodList.paid_amount }</div>
+                      <div>${prodList.paid_amount }원</div>
                     </div>
                     <div class="col-lg-3 d-grid gap-2 my-auto">
                       <button type="button" class="btn btn-outline-success" onclick="openModal()" >배송조회</button>
@@ -401,7 +405,7 @@
                             <input type="hidden" id="prod_idx" name="${likeList.prod_idx }">
                         </div>
                         <div class="col-11"><!-- ./resources/images/thumb-tuna.jpg -->
-                            <a href="goprodDetail?prod_idx=${likeList.prod_idx}"><img class="prodLike_img-wrapper" src="./resources/upload/${likeList.img_name }" alt=""></a>
+                            <a href="goprodDetail?prod_idx=${likeList.prod_idx}"><img class="prodLike_img-wrapper" src="./resources/upload/${likeList.img_name }" alt="" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';"></a>
                         </div>
                     </div>
                 </div>
@@ -462,7 +466,7 @@
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-1">
                   <input type="hidden" id="prod_idx" name="${reviewList.prod_idx }">
-      <a href="goprodDetail?prod_idx=${reviewList.prod_idx}"><img class="rounded" src="./resources/upload/${reviewList.product_img_name }" alt="" style="max-width: 100%;" ></a>
+      <a href="goprodDetail?prod_idx=${reviewList.prod_idx}"><img class="rounded" src="./resources/upload/${reviewList.product_img_name }" alt="" style="max-width: 100%;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';"></a>
                 </div>
                 <div class="col-10">${reviewList.prod_name}</div>
                   <div class="col-1"><a href="#" style="text-decoration: none; color: green;" onclick="deletereview(${reviewList.prod_idx})">삭제</a></div>
@@ -478,7 +482,7 @@
                 <div align="center" style="margin: 10px 0px">
                   <!-- 리뷰사진이 없을때는 사진가리기 -->
                   <c:if test="${not empty reviewList.review_img_name}">
-    				<img src="./resources/upload/${reviewList.review_img_name}" alt="리뷰사진인데용" style="max-width: 100%;">
+    				<img src="./resources/upload/${reviewList.review_img_name}" alt="리뷰사진인데용" style="max-width: 100%;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
 					</c:if>
                 </div>
                 <div>
@@ -522,7 +526,7 @@
                 
 <!-- 나의 문의 시작 -->
           <div class="myReview_content">
-            <h2 style="font-weight: bold; margin-bottom: 14px;">나문희 (나의 문의라는 뜻)</h2>
+            <h2 style="font-weight: bold; margin-bottom: 14px;">나의 문의</h2>
             <!-- 제목 아래 큰틀 -->
 			<c:forEach var="searchQna" items="${searchQna }" varStatus="i">
     		<c:if test="${i.index < 10}"> 
@@ -530,7 +534,7 @@
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-1">
                   <input type="hidden" id="prod_idx" name="${searchQna.prod_idx }">
-      <a href="goprodDetail?prod_idx=${searchQna.prod_idx}"><img class="rounded" src="./resources/upload/${searchQna.prod_image_name }" alt="" style="max-width: 100%;" ></a>
+      <a href="goprodDetail?prod_idx=${searchQna.prod_idx}"><img class="rounded" src="./resources/upload/${searchQna.prod_image_name }" alt="" style="max-width: 100%;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';"></a>
                 </div>
                 <div class="col-10">${searchQna.prod_name }</div>
                   <div class="col-1"><a href="#" style="text-decoration: none; color: green;" onclick="deleteQna(${searchQna.prod_idx})">삭제</a></div>
@@ -607,7 +611,7 @@
               <div class="edit_box border-bottom border-top border-success">
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-2 border-end" align="right">연락처</div>
-                <div class="col-10"><input type="text" placeholder="숫자만 입력해주세요" class="form-control" style="width: 250px;" name="cust_phone"></div>
+                <div class="col-10"><span><%=Memberlogin.getCust_phone() %></span></div>
               </div>
               <hr style="margin: 0px; color: rgb(188, 188, 188);">
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
@@ -619,7 +623,7 @@
                 <div class="col-2 border-end" align="right">비밀번호 확인</div>
                 <div class="col-10 d-flex gap-2"><input type="password" placeholder="PW확인" id="pwCheck" class="form-control" style="width: 250px;" name="pwCheck">  
   <input type="button" value="비밀번호 확인" onclick="checkPasswordMatch()" style="background-color: #4CAF50; /* Lighter green color */ color: white; padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer;">
-           <h4 id="passwordMessage">
+           <h6 style="padding-top:10px" id="passwordMessage">
            </div>
               </div>
               <hr style="margin: 0px; color: rgb(188, 188, 188);">
@@ -657,10 +661,13 @@
               </div>           
                   </div>
                </div>
-              <div class="myReview_box" align="center">
+              <div class="myReview_box position-relative" align="center">
                               <!-- 페이지네이션 -->
-                              <button type="button" class="btn btn-outline-secondary">취소하기</button>
-                              <button type="submit" class="btn btn-success">수정하기</button>
+                                <button type="button" class="btn btn-outline-secondary">취소하기</button>
+                                <button type="submit" class="btn btn-success">수정하기</button>
+                                <div class="position-absolute bottom-0 end-0" style="padding: 6px 50px;">
+                                  <a href="goSeller" style="color: green; text-decoration: none; font-weight: normal; font-size: 20px;">판매자등록하기</a>
+                                </div>
                               
                               <!-- 페이지네이션 끝 -->
               </div>
@@ -868,19 +875,7 @@ function checkPasswordMatch() {
     joinUsButton.disabled = !passwordChecked; // 버튼 활성화 여부 설정
 }
 </script>
-<script>
-    // 모달 열기 함수
-    function openModal() {
-        var modal = document.getElementById('myModal');
-        modal.style.display = 'block';
-    }
 
-    // 모달 닫기 함수
-    function closeModal() {
-        var modal = document.getElementById('myModal');
-        modal.style.display = 'none';
-    }
-</script>
 
 </body>
 </html>

@@ -22,7 +22,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/vendor.css">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/stylejm.css">
-    <link rel="stylesheet" href="./resources/assets/css/login_01.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -218,7 +217,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
                       <a href="#" class="nav-link">가공식품</a>
                     </li>
                    
-                    <a href="#" target="_blank" class="nav-link btn-coupon-code">
+                    <a href="godiary"  class="nav-link btn-coupon-code">
                 <img src="./resources/images/book-half.svg" alt="gift icon">
                 <strong class="ms-2 text-dark">영농일지 보러가기</strong>
               </a>
@@ -261,7 +260,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
               </div>
             </nav>
       <div class="tab-content" id="nav-tabContent">
-            
+  <!-- 바뀌는 탭 공간 -->          
   <div class="tab-pane fade show active" id="nav-myOder" role="tabpanel" aria-labelledby="nav-myOder-tab" tabindex="0">
               
   <!-- 메뉴바1내용 주문내역 -->
@@ -280,11 +279,11 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
           <input type="hidden" id="prod_idx" name="${prodList.prod_idx }">
         </div>
       <div class="myOrder_box_box row border rounded ">
-        <div class="col-lg-2" style="padding: 0px;"><a href="goprodDetail?prod_idx=${prodList.prod_idx}"> <img src="./resources/upload/${prodList.img_name }" alt="" style="max-width: 100%;" ></a></div>
+        <div class="col-lg-2" style="padding: 0px;"><a href="goprodDetail?prod_idx=${prodList.prod_idx}"> <img src="./resources/upload/${prodList.img_name }" alt="" style="max-width: 100%;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';"></a></div>
         <div class="col-lg-7 d-grid gap-3 align-content-center" style="padding-left: 25px;">
           <div>${prodList.order_status }</div>
           <div><p style="font-size: 20px; font-weight: bold;">${prodList.prod_name }</p></div>
-          <div>${prodList.paid_amount }</div>
+          <div>${prodList.paid_amount }원</div>
         </div>
         <div class="col-lg-3 d-grid gap-2 my-auto">
           <button type="button" class="btn btn-outline-success">배송조회</button>
@@ -355,7 +354,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <input type="hidden" id="prod_idx" name="${likeList.prod_idx }">
           <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-          <a href="goprodDetail?prod_idx=${likeList.prod_idx}"><img class="prodLike_img-wrapper" src="./resources/upload/${likeList.img_name }" alt="" style="margin: 0px;"></a>
+          <a href="goprodDetail?prod_idx=${likeList.prod_idx}"><img class="prodLike_img-wrapper" src="./resources/upload/${likeList.img_name }" alt="" style="margin: 0px;"onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';"></a>
         </div>
       </div>
       <div class="col-lg-7 d-grid gap-2 my-auto">
@@ -417,7 +416,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
   <div class="row" style="display: flex; align-items: center; margin: 0;" >
     <div class="col-1">
     <input type="hidden" id="prod_idx" name="${reviewList.prod_idx }">
-      <a href="goprodDetail?prod_idx=${reviewList.prod_idx}"> <img class="rounded" src="./resources/upload/${reviewList.product_img_name }" alt="" style="max-width: 100%;" ></a>
+      <a href="goprodDetail?prod_idx=${reviewList.prod_idx}"> <img class="rounded" src="./resources/upload/${reviewList.product_img_name }" alt="" style="max-width: 100%;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';"></a>
     </div>
     <div class="col-10">${reviewList.prod_name}</div>
       <div class="col-1"><a href="#" style="text-decoration: none; color: green;" onclick="deletereview(${reviewList.prod_idx})">삭제</a></div>
@@ -429,7 +428,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
 
 
       <div class="col-6">
-        <img src="./resources/upload/${reviewList.review_img_name}" alt="리뷰사진인데용" style="max-width: 100%;">
+        <img src="./resources/upload/${reviewList.review_img_name}" alt="리뷰사진인데용" style="max-width: 100%;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
       </div>
       
       <div class="col-6 position-relative" >
@@ -479,7 +478,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
     
 <!-- 나의 문의 시작 -->
 <div class="myReview_content">
-<h2 style="font-weight: bold; margin-bottom: 14px;">나문희 (나의 문의라는 뜻)</h2>
+<h2 style="font-weight: bold; margin-bottom: 14px;">나의 문의</h2>
 <hr style="margin: 0; color: darkgreen;">
 <!-- 제목 아래 큰틀 -->
 <c:forEach var="searchQna" items="${searchQna }" varStatus="i">
@@ -489,7 +488,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
     <div class="col-1">
     <input type="hidden" id="prod_idx" name="${searchQna.prod_idx }">
       <a href="goprodDetail?prod_idx=${searchQna.prod_idx}">
-      <img class="rounded" src="./resources/upload/${searchQna.prod_image_name }" alt="" style="max-width: 100%;" ></a>
+      <img class="rounded" src="./resources/upload/${searchQna.prod_image_name }" alt="" style="max-width: 100%;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';"></a>
     </div>
     <div class="col-10">${searchQna.prod_name }</div>
       <div class="col-1"><a href="#" style="text-decoration: none; color: green;" onclick="deleteQna(${searchQna.prod_idx})">삭제</a></div>
@@ -556,60 +555,65 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
 
 
   <!-- 회원정보수정 시작 -->
-<div class="edit_content">
-<h2 style="font-weight: bold; margin-bottom: 14px;">회원정보 수정</h2>
-<!-- 제목 아래 큰틀 -->
-<form action="updateMember"  method="post">  
-  <input type="hidden" value="<%=Memberlogin.getCust_id() %>" name="cust_id">
-  <div class="edit_box border-bottom border-top border-success">
-  <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-    <div class="col-2 border-end" align="right">연락처</div>
-<div class="col-10"><input type="text" value="harugreen" class="form-control-plaintext" style="width: 250px;"  placeholder="숫자만 입력해주세요" readonly  name="cust_phone"></div>              
-  </div>
-  <hr style="margin: 0px; color: rgb(188, 188, 188);">
-  <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-    <div class="col-2 border-end" align="right">비밀번호</div>
-    <div class="col-10"><input type="password" placeholder="수정할 비밀번호를 입력하세요" class="form-control" style="width: 250px;" id="cust_pw" name="cust_pw"></div>                
-  </div>
-  <hr style="margin: 0px; color: rgb(188, 188, 188);">
-  <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-    <div class="col-2 border-end" align="right">비밀번호 확인</div>
-    <div class="col-10"><input type="password" placeholder="비밀번호를 확인하세요" class="form-control" style="width: 250px;" id="pwCheck" name="pwCheck"></div>                
-    <h4 id="passwordMessage"></h4>
-    <input type="button" value="비밀번호 확인" onclick="checkPasswordMatch()" style="background-color: #4CAF50; /* Lighter green color */ color: white; padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer;">
-</div>  
-  </div>
-  <hr style="margin: 0px; color: rgb(188, 188, 188);">
-  <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-    <div class="col-2 border-end" align="right">이름</div>
-    <div class="col-10"><span><%=Memberlogin.getCust_name() %></span></div>
-  </div>
-  <hr style="margin: 0px; color: rgb(188, 188, 188);">
-  <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-    <div class="col-2 border-end" align="right">닉네임</div>
-    <div class="col-10"><input type="text" placeholder="수정할 닉네임을 입력하세요" class="form-control" style="width: 250px;" name="cust_nick"></div>              </div>
-  <hr style="margin: 0px; color: rgb(188, 188, 188);">
-  <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-    <div class="col-2 border-end" align="right">이메일</div>
-    <div class="col-10"><input type="email" class="form-control" placeholder="name@example.com"  style="width: 250px;" name="cust_email"></div>                
-  </div>
-  
-  <hr style="margin: 0px; color: rgb(188, 188, 188);">
-  <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-    <div class="col-2 border-end" align="right">생년월일</div>
-    <div class="col-10"><input type="date" class="form-control" style="width: 250px;" name="cust_birthdate"></div>
-  </div>
-  <hr style="margin: 0px; color: rgb(188, 188, 188);">
-  <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-    <div class="col-2 border-end" align="right">주소</div>
-    <div class="col-10">
-        <input type="text" placeholder="도로명주소를 입력해주세요" class="form-control" style="width: 400px; margin-bottom: 5px;" >
-        <input type="text" placeholder="상세주소를 입력해주세요" class="form-control" style="width: 400px;">
-      </div>
-    </div>           
-        </div>
-     
-     <div class="myReview_box" align="center">
+          <div class="edit_content">
+            <h2 style="font-weight: bold; margin-bottom: 14px;">회원정보 수정</h2>
+            <!-- 제목 아래 큰틀 -->
+            <form action="updateMember" method="post">  
+				<input type="hidden" value="<%=Memberlogin.getCust_id() %>" name="cust_id" readonly>
+              <div class="edit_box border-bottom border-top border-success">
+              <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
+                <div class="col-2 border-end" align="right">연락처</div>
+                <div class="col-10"><span><%=Memberlogin.getCust_phone() %></span></div>
+              </div>
+              <hr style="margin: 0px; color: rgb(188, 188, 188);">
+              <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
+                <div class="col-2 border-end" align="right">비밀번호</div>
+                <div class="col-10"><input type="password" placeholder="PW를 입력하세요" class="form-control" style="width: 250px;" id="cust_pw" name="cust_pw"></div>                
+              </div>
+              <hr style="margin: 0px; color: rgb(188, 188, 188);">
+              <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
+                <div class="col-2 border-end" align="right">비밀번호 확인</div>
+                <div class="col-10 d-flex gap-2"><input type="password" placeholder="PW확인" id="pwCheck" class="form-control" style="width: 250px;" name="pwCheck">  
+  <input type="button" value="비밀번호 확인" onclick="checkPasswordMatch()" style="background-color: #4CAF50; /* Lighter green color */ color: white; padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer;">
+           <h6 style="padding-top:10px" id="passwordMessage">
+           </div>
+              </div>
+              <hr style="margin: 0px; color: rgb(188, 188, 188);">
+              <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
+                <div class="col-2 border-end" align="right">이름</div>
+                <div class="col-10"><span><%=Memberlogin.getCust_name() %></span></div>
+              </div>
+              <hr style="margin: 0px; color: rgb(188, 188, 188);">
+              <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
+                <div class="col-2 border-end" align="right">닉네임</div>
+                <div class="col-10"><input type="text" placeholder="수정할 닉네임을 입력하세요" class="form-control" style="width: 250px;" name="cust_nick"></div>              </div>
+              <hr style="margin: 0px; color: rgb(188, 188, 188);">
+              <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
+                <div class="col-2 border-end" align="right">이메일</div>
+                <div class="col-10"><input type="email" class="form-control" placeholder="name@example.com"  style="width: 250px;" name="cust_email"></div>                
+              </div>
+            
+              <hr style="margin: 0px; color: rgb(188, 188, 188);">
+              <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
+                <div class="col-2 border-end" align="right">생년월일</div>
+                <div class="col-10"><input type="date" class="form-control" style="width: 250px;" name="cust_birthdate"></div>
+              </div>
+              <hr style="margin: 0px; color: rgb(188, 188, 188);">
+              <!-- <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
+                <div class="col-2 border-end" align="right">성별</div>
+                <div class="col-10"><input type="text" value="남" class="form-control-plaintext" style="width: 250px;" readonly></div>
+              </div>
+              <hr style="margin: 0px; color: rgb(188, 188, 188);"> -->
+              <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
+                <div class="col-2 border-end" align="right">주소</div>
+                <div class="col-10">
+                  <input type="text" placeholder="광주광역시 어쩌구 저쩌구" class="form-control" style="width: 400px; margin-bottom: 5px;" name="cust_addr" >
+                  <input type="text" placeholder="상세주소" class="form-control" style="width: 400px;">
+                </div>
+              </div>           
+                  </div>
+               </div>    
+  <div class="myReview_box" align="center">
        <!-- 페이지네이션 -->
        <button type="button" class="btn btn-outline-secondary">취소하기</button>
        <button type="button" class="btn btn-success">수정하기</button>
@@ -627,17 +631,22 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
     </div>
       <hr>
       <!-- 한줄시작 -->
-      <div class="d-flex flex-wrap" style="display: flex; justify-content: space-between;">
+      <div class="d-flex flex-wrap" style="justify-content: space-between;">
         <c:forEach var="sellList" items="${sellList}" varStatus="i">
           <c:if test="${i.index < 30}"> 
         
-        <div class="img-wrapper">
-          <input type="hidden" id="prod_idx" name="${sellList.prod_idx }">
-      <a href="goprodDetail?prod_idx=${sellList.prod_idx}"><img src="./resources/upload/${sellList.img_name }" alt="" style="width: 200px; height: 200px;"></a>
-          <div>${sellList.prod_name }</div>
-          <span class="rating"><svg width="24" height="24" class="text-primary"><use xlink:href="#star-solid"></use></svg>  ${sellList.prod_ratings }</span>
-          <span class="price">${sellList.prod_price }</span>
-        </div>
+<div style="width: 200px; height: 300px;">
+  <input type="hidden" id="prod_idx" name="${sellList.prod_idx }">
+  <div class="prodLike_img-wrapper" style="position: relative; width: 200px; height: 200px;">
+<a href="goprodDetail?prod_idx=${sellList.prod_idx}">
+  <img src="./resources/upload/${sellList.img_name }" alt="" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
+</a>
+  </div>
+<div style="overflow: hidden;">${sellList.prod_name }</div>
+  <span class="rating"><svg width="24" height="24" class="text-primary"><use xlink:href="#star-solid"></use></svg>${sellList.prod_ratings }</span>
+  <span class="price">${sellList.prod_price }원</span>
+</div>
+
       </c:if>
     </c:forEach>
       </div>
@@ -660,7 +669,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
                       <c:if test="${i.index < 10}">
           <div class="shadow" style="margin-bottom: 20px;">
             <div class="diary_img" style="padding: 30px;">
-              <img src="./resources/upload/${diaryList.diary_img_name }" alt="이미지에용" style="margin: 0px;">
+              <img src="./resources/upload/${diaryList.diary_img_name }" alt="이미지에용" style="margin: 0px;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
             </div>
             <div class="diary_farmer row" style="padding: 0px 30px 30px 30px; margin: 0px;">
               <div class="col-10">
@@ -694,7 +703,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
               <div class="col-2">
                 <div class="prodLike_img-wrapper" style="position: relative; width: 130px; height: 130px;">
                 <input type="hidden" id="prod_idx" name="${qnaList.prod_idx }">
-      <a href="goprodDetail?prod_idx=${qnaList.prod_idx}"><img src="./resources/upload/${qnaList.prod_img_name }" class="rounded" alt="물품사진" style=" position: absolute; top: 0; left: 0; transform: translate(50, 50); width: 100%; height: 100%; object-fit: cover; margin: auto;"></a></div>
+      <a href="goprodDetail?prod_idx=${qnaList.prod_idx}"><img src="./resources/upload/${qnaList.prod_img_name }" class="rounded" alt="물품사진" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';" style=" position: absolute; top: 0; left: 0; transform: translate(50, 50); width: 100%; height: 100%; object-fit: cover; margin: auto;"></a></div>
               </div>
               <div class="col-5">
               <p>

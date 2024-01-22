@@ -204,19 +204,28 @@
         </div>
       </header>
 
+
       <div class="diary_parent" >
         <div class="diary">
              <!-- 새거 -->
              <div class="diary_content">
               <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+<<<<<<< HEAD
                 <h2 style="font-weight: bold;">영농방구방구뿡뿡뿡일지<i style="color: green;" class="fa fa-pagelines" aria-hidden="true"></i></h2>
+=======
+                <h2 style="font-weight: bold;">영농일지<i style="color: green;" class="fa fa-pagelines" aria-hidden="true"></i></h2>
+>>>>>>> branch 'master' of https://github.com/2023-SMHRD-IS-AI1/HRGR.git
               </div>
               <!-- 글 하나 시작 반복 -->
               <c:forEach var="diaryList" items="${diaryList }" varStatus="i">
                 <c:if test="${i.index < 10}">
               <div class="shadow" style="margin-bottom: 20px;">
                 <div class="diary_img" style="padding: 30px;">
+<<<<<<< HEAD
                   <img src="./resources/upload/${diaryList.diary_img_name }" alt="이미지에용" style="margin: 0px;">
+=======
+                  <img src="./resources/upload/${diaryList.diary_img_name }" alt="이미지에용" style="margin: 0px;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
+>>>>>>> branch 'master' of https://github.com/2023-SMHRD-IS-AI1/HRGR.git
                 </div>
                 <div class="diary_farmer row" style="padding: 0px 30px 30px 30px; margin: 0px;">
                   <div class="col-10">
@@ -244,6 +253,7 @@
   
             <div class="col-lg-3 col-md-6 col-sm-6">
               <div class="footer-menu">
+<<<<<<< HEAD
                 <img src="images/harugreen.png" alt="logo">
                 <div class="social-links mt-5">
                   <ul class="d-flex list-unstyled gap-2">
@@ -274,6 +284,10 @@
                     </li>
                   </ul>
                 </div>
+=======
+                <img src="./resources/images/harugreen.png" alt="logo">
+
+>>>>>>> branch 'master' of https://github.com/2023-SMHRD-IS-AI1/HRGR.git
               </div>
             </div>
   

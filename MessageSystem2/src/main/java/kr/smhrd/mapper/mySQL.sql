@@ -71,10 +71,10 @@ DROP TABLE IF EXISTS tb_qna;
 DROP TABLE IF EXISTS tb_order_detail;
 DROP TABLE IF EXISTS tb_order;
 DROP TABLE IF EXISTS tb_prod_image;
-DROP TABLE IF EXISTS tb_prod;
 DROP TABLE IF EXISTS tb_diary;
 DROP TABLE IF EXISTS tb_seller;
 DROP TABLE IF EXISTS tb_cust;
+DROP TABLE IF EXISTS tb_prod;
 
 
 CREATE TABLE tb_cust
@@ -968,3 +968,120 @@ GROUP BY
     tb_review.reviewed_at, tb_prod_image.img_name
 ORDER BY
     tb_prod.created_at DESC;
+
+    
+    select * from tb_prod
+    
+    delete from tb_prod where cust_id=9
+    
+    
+    
+     SELECT
+    tb_prod.prod_idx AS prod_idx,
+    tb_prod.prod_name AS prod_name,
+    tb_prod.prod_desc AS prod_desc,
+    tb_prod.prod_price AS prod_price,
+    tb_prod.prod_stock AS prod_stock,
+    tb_prod.cust_id AS prod_cust_id,
+    tb_prod.created_at AS prod_created_at,
+    tb_prod_image.img_name AS img_name,
+    ROUND(AVG(tb_review.prod_ratings), 1) AS avg_ratings
+FROM
+    tb_prod
+LEFT JOIN
+    tb_review ON tb_prod.prod_idx = tb_review.prod_idx
+LEFT JOIN
+    tb_cust ON tb_prod.cust_id = tb_cust.cust_id
+LEFT JOIN
+    tb_prod_image ON tb_prod.prod_idx = tb_prod_image.prod_idx
+WHERE
+    tb_prod.prod_type ='농산물'
+GROUP BY
+    tb_prod.prod_idx, tb_prod.prod_name, tb_prod.prod_desc,
+    tb_prod.prod_price, tb_prod.prod_stock, tb_prod.cust_id,
+    tb_prod.created_at, tb_prod_image.img_name
+
+UNION
+
+SELECT
+    tb_prod.prod_idx AS prod_idx,
+    tb_prod.prod_name AS prod_name,
+    tb_prod.prod_desc AS prod_desc,
+    tb_prod.prod_price AS prod_price,
+    tb_prod.prod_stock AS prod_stock,
+    tb_prod.cust_id AS prod_cust_id,
+    tb_prod.created_at AS prod_created_at,
+    tb_prod_image.img_name AS img_name,
+    ROUND(AVG(tb_review.prod_ratings), 1) AS avg_ratings
+FROM
+    tb_review
+RIGHT JOIN
+    tb_prod ON tb_review.prod_idx = tb_prod.prod_idx
+LEFT JOIN
+    tb_cust ON tb_prod.cust_id = tb_cust.cust_id
+LEFT JOIN
+    tb_prod_image ON tb_prod.prod_idx = tb_prod_image.prod_idx
+WHERE
+    tb_prod.prod_type ='농산물'
+GROUP BY
+    tb_prod.prod_idx, tb_prod.prod_name, tb_prod.prod_desc,
+    tb_prod.prod_price, tb_prod.prod_stock, tb_prod.cust_id,
+    tb_prod.created_at, tb_prod_image.img_name
+ORDER BY
+    prod_created_at DESC;
+    
+    
+    
+       SELECT
+    tb_prod.prod_idx AS prod_idx,
+    tb_prod.prod_name AS prod_name,
+    tb_prod.prod_desc AS prod_desc,
+    tb_prod.prod_price AS prod_price,
+    tb_prod.prod_stock AS prod_stock,
+    tb_prod.cust_id AS prod_cust_id,
+    tb_prod.created_at AS prod_created_at,
+    tb_prod_image.img_name AS img_name,
+    ROUND(AVG(tb_review.prod_ratings), 1) AS avg_ratings
+FROM
+    tb_prod
+LEFT JOIN
+    tb_review ON tb_prod.prod_idx = tb_review.prod_idx
+LEFT JOIN
+    tb_cust ON tb_prod.cust_id = tb_cust.cust_id
+LEFT JOIN
+    tb_prod_image ON tb_prod.prod_idx = tb_prod_image.prod_idx
+
+GROUP BY
+    tb_prod.prod_idx, tb_prod.prod_name, tb_prod.prod_desc,
+    tb_prod.prod_price, tb_prod.prod_stock, tb_prod.cust_id,
+    tb_prod.created_at, tb_prod_image.img_name
+
+UNION
+
+SELECT
+    tb_prod.prod_idx AS prod_idx,
+    tb_prod.prod_name AS prod_name,
+    tb_prod.prod_desc AS prod_desc,
+    tb_prod.prod_price AS prod_price,
+    tb_prod.prod_stock AS prod_stock,
+    tb_prod.cust_id AS prod_cust_id,
+    tb_prod.created_at AS prod_created_at,
+    tb_prod_image.img_name AS img_name,
+    ROUND(AVG(tb_review.prod_ratings), 1) AS avg_ratings
+FROM
+    tb_review
+RIGHT JOIN
+    tb_prod ON tb_review.prod_idx = tb_prod.prod_idx
+LEFT JOIN
+    tb_cust ON tb_prod.cust_id = tb_cust.cust_id
+LEFT JOIN
+    tb_prod_image ON tb_prod.prod_idx = tb_prod_image.prod_idx
+
+GROUP BY
+    tb_prod.prod_idx, tb_prod.prod_name, tb_prod.prod_desc,
+    tb_prod.prod_price, tb_prod.prod_stock, tb_prod.cust_id,
+    tb_prod.created_at, tb_prod_image.img_name
+ORDER BY
+    prod_created_at DESC;
+    
+    

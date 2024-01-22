@@ -404,7 +404,27 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 			return "Main";
 
 		}
-
-	
-	
+		
+		
+		@RequestMapping("/searchno")
+	       public String searchno(@RequestParam("value") String value,
+	                                   HttpSession session,Model model) {
+	         
+			 List<Product> List = ProductMapper.searchno(value);
+			 model.addAttribute("List",List);
+			 System.out.println(List.toString());
+	          return "prodView"; // 적절한 뷰 이름을 반환합니다.
+	       }
+		
+		@RequestMapping("/searchAll")
+	       public String searchAll(HttpSession session,Model model) {
+	         List<Product> List = ProductMapper.searchAll();
+			 model.addAttribute("List",List);
+			 System.out.println(List.toString());
+	          return "prodView"; // 적절한 뷰 이름을 반환합니다.
+	       }
+		
+		
+		
+		
 }

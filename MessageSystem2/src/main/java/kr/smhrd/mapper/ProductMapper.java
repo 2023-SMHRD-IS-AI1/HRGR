@@ -56,6 +56,10 @@ import kr.smhrd.entity.Product;
 	public List<Product> sellerDiaryimg(int prod_idx);
 
 	public String searchName(String searchInput);
+
+	public List<Product> searchno(String value);
+
+	public List<Product> searchAll();
 	
 	
 	

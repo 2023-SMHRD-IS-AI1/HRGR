@@ -181,10 +181,10 @@
             <div class="search-bar row bg-light p-2 my-2 rounded-4">
               <div class="col-md-4 d-none d-md-block">
                 <select class="form-select border-0 bg-transparent">
-                  <option>전체상품</option>
-                  <option>농산물</option>
-                  <option>수산물</option>
-                  <option>가공식품</option>
+                  <option >전체상품</option>
+                  <option >농산물</option>
+                  <option >수산물</option>
+                  <option >가공식품</option>
                 </select>
               </div>
               <div class="col-11 col-md-7">
@@ -281,16 +281,16 @@
               
                   <ul class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
                     <li class="nav-item active">
-                      <a href="#" class="nav-link">전체</a>
+                      <a href="searchAll" class="nav-link">전체</a>
                     </li>
                     <li class="nav-item dropdown">
-                      <a href="#" class="nav-link">농산물</a>
+                      <a href="searchno?value=농산물" class="nav-link">농산물</a>
                     </li>
                     <li class="nav-item">
-                      <a href="#" class="nav-link">수산물</a>
+                      <a href="searchno?value=수산물" class="nav-link">수산물</a>
                     </li>
                     <li class="nav-item">
-                      <a href="#" class="nav-link">가공식품</a>
+                      <a href="searchno?value=가공식품" class="nav-link">가공식품</a>
                     </li>
                    
                     <a href="godiary" class="nav-link btn-coupon-code">
@@ -974,6 +974,9 @@
 		       event.preventDefault();
 		      };
 	</script>
+	
+	 
+	
 
 </body>
 </html>

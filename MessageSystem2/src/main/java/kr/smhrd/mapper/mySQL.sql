@@ -71,10 +71,10 @@ DROP TABLE IF EXISTS tb_qna;
 DROP TABLE IF EXISTS tb_order_detail;
 DROP TABLE IF EXISTS tb_order;
 DROP TABLE IF EXISTS tb_prod_image;
-DROP TABLE IF EXISTS tb_prod;
 DROP TABLE IF EXISTS tb_diary;
 DROP TABLE IF EXISTS tb_seller;
 DROP TABLE IF EXISTS tb_cust;
+DROP TABLE IF EXISTS tb_prod;
 
 
 CREATE TABLE tb_cust
@@ -907,3 +907,181 @@ WHERE
     
     insert into tb_review (prod_idx,cust_id,review_content,prod_ratings,reviewed_at)
     values(33,2,'괜춘',4,NOW())
+    
+    
+    
+SELECT prod_name FROM tb_prod WHERE prod_name LIKE '%당근%' LIMIT 1;
+
+
+
+CREATE TABLE tb_prod
+(
+    `prod_idx`    INT UNSIGNED    NOT NULL    AUTO_INCREMENT COMMENT '상품 식별자', 
+    `prod_name`   VARCHAR(50)     NOT NULL    COMMENT '상품명', 
+    `prod_desc`   TEXT            NOT NULL    COMMENT '상품 설명', 
+    `prod_type`   VARCHAR(20)     NOT NULL    COMMENT '상품 타입', 
+    `prod_price`  INT             NOT NULL    COMMENT '상품 가격', 
+    `prod_stock`  INT             NOT NULL    COMMENT '상품 재고', 
+    `cust_id`     VARCHAR(30)     NOT NULL    COMMENT '회원 아이디', 
+    `created_at`  TIMESTAMP       NOT NULL    COMMENT '등록 일시', 
+     PRIMARY KEY (prod_idx)
+);
+
+insert into tb_prod (prod_name,prod_desc,prod_type,prod_price,prod_stock,cust_id,created_at)
+values('배','맛잇는 사과','농산물',20000,12,1,NOW())
+
+
+SELECT
+    tb_prod.prod_idx AS prod_idx,
+    tb_prod.prod_name AS prod_name,
+    tb_prod.prod_desc AS prod_desc,
+    tb_prod.prod_type,
+    tb_prod.prod_price AS prod_price,
+    tb_prod.prod_stock AS prod_stock,
+    tb_prod.cust_id AS prod_cust_id,
+    tb_prod.created_at AS prod_created_at,
+    tb_cust.cust_name,
+    tb_cust.cust_nick,
+    tb_cust.cust_phone,
+    tb_cust.cust_addr,
+    tb_review.review_idx,
+    tb_review.review_content,
+    tb_review.prod_ratings AS prod_ratings,
+    ROUND(AVG(tb_review.prod_ratings), 1) AS avg_ratings,
+    tb_review.reviewed_at,
+    tb_prod_image.img_name AS img_name
+FROM
+    tb_prod
+JOIN
+    tb_cust ON tb_prod.cust_id = tb_cust.cust_id
+JOIN
+    tb_review ON tb_prod.prod_idx = tb_review.prod_idx
+LEFT JOIN
+    tb_prod_image ON tb_prod.prod_idx = tb_prod_image.prod_idx
+WHERE
+    tb_prod.prod_name LIKE '사과'
+GROUP BY
+    tb_prod.prod_idx, tb_prod.prod_name, tb_prod.prod_desc, tb_prod.prod_type,
+    tb_prod.prod_price, tb_prod.prod_stock, tb_prod.cust_id, tb_prod.created_at,
+    tb_cust.cust_name, tb_cust.cust_nick, tb_cust.cust_phone, tb_cust.cust_addr,
+    tb_review.review_idx, tb_review.review_content, tb_review.prod_ratings,
+    tb_review.reviewed_at, tb_prod_image.img_name
+ORDER BY
+    tb_prod.created_at DESC;
+
+    
+    select * from tb_prod
+    
+    delete from tb_prod where cust_id=9
+    
+    
+    
+     SELECT
+    tb_prod.prod_idx AS prod_idx,
+    tb_prod.prod_name AS prod_name,
+    tb_prod.prod_desc AS prod_desc,
+    tb_prod.prod_price AS prod_price,
+    tb_prod.prod_stock AS prod_stock,
+    tb_prod.cust_id AS prod_cust_id,
+    tb_prod.created_at AS prod_created_at,
+    tb_prod_image.img_name AS img_name,
+    ROUND(AVG(tb_review.prod_ratings), 1) AS avg_ratings
+FROM
+    tb_prod
+LEFT JOIN
+    tb_review ON tb_prod.prod_idx = tb_review.prod_idx
+LEFT JOIN
+    tb_cust ON tb_prod.cust_id = tb_cust.cust_id
+LEFT JOIN
+    tb_prod_image ON tb_prod.prod_idx = tb_prod_image.prod_idx
+WHERE
+    tb_prod.prod_type ='농산물'
+GROUP BY
+    tb_prod.prod_idx, tb_prod.prod_name, tb_prod.prod_desc,
+    tb_prod.prod_price, tb_prod.prod_stock, tb_prod.cust_id,
+    tb_prod.created_at, tb_prod_image.img_name
+
+UNION
+
+SELECT
+    tb_prod.prod_idx AS prod_idx,
+    tb_prod.prod_name AS prod_name,
+    tb_prod.prod_desc AS prod_desc,
+    tb_prod.prod_price AS prod_price,
+    tb_prod.prod_stock AS prod_stock,
+    tb_prod.cust_id AS prod_cust_id,
+    tb_prod.created_at AS prod_created_at,
+    tb_prod_image.img_name AS img_name,
+    ROUND(AVG(tb_review.prod_ratings), 1) AS avg_ratings
+FROM
+    tb_review
+RIGHT JOIN
+    tb_prod ON tb_review.prod_idx = tb_prod.prod_idx
+LEFT JOIN
+    tb_cust ON tb_prod.cust_id = tb_cust.cust_id
+LEFT JOIN
+    tb_prod_image ON tb_prod.prod_idx = tb_prod_image.prod_idx
+WHERE
+    tb_prod.prod_type ='농산물'
+GROUP BY
+    tb_prod.prod_idx, tb_prod.prod_name, tb_prod.prod_desc,
+    tb_prod.prod_price, tb_prod.prod_stock, tb_prod.cust_id,
+    tb_prod.created_at, tb_prod_image.img_name
+ORDER BY
+    prod_created_at DESC;
+    
+    
+    
+       SELECT
+    tb_prod.prod_idx AS prod_idx,
+    tb_prod.prod_name AS prod_name,
+    tb_prod.prod_desc AS prod_desc,
+    tb_prod.prod_price AS prod_price,
+    tb_prod.prod_stock AS prod_stock,
+    tb_prod.cust_id AS prod_cust_id,
+    tb_prod.created_at AS prod_created_at,
+    tb_prod_image.img_name AS img_name,
+    ROUND(AVG(tb_review.prod_ratings), 1) AS avg_ratings
+FROM
+    tb_prod
+LEFT JOIN
+    tb_review ON tb_prod.prod_idx = tb_review.prod_idx
+LEFT JOIN
+    tb_cust ON tb_prod.cust_id = tb_cust.cust_id
+LEFT JOIN
+    tb_prod_image ON tb_prod.prod_idx = tb_prod_image.prod_idx
+
+GROUP BY
+    tb_prod.prod_idx, tb_prod.prod_name, tb_prod.prod_desc,
+    tb_prod.prod_price, tb_prod.prod_stock, tb_prod.cust_id,
+    tb_prod.created_at, tb_prod_image.img_name
+
+UNION
+
+SELECT
+    tb_prod.prod_idx AS prod_idx,
+    tb_prod.prod_name AS prod_name,
+    tb_prod.prod_desc AS prod_desc,
+    tb_prod.prod_price AS prod_price,
+    tb_prod.prod_stock AS prod_stock,
+    tb_prod.cust_id AS prod_cust_id,
+    tb_prod.created_at AS prod_created_at,
+    tb_prod_image.img_name AS img_name,
+    ROUND(AVG(tb_review.prod_ratings), 1) AS avg_ratings
+FROM
+    tb_review
+RIGHT JOIN
+    tb_prod ON tb_review.prod_idx = tb_prod.prod_idx
+LEFT JOIN
+    tb_cust ON tb_prod.cust_id = tb_cust.cust_id
+LEFT JOIN
+    tb_prod_image ON tb_prod.prod_idx = tb_prod_image.prod_idx
+
+GROUP BY
+    tb_prod.prod_idx, tb_prod.prod_name, tb_prod.prod_desc,
+    tb_prod.prod_price, tb_prod.prod_stock, tb_prod.cust_id,
+    tb_prod.created_at, tb_prod_image.img_name
+ORDER BY
+    prod_created_at DESC;
+    
+    

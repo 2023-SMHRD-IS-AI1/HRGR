@@ -53,6 +53,10 @@
 <body>
 	<%
 	Member Memberlogin = (Member) session.getAttribute("loginMember");
+	String today = (String)request.getAttribute("today");
+	String yesterday = (String)request.getAttribute("yesterday");
+	String name = (String)request.getAttribute("name");
+	String unit = (String)request.getAttribute("unit");
 	%>
 	<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
       <defs>
@@ -354,10 +358,11 @@
 
 	<!-- 시세 확인란 -->
 	<ul class="sisae">
-		<li>""의 시세(kg)</li>
-		<li>오늘 :</li>
-		<li>전일 :</li>
-		<li>일주일 평균 :</li>
+		<li><%=name %> 의 시세</li>
+		<li>단위 : <%=unit %></li>
+		<li>오늘 :<%=today %>원</li>
+		<li>전일 :<%=yesterday %>원</li>
+		
 	</ul>
 
 	<!-- 인기TOP 판매자들의 상품 -->
@@ -421,7 +426,7 @@
 														class="rating"><svg width="24" height="24"
 															class="text-primary">
 															<use xlink:href="#star-solid"></use></svg>
-														${product.prod_ratings }</span> <span class="price"><fmt:formatNumber value="${product.prod_price}" type="price" pattern="#,###"/>원</span>
+														${product.avg_ratings }</span> <span class="price"><fmt:formatNumber value="${product.prod_price}" type="price" pattern="#,###"/>원</span>
 													<div
 														class="d-flex align-items-center justify-content-between">
 														<div class="input-group product-qty">
@@ -526,7 +531,7 @@
 														class="rating"><svg width="24" height="24"
 															class="text-primary">
 															<use xlink:href="#star-solid"></use></svg>
-														${ProductNew.prod_ratings }</span> <span class="price"><fmt:formatNumber value="${ProductNew.prod_price}" type="price" pattern="#,###"/>원</span>
+														${ProductNew.avg_ratings }</span> <span class="price"><fmt:formatNumber value="${ProductNew.prod_price}" type="price" pattern="#,###"/>원</span>
 													<div
 														class="d-flex align-items-center justify-content-between">
 														<div class="input-group product-qty">

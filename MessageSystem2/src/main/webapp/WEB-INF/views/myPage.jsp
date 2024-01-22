@@ -23,13 +23,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/vendor.css">
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/stylejm.css">
-<<<<<<< HEAD
-
     <link rel="stylesheet" href="./resources/assets/css/login_01.css">
-
-=======
-
->>>>>>> branch 'master' of https://github.com/2023-SMHRD-IS-AI1/HRGR.git
     <link rel="stylesheet" href="./resources/assets/css/font-awesome.min.css">
     
 

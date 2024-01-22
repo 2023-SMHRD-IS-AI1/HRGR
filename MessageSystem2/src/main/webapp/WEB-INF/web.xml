@@ -57,6 +57,13 @@
 		<servlet-name>ProdController</servlet-name>
 		<servlet-class>kr.smhrd.controller.ProdController</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>PayController</display-name>
+		<servlet-name>PayController</servlet-name>
+		<servlet-class>kr.smhrd.controller.PayController</servlet-class>
+	</servlet>
 		
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
@@ -69,6 +76,10 @@
 	<servlet-mapping>
 		<servlet-name>ProdController</servlet-name>
 		<url-pattern>/ProdController</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PayController</servlet-name>
+		<url-pattern>/PayController</url-pattern>
 	</servlet-mapping>
 
 </web-app>

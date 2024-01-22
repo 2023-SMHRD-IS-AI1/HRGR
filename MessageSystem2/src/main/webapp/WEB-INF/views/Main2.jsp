@@ -509,7 +509,7 @@
 											</button>
 										</span>
 									</div>
-									<a href="goMain" class="nav-link" onclick="addToCart(event,<%=product.getProd_idx()%>, <%=product.getProd_price()%>, 'quantity(2)<%=i %>')">장바구니
+									<a href="goMain" class="nav-link" onclick="addToCart(event,<%=Buy.getProd_idx()%>, <%=Buy.getProd_price()%>, 'quantity(2)<%=i %>')">장바구니
 										넣기 <iconify-icon icon="uil:shopping-cart">
 									</a>
 

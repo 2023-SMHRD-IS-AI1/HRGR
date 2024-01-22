@@ -490,7 +490,7 @@
 										<use xlink:href="#heart"></use></svg></a>
 								<figure>
 									<a href="single-product.html" title="Product Title"> <img
-										src="./resources/images/thumb-tomatoes.png" class="tab-image">
+										src="./resources/upload/<%=Buy.getImg_name()%>" class="tab-image">
 									</a>
 								</figure>
 								<h3><%=Buy.getProd_name() %></h3>
@@ -562,7 +562,7 @@
 				<div class="col-md-4">
 					<article class="post-item card border-0 shadow-sm p-3">
 						<div class="image-holder zoom-effect">
-							<a> <img src="./resources/images/post-thumb-1.jpg" alt="post"
+							<a> <img src="./resources/upload/<%=diary.getImg_name() %>" alt="이미지 준비중"
 								class="card-img-top">
 							</a>
 						</div>
@@ -636,7 +636,7 @@
 								<div class="card mb-3 p-3 rounded-4 shadow border-0">
 									<div class="row g-0">
 										<div class="col-md-4">
-											<img src="./resources/images/product-thumb-11.jpg"
+											<img src="./resources/upload/<%=editor.getImg_name() %>"
 												class="img-fluid rounded" alt="Card title">
 										</div>
 										<div class="col-md-8">
@@ -693,7 +693,7 @@
 													<use xlink:href="#heart"></use></svg></a>
 											<figure>
 												<a href="single-product.html" title="Product Title"> <img
-													src="./resources/images/thumb-bananas.png"
+													src="./resources/upload/<%=product.getImg_name() %>"
 													class="tab-image">
 												</a>
 											</figure>

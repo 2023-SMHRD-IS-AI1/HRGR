@@ -261,7 +261,6 @@
             </div>
             <hr style="color: rgb(177, 177, 177);">
             <!-- 한줄끝 -->
-            
             <!-- 페이지네이션 -->
 <div style="margin-top: 30px;">
 <nav aria-label="Page navigation example">

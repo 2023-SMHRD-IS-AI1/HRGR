@@ -1,8 +1,10 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  <%@page import="kr.smhrd.entity.Product"%>
   <%@page import="kr.smhrd.entity.Member"%>
+  <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -39,6 +41,8 @@
 
 <%
 	Member Memberlogin = (Member) session.getAttribute("loginMember");
+	List<Product> List =  (List<Product>)request.getAttribute("List");
+
 	%>
 
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -207,7 +211,7 @@
               
                   <ul class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
                     <li class="nav-item active">
-                      <a href="#" class="nav-link">전체</a>
+                      <a href="searchAll" class="nav-link">전체</a>
                     </li>
                     <li class="nav-item dropdown">
                       <a href="searchno?value=농산물" class="nav-link">농산물</a>
@@ -241,9 +245,36 @@
       <div class="myOrder_parent" >
         <div class="myOrder ">
           <div class="edit_content">
+            <%if(List.get(0).getProd_type()!=null &&List.get(0).getProd_type().equals("농산물")){ %>
+            
+            		<h2 style="font-weight: bold;">농산물 </h2>
+            <%}else if(List.get(0).getProd_type()!=null &&List.get(0).getProd_type().equals("수산물")) {%>
+            		<h2 style="font-weight: bold;">수산물 </h2>
+            <%}else if(List.get(0).getProd_type()!=null &&List.get(0).getProd_type().equals("가공식품")) {%>
+            		<h2 style="font-weight: bold;">가공식품 </h2>
+            <%}%>
+            		
             <h2 style="font-weight: bold;">전체상품</h2>
+            
             <hr>
             
+<<<<<<< HEAD
+<!-- 한줄시작 -->
+            <div class="d-flex flex-wrap" style="display: flex; justify-content: space-between;">
+            <c:forEach var="List" items="${List}" varStatus="i">
+			 <c:if test="${i.index < 44}">
+			<!-- 반복시작 -->
+              <div class="img-wrapper">
+                <a href="goprodDetail?prod_idx=${List.prod_idx}" style="text-decoration: none; color: black;"><img src="./resources/upload/${List.img_name }" alt="" style="width: 200px; height: 200px;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
+                <div>${List.prod_name }</div></a>
+                <span class="rating"><svg width="24" height="24" class="text-primary"><use xlink:href="#star-solid"></use></svg>${List.avg_ratings }</span>
+                <br><span class="price"><fmt:formatNumber value="${List.prod_price}" type="price" pattern="#,###"/>원</span>
+              </div>
+            <!-- 반복끝 -->
+             </c:if>
+            </c:forEach>
+            </div>
+=======
 				<!-- 한줄시작 -->
 				<div class="d-flex flex-wrap" style="justify-content: space-between;">
 				  <c:forEach var="List" items="${List}" varStatus="i">
@@ -261,6 +292,7 @@
 				   </c:if>
 				  </c:forEach>
 				  </div>
+>>>>>>> branch 'master' of https://github.com/2023-SMHRD-IS-AI1/HRGR.git
             <hr style="color: rgb(177, 177, 177);">
             <!-- 한줄끝 -->
             <!-- 페이지네이션 -->

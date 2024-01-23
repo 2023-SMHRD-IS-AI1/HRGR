@@ -186,7 +186,9 @@ public class Product {
 		private Date reviewed_at;
 		private String image_name;
 
+
 		private int diary_idx;
+
 
 		
 		public Product(int prod_ratings, String cust_id, @NonNull int prod_idx, String review_content,

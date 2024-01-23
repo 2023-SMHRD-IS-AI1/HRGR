@@ -256,7 +256,7 @@ CREATE TABLE tb_order
 );
 
 insert into tb_order (prod_idx,cust_id,total_amunt,discount_amount,pay_amount,pay_method,paid_amount,delivery_addr,receiver_name,receiver_phone,delivery_msg,
- order_status,ordered_at)values(25,1,12000,1000,11000,'카드',10000,'광주','상권','010451112','132','결제완료',NOW())
+ order_status,ordered_at)values(31,1,12000,1000,11000,'카드',10000,'광주','상권','010451112','132','결제완료',NOW())
 
     select * from tb_order
     
@@ -1175,3 +1175,8 @@ ORDER BY
     update tb_prod set prod_name='당신은 귀한분 당귀' where prod_name='당신은 귀한사람 당귀'
     
     SELECT prod_name FROM tb_prod WHERE prod_name LIKE '%사%' LIMIT 1;
+    
+ insert into tb_order (prod_idx,cust_id,total_amunt,discount_amount,pay_amount,pay_method,paid_amount,delivery_addr,receiver_name,receiver_phone,delivery_msg,
+ order_status,ordered_at)values(31,1,6200,1000,6100,'카드',6100,'광주','상권','010451112','132','결제완료',NOW())
+ 
+select * from tb_review

@@ -83,6 +83,8 @@ public interface MemberMapper { // 틀, SqlSessionFactoryBean이 MemberMapper를
 	
 	public List<Member> goQna(int prod_idx);
 
+	public List<Member> goreview(int prod_idx);
+
 
 	
 

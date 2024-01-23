@@ -413,7 +413,14 @@ public class MemberController {
 
 	
 	
-	
+	@RequestMapping("/goreview")
+	public String goreview(@RequestParam int prod_idx, Model model,HttpSession session) {
+		
+		List<Member> prod = memberMapper.goreview(prod_idx);
+		model.addAttribute("prod",prod);
+		System.out.println(prod);
+		return "review";
+	}
 	
 	
 	

@@ -17,7 +17,7 @@
 	<update id="updateMember" parameterType="kr.smhrd.entity.Member">
 		update tb_cust set 
 
-		cust_pw=SHA2(#{cust_pw},224), cust_nick=#{cust_nick},cust_email=#{cust_email},cust_birthdate=#{cust_birthdate}, cust_addr=#{cust_addr} where cust_id=#{cust_id}
+		cust_pw=SHA2(#{cust_pw},224), cust_nick=#{cust_nick},cust_email=#{cust_email},cust_birthdate=#{cust_birthdate}, cust_addr={cust_addr} where cust_id=#{cust_id}
 
 	</update>
 
@@ -234,6 +234,13 @@ WHERE
     p.prod_idx = #{prod_idx}
 </select>
 
+
+<select id="goreview" parameterType="int" resultType="kr.smhrd.entity.Member">
+ SELECT tp.prod_idx, tp.prod_name, tp.prod_price, tpi.img_name
+FROM tb_prod tp
+LEFT JOIN tb_prod_image tpi ON tp.prod_idx = tpi.prod_idx
+WHERE tp.prod_idx = #{prod_idx};
+</select>
 
 
 

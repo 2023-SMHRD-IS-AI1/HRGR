@@ -306,7 +306,7 @@ INSERT INTO tb_qna (prod_idx, cust_id, question, questioned_at)
 <!-- 후기등록하기 -->
 <insert id="insertReview" parameterType="kr.smhrd.entity.Product" >
 INSERT INTO tb_review (prod_idx, cust_id, review_content,prod_ratings,reviewed_at,image_name)
-		VALUES (#{prod_idx},#{cust_id},#{review_content},#{prod_ratings},#{reviewed_at},#{image_name})
+		VALUES (#{prod_idx},#{cust_id},#{review_content},#{prod_ratings},NOW(),#{image_name})
 </insert>
 
 <select id="sellerDiaryimg" parameterType="int" resultType="kr.smhrd.entity.Product">

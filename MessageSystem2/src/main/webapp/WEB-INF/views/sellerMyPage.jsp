@@ -36,7 +36,7 @@
    
 List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
    
-   
+
          
   %>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -287,7 +287,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
         </div>
         <div class="col-lg-3 d-grid gap-2 my-auto">
           <button type="button" class="btn btn-outline-success">배송조회</button>
-          <button type="button" class="btn btn-outline-secondary" >후기 작성하기</button>
+          <a href="goreview?prod_idx=${prodList.prod_idx }"><button type="button" class="btn btn-outline-secondary" >후기 작성하기</button></a>
   
 
           </div>
@@ -608,7 +608,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
                 <div class="col-2 border-end" align="right">주소</div>
                 <div class="col-10">
                   <input type="text" placeholder="주소를 입력해주세요" class="form-control" style="width: 400px; margin-bottom: 5px;" name="cust_addr" >
-                  <input type="text" placeholder="상세주소를 입력해주세요" class="form-control" style="width: 400px;">
+                 
                 </div>
               </div>           
                   </div>

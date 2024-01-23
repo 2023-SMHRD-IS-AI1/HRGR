@@ -94,8 +94,7 @@
       </symbol>
     </defs>
   </svg>
-
-  <header>
+<header>
       <div class="container-fluid">
         <div class="row py-3 border-bottom">
           
@@ -111,10 +110,10 @@
             <div class="search-bar row bg-light p-2 my-2 rounded-4">
               <div class="col-md-4 d-none d-md-block">
                 <select class="form-select border-0 bg-transparent">
-                  <option>전체상품</option>
-                  <option>농산물</option>
-                  <option>수산물</option>
-                  <option>가공식품</option>
+                  <option >전체상품</option>
+                  <option >농산물</option>
+                  <option >수산물</option>
+                  <option >가공식품</option>
                 </select>
               </div>
               <div class="col-11 col-md-7">
@@ -136,67 +135,56 @@
           
           <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
             <div class="support-box text-end d-none d-xl-block">
-						<%
-						if (Memberlogin == null) {
-						%>
-						<a class="fs-6 text-muted" href="goLogin">로그인</a>
-						<%
-						} else {
-						%> <a href=goLogout>로그아웃</a>
-						<!-- Q7. 개인정보수정 기능 만들기 -->
-						<!-- Q8. 로그아웃 기능 만들기 -->
-						<!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-							<% if (!Memberlogin.getCust_role().equals("S")) {%>
-									<a href="goSeller">판매자 등록</a>
-							<%}else {%>	
-									<a href=goSell>상품등록</a>
-									
-
-							<%}%>
-
-						<%}%>
-						<h5 class="mb-0"></h5>
-					</div>
-
-					<ul class="d-flex justify-content-end list-unstyled m-0">
-						<li>
-							<%
-							if (Memberlogin == null) {
-							%> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
-								<svg width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#user"></use>
-						</svg>
-						</a> <%
+                              <h5 class="mb-0"></h5>
+               </div>
+            <ul class="d-flex justify-content-end list-unstyled m-0">
+              <li><%
+                if (Memberlogin == null) {
+                %>
+                <a href="goLogin" style="font-size: 20px; color: green; font-weight: bold;"><i class="fa fa-sign-in" aria-hidden="true"> 로그인</i></a>
+                <%
+                } else {
+                %>
+                <a href="goLogout" style="font-size: 20px; color: green; font-weight: bold;"><i class="fa fa-sign-out" aria-hidden="true"> 로그아웃</i></a>
+                <%}%>
+              </li>
+              <li>
+                <%
+                     if (Memberlogin == null) {
+                     %> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
+                        <svg width="24" height="24" viewBox="0 0 24 24">
+                    <use xlink:href="#user"></use>
+                  </svg>
+                  </a> <%
  } else {
  %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-							<a href="gomyPage" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
-									width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#user"></use>
-						</svg></a> <%
+                     <a href="gomyPage" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
+                           width="24" height="24" viewBox="0 0 24 24">
+                    <use xlink:href="#user"></use>
+                  </svg></a> <%
  }
  %>
-						</li>
-						<li>
-							<%
-							if (Memberlogin == null) {
-							%><a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
-								<svg width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#cart"></use>
-						</svg>
-						</a> <%
- } else {
- %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-							<a href="goLike" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
-									width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#cart"></use>
-						</svg></a> <%
- }
- %>
-              
+              </li>
+              <li>
+                <%
+                if (Memberlogin == null) {
+                %><a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
+                  <svg width="24" height="24" viewBox="0 0 24 24">
+                <use xlink:href="#cart"></use>
+              </svg>
+              </a> <%
+   } else {%>
+            <a href="goMyCart" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
+              width="24" height="24" viewBox="0 0 24 24">
+              <use xlink:href="#cart"></use>
+              </svg></a> 
+              <%}%>
+              </li>
             </ul>
 
            
           </div>
+          
 
         </div>
       </div>
@@ -222,19 +210,19 @@
               
                   <ul class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
                     <li class="nav-item active">
-                      <a href="#" class="nav-link">전체</a>
+                      <a href="searchAll" class="nav-link">전체</a>
                     </li>
                     <li class="nav-item dropdown">
-                      <a href="#" class="nav-link">농산물</a>
+                      <a href="searchno?value=농산물" class="nav-link">농산물</a>
                     </li>
                     <li class="nav-item">
-                      <a href="#" class="nav-link">수산물</a>
+                      <a href="searchno?value=수산물" class="nav-link">수산물</a>
                     </li>
                     <li class="nav-item">
-                      <a href="#" class="nav-link">가공식품</a>
+                      <a href="searchno?value=가공식품" class="nav-link">가공식품</a>
                     </li>
                    
-                    <a href="godiary"  class="nav-link btn-coupon-code">
+                    <a href="godiary" class="nav-link btn-coupon-code">
                 <img src="./resources/images/book-half.svg" alt="gift icon">
                 <strong class="ms-2 text-dark">영농일지 보러가기</strong>
               </a>

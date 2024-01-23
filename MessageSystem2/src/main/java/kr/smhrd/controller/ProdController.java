@@ -409,12 +409,12 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 					return "error";
 				}
 
-				product.setReviewed_at(new Date());
+				System.out.println(product.toString());
 				ProductMapper.insertReview(product);
 
 			
 			}
-			return "Main";
+			return "redirect:/";
 
 		}
 		

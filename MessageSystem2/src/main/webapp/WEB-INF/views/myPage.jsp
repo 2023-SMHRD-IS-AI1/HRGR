@@ -650,7 +650,7 @@
                 <div class="col-2 border-end" align="right">주소</div>
                 <div class="col-10">
                   <input type="text" placeholder="주소를 입력해주세요" class="form-control" style="width: 400px; margin-bottom: 5px;" name="cust_addr" >
-                  <input type="text" placeholder="상세주소를 입력해주세요" class="form-control" style="width: 400px;">
+                  
                 </div>
               </div>           
                   </div>

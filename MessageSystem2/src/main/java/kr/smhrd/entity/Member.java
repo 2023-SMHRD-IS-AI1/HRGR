@@ -108,6 +108,7 @@ public class Member {
 		    
 		 private String diary_img_name;
 		 
+		 private String cust_addr1;
 		 
 		
 		 

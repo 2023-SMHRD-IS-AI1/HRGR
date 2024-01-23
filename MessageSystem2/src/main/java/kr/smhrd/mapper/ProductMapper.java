@@ -51,7 +51,7 @@ import kr.smhrd.entity.Product;
 	 
 	public void insertQna(Product product);
 	 
-	public void insertReview(Product product);
+	public int insertReview(Product product);
 
 	public List<Product> sellerDiaryimg(int prod_idx);
 

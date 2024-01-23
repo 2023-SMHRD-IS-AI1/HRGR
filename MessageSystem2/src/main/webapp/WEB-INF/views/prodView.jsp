@@ -245,35 +245,20 @@
       <div class="myOrder_parent" >
         <div class="myOrder ">
           <div class="edit_content">
-            <%if(List.get(0).getProd_type()!=null &&List.get(0).getProd_type().equals("농산물")){ %>
-            
+
+            <%if(List.get(0).getProd_type()!=null &&List.get(0).getProd_type().equals("농산물")){ %>           
             		<h2 style="font-weight: bold;">농산물 </h2>
             <%}else if(List.get(0).getProd_type()!=null &&List.get(0).getProd_type().equals("수산물")) {%>
             		<h2 style="font-weight: bold;">수산물 </h2>
             <%}else if(List.get(0).getProd_type()!=null &&List.get(0).getProd_type().equals("가공식품")) {%>
             		<h2 style="font-weight: bold;">가공식품 </h2>
+            <%}else{%>
+            		<h2 style="font-weight: bold;">전체상품</h2>
             <%}%>
-            		
-            <h2 style="font-weight: bold;">전체상품</h2>
-            
             <hr>
             
 
-<!-- 한줄시작 -->
-            <div class="d-flex flex-wrap" style="display: flex; justify-content: space-between;">
-            <c:forEach var="List" items="${List}" varStatus="i">
-			 <c:if test="${i.index < 44}">
-			<!-- 반복시작 -->
-              <div class="img-wrapper">
-                <a href="goprodDetail?prod_idx=${List.prod_idx}" style="text-decoration: none; color: black;"><img src="./resources/upload/${List.img_name }" alt="" style="width: 200px; height: 200px;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
-                <div>${List.prod_name }</div></a>
-                <span class="rating"><svg width="24" height="24" class="text-primary"><use xlink:href="#star-solid"></use></svg>${List.avg_ratings }</span>
-                <br><span class="price"><fmt:formatNumber value="${List.prod_price}" type="price" pattern="#,###"/>원</span>
-              </div>
-            <!-- 반복끝 -->
-             </c:if>
-            </c:forEach>
-            </div>
+
 
 				<!-- 한줄시작 -->
 				<div class="d-flex flex-wrap" style="justify-content: space-between;">

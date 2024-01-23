@@ -438,7 +438,78 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 	          return "prodView"; // 적절한 뷰 이름을 반환합니다.
 	       }
 		
-		
+		@RequestMapping("/diaryRegist")
+		public String diaryRegist(Product product, HttpSession session, HttpServletRequest request) {
+
+		    ServletContext context = request.getSession().getServletContext();
+		    System.out.println("1 : "+context);
+		    String savePath = context.getRealPath("/resources/upload");
+		    System.out.println("2 : "+savePath);
+		    System.out.println("절대 경로: " + savePath);
+		    // 파일 최대 용량크기 설정
+		    int maxSize = 1024 * 1024 * 10; // 10mb
+		    System.out.println("3 : "+ maxSize);
+		    String enc = "UTF-8";
+
+		    DefaultFileRenamePolicy dftrp = new DefaultFileRenamePolicy();
+
+		    File imgFile = null;
+		    
+		    try {
+		         MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, enc, dftrp);
+		         System.out.println("4 : "+ multi.toString());
+		        String diary_title = multi.getParameter("diary_title");
+		        System.out.println("5 : "+diary_title);
+		        String diary_content = multi.getParameter("diary_content");
+		        System.out.println("6 : "+diary_content);
+		        String img_name = multi.getFilesystemName("img_name");
+		        System.out.println("7 : "+img_name);
+		        imgFile = multi.getFile("img_name");
+		        System.out.println("8 : "+imgFile);
+
+		        product = new Product(diary_title, diary_content, img_name);
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		        System.out.println("IOException 발생: " + e.getMessage());
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        System.out.println("일반 예외 발생: " + e.getMessage());
+		    }
+
+		    // 세션에서 로그인 한 사용자의 정보 가져오기
+		    Member loginMember = (Member)session.getAttribute("loginMember");
+
+		    // 로그인 한 사용자의 cust_id값 가져오기
+		    String cust_id = loginMember.getCust_id();
+
+		    // member에 cust_id값 넣어서 tb_prod 테이블에 데이터 추가
+		    product.setCust_id(cust_id);
+
+		 
+		    ProductMapper.insertDiary(product);
+		    
+		    // 방금 insert 한 상품의 prod_idx 가져오기
+		    Product product2 =  ProductMapper.searchdiaryIdx(product);
+		    product.setDiary_idx(product2.getDiary_idx());
+		    
+		    // 파일 정보 DB에 저장
+		    String imgExtension = FilenameUtils.getExtension(product.getImg_name());
+		    long imgSize = imgFile.length();
+		    String imgPath = "/resources/upload/" + product.getImg_name();
+		    String imgAbsolutePath = savePath + File.separator + product.getImg_name();
+		    
+		    product.setImg_real_name(imgAbsolutePath);
+		    product.setImg_size(imgSize);
+		    product.setImg_ext(imgExtension);
+		    
+		    
+		    // 이미지 정보를 DB에 저장
+		    
+		  
+		    ProductMapper.insertdiaryImage(product);
+
+		    return "Main2";
+		}
 		
 		
 }

@@ -75,7 +75,7 @@ WHERE
 	<select id="reviewList" parameterType="String" resultType="kr.smhrd.entity.Member">
  SELECT
     r.*,
-    pi_review.img_name AS review_img_name,
+    r.img_name AS review_img_name,
     p.prod_name AS prod_name,
     p.prod_idx AS prod_idx,
     pi_product.img_name AS product_img_name

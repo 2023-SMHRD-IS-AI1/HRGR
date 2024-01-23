@@ -669,7 +669,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
                       <c:if test="${i.index < 10}">
           <div class="shadow" style="margin-bottom: 20px;">
             <div class="diary_img" style="padding: 30px;">
-              <img src="./resources/upload/${diaryList.diary_img_name }" alt="이미지에용" style="margin: 0px;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
+              <img src="./resources/upload/${diaryList.diary_img_name }" alt="이미지에용" style="margin: 0px; max-width:100%; width:100%;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
             </div>
             <div class="diary_farmer row" style="padding: 0px 30px 30px 30px; margin: 0px;">
               <div class="col-10">

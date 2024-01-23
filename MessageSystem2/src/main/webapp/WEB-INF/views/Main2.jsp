@@ -328,7 +328,8 @@
 
 									<div class="swiper-slide">								
 							
-											<div class="banner-content" style="padding: 48px; width: 100%;">
+											<div class="banner-content" style="padding: 20px 48px; width: 100%;">
+											<div style="margin-bottom :20px; font-size:17px; padding: 0px 16px;">오늘의 농수산물 순위를 확인해보세요!</div>
 					                        <div class="row justify-content-between" style="width: 100%; margin: 0px;">
 					                          <div class="col-3" style="font-size: 22px;">
 					                            <div><h2 style="font-weight: bold;">농산물<i class="fa fa-pagelines" aria-hidden="true" style="color: green;"></i></h2></div>

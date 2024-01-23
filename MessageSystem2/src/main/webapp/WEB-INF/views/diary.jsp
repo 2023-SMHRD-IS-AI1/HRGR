@@ -27,10 +27,16 @@
 
 
 <link
-	href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-	rel="stylesheet">
+   href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+   rel="stylesheet">
 <link rel="stylesheet" href="./resources/assets/css/font-awesome.min.css">
-
+    <style>
+    .heart-icon {
+      cursor: pointer;
+      font-size: 30px; /* 아이콘 크기 설정 */
+      color: red; /* 아이콘 색상 설정 */
+    }
+    </style>
 </head>
 <body>
   <%
@@ -251,18 +257,33 @@
                 <c:if test="${i.index < 10}">
               <div class="shadow" style="margin-bottom: 20px;">
                 <div class="diary_img" style="padding: 30px;">
-                  <img src="./resources/upload/${diaryList.diary_img_name }" alt="이미지에용" style="margin: 0px;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
+                  <img src="./resources/upload/${diaryList.diary_img_name }" alt="이미지에용" style="margin: 0px; max-width:100%; width:100%" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
                 </div>
                 <div class="diary_farmer row" style="padding: 0px 30px 30px 30px; margin: 0px;">
                   <div class="col-10">
                     <h3>${diaryList.seller_company_name }</h3>
                     <h5>${diaryList.diary_content }</h5>
                   </div>
-                  <div class="col-2" align="right"><i class="fa fa-heart red-heart" aria-hidden="true" style="color: red; font-size: 30px;"><span style="color: black;"> ${diaryList.diary_likes }</span></i></div>
+                  <div class="col-2" align="right"><a href="#"><i class="heart-icon fa fa-heart-o" aria-hidden="true" onclick="toggleHeart(this)"></i></a><span style="color: black; font-size:30px" id="like"> ${diaryList.diary_likes }</span></div>
                 </div>
               </div>
             </c:if>
           </c:forEach> 
+            <script>
+        function toggleHeart(element) {
+          // 현재 클래스에 따라서 토글
+          if (element.classList.contains('fa-heart-o')) {
+            element.classList.remove('fa-heart-o');
+            element.classList.add('fa-heart')
+            
+          } else {
+            element.classList.remove('fa-heart');
+            element.classList.add('fa-heart-o');
+          }
+        }
+      </script>
+          
+          
               <!-- 글 하나 끝 -->
                                  
             </div>
@@ -326,12 +347,12 @@
       <script src="./resources/assets/js/script.js"></script>
       
       <script>
-		document.getElementById("userIcon").addEventListener("click",
-				function() {
-					window.location.href = "goLogin";
-				});
-	</script>
+      document.getElementById("userIcon").addEventListener("click",
+            function() {
+               window.location.href = "goLogin";
+            });
+   </script>
       
-      
+          
 </body>
 </html>

@@ -7,6 +7,7 @@
  import org.apache.ibatis.annotations.Mapper;
 
 import kr.smhrd.entity.Cart;
+import kr.smhrd.entity.Member;
 import kr.smhrd.entity.Product;
  
  @Mapper 
@@ -66,6 +67,8 @@ import kr.smhrd.entity.Product;
 	public void insertDiary(Product product);
 	public Product searchdiaryIdx(Product product);
 	public void  insertdiaryImage(Product product);
+
+	public int buy(Member loginMember);
 	
 	
 	 }

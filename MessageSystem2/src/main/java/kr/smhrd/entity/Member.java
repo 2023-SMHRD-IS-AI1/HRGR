@@ -44,7 +44,7 @@ public class Member {
 	private String created_at;
 	private int prod_idx;
 	private String prod_name;
-	private String prod_price;
+	private int prod_price;
 	private String img_name;
 	public Member(String cust_id,  String cust_phone,@NonNull String cust_pw,String cust_name, String cust_nick, @NonNull String cust_email, 
 			  String cust_birthdate,String cust_addr) {
@@ -114,8 +114,15 @@ public class Member {
 		 private String prod_img_name;
 
 
-
-		
+		 
+		 private int total_amunt;
+		 private int pay_amount;
+		 private int pay_method;
+		private String delivery_addr;
+		private String receiver_name;
+		private String receiver_phone;
+		private int paid_amount;
+		 private int discount_amount;
 		 
 		 
 		

@@ -45,7 +45,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:500,800" rel="stylesheet"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="./css/login_01.css">
-
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 
 <link
 	href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
@@ -314,21 +314,22 @@
 
 
 	<section class="py-3"
-		style="background-image: url('./resources/images/background-pattern.jpg'); background-repeat: no-repeat; background-size: cover;">
+		style="background-image: url('./resources/images/background-pattern.jpg'); background-repeat: no-repeat; background-size: cover; font-family: 'Noto Sans KR',sans-serif; font-weight: bold;">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
 
 					<div class="banner-blocks" style="color: black;">
 
-						<div class="banner-ad large bg-info block-1">
+						<div class="banner-ad large bg-info block-1" style=" background-image: url('./resources/images/background.png'); background-position: center center">
 
 							<div class="swiper main-swiper">
 								<div class="swiper-wrapper">
 
 									<div class="swiper-slide">								
 							
-											<div class="banner-content" style="padding: 48px; width: 100%;">
+											<div class="banner-content" style="padding: 20px 48px; width: 100%;">
+											<div style="margin-bottom :20px; font-size:17px; padding: 0px 16px;">오늘의 농수산물 순위를 확인해보세요!</div>
 					                        <div class="row justify-content-between" style="width: 100%; margin: 0px;">
 					                          <div class="col-3" style="font-size: 22px;">
 					                            <div><h2 style="font-weight: bold;">농산물<i class="fa fa-pagelines" aria-hidden="true" style="color: green;"></i></h2></div>
@@ -367,7 +368,7 @@
 				                          <a href="godiary" class="btn btn-outline-dark btn-lg ltext-uppercase fs-6 rounded-1 px-4 py-3 mt-3">보러가기!</a>
 				                        </div>
 										<div class="img-wrapper col-md-5">
-											<img src="./resources/images/farmer.png" class="img-fluid">
+											
 										</div>
 				                      </div>
 				                    </div>
@@ -384,8 +385,8 @@
 													Collection</a>
 											</div>
 											<div class="img-wrapper col-md-5">
-												<img src="./resources/images/product-thumb-2.png"
-													class="img-fluid">
+												 
+												 
 											</div>
 										</div>
 									</div>
@@ -481,8 +482,8 @@
 								<a href="#" class="btn-wishlist"><svg width="24" height="24">
 										<use xlink:href="#heart"></use></svg></a>
 								<figure>
-									<a href="single-product.html" title="Product Title"> <img
-										src="./resources/upload/<%=Buy.getImg_name()%>" class="tab-image" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
+									<a href="goprodDetail?prod_idx=<%=Buy.getProd_idx() %>" title="Product Title"> <img
+										src="./resources/upload/<%=Buy.getImg_name()%>" class="tab-image" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';" style="width:100%">
 									</a>
 								</figure>
 								<h3><%=Buy.getProd_name() %></h3>
@@ -628,8 +629,8 @@
 								<div class="card mb-3 p-3 rounded-4 shadow border-0">
 									<div class="row g-0">
 										<div class="col-md-4">
-											<img src="./resources/upload/<%=editor.getImg_name() %>"
-												class="img-fluid rounded" alt="Card title" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
+											<a href="goprodDetail?prod_idx=<%=editor.getProd_idx() %>"><img src="./resources/upload/<%=editor.getImg_name() %>"
+												class="img-fluid rounded" alt="Card title" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';"></a>
 										</div>
 										<div class="col-md-8">
 											<div class="card-body py-0">
@@ -704,7 +705,7 @@
 													}
 													%>
 											<figure>
-												<a href="single-product.html" title="Product Title"> <img
+												<a href="goprodDetail?prod_idx=<%=product.getProd_idx() %>" title="Product Title"> <img
 													src="./resources/upload/<%=product.getImg_name() %>"
 													class="tab-image" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
 												</a>

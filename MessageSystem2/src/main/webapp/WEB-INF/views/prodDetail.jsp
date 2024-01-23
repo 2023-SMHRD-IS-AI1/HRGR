@@ -257,7 +257,7 @@
                
                <div class="row">
                 <div class="col-6">
-                  <img src="./resources/upload/${prodList.get(0).getImg_name() }" alt="당귀사진임" style="max-width: 100%; padding: 10px;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
+                  <img src="./resources/upload/${prodList.get(0).getImg_name() }" alt="상품사진" style="max-width: 100%; padding: 10px;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
                 </div>
                 <div class="col-6 d-flex flex-column justify-content-around">
                   <div>
@@ -300,7 +300,7 @@
                     	<a href="goLogin"><button type="button" class="btn btn-lg btn-outline-success">장바구니</button></a>
                     <%} %>
                     
-                   <a href="goPay"><button type="button" class="btn btn-lg btn-success">바로구매</button></a>
+                   <a href="goPay?prod_idx=${prodList.get(0).getProd_idx()}&prod_price=${prodList.get(0).getProd_price()}"><button type="button" class="btn btn-lg btn-success">바로구매</button></a>
                   </div>
                 </div>
                </div>
@@ -320,7 +320,7 @@
   <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
         <!-- 상세페이지시작 -->
         <div style="padding: 40px;" align="center">
-          <p>당귀 : 당신은 귀한사람 이라는 뜻</p>
+          <p></p>
           <p><img src="http://image1.coupangcdn.com/image/vendor_inventory/711c/682ded3a9f94e1a3ad549c8bd6078340ec5802355642600dc1b74d4e439e.jpg" alt="" style="max-width: 100%;"></p>
         <h1>감사합니다</h1>
         <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDA0MDRfMjc0/MDAxNTg1OTU0MjM2NTM0.jLZAJNXp1-tE6giGmzSWazbQ-7izSKMM_0WV6lhcynQg.WUhkJnuYQErxqKnrSRqrIoCqxwB2tG4zP9Oiy47lnO8g.GIF.bluenight_525/1585954235722.gif?type=w800" alt="">

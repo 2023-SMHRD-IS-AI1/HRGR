@@ -259,6 +259,10 @@
             <hr>
             
 <<<<<<< HEAD
+
+=======
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/2023-SMHRD-IS-AI1/HRGR.git
 <!-- 한줄시작 -->
             <div class="d-flex flex-wrap" style="display: flex; justify-content: space-between;">
             <c:forEach var="List" items="${List}" varStatus="i">
@@ -274,7 +278,7 @@
              </c:if>
             </c:forEach>
             </div>
-=======
+
 				<!-- 한줄시작 -->
 				<div class="d-flex flex-wrap" style="justify-content: space-between;">
 				  <c:forEach var="List" items="${List}" varStatus="i">
@@ -292,7 +296,7 @@
 				   </c:if>
 				  </c:forEach>
 				  </div>
->>>>>>> branch 'master' of https://github.com/2023-SMHRD-IS-AI1/HRGR.git
+
             <hr style="color: rgb(177, 177, 177);">
             <!-- 한줄끝 -->
             <!-- 페이지네이션 -->

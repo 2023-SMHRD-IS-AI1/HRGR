@@ -273,7 +273,7 @@
                            class="form-control cart-count-input" 
                            style="width: 60px; margin-left: 20px;"
                            data-prod-price="${cart.prod_price}"
-                           data-cart-index="${loop.index}" <!-- 현재 카트의 인덱스 정보 추가 -->
+                           data-cart-index="${loop.index}"> <!-- 현재 카트의 인덱스 정보 추가 -->
                 </div>
             </div>
             <div class="col-2" style="display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold;">
@@ -445,7 +445,7 @@ $(document).ready(function() {
 	    updateGlobalTotalAmount();
 	})();
   
-/*   // 전체 총 금액 업데이트 함수
+   // 전체 총 금액 업데이트 함수
   function updateGlobalTotalAmount() {
       var totalAmountElement = document.getElementById('totalAmount');
       var totalAmount = 0;
@@ -457,7 +457,7 @@ $(document).ready(function() {
       });
 
       totalAmountElement.textContent = totalAmount + '원';
-  } */
+  } 
   
   function deleteCartItem() {
 	    // 모든 체크된 체크박스 가져오기

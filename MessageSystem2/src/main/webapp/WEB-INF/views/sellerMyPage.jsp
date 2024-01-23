@@ -662,7 +662,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
         <div class="diary_content">
           <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
             <h2 style="font-weight: bold;">나의 농사일지</h2>
-            <a href="#"><button type="button" class="btn btn-lg btn-success">농사일지작성</button></a>
+            <a href="goDiaryRegist"><button type="button" class="btn btn-lg btn-success">농사일지작성</button></a>
           </div>
           <!-- 글 하나 시작 반복 -->
           <c:forEach var="diaryList" items="${diaryList }" varStatus="i">

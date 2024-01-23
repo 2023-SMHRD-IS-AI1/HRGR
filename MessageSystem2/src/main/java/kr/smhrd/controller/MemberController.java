@@ -389,7 +389,15 @@ public class MemberController {
 		return "diary";
 	}
 	
-	
+	//농사일지 작성으로 이동
+	@RequestMapping("/goDiaryRegist")
+	public String goDiaryRegist(Model model,HttpSession session) {
+		List<Member> diaryList =memberMapper.diaryList();
+		model.addAttribute("diaryList",diaryList);
+		System.out.println(model);
+		return "diaryRegist";
+	}
+
 	@RequestMapping("/goSellerDiary")
 	public String goSellerDiary(@RequestParam String cust_id, Model model,HttpSession session) {
 		List<Member> diaryList =memberMapper.mydiaryList(cust_id);

@@ -441,16 +441,16 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 
 		    File imgFile = null;
 		    
-		    try {
-		         MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, enc, dftrp);
-		         System.out.println("4 : "+ multi.toString());
+		    try {		        MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, enc, dftrp);
+
+		        System.out.println("4 : "+ multi.toString());
 		        String diary_title = multi.getParameter("diary_title");
 		        System.out.println("5 : "+diary_title);
 		        String diary_content = multi.getParameter("diary_content");
 		        System.out.println("6 : "+diary_content);
 		        String img_name = multi.getFilesystemName("img_name");
 		        System.out.println("7 : "+img_name);
-		        imgFile = multi.getFile("img_name");
+		        imgFile = multi.getFile("filename");
 		        System.out.println("8 : "+imgFile);
 
 		        product = new Product(diary_title, diary_content, img_name);

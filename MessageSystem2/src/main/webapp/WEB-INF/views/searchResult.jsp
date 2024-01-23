@@ -389,7 +389,7 @@
 											<div class="col">
 												<div class="product-item" style="box-shadow : 0px 5px 22px rgba(0, 0, 0, 0.2)">
 													<span class="badge bg-success position-absolute m-3">-30%</span>
-
+														<input type="hidden" id="i">${loopStatus.index+1}</input>
 
 
 													<%
@@ -493,7 +493,7 @@
 											<div class="col">
 												<div class="product-item" style="box-shadow : 0px 5px 22px rgba(0, 0, 0, 0.2)">
 													<span class="badge bg-success position-absolute m-3">-30%</span>
-													<input type="hidden" id="i">${loopStatus.index}</input>
+													<input type="hidden" id="i">${loopStatus.index+1}</input>
 
 
 
@@ -526,7 +526,7 @@
 														</a>
 													</figure>
 													<h3>${ProductNew.prod_name}</h3>
-													<h2 id="prod_idx">${ProductNew.prod_idx}</h2>
+													
 													<span class="qty">${ProductNew.prod_stock }</span><span
 														class="rating"><svg width="24" height="24"
 															class="text-primary">

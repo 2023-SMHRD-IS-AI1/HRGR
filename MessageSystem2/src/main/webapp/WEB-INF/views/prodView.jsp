@@ -258,11 +258,7 @@
             
             <hr>
             
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/2023-SMHRD-IS-AI1/HRGR.git
 <!-- 한줄시작 -->
             <div class="d-flex flex-wrap" style="display: flex; justify-content: space-between;">
             <c:forEach var="List" items="${List}" varStatus="i">

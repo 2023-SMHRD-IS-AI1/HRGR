@@ -299,8 +299,11 @@
                     <%}else {%>
                     	<a href="goLogin"><button type="button" class="btn btn-lg btn-outline-success">장바구니</button></a>
                     <%} %>
-                    
-                   <a href="goPay?prod_idx=${prodList.get(0).getProd_idx()}&prod_price=${prodList.get(0).getProd_price()}"><button type="button" class="btn btn-lg btn-success">바로구매</button></a>
+                   <%if(Memberlogin != null){ %> 
+                   		<a href="goPay?prod_idx=${prodList.get(0).getProd_idx()}&prod_price=${prodList.get(0).getProd_price()}"><button type="button" class="btn btn-lg btn-success">바로구매</button></a>
+                   <%}else {%>
+                   		<a href="goLogin"><button type="button" class="btn btn-lg btn-success">바로구매</button></a>
+                   <%} %>
                   </div>
                 </div>
                </div>
@@ -339,7 +342,7 @@
   <div class="row d-flex justify-content-between">
     <div class="col-3 review-img-wrapper">
       
-     <img src="./resources/upload/${reviewList.img_name}" alt="리뷰사진인데용" style="max-width: 100%;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
+     <img src="./resources/upload/${reviewList.review_img_name}" alt="리뷰사진인데용" style="max-width: 100%;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
                 
     </div>
     <div class="col-9 d-flex flex-column justify-content-between">

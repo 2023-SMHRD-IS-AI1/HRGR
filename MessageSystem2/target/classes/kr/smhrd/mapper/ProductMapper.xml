@@ -460,5 +460,10 @@ insert into tb_diary_image (diary_idx, img_name, img_real_name, img_ext, img_siz
 values(#{diary_idx}, #{img_name}, #{img_real_name}, #{img_ext}, #{img_size})
 </insert>
 
+<insert id="buy" parameterType="kr.smhrd.entity.Product" >
+insert into tb_order (prod_idx,cust_id,total_amunt,discount_amount,pay_amount,pay_method,paid_amount,delivery_addr,receiver_name,receiver_phone,delivery_msg,order_status,ordered_at)
+values(#{prod_idx},#{cust_id},#{total_amunt},0,#{pay_amount},'카드',#{paid_amount},#{delivery_addr},#{receiver_name},#{receiver_phone},'빨리요','배송완료',NOW())
+</insert>
+
 
 </mapper>

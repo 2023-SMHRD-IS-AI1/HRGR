@@ -253,21 +253,19 @@ List<Member> reviewList = (List<Member>)request.getAttribute("reviewList");
       <h2 align="center">판매자등록</h2>
       <hr>
       <div style="margin-bottom:10px">사업자등록번호</div>
-                  <input class="form-control" type="text" id="business_type" name="business_type" placeholder="연락처를 입력해주세요."  style="margin-bottom:20px">
+                  <input class="form-control" type="text" id="company_bno" name="company_bno" placeholder="사업자 등록번호를 입력해주세요"  style="margin-bottom:20px">
       <div style="margin-bottom:10px">사업장 이름</div>
-                  <input class="form-control" type="text" id="business_type" name="business_type" placeholder="연락처를 입력해주세요." style="margin-bottom:20px">
+                  <input class="form-control" type="text" id="company_name" name="company_name" placeholder="사업장 이름을 입력해주세요" style="margin-bottom:20px">
       <div style="margin-bottom:10px">사업장 주소</div>
-                  <input class="form-control" type="text" id="business_type" name="business_type" placeholder="연락처를 입력해주세요." style="margin-bottom:20px">
+                  <input class="form-control" type="text" id="company_addr" name="company_addr" placeholder="사업장 주소를 입력해주세요" style="margin-bottom:20px">
       <div style="margin-bottom:10px">판매할 상품의 종류</div>
-                  <input class="form-control" type="text" id="business_type" name="business_type" placeholder="연락처를 입력해주세요." style="margin-bottom:20px">
+                  <input class="form-control" type="text" id="business_type" name="business_type" placeholder="Ex)농산물 수산물 가공식품" style="margin-bottom:20px">
       </div>
           <div class="button-group" align="center">
-            <button type="button" class="btn btn-outline-success btn-lg">취소하기</button>
-            <button type="button" class="btn btn-success btn-lg">등록하기</button>
+            <button type="reset" class="btn btn-outline-success btn-lg">취소하기</button>
+            <button type="submit" class="btn btn-success btn-lg">등록하기</button>
           </div>
         </form>
-      
-
            </div>
           </div>
 

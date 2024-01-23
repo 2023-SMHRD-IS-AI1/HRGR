@@ -183,7 +183,7 @@ public class MemberController {
 			System.out.println("실패");
 		}
 
-		return "Main2";
+		return "redirect:/goMain";
 	}
 
 	// 회원정보 보는 페이지로 이동 + DB에 있는 회원 조회 /showMember
@@ -203,6 +203,7 @@ public class MemberController {
 //  판매자 등록
 	@RequestMapping("/insertSeller")
 	public String insertSeller(Member member, HttpSession session) {
+		
 //		세션에서 로그인 한 사용자의 정보 가져오기
 		Member loginMember = (Member)session.getAttribute("loginMember");
 		System.out.println("\n"+loginMember.toString() +"\n");
@@ -213,12 +214,14 @@ public class MemberController {
 		
 //		member에 cust_id값 넣어서 tb_seller 테이블에 데이터 추가
 		member.setCust_id(cust_id);
+		
 //		member값 확인
 		System.out.println(member.toString());
 	    memberMapper.sellerInsert(member);
 	    memberMapper.sellerUpdate(member);
-	    return "Main2";
+	    return "sellerRegiSuccess";
 	}
+	
 	@RequestMapping("/goLogin")
 	public String goLogin() {
 		return "login_01";

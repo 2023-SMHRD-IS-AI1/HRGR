@@ -498,7 +498,7 @@
 												<svg width="16" height="16">
 													<use xlink:href="#minus"></use></svg>
 											</button>
-										</span> <input type="text" id="quantity" name="quantity"
+										</span> <input type="text" id="quantity" name="quantity(2)<%=i %>"
 											class="form-control input-number" value="1"> <span
 											class="input-group-btn">
 											<button type="button"
@@ -509,7 +509,7 @@
 											</button>
 										</span>
 									</div>
-									<a href="goMain" class="nav-link" onclick="addToCart()">장바구니
+									<a href="goMain" class="nav-link" onclick="addToCart(event,<%=Buy.getProd_idx()%>, <%=Buy.getProd_price()%>, 'quantity(2)<%=i %>')">장바구니
 										넣기 <iconify-icon icon="uil:shopping-cart">
 									</a>
 
@@ -724,7 +724,7 @@
 															<svg width="16" height="16">
 																<use xlink:href="#minus"></use></svg>
 														</button>
-													</span> <input type="text" id="quantity" name="quantity"
+													</span> <input type="text" id="quantity" name="quantity<%=i %>"
 														class="form-control input-number" value="1"> <span
 														class="input-group-btn">
 														<button type="button"
@@ -735,7 +735,7 @@
 														</button>
 													</span>
 												</div>
-												<a href="#" class="nav-link" onclick="addToCart()">장바구니에
+												<a href="#" class="nav-link" onclick="addToCart(event,<%=product.getProd_idx()%>, <%=product.getProd_price()%>, 'quantity<%=i %>')">장바구니에
 													담기 <iconify-icon icon="uil:shopping-cart">
 												</a>
 											</div>
@@ -759,7 +759,7 @@
 
 
 
-	<section class="py-5">
+<!-- 	<section class="py-5">
 		<div class="container-fluid">
 			<div class="row row-cols-1 row-cols-sm-3 row-cols-lg-5">
 				<div class="col">
@@ -855,7 +855,7 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> -->
 
 	<footer class="py-5">
 		<div class="container-fluid">
@@ -953,12 +953,42 @@
 							// 현재 페이지 URL에 검색어를 추가하여 페이지 이동
 				window.location.href = 'gosearch?searchInput='+ encodeURIComponent(inputValue);
 						});
-		function addToCart() {
-			let quantityInput = document.getElementById("quantity");
-			let quantity = parseInt(quantityInput.value);
-
-			alert(quantity + "개의 상품이 장바구니에 추가되었습니다.");
-		}
+		
+		
+		function addToCart(event, prod_idx, prod_price, name) {
+			
+		      var quantityElement = document.getElementsByName(name)[0];
+		      var quantityValue = quantityElement.value;
+		      var quantityInput = document.getElementById(name);
+              var quantity = parseInt(quantityInput.value);
+		           var prodInfo = {
+		                 prod_idx: prod_idx,
+		                 cart_count: parseInt(quantityValue, 10),
+		                 prod_price: prod_price
+		             };
+		                console.log(prodInfo);
+		                 // AJAX를 사용하여 서버로 데이터 전송
+		                 $.ajax({
+		                     type: 'POST',
+		                     url: 'http://localhost:8081/controller/insertCart',
+		                   
+		                     data: JSON.stringify(prodInfo),
+		                     contentType: 'application/json',
+		                     success: function(response) {
+		                         console.log('Server response:',response);
+		                         // 왜 안됨?
+		                         alert(quantity + "개의 상품이 장바구니에 추가되었습니다.");
+		                         /* location.reload(); */
+		                         // TODO: 서버 응답에 따른 동작 수행
+		                     },
+		                     error: function(error) {
+		                         console.error('Error:', error);
+		                     }
+		                });
+		       // 기본 동작 막기
+		       
+		       event.preventDefault();
+		      };
 	</script>
 	
 	 <script>

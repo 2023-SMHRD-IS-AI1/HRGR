@@ -230,9 +230,9 @@
         <div class="success">
           <!-- 글 하나 시작 -->
           <div class="success_content">
-            <h1>회원가입</h1>
+            <h1>판매자 등록</h1>
               <hr style="margin-top: 50px; margin-bottom: 50px;">
-              <p align="center" style="font-size:40px;">회원가입이 완료되었습니다!</p>
+              <p align="center" style="font-size:40px;">판매자 등록이 완료되었습니다!</p>
               <div align="center" style="margin-top: 50px;">
 				<a href="goMain"><button type="button" class="btn btn-outline-success btn-lg">홈으로 가기</button></a>
 				<a href="memberlogin"><button type="button" class="btn btn-success btn-lg">로그인 하기</button></a>

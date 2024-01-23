@@ -364,7 +364,7 @@
 				                          <div class="categories my-3" >영농일지</div>
 				                          <h3 class="display-4">판매자가 키운 작물들을 구경하세요!</h3>
 				                          <p>김연성 농원, 민경상회, 상권농장 등 많은 판매자들이 있습니다!</p>
-				                          <a href="#" class="btn btn-outline-dark btn-lg ltext-uppercase fs-6 rounded-1 px-4 py-3 mt-3">보러가기!</a>
+				                          <a href="godiary" class="btn btn-outline-dark btn-lg ltext-uppercase fs-6 rounded-1 px-4 py-3 mt-3">보러가기!</a>
 				                        </div>
 										<div class="img-wrapper col-md-5">
 											<img src="./resources/images/farmer.png" class="img-fluid">

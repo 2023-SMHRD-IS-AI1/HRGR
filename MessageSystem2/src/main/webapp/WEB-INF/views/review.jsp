@@ -268,7 +268,7 @@ Member Memberlogin = (Member) session.getAttribute("loginMember");
             <div class="review_box border-bottom border-success row">
               <div class="col-2 align-self-center">사진첨부</div>
               <div class="col-4">
-                <input class="form-control" type="file" name="image_name" id="image_name">
+                <input class="form-control" type="file" name="imagename" id="imagename">
               </div>
               <div class="col-6">
                 사진은 최대 20MB이하의 JPG, PNG, GIF 파일을 첨부해주세요

@@ -512,14 +512,23 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 		}
 		
 		
+	
+
+		@PostMapping("/updateTotalAmount")
+		public void updateTotalAmount(@RequestBody String totalAmount) {
+		    // 여기에서 totalAmount 값을 사용하거나 저장할 수 있습니다.
+			System.out.println("Received totalAmount: " + totalAmount);
+		}
 		
 		
 		
 		@RequestMapping("/goPay")
 		public String goPay(Product product) {
+
 			
 			
 			return "checkout";
 		}
+		
 		
 }

@@ -258,7 +258,11 @@
             
             <hr>
             
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/2023-SMHRD-IS-AI1/HRGR.git
 <!-- 한줄시작 -->
             <div class="d-flex flex-wrap" style="display: flex; justify-content: space-between;">
             <c:forEach var="List" items="${List}" varStatus="i">
@@ -274,6 +278,24 @@
              </c:if>
             </c:forEach>
             </div>
+
+				<!-- 한줄시작 -->
+				<div class="d-flex flex-wrap" style="justify-content: space-between;">
+				  <c:forEach var="List" items="${List}" varStatus="i">
+				<c:if test="${i.index < 44}">
+				<!-- 반복시작 -->
+				<div style="width:200px; height: 300px;">
+				    <div class="img-wrapper">
+				      <a href="goprodDetail?prod_idx=${List.prod_idx}" style="text-decoration: none; color: black;"><img src="./resources/upload/${List.img_name }" alt="" style="width: 200px; height: 200px;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
+				      <div>${List.prod_name }</div></a>
+				      <span class="rating"><svg width="24" height="24" class="text-primary"><use xlink:href="#star-solid"></use></svg>${List.avg_ratings }</span>
+				      <span class="price">${List.prod_price }</span>
+				    </div>
+				  </div>
+				  <!-- 반복끝 -->
+				   </c:if>
+				  </c:forEach>
+				  </div>
 
             <hr style="color: rgb(177, 177, 177);">
             <!-- 한줄끝 -->

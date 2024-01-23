@@ -45,7 +45,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:500,800" rel="stylesheet"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="./css/login_01.css">
-
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 
 <link
 	href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
@@ -314,14 +314,14 @@
 
 
 	<section class="py-3"
-		style="background-image: url('./resources/images/background-pattern.jpg'); background-repeat: no-repeat; background-size: cover;">
+		style="background-image: url('./resources/images/background-pattern.jpg'); background-repeat: no-repeat; background-size: cover; font-family: 'Noto Sans KR',sans-serif; font-weight: bold;">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
 
 					<div class="banner-blocks" style="color: black;">
 
-						<div class="banner-ad large bg-info block-1">
+						<div class="banner-ad large bg-info block-1" style=" background-image: url('./resources/images/background.png'); background-position: center center">
 
 							<div class="swiper main-swiper">
 								<div class="swiper-wrapper">
@@ -367,7 +367,7 @@
 				                          <a href="godiary" class="btn btn-outline-dark btn-lg ltext-uppercase fs-6 rounded-1 px-4 py-3 mt-3">보러가기!</a>
 				                        </div>
 										<div class="img-wrapper col-md-5">
-											<img src="./resources/images/farmer.png" class="img-fluid">
+											
 										</div>
 				                      </div>
 				                    </div>
@@ -384,8 +384,8 @@
 													Collection</a>
 											</div>
 											<div class="img-wrapper col-md-5">
-												<img src="./resources/images/product-thumb-2.png"
-													class="img-fluid">
+												 
+												 
 											</div>
 										</div>
 									</div>

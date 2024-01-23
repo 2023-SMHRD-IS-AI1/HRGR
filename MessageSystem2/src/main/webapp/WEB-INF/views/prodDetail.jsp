@@ -342,7 +342,7 @@
   <div class="row d-flex justify-content-between">
     <div class="col-3 review-img-wrapper">
       
-     <img src="./resources/upload/${reviewList.img_name }" alt="리뷰사진인데용" style="max-width: 100%;" >
+     <img src="./resources/upload/${reviewList.prod_img_name }" alt="리뷰사진인데용" style="max-width: 100%;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
                 
     </div>
     <div class="col-9 d-flex flex-column justify-content-between">

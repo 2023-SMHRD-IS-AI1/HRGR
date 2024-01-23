@@ -309,7 +309,7 @@
                     </div>
                     <div class="col-lg-3 d-grid gap-2 my-auto">
                       <button type="button" class="btn btn-outline-success" onclick="openModal()" >배송조회</button>
-                      <button type="button" class="btn btn-outline-secondary">후기 작성하기</button>
+                      <a href="goreview?prod_idx=${prodList.prod_idx }"><button type="button" class="btn btn-outline-secondary" style="width:100%">후기 작성하기</button></a>
                     </div>
                     </div>
                 </div>

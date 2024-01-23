@@ -482,7 +482,7 @@
 										<use xlink:href="#heart"></use></svg></a>
 								<figure>
 									<a href="goprodDetail?prod_idx=<%=Buy.getProd_idx() %>" title="Product Title"> <img
-										src="./resources/upload/<%=Buy.getImg_name()%>" class="tab-image" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
+										src="./resources/upload/<%=Buy.getImg_name()%>" class="tab-image" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';" style="width:100%">
 									</a>
 								</figure>
 								<h3><%=Buy.getProd_name() %></h3>

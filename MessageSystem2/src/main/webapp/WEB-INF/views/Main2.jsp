@@ -364,7 +364,7 @@
 				                          <div class="categories my-3" >영농일지</div>
 				                          <h3 class="display-4">판매자가 키운 작물들을 구경하세요!</h3>
 				                          <p>김연성 농원, 민경상회, 상권농장 등 많은 판매자들이 있습니다!</p>
-				                          <a href="#" class="btn btn-outline-dark btn-lg ltext-uppercase fs-6 rounded-1 px-4 py-3 mt-3">보러가기!</a>
+				                          <a href="godiary" class="btn btn-outline-dark btn-lg ltext-uppercase fs-6 rounded-1 px-4 py-3 mt-3">보러가기!</a>
 				                        </div>
 										<div class="img-wrapper col-md-5">
 											<img src="./resources/images/farmer.png" class="img-fluid">
@@ -674,15 +674,35 @@
 
 									<%
 									List<Product> productList = (List<Product>) request.getAttribute("product");
+									System.out.println(productList.get(0).toString());
 									for (int i = 0; i < productList.size() && i < 10; i++) {
 										Product product = productList.get(i);
 									%>
 									<div class="col">
 										<div class="product-item">
-
-											<a href="#" class="btn-wishlist"><svg width="24"
-													height="24">
-													<use xlink:href="#heart"></use></svg></a>
+											
+											<%
+													if (Memberlogin == null) {
+													%>
+													<a href="goLogin" class="btn-wishlist" name="wishlist">
+														<svg width="24" height="24">
+															<use xlink:href="#heart"></use></svg>
+													</a>
+													<%
+													} else {
+													%>
+													<!-- Q7. 개인정보수정 기능 만들기 -->
+													<!-- Q8. 로그아웃 기능 만들기 -->
+													<!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->																																					
+													<a href="#" class="btn-wishlist" name="wishlist"
+														onclick="addToWishlist(this)" prod_idx="<%=product.getProd_idx() %>">
+														<svg width="24" height="24">
+        												<use xlink:href="#heart"></use>
+    													</svg>
+													</a>
+													<%
+													}
+													%>
 											<figure>
 												<a href="single-product.html" title="Product Title"> <img
 													src="./resources/upload/<%=product.getImg_name() %>"
@@ -926,16 +946,12 @@
 	</script>
 	<script>
 		// 검색창 눌렀을때 페이지 이동
-		document.getElementById('svg-container')
-				.addEventListener(
-						'click',
-						function() {
+		document.getElementById('svg-container').addEventListener('click',
+			function() {
 							// 현재 검색어 입력란의 값을 가져옴
-							var inputValue = document
-									.getElementById('searchInput').value;
+				var inputValue = document.getElementById('searchInput').value;
 							// 현재 페이지 URL에 검색어를 추가하여 페이지 이동
-							window.location.href = 'gosearch?searchInput='
-									+ encodeURIComponent(inputValue);
+				window.location.href = 'gosearch?searchInput='+ encodeURIComponent(inputValue);
 						});
 		
 		
@@ -975,7 +991,42 @@
 		      };
 	</script>
 	
-	 
+	 <script>
+	function addToWishlist(buttonElement) {
+	    /* var wishlistItem = {
+	        prodName: prodName,
+	        prodStock: prodStock,
+	        prodPrice: prodPrice,
+	        prodRatings: prodRatings,
+	        prod_idx: prod_idx,
+	        
+	    };
+		console.log(wishlistItem) */
+		
+        var prod_idx = buttonElement.getAttribute('prod_idx');
+		
+       
+        console.log('prod_idx:', prod_idx);
+
+		
+	    // AJAX를 사용하여 서버로 데이터 전송
+	    $.ajax({
+	        type: 'POST',
+	        url: 'searchLike',
+	        data: {'prod_idx':prod_idx},
+	        success: function(response) {
+	            console.log('Server response:',response);
+	            // TODO: 서버 응답에 따른 동작 수행
+	            alert('찜완료')
+	        },
+	        error: function(error) {
+	            console.error('Error:', error);
+	        }
+	    });
+	// 기본 동작 막기
+	    event.preventDefault();
+	   };
+	</script>
 	
 
 </body>

@@ -209,17 +209,17 @@
                
               
                   <ul class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
-                    <li class="nav-item active">
-                      <a href="#" class="nav-link">전체</a>
+                     <li class="nav-item active">
+                      <a href="searchAll" class="nav-link">전체</a>
                     </li>
                     <li class="nav-item dropdown">
-                      <a href="#" class="nav-link">농산물</a>
+                      <a href="searchno?value=농산물" class="nav-link">농산물</a>
                     </li>
                     <li class="nav-item">
-                      <a href="#" class="nav-link">수산물</a>
+                      <a href="searchno?value=수산물" class="nav-link">수산물</a>
                     </li>
                     <li class="nav-item">
-                      <a href="#" class="nav-link">가공식품</a>
+                      <a href="searchno?value=가공식품" class="nav-link">가공식품</a>
                     </li>
                    
                     <a href="godiary"  class="nav-link btn-coupon-code">
@@ -300,7 +300,7 @@
                     	<a href="goLogin"><button type="button" class="btn btn-lg btn-outline-success">장바구니</button></a>
                     <%} %>
                     
-                    <button type="button" class="btn btn-lg btn-success">바로구매</button>
+                   <a href="goPay"><button type="button" class="btn btn-lg btn-success">바로구매</button></a>
                   </div>
                 </div>
                </div>
@@ -347,11 +347,10 @@
           ★${reviewList.prod_ratings }</div>
         <hr style="color: rgb(156, 156, 156); margin: 0px;">
         <div>${reviewList.review_content }</div>
-        <div>
-        	<!--   fmt 태그 라이브러리 선언후 원하는 방식으로 가져오기 -->
-            <fmt:formatDate value="${reviewList.reviewed_at}" pattern="yyyy-MM-dd" var="formattedDate" />
-            ${formattedDate}
-          </div>
+       
+          <div style="font-size: 13px; color: rgb(145, 145, 145);">
+                <fmt:formatDate value="${reviewList.reviewed_at}" pattern="yyyy-MM-dd" />
+            </div>
     </div>
   </div>
 </div>
@@ -370,9 +369,15 @@
             <div class="prodReview_box" style="padding: 20px 20px 0px 20px;">
                 <div style="display: flex; justify-content: space-between;">
                     <h2 style="padding-top: 10px;">상품문의</h2>
-                    <a href="submitQna">
+                    <%if(Memberlogin != null) {%>
+                    <a href="goQna?prod_idx=<%=prodList.get(0).getProd_idx() %>">
                         <button type="button" class="btn btn-lg btn-success">문의하기</button>
                     </a>
+                    <%}else {%>
+                    	<a href="goLogin">
+                        <button type="button" class="btn btn-lg btn-success">문의하기</button>
+                    </a>
+                    <%} %>
                 </div>
                 
                 <c:forEach var="qnaList" items="${qnaList }" varStatus="i">
@@ -381,7 +386,9 @@
               <div style="padding: 10px 20px;">
                <div style="font-weight: bold; margin-bottom: 10px;">문의내용</div> 
                <div> ${qnaList.question }</div>
-               <div style="font-size: 13px; color: rgb(145, 145, 145);">${qnaList.questioned_at }</div>
+               <div style="font-size: 13px; color: rgb(145, 145, 145);">
+                <fmt:formatDate value="${qnaList.questioned_at}" pattern="yyyy-MM-dd" />
+            </div>
               </div>
               <hr style="color: rgb(156, 156, 156);">
               <div style="padding: 10px 50px;">
@@ -390,7 +397,10 @@
                   ${qnaList.seller_company_name }
                 </div> 
                    <div style="margin-left: 20px;"> ${qnaList.answer }
-                    <div style="font-size: 13px; color: rgb(145, 145, 145);">${qnaList.answered_at }</div>
+                     <div style="font-size: 13px; color: rgb(145, 145, 145);">
+                    <fmt:formatDate value="${qnaList.answered_at}" pattern="yyyy-MM-dd" />
+                </div>
+                    
                   </div>
                </div>
             </c:if>

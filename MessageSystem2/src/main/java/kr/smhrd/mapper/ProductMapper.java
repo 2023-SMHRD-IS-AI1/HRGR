@@ -51,7 +51,7 @@ import kr.smhrd.entity.Product;
 	 
 	public void insertQna(Product product);
 	 
-	public void insertReview(Product product);
+	public int insertReview(Product product);
 
 	public List<Product> sellerDiaryimg(int prod_idx);
 
@@ -60,6 +60,8 @@ import kr.smhrd.entity.Product;
 	public List<Product> searchno(String value);
 
 	public List<Product> searchAll();
+
+	public int nosearch(String searchInput);
 	
 	public void insertDiary(Product product);
 	public Product searchdiaryIdx(Product product);

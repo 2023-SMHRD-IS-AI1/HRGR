@@ -1,5 +1,9 @@
+<%@page import="java.util.List"%>
+<%@page import="kr.smhrd.entity.Member"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,8 +26,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<style>
+.fixed-bottom{
+	top:750px;
+}
+
+</style>
+
 </head>
 <body>
+<%
+	Member Memberlogin = (Member) session.getAttribute("loginMember");
+	
+	List<Member> prod = (List<Member>)request.getAttribute("prod");
+
+	%>
+
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <defs>
       <symbol xmlns="http://www.w3.org/2000/svg" id="link" viewBox="0 0 24 24">
@@ -73,8 +94,7 @@
       </symbol>
     </defs>
   </svg>
-
-  <header>
+<header>
       <div class="container-fluid">
         <div class="row py-3 border-bottom">
           
@@ -90,10 +110,10 @@
             <div class="search-bar row bg-light p-2 my-2 rounded-4">
               <div class="col-md-4 d-none d-md-block">
                 <select class="form-select border-0 bg-transparent">
-                  <option>전체상품</option>
-                  <option>농산물</option>
-                  <option>수산물</option>
-                  <option>가공식품</option>
+                  <option >전체상품</option>
+                  <option >농산물</option>
+                  <option >수산물</option>
+                  <option >가공식품</option>
                 </select>
               </div>
               <div class="col-11 col-md-7">
@@ -115,67 +135,56 @@
           
           <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
             <div class="support-box text-end d-none d-xl-block">
-						<%
-						if (Memberlogin == null) {
-						%>
-						<a class="fs-6 text-muted" href="goLogin">로그인</a>
-						<%
-						} else {
-						%> <a href=goLogout>로그아웃</a>
-						<!-- Q7. 개인정보수정 기능 만들기 -->
-						<!-- Q8. 로그아웃 기능 만들기 -->
-						<!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-							<% if (!Memberlogin.getCust_role().equals("S")) {%>
-									<a href="goSeller">판매자 등록</a>
-							<%}else {%>	
-									<a href=goSell>상품등록</a>
-									
-
-							<%}%>
-
-						<%}%>
-						<h5 class="mb-0"></h5>
-					</div>
-
-					<ul class="d-flex justify-content-end list-unstyled m-0">
-						<li>
-							<%
-							if (Memberlogin == null) {
-							%> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
-								<svg width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#user"></use>
-						</svg>
-						</a> <%
+                              <h5 class="mb-0"></h5>
+               </div>
+            <ul class="d-flex justify-content-end list-unstyled m-0">
+              <li><%
+                if (Memberlogin == null) {
+                %>
+                <a href="goLogin" style="font-size: 20px; color: green; font-weight: bold;"><i class="fa fa-sign-in" aria-hidden="true"> 로그인</i></a>
+                <%
+                } else {
+                %>
+                <a href="goLogout" style="font-size: 20px; color: green; font-weight: bold;"><i class="fa fa-sign-out" aria-hidden="true"> 로그아웃</i></a>
+                <%}%>
+              </li>
+              <li>
+                <%
+                     if (Memberlogin == null) {
+                     %> <a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
+                        <svg width="24" height="24" viewBox="0 0 24 24">
+                    <use xlink:href="#user"></use>
+                  </svg>
+                  </a> <%
  } else {
  %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-							<a href="gomyPage" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
-									width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#user"></use>
-						</svg></a> <%
+                     <a href="gomyPage" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
+                           width="24" height="24" viewBox="0 0 24 24">
+                    <use xlink:href="#user"></use>
+                  </svg></a> <%
  }
  %>
-						</li>
-						<li>
-							<%
-							if (Memberlogin == null) {
-							%><a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
-								<svg width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#cart"></use>
-						</svg>
-						</a> <%
- } else {
- %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
-							<a href="goLike" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
-									width="24" height="24" viewBox="0 0 24 24">
-  						<use xlink:href="#cart"></use>
-						</svg></a> <%
- }
- %>
-              
+              </li>
+              <li>
+                <%
+                if (Memberlogin == null) {
+                %><a href="goLogin" class="rounded-circle bg-light p-2 mx-1" style="color: green;">
+                  <svg width="24" height="24" viewBox="0 0 24 24">
+                <use xlink:href="#cart"></use>
+              </svg>
+              </a> <%
+   } else {%>
+            <a href="goMyCart" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
+              width="24" height="24" viewBox="0 0 24 24">
+              <use xlink:href="#cart"></use>
+              </svg></a> 
+              <%}%>
+              </li>
             </ul>
 
            
           </div>
+          
 
         </div>
       </div>
@@ -201,19 +210,19 @@
               
                   <ul class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
                     <li class="nav-item active">
-                      <a href="#" class="nav-link">전체</a>
+                      <a href="searchAll" class="nav-link">전체</a>
                     </li>
                     <li class="nav-item dropdown">
-                      <a href="#" class="nav-link">농산물</a>
+                      <a href="searchno?value=농산물" class="nav-link">농산물</a>
                     </li>
                     <li class="nav-item">
-                      <a href="#" class="nav-link">수산물</a>
+                      <a href="searchno?value=수산물" class="nav-link">수산물</a>
                     </li>
                     <li class="nav-item">
-                      <a href="#" class="nav-link">가공식품</a>
+                      <a href="searchno?value=가공식품" class="nav-link">가공식품</a>
                     </li>
                    
-                    <a href="godiary"  class="nav-link btn-coupon-code">
+                    <a href="godiary" class="nav-link btn-coupon-code">
                 <img src="./resources/images/book-half.svg" alt="gift icon">
                 <strong class="ms-2 text-dark">영농일지 보러가기</strong>
               </a>
@@ -239,27 +248,27 @@
             <h2 style="font-weight: bold; margin-bottom: 14px;">상품문의</h2>
             <!-- 찜목록 아래 큰틀 -->
             <form action="submitQna" method="post">
-            <input type="hidden" name="prod_idx" value="25">
-	         <input type="hidden" name="cust_id" value="1">
+            <input type="hidden" name="prod_idx" value="<%=prod.get(0).getProd_idx() %>">
+	         <input type="hidden" name="cust_id">
             <div class="review_box border-bottom border-top border-success">
              <div class="row" style="padding: 20px;">
-              <div class="col-3"><img class="rounded" src="//thumbnail7.coupangcdn.com/thumbnails/remote/300x300ex/image/vendor_inventory/3347/38dbf382340fbf1c4f44405591e08a5175b383431326b32be42d8dfa68ad.jpg" alt="" style="max-width: 100%;" ></div>
+              <div class="col-3"><img class="rounded" src="./resources/upload/${prod.get(0).getImg_name() }" alt="" style="max-width: 100%;" ></div>
               <div class="col-9">
-                  <div style="margin-bottom: 30px;"><p style="font-size: 20px; font-weight: bold;">상품명 (상품이름 들고와야함)</p></div>
-                  <div style="margin-bottom: 30px;">1000원(여기 나중에 바꿔야됨)</div>
+                  <div style="margin-bottom: 30px;"><p style="font-size: 20px; font-weight: bold;"><%=prod.get(0).getProd_name() %></p></div>
+                  <div style="margin-bottom: 30px;"><%=prod.get(0).getProd_price() %>원</div>
               </div>
              </div>
             </div>
             <div class="review_box border-bottom border-success row">
               <div class="col-2 align-self-center">문의내용</div>
               <div class="col-10">
-                <textarea class="form-control" name="question" id="review" rows="3" placeholder="상품에 대해 궁금한 점을 남겨주세요"></textarea>
+                <textarea class="form-control" name="question" id="question" rows="3" placeholder="상품에 대해 궁금한 점을 남겨주세요"></textarea>
               </div>
             </div>
 
           <div class="review_box" align="center">
-            <button type="button" class="btn btn-outline-secondary">취소하기</button>
-            <button type="submit" class="btn btn-success">등록하기</button>
+            <button type="button" class="btn btn-outline-secondary" onclick="cancelForm()">취소하기</button>
+            <button type="submit" class="btn btn-success" onclick="submitForm()">등록하기</button>
           </div>
           </form>
               </div>                        
@@ -367,5 +376,20 @@
     window.location.href = 'gosearch?searchInput=' + encodeURIComponent(inputValue);
   });
 </script>
+<script>
+   function submitForm() {
+      var questionValue = document.getElementById('question').value;
+      document.getElementById('qnaForm').action = 'submitQna?question=' + encodeURIComponent(questionValue);
+      document.getElementById('qnaForm').submit();
+      var prodIdxValue = document.querySelector('input[name="prod_idx"]').value;
+      document.querySelector('form').submit();
+   }
+
+   function cancelForm() {
+      // 취소 버튼 클릭 시 원하는 동작 수행
+   }
+</script>
+
+
 </body>
 </html>

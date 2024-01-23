@@ -324,16 +324,16 @@
               
                   <ul class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
                     <li class="nav-item active">
-                      <a href="#" class="nav-link">전체</a>
+                      <a href="searchAll" class="nav-link">전체</a>
                     </li>
                     <li class="nav-item dropdown">
-                      <a href="#" class="nav-link">농산물</a>
+                      <a href="searchno?value=농산물" class="nav-link">농산물</a>
                     </li>
                     <li class="nav-item">
-                      <a href="#" class="nav-link">수산물</a>
+                      <a href="searchno?value=수산물" class="nav-link">수산물</a>
                     </li>
                     <li class="nav-item">
-                      <a href="#" class="nav-link">가공식품</a>
+                      <a href="searchno?value=가공식품" class="nav-link">가공식품</a>
                     </li>
                    
                     <a href="godiary" class="nav-link btn-coupon-code">
@@ -358,10 +358,10 @@
 
 	<!-- 시세 확인란 -->
 	<ul class="sisae">
-		<li><%=name %> 의 시세</li>
+		<li style="padding-left: 15px;"><%=name %> 의 시세</li>
 		<li>단위 : <%=unit %></li>
-		<li>오늘 :<%=today %>원</li>
-		<li>전일 :<%=yesterday %>원</li>
+		<li>오늘 : <%=today %>원</li>
+		<li>전일 : <%=yesterday %>원</li>
 		
 	</ul>
 
@@ -448,7 +448,7 @@
 																</button>
 															</span>
 														</div>
-														<a href="#" class="nav-link" onclick="addToCart(event,${product.prod_idx}, ${product.prod_price}, 'quantity(2)${loopStatus.index}')">Add to Cart <iconify-icon
+														<a href="#" class="nav-link" onclick="addToCart(event,${product.prod_idx}, ${product.prod_price}, 'quantity(2)${loopStatus.index}')">장바구니 담기<iconify-icon
                                                 icon="uil:shopping-cart"></a>
 													</div>
 												</div>
@@ -553,7 +553,7 @@
 																</button>
 															</span>
 														</div>
-														<a href="#" class="nav-link" onclick="addToCart(event,${ProductNew.prod_idx}, ${ProductNew.prod_price}, 'quantity(2)${loopStatus.index}')">Add to Cart <iconify-icon
+														<a href="#" class="nav-link" onclick="addToCart(event,${ProductNew.prod_idx}, ${ProductNew.prod_price}, 'quantity(2)${loopStatus.index}')">장바구니 담기<iconify-icon
                                                 icon="uil:shopping-cart"></a>
 													</div>
 												</div>

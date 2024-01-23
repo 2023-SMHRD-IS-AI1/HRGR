@@ -70,6 +70,9 @@ public class ProdController {
 	@RequestMapping("/gosearch")
 	public String gosearch(Model model, @RequestParam("searchInput") String searchInput,HttpSession session) throws IOException, ParseException{
 		// if 문으로 검색 결과 없을때 창 만들어야함;
+		int cnt = ProductMapper.nosearch(searchInput);
+		
+		if(cnt > 0) {
 		List<Product> prodlist = ProductMapper.searchTopList(searchInput);
 		List<Product> prodNewlist = ProductMapper.searchNewList(searchInput);
 		Member member = (Member)session.getAttribute("loginMember");
@@ -79,6 +82,7 @@ public class ProdController {
 		model.addAttribute("ProductNew", prodNewlist);
 		System.out.println(model.toString());
 		String name =ProductMapper.searchName(searchInput);
+		System.out.println(name);
 		try {
 		    String apiUrl = "http://www.kamis.co.kr/service/price/xml.do?action=dailySalesList";
 
@@ -152,7 +156,11 @@ public class ProdController {
 		} catch (Exception e) {
 		    e.printStackTrace();
 		}
-		return "searchResult" ;
+			return "searchResult" ;
+		}else {
+			return "noSearchResult";
+		}
+		
 	}
 
 	@RequestMapping("/prodRegist")
@@ -353,18 +361,23 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 	           System.out.println("diary 사진들@@@:"+list);
 	          return "prodDetail"; // 적절한 뷰 이름을 반환합니다.
 	       }
-		@RequestMapping(value="/submitQna", method = RequestMethod.POST)
-		public String submitQna(@RequestParam("prod_idx") int prod_idx,@RequestParam("cust_id") String cust_id,
-                @RequestParam("question") String question) {
+		@RequestMapping("/submitQna")
+		public String submitQna(@RequestParam("prod_idx") int prod_idx,
+                @RequestParam("question") String question,HttpSession session,Member member) {
 			
+			Member loginMember = (Member)session.getAttribute("loginMember");
+			String cust_id = loginMember.getCust_id();
 			Product product = new Product();
 	        product.setProd_idx(prod_idx);
+	        System.out.println("질문 사항!!  :" +prod_idx);
 	        product.setCust_id(cust_id);
 	        product.setQuestion(question);
+	        
+	        System.out.println("질문 사항!!  :" +question);
 	        product.setQuestioned_at(new Date());
 	        System.out.println(product.toString());
 	        ProductMapper.insertQna(product); 
-	        return "Main";
+	        return "redirect:/";
 		}
 
 
@@ -396,12 +409,12 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 					return "error";
 				}
 
-				product.setReviewed_at(new Date());
+				System.out.println(product.toString());
 				ProductMapper.insertReview(product);
 
 			
 			}
-			return "Main";
+			return "redirect:/";
 
 		}
 		
@@ -412,6 +425,7 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 	         
 			 List<Product> List = ProductMapper.searchno(value);
 			 model.addAttribute("List",List);
+			 
 			 System.out.println(List.toString());
 	          return "prodView"; // 적절한 뷰 이름을 반환합니다.
 	       }
@@ -497,5 +511,15 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 		    return "Main2";
 		}
 		
+		
+		
+		
+		
+		@RequestMapping("/goPay")
+		public String goPay(Product product) {
+			
+			
+			return "checkout";
+		}
 		
 }

@@ -1,5 +1,7 @@
 package kr.smhrd.entity;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -106,14 +108,14 @@ public class Member {
 		    
 		 private String diary_img_name;
 		 
+		 private String cust_addr1;
 		 
 		
-		 
-
-
-
-		//qna
 		 private String prod_img_name;
+
+
+
+		
 		 
 		 
 		

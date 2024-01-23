@@ -228,11 +228,15 @@ WHERE
 <select id="selectProducts" resultType="kr.smhrd.entity.Product">
 SELECT 
     prod.*, 
-    img.img_name
+    prod.prod_idx AS prod_idx,
+    img.img_name AS img_name,
+    review.prod_ratings AS prod_ratings
 FROM 
     (SELECT * FROM tb_prod ORDER BY created_at DESC LIMIT 10) AS prod
 LEFT JOIN 
-    tb_prod_image img ON prod.prod_idx = img.prod_idx;
+    tb_prod_image img ON prod.prod_idx = img.prod_idx
+LEFT JOIN 
+    tb_review review ON prod.prod_idx = review.prod_idx;
 </select>
 
 <!-- 농사일지 좋아요 가장 많은 3개 뽑기 -->
@@ -294,15 +298,15 @@ WHERE prod_idx=#{prod_idx}
 <!-- qna 입력 -->
 <insert id="insertQna" parameterType="kr.smhrd.entity.Product" >
 INSERT INTO tb_qna (prod_idx, cust_id, question, questioned_at)
-        VALUES (#{prod_idx}, #{cust_id}, #{question}, #{questioned_at})
+        VALUES (#{prod_idx}, #{cust_id}, #{question}, NOW())
 </insert>
 
 
 
 <!-- 후기등록하기 -->
-<insert id="insertReview" parameterType="kr.smhrd.entity.Product">
+<insert id="insertReview" parameterType="kr.smhrd.entity.Product" >
 INSERT INTO tb_review (prod_idx, cust_id, review_content,prod_ratings,reviewed_at,image_name)
-		VALUES (#{prod_idx},#{cust_id},#{review_content},#{prod_ratings},#{reviewed_at},#{image_name})
+		VALUES (#{prod_idx},#{cust_id},#{review_content},#{prod_ratings},NOW(),#{image_name})
 </insert>
 
 <select id="sellerDiaryimg" parameterType="int" resultType="kr.smhrd.entity.Product">
@@ -323,6 +327,7 @@ SELECT prod_name FROM tb_prod WHERE prod_name LIKE CONCAT('%', #{searchInput}, '
 
     SELECT
     tb_prod.prod_idx AS prod_idx,
+    tb_prod.prod_type AS prod_type,
     tb_prod.prod_name AS prod_name,
     tb_prod.prod_desc AS prod_desc,
     tb_prod.prod_price AS prod_price,
@@ -350,6 +355,7 @@ UNION
 
 SELECT
     tb_prod.prod_idx AS prod_idx,
+    tb_prod.prod_type AS prod_type,
     tb_prod.prod_name AS prod_name,
     tb_prod.prod_desc AS prod_desc,
     tb_prod.prod_price AS prod_price,
@@ -438,6 +444,12 @@ ORDER BY
  VALUES(#{cust_id}, #{diary_title}, #{diary_content}, now(),0)
 </insert>
 
+<select id="nosearch" resultType="int" parameterType="String">
+select count(*) from tb_prod where prod_name LIKE CONCAT('%', #{searchInput}, '%');
+</select>
+
+
+
 <select id="searchdiaryIdx" resultType="kr.smhrd.entity.Product">
 select * from tb_diary where cust_id=#{cust_id} order by created_at desc limit 1
 </select>
@@ -447,5 +459,6 @@ select * from tb_diary where cust_id=#{cust_id} order by created_at desc limit 1
 insert into tb_diary_image (diary_idx, img_name, img_real_name, img_ext, img_size)
 values(#{diary_idx}, #{img_name}, #{img_real_name}, #{img_ext}, #{img_size})
 </insert>
+
 
 </mapper>

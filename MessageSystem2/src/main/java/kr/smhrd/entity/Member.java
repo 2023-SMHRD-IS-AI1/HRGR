@@ -1,5 +1,7 @@
 package kr.smhrd.entity;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -112,8 +114,7 @@ public class Member {
 
 
 
-		//qna
-		 private String prod_img_name;
+		
 		 
 		 
 		

@@ -16,7 +16,7 @@
 
 	<update id="updateMember" parameterType="kr.smhrd.entity.Member">
 		update tb_cust set 
-		cust_phone=#{cust_phone}, cust_pw=SHA2(#{cust_pw},224), cust_nick=#{cust_nick},cust_email=#{cust_email},cust_birthdate=#{cust_birthdate}, cust_addr=#{cust_addr} where cust_id=#{cust_id}
+		 cust_pw=SHA2(#{cust_pw},224), cust_nick=#{cust_nick},cust_email=#{cust_email},cust_birthdate=#{cust_birthdate}, cust_addr=#{cust_addr} where cust_id=#{cust_id}
 	</update>
 
 	<select id="showMember" resultType="kr.smhrd.entity.Member">
@@ -216,5 +216,23 @@ where D.cust_id=#{cust_id}
  select * from tb_cust where cust_phone=#{cust_phone}
 
 </select>
+
+
+<select id="goQna" parameterType="int" resultType="kr.smhrd.entity.Member">
+       
+    
+   SELECT 
+    p.*, 
+    pi.img_name AS img_name
+FROM 
+    tb_prod p
+LEFT JOIN 
+    tb_prod_image pi ON p.prod_idx = pi.prod_idx
+WHERE
+    p.prod_idx = #{prod_idx}
+</select>
+
+
+
 
 </mapper>

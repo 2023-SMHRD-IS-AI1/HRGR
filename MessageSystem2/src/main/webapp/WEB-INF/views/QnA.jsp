@@ -1,5 +1,9 @@
+<%@page import="java.util.List"%>
+<%@page import="kr.smhrd.entity.Member"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,8 +26,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<style>
+.fixed-bottom{
+	top:750px;
+}
+
+</style>
+
 </head>
 <body>
+<%
+	Member Memberlogin = (Member) session.getAttribute("loginMember");
+	
+	List<Member> prod = (List<Member>)request.getAttribute("prod");
+
+	%>
+
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <defs>
       <symbol xmlns="http://www.w3.org/2000/svg" id="link" viewBox="0 0 24 24">
@@ -239,27 +260,27 @@
             <h2 style="font-weight: bold; margin-bottom: 14px;">상품문의</h2>
             <!-- 찜목록 아래 큰틀 -->
             <form action="submitQna" method="post">
-            <input type="hidden" name="prod_idx" value="25">
-	         <input type="hidden" name="cust_id" value="1">
+            <input type="hidden" name="prod_idx" value="<%=prod.get(0).getProd_idx() %>">
+	         <input type="hidden" name="cust_id">
             <div class="review_box border-bottom border-top border-success">
              <div class="row" style="padding: 20px;">
-              <div class="col-3"><img class="rounded" src="//thumbnail7.coupangcdn.com/thumbnails/remote/300x300ex/image/vendor_inventory/3347/38dbf382340fbf1c4f44405591e08a5175b383431326b32be42d8dfa68ad.jpg" alt="" style="max-width: 100%;" ></div>
+              <div class="col-3"><img class="rounded" src="./resources/upload/${prod.get(0).getImg_name() }" alt="" style="max-width: 100%;" ></div>
               <div class="col-9">
-                  <div style="margin-bottom: 30px;"><p style="font-size: 20px; font-weight: bold;">상품명 (상품이름 들고와야함)</p></div>
-                  <div style="margin-bottom: 30px;">1000원(여기 나중에 바꿔야됨)</div>
+                  <div style="margin-bottom: 30px;"><p style="font-size: 20px; font-weight: bold;"><%=prod.get(0).getProd_name() %></p></div>
+                  <div style="margin-bottom: 30px;"><%=prod.get(0).getProd_price() %>원</div>
               </div>
              </div>
             </div>
             <div class="review_box border-bottom border-success row">
               <div class="col-2 align-self-center">문의내용</div>
               <div class="col-10">
-                <textarea class="form-control" name="question" id="review" rows="3" placeholder="상품에 대해 궁금한 점을 남겨주세요"></textarea>
+                <textarea class="form-control" name="question" id="question" rows="3" placeholder="상품에 대해 궁금한 점을 남겨주세요"></textarea>
               </div>
             </div>
 
           <div class="review_box" align="center">
-            <button type="button" class="btn btn-outline-secondary">취소하기</button>
-            <button type="submit" class="btn btn-success">등록하기</button>
+            <button type="button" class="btn btn-outline-secondary" onclick="cancelForm()">취소하기</button>
+            <button type="submit" class="btn btn-success" onclick="submitForm()">등록하기</button>
           </div>
           </form>
               </div>                        
@@ -367,5 +388,20 @@
     window.location.href = 'gosearch?searchInput=' + encodeURIComponent(inputValue);
   });
 </script>
+<script>
+   function submitForm() {
+      var questionValue = document.getElementById('question').value;
+      document.getElementById('qnaForm').action = 'submitQna?question=' + encodeURIComponent(questionValue);
+      document.getElementById('qnaForm').submit();
+      var prodIdxValue = document.querySelector('input[name="prod_idx"]').value;
+      document.querySelector('form').submit();
+   }
+
+   function cancelForm() {
+      // 취소 버튼 클릭 시 원하는 동작 수행
+   }
+</script>
+
+
 </body>
 </html>

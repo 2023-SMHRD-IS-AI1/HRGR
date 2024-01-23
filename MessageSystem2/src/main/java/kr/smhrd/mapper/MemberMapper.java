@@ -77,6 +77,13 @@ public interface MemberMapper { // 틀, SqlSessionFactoryBean이 MemberMapper를
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	public int insertQna(Member member);
+	
+	
+	public List<Member> goQna(int prod_idx);
+
+
 	
 
 	

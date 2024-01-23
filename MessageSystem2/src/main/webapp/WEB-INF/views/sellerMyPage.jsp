@@ -204,17 +204,17 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
                
               
                   <ul class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
-                    <li class="nav-item active">
-                      <a href="#" class="nav-link">전체</a>
+                     <li class="nav-item active">
+                      <a href="searchAll" class="nav-link">전체</a>
                     </li>
                     <li class="nav-item dropdown">
-                      <a href="#" class="nav-link">농산물</a>
+                      <a href="searchno?value=농산물" class="nav-link">농산물</a>
                     </li>
                     <li class="nav-item">
-                      <a href="#" class="nav-link">수산물</a>
+                      <a href="searchno?value=수산물" class="nav-link">수산물</a>
                     </li>
                     <li class="nav-item">
-                      <a href="#" class="nav-link">가공식품</a>
+                      <a href="searchno?value=가공식품" class="nav-link">가공식품</a>
                     </li>
                    
                     <a href="godiary"  class="nav-link btn-coupon-code">

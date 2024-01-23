@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Date;
 import java.util.List;
 
 
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -79,9 +81,9 @@ public class MemberController {
 	@GetMapping("/")
 	public String main(Model model) {
 			List<Product> products = ProductMapper.selectProducts();
-
-			model.addAttribute("product", products);
 			
+			model.addAttribute("product", products);
+			System.out.println(products);
 			List<Product> likeDiaries = ProductMapper.selectLikeDiary();
 
 		    model.addAttribute("likeDiaries", likeDiaries);
@@ -93,6 +95,7 @@ public class MemberController {
 			model.addAttribute("editorPick",editorPick);
 			List<RankingData> dataList = RankingMapper.selectranking();
 			model.addAttribute("dataList", dataList);
+			
 		return "Main2";
 	}
 	
@@ -247,7 +250,7 @@ public class MemberController {
 		System.out.println("cust_id값 확인 : "+ cust_id);
 		member.setCust_id(cust_id);
 		member.setProd_idx(prod_idx);
-		System.out.println(prod_idx);
+		System.out.println("sadgadsgasdgasgd    :"+prod_idx);
 		
 		
 		int cnt = memberMapper.searchLike(member);
@@ -389,14 +392,23 @@ public class MemberController {
 	
 	@RequestMapping("/goSellerDiary")
 	public String goSellerDiary(@RequestParam String cust_id, Model model,HttpSession session) {
-		List<Member> diaryList =memberMapper.mydiaryList(cust_id);
+		List<Member> diaryList = memberMapper.mydiaryList(cust_id);
 		model.addAttribute("diaryList",diaryList);
 		System.out.println("판매자 농장일기!@!#!# :  "+diaryList);
 		return "diary";
 	}
 	
 	
+	@RequestMapping("/goQna")
+	public String goQna(@RequestParam int prod_idx, Model model,HttpSession session) {
+		
+		List<Member> prod = memberMapper.goQna(prod_idx);
+		model.addAttribute("prod",prod);
+		System.out.println(prod);
+		return "QnA";
+	}
 
+	
 	
 	
 	

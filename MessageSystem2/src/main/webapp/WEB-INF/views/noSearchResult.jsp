@@ -54,15 +54,6 @@
 <body>
 	<% 
   	Member Memberlogin = (Member)session.getAttribute("loginMember");
-	
-	
-	System.out.println(Memberlogin.toString());
-	String savePath = "./resources/upload";
-	
-	List<Product> prodList = (List<Product>)request.getAttribute("prodList");
-	List<Member> reviewList = (List<Member>)request.getAttribute("reviewList");
-	
-	
 			
   %>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">

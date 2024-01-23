@@ -60,6 +60,8 @@ import kr.smhrd.entity.Product;
 	public List<Product> searchno(String value);
 
 	public List<Product> searchAll();
+
+	public int nosearch(String searchInput);
 	
 	
 	

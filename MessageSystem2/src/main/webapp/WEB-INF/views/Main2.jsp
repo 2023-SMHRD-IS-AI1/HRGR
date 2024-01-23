@@ -707,7 +707,7 @@
 											<figure>
 												<a href="goprodDetail?prod_idx=<%=product.getProd_idx() %>" title="Product Title"> <img
 													src="./resources/upload/<%=product.getImg_name() %>"
-													class="tab-image" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
+													class="tab-image" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';" style="max-height: 256px">
 												</a>
 											</figure>
 											<h3><%=product.getProd_name()%></h3>

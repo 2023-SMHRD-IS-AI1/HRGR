@@ -417,12 +417,12 @@
 
 													<figure>
 														<a href="goprodDetail?prod_idx=${product.prod_idx}" title="Product Title"> <img
-															src="./resources/upload/${product.img_name }" class="tab-image" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
+															src="./resources/upload/${product.img_name }" class="tab-image" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';" style="max-height: 256px">
 														</a>
 													</figure>
 													<h3>${product.prod_name}</h3>
 													
-													<span class="qty">${product.prod_stock }</span><span
+													<span class="qty">${product.prod_stock }개 남음</span><span
 														class="rating"><svg width="24" height="24"
 															class="text-primary">
 															<use xlink:href="#star-solid"></use></svg>
@@ -522,12 +522,12 @@
 
 													<figure>
 														<a href="goprodDetail?prod_idx=${ProductNew.prod_idx}"title="Product Title"> <img
-															src="./resources/upload/${ProductNew.img_name }" class="tab-image" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
+															src="./resources/upload/${ProductNew.img_name }" class="tab-image" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';" style="max-height: 256px">
 														</a>
 													</figure>
 													<h3>${ProductNew.prod_name}</h3>
 													
-													<span class="qty">${ProductNew.prod_stock }</span><span
+													<span class="qty">${ProductNew.prod_stock }개 남음</span><span
 														class="rating"><svg width="24" height="24"
 															class="text-primary">
 															<use xlink:href="#star-solid"></use></svg>

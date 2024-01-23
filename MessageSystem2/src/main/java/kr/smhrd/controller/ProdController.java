@@ -129,26 +129,24 @@ public class ProdController {
 		        String dpr2Value = (String) priceObject.get("dpr2");
 		        String unitValue = (String) priceObject.get("unit");
 		        String product_cls_name = (String) priceObject.get("product_cls_name");
+
 		        // itemName에 "당근"이 포함되어 있으면 출력 및 모델에 추가
 		        int index = itemName.indexOf('/');
-	            if (index != -1) {
-	                itemName = itemName.substring(0, index);
-	                if (name.contains(itemName)) {
-			            // "/" 앞의 문자열만 추출
-			            if(product_cls_name.equals("소매")) {
+		        if (index != -1) {
+		            itemName = itemName.substring(0, index);
+		            if (name.contains(itemName) && "소매".equals(product_cls_name)) {
+		                System.out.println("Item Name: " + itemName);
+		                System.out.println("dpr1 value: " + dpr1Value);
+		                System.out.println("dpr2 value: " + dpr2Value);
+		                System.out.println();
 
-	                	System.out.println("Item Name: " + itemName);
-	                	System.out.println("dpr1 value: " + dpr1Value);
-	                	System.out.println("dpr2 value: " + dpr2Value);
-	                	System.out.println();
-	                	model.addAttribute("today", dpr1Value);
-	                	model.addAttribute("yesterday", dpr2Value);
-	                	model.addAttribute("name", itemName);
-	                	model.addAttribute("unit", unitValue);
-			            }
-			        }
-	            }
-		      
+		                // model에 값 추가
+		                model.addAttribute("today", dpr1Value);
+		                model.addAttribute("yesterday", dpr2Value);
+		                model.addAttribute("name", itemName);
+		                model.addAttribute("unit", unitValue);
+		            }
+		        }
 		    }
 
 		
@@ -393,24 +391,28 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 		}
 
 		@RequestMapping(value = "/submitReview", method = RequestMethod.POST)
-		public String submitReview(@ModelAttribute Product product, @RequestParam("image") MultipartFile image,
-				HttpServletRequest request) {
-
-			if (!image.isEmpty()) {
-				String imageName = image.getOriginalFilename();
+		public String submitReview(@ModelAttribute Product product, @RequestParam("image_name") MultipartFile image_name,@RequestParam int prod_idx,
+				HttpServletRequest request,HttpSession session) {
+			Member loginMember = (Member)session.getAttribute("loginMember");
+			
+			String cust_id=loginMember.getCust_id();
+			
+			if (!image_name.isEmpty()) {
+				String imageName = image_name.getOriginalFilename();
 				ServletContext context = request.getSession().getServletContext();
 				String savePath = context.getRealPath("./resources/upload");
 				Path path = Paths.get(savePath + "/" + imageName);
 				try {
-					Files.copy(image.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+					Files.copy(image_name.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 					product.setImage_name(imageName);
 				} catch (IOException e) {
 					e.printStackTrace();
 					return "error";
 				}
-
-				System.out.println(product.toString());
+				product.setCust_id(cust_id);
+				product.setProd_idx(prod_idx);
 				ProductMapper.insertReview(product);
+				System.out.println("리뷰 확인!!!!: "+product);
 
 			
 			}

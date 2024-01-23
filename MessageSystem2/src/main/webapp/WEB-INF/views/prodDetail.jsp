@@ -299,8 +299,11 @@
                     <%}else {%>
                     	<a href="goLogin"><button type="button" class="btn btn-lg btn-outline-success">장바구니</button></a>
                     <%} %>
-                    
-                   <a href="goPay?prod_idx=${prodList.get(0).getProd_idx()}&prod_price=${prodList.get(0).getProd_price()}"><button type="button" class="btn btn-lg btn-success">바로구매</button></a>
+                   <%if(Memberlogin != null){ %> 
+                   		<a href="goPay?prod_idx=${prodList.get(0).getProd_idx()}&prod_price=${prodList.get(0).getProd_price()}"><button type="button" class="btn btn-lg btn-success">바로구매</button></a>
+                   <%}else {%>
+                   		<a href="goLogin"><button type="button" class="btn btn-lg btn-success">바로구매</button></a>
+                   <%} %>
                   </div>
                 </div>
                </div>

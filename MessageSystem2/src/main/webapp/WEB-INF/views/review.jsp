@@ -238,8 +238,8 @@ Member Memberlogin = (Member) session.getAttribute("loginMember");
             <h2 style="font-weight: bold; margin-bottom: 14px;">후기 작성</h2>
             <!-- 제목 아래 큰틀 -->
             <form action="submitReview" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="prod_idx" value="25">
-	        <input type="hidden" name="cust_id" value="1">
+            <input type="hidden" name="prod_idx" value="<%=prod.get(0).getProd_idx() %>" id="prod_idx">
+	        <input type="hidden" name="cust_id" value="<%=prod.get(0).getCust_id() %>" id="cust_id">
             <div class="review_box border-bottom border-top border-success">
              <div class="row" style="padding: 20px;">
               <div class="col-3"><img class="rounded" src="./resources/upload/<%=prod.get(0).getImg_name() %>" alt="" style="max-width: 100%;" ></div>
@@ -261,13 +261,13 @@ Member Memberlogin = (Member) session.getAttribute("loginMember");
             <div class="review_box border-bottom border-success row">
               <div class="col-2 align-self-center">상세리뷰</div>
               <div class="col-10">
-                <textarea class="form-control" id="review" name="review_content" rows="3" placeholder="상품에 대한 솔직한 평가를 남겨주세요."></textarea>
+                <textarea class="form-control" id="review_content" name="review_content" rows="3" placeholder="상품에 대한 솔직한 평가를 남겨주세요."></textarea>
               </div>
             </div>
             <div class="review_box border-bottom border-success row">
               <div class="col-2 align-self-center">사진첨부</div>
               <div class="col-4">
-                <input class="form-control" type="file" name="image" id="formFile">
+                <input class="form-control" type="file" name="image_name" id="image_name">
               </div>
               <div class="col-6">
                 사진은 최대 20MB이하의 JPG, PNG, GIF 파일을 첨부해주세요

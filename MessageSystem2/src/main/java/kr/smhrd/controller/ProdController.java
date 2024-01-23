@@ -523,10 +523,6 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 		
 		
 		@RequestMapping("/goPay")
-<<<<<<< HEAD
-		public String goPay(Product product) {
-
-=======
 		public String goPay(Product product,Member member, HttpSession session,@RequestParam int prod_idx ,@RequestParam int prod_price ) {
 			 Member loginMember = (Member)session.getAttribute("loginMember");
 			 
@@ -547,8 +543,6 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 				 member.setDelivery_addr(cust_addr);
 				 member.setReceiver_name(cust_name);
 				 member.setReceiver_phone(cust_phone);
-				 
->>>>>>> branch 'master' of https://github.com/2023-SMHRD-IS-AI1/HRGR.git
 			
 			int cnt = ProductMapper.buy(member);
 			if(cnt != 0 ) {

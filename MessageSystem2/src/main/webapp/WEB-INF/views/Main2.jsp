@@ -481,7 +481,7 @@
 								<a href="#" class="btn-wishlist"><svg width="24" height="24">
 										<use xlink:href="#heart"></use></svg></a>
 								<figure>
-									<a href="single-product.html" title="Product Title"> <img
+									<a href="goprodDetail?prod_idx=<%=Buy.getProd_idx() %>" title="Product Title"> <img
 										src="./resources/upload/<%=Buy.getImg_name()%>" class="tab-image" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
 									</a>
 								</figure>
@@ -628,8 +628,8 @@
 								<div class="card mb-3 p-3 rounded-4 shadow border-0">
 									<div class="row g-0">
 										<div class="col-md-4">
-											<img src="./resources/upload/<%=editor.getImg_name() %>"
-												class="img-fluid rounded" alt="Card title" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
+											<a href="goprodDetail?prod_idx=<%=editor.getProd_idx() %>"><img src="./resources/upload/<%=editor.getImg_name() %>"
+												class="img-fluid rounded" alt="Card title" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';"></a>
 										</div>
 										<div class="col-md-8">
 											<div class="card-body py-0">
@@ -704,7 +704,7 @@
 													}
 													%>
 											<figure>
-												<a href="single-product.html" title="Product Title"> <img
+												<a href="goprodDetail?prod_idx=<%=product.getProd_idx() %>" title="Product Title"> <img
 													src="./resources/upload/<%=product.getImg_name() %>"
 													class="tab-image" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
 												</a>

@@ -185,7 +185,7 @@ public class Product {
 		private String review_content;
 		private Date reviewed_at;
 		private String image_name;
-
+		
 
 		private int diary_idx;
 

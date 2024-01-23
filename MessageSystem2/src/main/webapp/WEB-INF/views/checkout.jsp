@@ -319,22 +319,22 @@
                 <div class="col-3" align="right" style="padding: 5px;">결제방법</div>
                 <div class="col-9" style="padding-top: 5px;">
                   <div class="form-check form-check-inline" >
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                  <label class="form-check-label" for="inlineRadio1">카드결제</label>
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="카드결제">
+					<label class="form-check-label" for="inlineRadio1">카드결제</label>
                    </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                  <label class="form-check-label" for="inlineRadio2">카카오페이</label>
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="카카오페이">
+					<label class="form-check-label" for="inlineRadio2">카카오페이</label>
                 </div></div>
               </div>
             </div>
             <hr>
             <div align="center">
-              <a href="#" style="text-decoration: none;">
+              <a href="goMain" style="text-decoration: none;">
                 <button type="button" class="btn btn-lg btn-outline-success">취소</button>
               </a>
-                <button type="submit" class="btn btn-lg btn-success">결제하기</button>
-            </div>
+              <button type="button" class="btn btn-lg btn-success" onclick="handlePayment()">결제하기</button>
+              </div>
 
 
 
@@ -404,12 +404,13 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
       <script src="js/plugins.js"></script>
       <script src="js/script.js"></script>
-       <script>
-    document.getElementById("userIcon").addEventListener("click", function() {
-       window.location.href = "goLogin";
-  });
-    
-    </script>
+      <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+      
+      <script>
+    	document.getElementById("userIcon").addEventListener("click", function() {
+        window.location.href = "goLogin";
+  		});
+      </script>
     <script>
   // 검색창 눌렀을때 페이지 이동
    document.getElementById('svg-container').addEventListener('click', function() {
@@ -418,6 +419,63 @@
     // 현재 페이지 URL에 검색어를 추가하여 페이지 이동
     window.location.href = 'gosearch?searchInput=' + encodeURIComponent(inputValue);
   });
+  
+
+   // 라디오 버튼 선택 여부 확인 및 동적 처리
+   function handlePayment() {
+     var radioOptions = document.getElementsByName("inlineRadioOptions");
+     var selectedValue = "";
+
+     for (var i = 0; i < radioOptions.length; i++) {
+       if (radioOptions[i].checked) {
+         selectedValue = radioOptions[i].value;
+         break;
+       }
+     }
+
+     // 선택된 값이 "카카오페이"인 경우에만 함수 호출
+     if (selectedValue === "카카오페이") {
+     	var pg = "kakaopay"
+     	iamport(pg);
+     }else if(selectedValue === "카드결제"){
+     	var pg = "html5_inicis"
+     	iamport(pg);
+     }
+   }
+	// 결제 코드
+	   function iamport(pg) {
+		    // 가맹점 식별코드
+		    IMP.init('imp44183336'); // 가맹점 식별코드로 Iamport 초기화
+		    IMP.request_pay({ // 결제 요청
+		        pg: pg,   // PG사 설정
+		        pay_method : "card", // 결제 방법
+		        merchant_uid : "20231101ABDE", // 주문 번호
+		        name : "하루그린", // 상품 이름
+		        amount: 3000, // 결제 가격
+		        buyer_name : "홍길동", // 구매자 이름 (buyer_ 부분은 꼭 작성하지 않아도된다. (선택사항))
+		        buyer_tel : "010-5555-1111", // 구매자 연락처
+		        buyer_postcode : 52030, // 구매자 우편번호
+		        buyer_addr : "경기도 판교" // 구매자 주소
+		    }, function(res) {
+		        if (res.success) {
+		            axios({
+		                method: "post",
+		                url: "http://localhost:8081/controller/payByImport"
+		            })
+		        	// 응답 데이터의 정보들
+		            console.log("Payment success!");
+		            console.log("Payment ID : " + res.imp_uid);
+		            console.log("Order ID : " + res.merchant_uid);
+		            console.log("Payment Amount : " + res.paid_amount);
+		        } else {
+		            console.error(response.error_msg);
+		        }
+		    });
+
+		 }
+ 
+  
+   
 </script>
 </body>
 </html>

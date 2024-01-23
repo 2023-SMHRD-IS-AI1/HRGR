@@ -512,4 +512,14 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 		}
 		
 		
+		
+		
+		
+		@RequestMapping("/goPay")
+		public String goPay(Product product) {
+			
+			
+			return "checkout";
+		}
+		
 }

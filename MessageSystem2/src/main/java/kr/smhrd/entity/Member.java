@@ -111,7 +111,7 @@ public class Member {
 		 private String cust_addr1;
 		 
 		
-		 
+		 private String prod_img_name;
 
 
 

@@ -300,7 +300,7 @@
                     	<a href="goLogin"><button type="button" class="btn btn-lg btn-outline-success">장바구니</button></a>
                     <%} %>
                     
-                    <button type="button" class="btn btn-lg btn-success">바로구매</button>
+                   <a href="goPay"><button type="button" class="btn btn-lg btn-success">바로구매</button></a>
                   </div>
                 </div>
                </div>

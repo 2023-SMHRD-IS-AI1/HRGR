@@ -319,7 +319,7 @@ WHERE p.prod_idx = #{prod_idx};
 </select>
 
 <select id="searchName" parameterType="String" resultType="String">
-SELECT prod_name FROM tb_prod WHERE prod_name LIKE CONCAT('%', #{searchInput}, '%') LIMIT 2;
+SELECT prod_name FROM tb_prod WHERE prod_name LIKE CONCAT('%', #{searchInput}, '%') LIMIT 1;
 </select>
 
 <!-- 농수산물 상품 따로 보기 -->

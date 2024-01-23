@@ -1202,3 +1202,14 @@ CREATE TABLE tb_order
 SELECT prod_name FROM tb_prod WHERE prod_name LIKE '%사%' LIMIT 2;
 insert into tb_order (prod_idx,cust_id,total_amunt,discount_amount,pay_amount,pay_method,paid_amount,delivery_addr,receiver_name,receiver_phone,delivery_msg,order_status,ordered_at)
 values(#{prod_idx},#{cust_id},#{total_amount},0,#{total_amount},'카드',#{total_amount},#{cust_addr},#{cust_name},#{cust_phone},'빨리요','배송완료',NOW())
+
+
+
+
+insert into tb_review (prod_idx,cust_id,review_content,prod_ratings,reviewed_at)
+    values(33,1,'괜춘',4,NOW())
+    
+    
+    
+    select* from tb_prod
+    

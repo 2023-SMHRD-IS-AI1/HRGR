@@ -424,7 +424,28 @@ $(document).ready(function() {
       updateGlobalTotalAmount();
   }
 
-  // 전체 총 금액 업데이트 함수
+  (function() {
+	    // 전체 총 금액 업데이트 함수
+	    function updateGlobalTotalAmount() {
+	        var totalAmountElement = document.getElementById('totalAmount');
+	        var totalAmount = 0;
+
+	        // 각 상품 행의 총 금액을 합산
+	        var totalPrices = document.querySelectorAll('.total-price');
+	        totalPrices.forEach(function (priceElement) {
+	            totalAmount += parseInt(priceElement.textContent);
+	        });
+
+	        totalAmountElement.textContent = totalAmount + '원';
+	    }
+
+	    // 다른 코드...
+
+	    // IIFE 실행
+	    updateGlobalTotalAmount();
+	})();
+  
+/*   // 전체 총 금액 업데이트 함수
   function updateGlobalTotalAmount() {
       var totalAmountElement = document.getElementById('totalAmount');
       var totalAmount = 0;
@@ -436,7 +457,7 @@ $(document).ready(function() {
       });
 
       totalAmountElement.textContent = totalAmount + '원';
-  }
+  } */
   
   function deleteCartItem() {
 	    // 모든 체크된 체크박스 가져오기

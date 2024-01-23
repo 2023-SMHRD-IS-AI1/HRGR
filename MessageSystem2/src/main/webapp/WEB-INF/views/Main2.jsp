@@ -739,7 +739,7 @@
 
 
 
-	<section class="py-5">
+<!-- 	<section class="py-5">
 		<div class="container-fluid">
 			<div class="row row-cols-1 row-cols-sm-3 row-cols-lg-5">
 				<div class="col">
@@ -835,7 +835,7 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> -->
 
 	<footer class="py-5">
 		<div class="container-fluid">

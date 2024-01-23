@@ -1199,6 +1199,31 @@ CREATE TABLE tb_order
     `ordered_at`       DATETIME         NOT NULL    COMMENT '주문 일자', 
      PRIMARY KEY (order_idx)
 );
-
+SELECT prod_name FROM tb_prod WHERE prod_name LIKE '%사%' LIMIT 2;
 insert into tb_order (prod_idx,cust_id,total_amunt,discount_amount,pay_amount,pay_method,paid_amount,delivery_addr,receiver_name,receiver_phone,delivery_msg,order_status,ordered_at)
 values(#{prod_idx},#{cust_id},#{total_amount},0,#{total_amount},'카드',#{total_amount},#{cust_addr},#{cust_name},#{cust_phone},'빨리요','배송완료',NOW())
+
+
+
+
+insert into tb_review (prod_idx,cust_id,review_content,prod_ratings,reviewed_at)
+    values(94,1,'진짜 꿀고구마네요 또사먹겠습니다',4,NOW())
+    
+    
+    
+    select* from tb_review
+    
+    
+    CREATE TABLE tb_diary_image
+(
+    `img_idx`        INT UNSIGNED     NOT NULL    AUTO_INCREMENT COMMENT '이미지 식별자', 
+    `diary_idx`      INT UNSIGNED     NOT NULL    COMMENT '일지 식별자', 
+    `img_name`       VARCHAR(250)     NOT NULL    COMMENT '파일 이름', 
+    `img_real_name`  VARCHAR(1000)    NOT NULL    COMMENT '파일 실제 이름', 
+    `img_ext`        VARCHAR(10)      NOT NULL    COMMENT '파일 확장자', 
+    `img_size`       INT              NOT NULL    COMMENT '파일 사이즈', 
+     PRIMARY KEY (img_idx)
+);
+select * from tb_diary_image
+insert into tb_diary_image(diary_idx,img_name,img_real_name,img_ext,img_size)
+values(19,'게낚시.jpg','C:\eGovFrame-4.0.0\workspace.edu\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\HaruGreen\resources\upload','jpg',123123)

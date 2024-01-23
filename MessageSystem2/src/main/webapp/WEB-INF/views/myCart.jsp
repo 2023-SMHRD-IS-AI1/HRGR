@@ -289,7 +289,7 @@
               <!-- 상품 끝 -->
             <div class="prodLike_allCheck border-bottom border-success row" style="background: rgb(246, 246, 246); margin-left: 0px; margin-right: 0px;">
     <div class="col-10" align="right" style="font-weight: bold; font-size: 18px; padding-right: 40px;">총 금액</div>
-    <div class="col-2" id="totalAmount" style="display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold;">
+    <div class="col-2" id="totalAmount" name="totalAmount" style="display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold;">
         0원 <!-- 초기값 설정 -->
     </div>
 </div>
@@ -298,7 +298,7 @@
                           <!-- 페이지네이션 -->
 <div style="margin-top: 30px;" align="center">
   <button type="button" class="btn btn-outline-secondary">계속 쇼핑하기</button>
-  <a href="goPay">
+  <a href="myCartGoPay?totalAmount=totalAmount">
   <button type="button" class="btn btn-success">구매하기</button>
   </a>
 </div>
@@ -463,7 +463,7 @@ function updateGlobalTotalAmount() {
 }
 
 // totalAmount 값을 Controller로 전송하는 함수
-function sendTotalAmountToController(totalAmount) {
+/* function sendTotalAmountToController(totalAmount) {
     // AJAX를 이용한 통신
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/updateTotalAmount', true);
@@ -472,7 +472,7 @@ function sendTotalAmountToController(totalAmount) {
     // totalAmount을 JSON 형태로 변환하여 전송
     xhr.send(JSON.stringify({ totalAmount: totalAmount }));
 }
-
+ */
 // 각 상품 행의 input 요소에 대한 이벤트 리스너 추가
 var countInputs = document.querySelectorAll('.cart-count-input');
 countInputs.forEach(function (input) {
@@ -480,37 +480,6 @@ countInputs.forEach(function (input) {
         updateTotalPrice(this); // 입력 값이 변경될 때마다 호출
     });
 });
-
-// 결제 구현
-function iamport() {
-    // 가맹점 식별코드
-    IMP.init('imp44183336'); // 가맹점 식별코드로 Iamport 초기화
-    IMP.request_pay({ // 결제 요청
-        pg: "kakaopay",   // PG사 설정
-        pay_method : "card", // 결제 방법
-        merchant_uid : "20231101ABDE", // 주문 번호
-        name : "상품1", // 상품 이름
-        amount: 3000, // 결제 가격
-        buyer_name : "홍길동", // 구매자 이름 (buyer_ 부분은 꼭 작성하지 않아도된다. (선택사항))
-        buyer_tel : "010-5555-1111", // 구매자 연락처
-        buyer_postcode : 52030, // 구매자 우편번호
-        buyer_addr : "경기도 판교" // 구매자 주소
-    }, function(res) {
-        if (res.success) {
-            axios({
-                method: "post",
-                url: "http://localhost:8081/controller/payByImport"
-            })
-            // 응답 데이터의 정보들
-            console.log("Payment success!");
-            console.log("Payment ID : " + res.imp_uid);
-            console.log("Order ID : " + res.merchant_uid);
-            console.log("Payment Amount : " + res.paid_amount);
-        } else {
-            console.error(response.error_msg);
-        }
-    });
-}
 </script>
 <script>
 /* 		document.getElementById("userIcon").addEventListener("click",

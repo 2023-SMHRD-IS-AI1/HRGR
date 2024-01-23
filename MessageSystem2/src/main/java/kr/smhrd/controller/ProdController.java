@@ -552,5 +552,10 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 			}
 		}
 		
+	@RequestMapping("/myCartGoPay")
+	public String myCartGoPay(/* @RequestParam int totalAmount */) {
+		/* System.out.println(totalAmount); */
 		
+		return "checkout";
+	}
 }

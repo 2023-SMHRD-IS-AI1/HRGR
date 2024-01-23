@@ -180,7 +180,7 @@ public class MemberController {
 			System.out.println("실패");
 		}
 
-		return "Main2";
+		return "redirect:/goMain";
 	}
 
 	// 회원정보 보는 페이지로 이동 + DB에 있는 회원 조회 /showMember

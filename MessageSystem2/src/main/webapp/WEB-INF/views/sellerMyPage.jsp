@@ -567,7 +567,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
               </div>
               <hr style="margin: 0px; color: rgb(188, 188, 188);">
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-                <div class="col-2 border-end" align="right">비밀번호</div>
+                <div class="col-2 border-end" align="right">수정 할 비밀번호</div>
                 <div class="col-10"><input type="password" placeholder="PW를 입력하세요" class="form-control" style="width: 250px;" id="cust_pw" name="cust_pw"></div>                
               </div>
               <hr style="margin: 0px; color: rgb(188, 188, 188);">
@@ -590,7 +590,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
               <hr style="margin: 0px; color: rgb(188, 188, 188);">
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-2 border-end" align="right">이메일</div>
-                <div class="col-10"><input type="email" class="form-control" placeholder="name@example.com"  style="width: 250px;" name="cust_email"></div>                
+                <div class="col-10"><input type="email" class="form-control" placeholder="name@sample.com"  style="width: 250px;" name="cust_email"></div>                
               </div>
             
               <hr style="margin: 0px; color: rgb(188, 188, 188);">
@@ -607,16 +607,16 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-2 border-end" align="right">주소</div>
                 <div class="col-10">
-                  <input type="text" placeholder="광주광역시 어쩌구 저쩌구" class="form-control" style="width: 400px; margin-bottom: 5px;" name="cust_addr" >
-                  <input type="text" placeholder="상세주소" class="form-control" style="width: 400px;">
+                  <input type="text" placeholder="주소를 입력해주세요" class="form-control" style="width: 400px; margin-bottom: 5px;" name="cust_addr" >
+                  <input type="text" placeholder="상세주소를 입력해주세요" class="form-control" style="width: 400px;">
                 </div>
               </div>           
                   </div>
                </div>    
   <div class="myReview_box" align="center">
        <!-- 페이지네이션 -->
-       <button type="button" class="btn btn-outline-secondary">취소하기</button>
-       <button type="button" class="btn btn-success">수정하기</button>
+       <a><button type="button" class="btn btn-outline-secondary">취소하기</button></a>
+       <button type="submit" class="btn btn-success">수정하기</button>
        <!-- 페이지네이션 끝 -->
       </div>
     </form>

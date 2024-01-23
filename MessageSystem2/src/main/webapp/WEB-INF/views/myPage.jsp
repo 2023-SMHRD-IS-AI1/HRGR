@@ -609,7 +609,7 @@
               </div>
               <hr style="margin: 0px; color: rgb(188, 188, 188);">
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-                <div class="col-2 border-end" align="right">비밀번호</div>
+                <div class="col-2 border-end" align="right">수정 할 비밀번호</div>
                 <div class="col-10"><input type="password" placeholder="PW를 입력하세요" class="form-control" style="width: 250px;" id="cust_pw" name="cust_pw"></div>                
               </div>
               <hr style="margin: 0px; color: rgb(188, 188, 188);">
@@ -632,7 +632,7 @@
               <hr style="margin: 0px; color: rgb(188, 188, 188);">
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-2 border-end" align="right">이메일</div>
-                <div class="col-10"><input type="email" class="form-control" placeholder="name@example.com"  style="width: 250px;" name="cust_email"></div>                
+                <div class="col-10"><input type="email" class="form-control" placeholder="이메일을 입력해주세요"  style="width: 250px;" name="cust_email"></div>                
               </div>
             
               <hr style="margin: 0px; color: rgb(188, 188, 188);">
@@ -649,15 +649,15 @@
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-2 border-end" align="right">주소</div>
                 <div class="col-10">
-                  <input type="text" placeholder="광주광역시 어쩌구 저쩌구" class="form-control" style="width: 400px; margin-bottom: 5px;" name="cust_addr" >
-                  <input type="text" placeholder="상세주소" class="form-control" style="width: 400px;">
+                  <input type="text" placeholder="주소를 입력해주세요" class="form-control" style="width: 400px; margin-bottom: 5px;" name="cust_addr" >
+                  <input type="text" placeholder="상세주소를 입력해주세요" class="form-control" style="width: 400px;">
                 </div>
               </div>           
                   </div>
                </div>
               <div class="myReview_box position-relative" align="center">
                               <!-- 페이지네이션 -->
-                                <button type="button" class="btn btn-outline-secondary">취소하기</button>
+                                <a href="goMain"><button type="button" class="btn btn-outline-secondary">취소하기</button></a>
                                 <button type="submit" class="btn btn-success">수정하기</button>
                                 <div class="position-absolute bottom-0 end-0" style="padding: 6px 50px;">
                                   <a href="goSeller" style="color: green; text-decoration: none; font-weight: normal; font-size: 20px;">판매자등록하기</a>

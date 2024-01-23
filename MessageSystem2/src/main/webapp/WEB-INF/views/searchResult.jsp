@@ -358,10 +358,10 @@
 
 	<!-- 시세 확인란 -->
 	<ul class="sisae">
-		<li><%=name %> 의 시세</li>
+		<li style="padding-left: 15px;"><%=name %> 의 시세</li>
 		<li>단위 : <%=unit %></li>
-		<li>오늘 :<%=today %>원</li>
-		<li>전일 :<%=yesterday %>원</li>
+		<li>오늘 : <%=today %>원</li>
+		<li>전일 : <%=yesterday %>원</li>
 		
 	</ul>
 
@@ -448,7 +448,7 @@
 																</button>
 															</span>
 														</div>
-														<a href="#" class="nav-link" onclick="addToCart(event,${product.prod_idx}, ${product.prod_price}, 'quantity(2)${loopStatus.index}')">Add to Cart <iconify-icon
+														<a href="#" class="nav-link" onclick="addToCart(event,${product.prod_idx}, ${product.prod_price}, 'quantity(2)${loopStatus.index}')">장바구니 담기<iconify-icon
                                                 icon="uil:shopping-cart"></a>
 													</div>
 												</div>
@@ -553,7 +553,7 @@
 																</button>
 															</span>
 														</div>
-														<a href="#" class="nav-link" onclick="addToCart(event,${ProductNew.prod_idx}, ${ProductNew.prod_price}, 'quantity(2)${loopStatus.index}')">Add to Cart <iconify-icon
+														<a href="#" class="nav-link" onclick="addToCart(event,${ProductNew.prod_idx}, ${ProductNew.prod_price}, 'quantity(2)${loopStatus.index}')">장바구니 담기<iconify-icon
                                                 icon="uil:shopping-cart"></a>
 													</div>
 												</div>

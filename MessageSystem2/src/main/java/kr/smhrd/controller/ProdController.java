@@ -514,6 +514,13 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 		}
 		
 		
+	
+
+		@PostMapping("/updateTotalAmount")
+		public void updateTotalAmount(@RequestBody String totalAmount) {
+		    // 여기에서 totalAmount 값을 사용하거나 저장할 수 있습니다.
+			System.out.println("Received totalAmount: " + totalAmount);
+		}
 		
 		
 		
@@ -538,7 +545,6 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 				 member.setDelivery_addr(cust_addr);
 				 member.setReceiver_name(cust_name);
 				 member.setReceiver_phone(cust_phone);
-				 
 			
 			int cnt = ProductMapper.buy(member);
 			if(cnt != 0 ) {
@@ -547,5 +553,6 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 				return "diary";
 			}
 		}
+		
 		
 }

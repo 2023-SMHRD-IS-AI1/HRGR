@@ -259,7 +259,6 @@
             <hr>
             
 
-
 <!-- 한줄시작 -->
             <div class="d-flex flex-wrap" style="display: flex; justify-content: space-between;">
             <c:forEach var="List" items="${List}" varStatus="i">

@@ -61,7 +61,9 @@ import kr.smhrd.entity.Product;
 
 	public List<Product> searchAll();
 	
-	
+	public void insertDiary(Product product);
+	public Product searchdiaryIdx(Product product);
+	public void  insertdiaryImage(Product product);
 	
 	
 	 }

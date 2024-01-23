@@ -186,7 +186,7 @@ public class Product {
 		private Date reviewed_at;
 		private String image_name;
 
-
+		private int diary_idx;
 
 		
 		public Product(int prod_ratings, String cust_id, @NonNull int prod_idx, String review_content,
@@ -199,7 +199,41 @@ public class Product {
 			this.reviewed_at = reviewed_at;
 			this.image_name=image_name;
 		}
-	
+	// 농사일지 등록 캡슐
+public Product(String cust_id, String diary_title, String diary_content) {
+			
+			super();
+			this.cust_id = cust_id;
+			this.diary_title = diary_title;
+			this.diary_content = diary_content;
+			
+		}
+
+
+
+		public Product(String created_at, String cust_id, String diary_title, String diary_content, int diary_likes,
+				int diary_idx) {
+			super();
+			this.created_at = created_at;
+			this.cust_id = cust_id;
+			this.diary_title = diary_title;
+			this.diary_content = diary_content;
+			this.diary_likes = diary_likes;
+			this.diary_idx = diary_idx;
+		}
+
+
+
+		public Product(int img_idx, String img_real_name, String img_ext, long img_size, String image_name,
+				int diary_idx) {
+			super();
+			this.img_idx = img_idx;
+			this.img_real_name = img_real_name;
+			this.img_ext = img_ext;
+			this.img_size = img_size;
+			this.image_name = image_name;
+			this.diary_idx = diary_idx;
+		}
 	
 
 

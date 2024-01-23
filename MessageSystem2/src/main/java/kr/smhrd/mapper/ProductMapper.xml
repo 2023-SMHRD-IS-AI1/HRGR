@@ -431,6 +431,21 @@ GROUP BY
 ORDER BY
     prod_created_at DESC;
 </select>
+<!-- 농사일지 등록하기 -->
+<insert id="insertDiary" parameterType="kr.smhrd.entity.Product">
+ INSERT
+   INTO tb_diary (cust_id, diary_title, diary_content, created_at,diary_likes)
+ VALUES(#{cust_id}, #{diary_title}, #{diary_content}, now(),0)
+</insert>
 
+<select id="searchdiaryIdx" resultType="kr.smhrd.entity.Product">
+select * from tb_diary where cust_id=#{cust_id} order by created_at desc limit 1
+</select>
+
+<!-- 농사일지 사진 등록 -->
+<insert id="insertdiaryImage" parameterType="kr.smhrd.entity.Product">
+insert into tb_diary_image (diary_idx, img_name, img_real_name, img_ext, img_size)
+values(#{diary_idx}, #{img_name}, #{img_real_name}, #{img_ext}, #{img_size})
+</insert>
 
 </mapper>

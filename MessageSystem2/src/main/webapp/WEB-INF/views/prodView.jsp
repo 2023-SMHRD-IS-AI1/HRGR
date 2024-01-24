@@ -360,8 +360,8 @@
     
     </script>
     <script>
-  // 검색창 눌렀을때 페이지 이동
-   document.getElementById('svg-container').addEventListener('click', function() {
+    // 검색창 눌렀을때 페이지 이동
+    document.getElementById('svg-container').addEventListener('click', function() {
     // 현재 검색어 입력란의 값을 가져옴
     var inputValue = document.getElementById('searchInput').value;
     // 현재 페이지 URL에 검색어를 추가하여 페이지 이동

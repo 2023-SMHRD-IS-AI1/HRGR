@@ -197,17 +197,17 @@
                
               
                   <ul class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
-                   <li class="nav-item active">
-                      <a href="searchAll" class="nav-link">전체</a>
+                    <li class="nav-item active">
+                      <a href="#" class="nav-link">전체</a>
                     </li>
                     <li class="nav-item dropdown">
-                      <a href="searchno?value=농산물" class="nav-link">농산물</a>
+                      <a href="#" class="nav-link">농산물</a>
                     </li>
                     <li class="nav-item">
-                      <a href="searchno?value=수산물" class="nav-link">수산물</a>
+                      <a href="#" class="nav-link">수산물</a>
                     </li>
                     <li class="nav-item">
-                      <a href="searchno?value=가공식품" class="nav-link">가공식품</a>
+                      <a href="#" class="nav-link">가공식품</a>
                     </li>
                    
                     <a href="godiary" class="nav-link btn-coupon-code">
@@ -289,7 +289,7 @@
               <!-- 상품 끝 -->
             <div class="prodLike_allCheck border-bottom border-success row" style="background: rgb(246, 246, 246); margin-left: 0px; margin-right: 0px;">
     <div class="col-10" align="right" style="font-weight: bold; font-size: 18px; padding-right: 40px;">총 금액</div>
-    <div class="col-2" id="totalAmount" name="totalAmount" style="display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold;">
+    <div class="col-2" id="totalAmount" style="display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold;">
         0원 <!-- 초기값 설정 -->
     </div>
 </div>
@@ -298,7 +298,7 @@
                           <!-- 페이지네이션 -->
 <div style="margin-top: 30px;" align="center">
   <button type="button" class="btn btn-outline-secondary">계속 쇼핑하기</button>
-  <a href="myCartGoPay?totalAmount=totalAmount">
+  <a href="myCartGoPay">
   <button type="button" class="btn btn-success">구매하기</button>
   </a>
 </div>
@@ -394,92 +394,140 @@
       
 
 <script>
-(function() {
-    // 총 금액 업데이트 함수
-    function updateTotalPrice(input) {
-        var cartIndex = input.getAttribute('data-cart-index');
-        var prodPrice = input.getAttribute('data-prod-price');
-        var totalCount = input.value;
-        var totalPriceElement = document.querySelector('.total-price[data-cart-index="' + cartIndex + '"]');
-        var totalPrice = prodPrice * totalCount + 3000; // 택배비 3000원 추가
-        totalPriceElement.textContent = totalPrice.toLocaleString() + '원';
-
-        // 전체 총 금액 업데이트
-        updateGlobalTotalAmount();
-    }
-
-    // 각 상품 행의 input 요소에 대한 이벤트 리스너 추가
-    var countInputs = document.querySelectorAll('.cart-count-input');
-    countInputs.forEach(function (input) {
-        input.addEventListener('input', function () {
-            updateTotalPrice(this); // 입력 값이 변경될 때마다 호출
-        });
-    });
-
-    // IIFE 실행
-    updateGlobalTotalAmount();
-})();
-
 $(document).ready(function() {
     // 전체 선택/해제 체크박스의 이벤트 처리
     $('#selectAllCheckbox').change(function() {
-        // 모든 하위 체크박스들의 상태를 전체 선택/해제 체크박스의 상태로 설정
-        $('.prodLike_content input[type="checkbox"]').prop('checked', $(this).prop('checked'));
-        
-        // 전체 총 금액 업데이트
-        updateGlobalTotalAmount();
+      // 모든 하위 체크박스들의 상태를 전체 선택/해제 체크박스의 상태로 설정
+      $('.prodLike_content input[type="checkbox"]').prop('checked', $(this).prop('checked'));
+      
+      // 전체 총 금액 업데이트
+      updateGlobalTotalAmount();
     });
-});
+  });
+  
+  // 각 상품 행의 input 요소에 대한 이벤트 리스너 추가
+  var countInputs = document.querySelectorAll('.cart-count-input');
+  countInputs.forEach(function (input) {
+      input.addEventListener('input', function () {
+          updateTotalPrice(this); // 입력 값이 변경될 때마다 호출
+      });
+  });
 
-// 총 금액 업데이트 함수
-function updateTotalPrice(input) {
-    var cartIndex = input.getAttribute('data-cart-index');
-    var prodPrice = input.getAttribute('data-prod-price');
-    var totalCount = input.value;
-    var totalPriceElement = document.querySelector('.total-price[data-cart-index="' + cartIndex + '"]');
-    var totalPrice = prodPrice * totalCount + 3000; // 택배비 3000원 추가
-    totalPriceElement.textContent = totalPrice.toLocaleString() + '원';
+  // 총 금액 업데이트 함수
+  function updateTotalPrice(input) {
+      var cartIndex = input.getAttribute('data-cart-index');
+      var prodPrice = input.getAttribute('data-prod-price');
+      var totalCount = input.value;
+      var totalPriceElement = document.querySelector('.total-price[data-cart-index="' + cartIndex + '"]');
+      var totalPrice = prodPrice * totalCount + 3000; // 택배비 3000원 추가
+      totalPriceElement.textContent = totalPrice + '원';
 
-    // 전체 총 금액 업데이트
-    updateGlobalTotalAmount();
-}
+      // 전체 총 금액 업데이트
+      updateGlobalTotalAmount();
+  }
 
-//전체 총 금액 업데이트 함수
-function updateGlobalTotalAmount() {
-    var totalAmountElement = document.getElementById('totalAmount');
-    var totalAmount = 0;
+  (function() {
+	    // 전체 총 금액 업데이트 함수
+	    function updateGlobalTotalAmount() {
+	        var totalAmountElement = document.getElementById('totalAmount');
+	        var totalAmount = 0;
 
-    // 각 상품 행의 총 금액을 합산
-    var totalPrices = document.querySelectorAll('.total-price');
-    totalPrices.forEach(function (priceElement) {
-        var priceWithoutComma = priceElement.textContent.replace(/,/g, '');
-        totalAmount += parseInt(priceWithoutComma);
+	        // 각 상품 행의 총 금액을 합산
+	        var totalPrices = document.querySelectorAll('.total-price');
+	        totalPrices.forEach(function (priceElement) {
+	            totalAmount += parseInt(priceElement.textContent);
+	        });
+
+	        totalAmountElement.textContent = totalAmount.toLocaleString() + '원';
+	    }
+
+	    // IIFE 실행
+	    updateGlobalTotalAmount();
+	})();
+  
+  // 전체 총 금액 업데이트 함수
+  function updateGlobalTotalAmount() {
+      var totalAmountElement = document.getElementById('totalAmount');
+      var totalAmount = 0;
+
+      // 각 상품 행의 총 금액을 합산
+      var totalPrices = document.querySelectorAll('.total-price');
+      totalPrices.forEach(function (priceElement) {
+          totalAmount += parseInt(priceElement.textContent);
+      });
+
+      totalAmountElement.textContent = totalAmount.toLocaleString() + '원';
+  } 
+  
+  function deleteCartItem() {
+	    // 모든 체크된 체크박스 가져오기
+	    var checkedCheckboxes = $('.prodLike_pordLine input[type="checkbox"]:checked');
+	    // 체크된 체크박스가 하나 이상 선택되었는지 확인
+	    if (checkedCheckboxes.length > 0) {
+	        // prod_idx 값을 저장할 배열 생성
+	        var selectedProdIdxArray = [];
+
+	        checkedCheckboxes.each(function () {
+	            if ($(this).is(':checked')) {
+	                var prodIdx = $(this).closest('.prodLike_pordLine').data('prod-idx');
+	                selectedProdIdxArray.push(prodIdx);
+	            }
+	        });
+			
+	        // AJAX 요청으로 선택된 항목 삭제
+	        $.ajax({
+	            type: 'POST',
+	            url: '/controller/deleteCart',  // 이 부분을 절대경로로 수정
+	            data: JSON.stringify(selectedProdIdxArray),
+	            contentType: 'application/json',
+	            success: function (response) {
+	                console.log('선택한 상품 삭제 성공');
+
+	                // UI에서 선택된 행 제거
+	                checkedCheckboxes.closest('.prodLike_pordLine').remove();
+
+	                // 전체 금액 다시 계산
+	                updateGlobalTotalAmount();
+	            },
+	            error: function (error) {
+	                console.error('상품 삭제 실패', error);
+	            }
+	        });
+	    }
+	}
+  
+  // 결제 구현
+function iamport() {
+    // 가맹점 식별코드
+    IMP.init('imp44183336'); // 가맹점 식별코드로 Iamport 초기화
+    IMP.request_pay({ // 결제 요청
+        pg: "kakaopay",   // PG사 설정
+        pay_method : "card", // 결제 방법
+        merchant_uid : "20231101ABDE", // 주문 번호
+        name : "상품1", // 상품 이름
+        amount: 3000, // 결제 가격
+        buyer_name : "홍길동", // 구매자 이름 (buyer_ 부분은 꼭 작성하지 않아도된다. (선택사항))
+        buyer_tel : "010-5555-1111", // 구매자 연락처
+        buyer_postcode : 52030, // 구매자 우편번호
+        buyer_addr : "경기도 판교" // 구매자 주소
+    }, function(res) {
+        if (res.success) {
+            axios({
+                method: "post",
+                url: "http://localhost:8081/controller/payByImport"
+            })
+        	// 응답 데이터의 정보들
+            console.log("Payment success!");
+            console.log("Payment ID : " + res.imp_uid);
+            console.log("Order ID : " + res.merchant_uid);
+            console.log("Payment Amount : " + res.paid_amount);
+        } else {
+            console.error(response.error_msg);
+        }
     });
 
-    // 통신을 통해 totalAmount 값을 Controller로 전송
-    /* sendTotalAmountToController(totalAmount); */
-
-    totalAmountElement.textContent = totalAmount.toLocaleString() + '원';
-}
-
-// totalAmount 값을 Controller로 전송하는 함수
-/* function sendTotalAmountToController(totalAmount) {
-    // AJAX를 이용한 통신
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/updateTotalAmount', true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-
-    // totalAmount을 JSON 형태로 변환하여 전송
-    xhr.send(JSON.stringify({ totalAmount: totalAmount }));
-}
- */
-// 각 상품 행의 input 요소에 대한 이벤트 리스너 추가
-var countInputs = document.querySelectorAll('.cart-count-input');
-countInputs.forEach(function (input) {
-    input.addEventListener('input', function () {
-        updateTotalPrice(this); // 입력 값이 변경될 때마다 호출
-    });
-});
+  }
+  
 </script>
 <script>
 /* 		document.getElementById("userIcon").addEventListener("click",

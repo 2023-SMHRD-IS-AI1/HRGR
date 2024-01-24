@@ -306,7 +306,7 @@
           <div>${prodList.paid_amount }원</div>
         </div>
         <div class="col-lg-3 d-grid gap-2 my-auto">
-          <button type="button" class="btn btn-outline-success">배송조회</button>
+          <a href="https://trace.cjlogistics.com/next/tracking.html?wblNo=1234567890" target="_blank"><button type="button" class="btn btn-outline-success" style="width:100%">배송조회</button></a>
           <a href="goreview?prod_idx=${prodList.prod_idx }"><button type="button" class="btn btn-outline-secondary" style="width:100%">후기 작성하기</button></a>
   
 

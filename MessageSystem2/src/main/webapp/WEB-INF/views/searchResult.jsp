@@ -1,4 +1,4 @@
-<%@page import="kr.smhrd.entity.Member"%>
+                                                                                                             <%@page import="kr.smhrd.entity.Member"%>
 <%@page import="kr.smhrd.entity.Product"%>
 <%@page import="kr.smhrd.entity.Cart"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -388,7 +388,6 @@
 										<c:if test="${loopStatus.index < 10}">
 											<div class="col">
 												<div class="product-item" style="box-shadow : 0px 5px 22px rgba(0, 0, 0, 0.2)">
-													<span class="badge bg-success position-absolute m-3">-30%</span>
 														<input type="hidden" id="i">${loopStatus.index+1}</input>
 
 
@@ -421,12 +420,11 @@
 														</a>
 													</figure>
 													<h3>${product.prod_name}</h3>
-													<input type="hidden" id=prod_idx valeu="${product.prod_idx}">
-													<span class="qty">${product.prod_stock }개 남음</span><span
-														class="rating"><svg width="24" height="24"
-															class="text-primary">
-															<use xlink:href="#star-solid"></use></svg>
-														${product.avg_ratings }</span> <span class="price"><fmt:formatNumber value="${product.prod_price}" type="price" pattern="#,###"/>원</span>
+
+													
+													<span class="qty">${product.prod_stock }개 남음</span><br>
+													<span class="rating"><i class="fa fa-star" aria-hidden="true" style="color:rgb(255, 217, 0)"></i>${product.avg_ratings }</span> <span class="price"><fmt:formatNumber value="${product.prod_price}" type="price" pattern="#,###"/>원</span>
+
 													<div
 														class="d-flex align-items-center justify-content-between">
 														<div class="input-group product-qty">
@@ -437,7 +435,7 @@
 																	<svg width="16" height="16">
 																		<use xlink:href="#minus"></use></svg>
 																</button>
-															</span> <input type="text" id="quantity" name="quantity${loopStatus.index}"
+															</span> <input type="text" id="quantity" name="quantity(1)${loopStatus.index}"
 																class="form-control input-number" value="1"> <span
 																class="input-group-btn">
 																<button type="button"
@@ -448,7 +446,7 @@
 																</button>
 															</span>
 														</div>
-														<a href="#" class="nav-link" onclick="addToCart(event,${product.prod_idx}, ${product.prod_price}, 'quantity(2)${loopStatus.index}')">장바구니 담기<iconify-icon
+														<a href="#" class="nav-link" onclick="addToCart(event,${product.prod_idx}, ${product.prod_price}, 'quantity(1)${loopStatus.index}')">장바구니 담기<iconify-icon
                                                 icon="uil:shopping-cart"></a>
 													</div>
 												</div>
@@ -492,7 +490,6 @@
 										<c:if test="${loopStatus.index < 10}">
 											<div class="col">
 												<div class="product-item" style="box-shadow : 0px 5px 22px rgba(0, 0, 0, 0.2)">
-													<span class="badge bg-success position-absolute m-3">-30%</span>
 													<input type="hidden" id="i">${loopStatus.index+1}</input>
 
 
@@ -527,18 +524,18 @@
 													</figure>
 													<h3>${ProductNew.prod_name}</h3>
 													
-													<span class="qty">${ProductNew.prod_stock }개 남음</span><span
-														class="rating"><svg width="24" height="24"
-															class="text-primary">
-															<use xlink:href="#star-solid"></use></svg>
-														${ProductNew.avg_ratings }</span> <span class="price"><fmt:formatNumber value="${ProductNew.prod_price}" type="price" pattern="#,###"/>원</span>
+													<span class="qty">${ProductNew.prod_stock }개 남음</span><br>
+													<span class="rating"><i class="fa fa-star" aria-hidden="true" style="color:rgb(255, 217, 0)"></i>${ProductNew.avg_ratings }</span>
+																									
+														 <span class="price"><fmt:formatNumber value="${ProductNew.prod_price}" type="price" pattern="#,###"/>원</span>
 													<div
 														class="d-flex align-items-center justify-content-between">
 														<div class="input-group product-qty">
 															<span class="input-group-btn">
 																<button type="button"
 																	class="quantity-left-minus btn btn-danger btn-number"
-																	data-type="minus">
+																	data-type="minus"
+																	>
 																	<svg width="16" height="16">
 																		<use xlink:href="#minus"></use></svg>
 																</button>
@@ -547,7 +544,8 @@
 																class="input-group-btn">
 																<button type="button"
 																	class="quantity-right-plus btn btn-success btn-number"
-																	data-type="plus">
+																	data-type="plus"
+																	>
 																	<svg width="16" height="16">
 																		<use xlink:href="#plus"></use></svg>
 																</button>
@@ -692,7 +690,7 @@
 
       var quantityElement = document.getElementsByName(name)[0];
       var quantityValue = quantityElement.value;
-       
+      
            var prodInfo = {
                  prod_idx: prod_idx,
                  cart_count: parseInt(quantityValue, 10),

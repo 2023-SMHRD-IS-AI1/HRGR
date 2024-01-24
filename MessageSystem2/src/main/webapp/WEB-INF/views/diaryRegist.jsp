@@ -26,6 +26,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/vendor.css" />
+    <link rel="stylesheet" type="text/css" href="./resources/assets/css/stylejm.css" />
     <link rel="stylesheet" type="text/css" href="./resources/assets/css/main.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -340,10 +341,13 @@
     </header>
 
     <!-- 여기에 본문 내용 채우면 됩니다~ -->
+<div class="review_parent" >
+        <div class="review ">
 
+          <div class="review_content">
  <form action="diaryRegist" method="post" enctype="multipart/form-data">
-    <div class="product_context">
-      <div class="main_text" style="font-size: 40px;">영농일지 등록</div>
+    <div class="product_context" style="padding-left: 0px; max-width:100%">
+      <div class="main_text" style="font-size: 40px; font-weight:bold; margin-bottom:30px">영농일지 등록</div>
       <div class="upload-section">
         <div class="mb-3">
           <label for="formFile" class="form-label" style="font-weight: bold"
@@ -369,13 +373,16 @@
           ></textarea>
         </div>
         <div class="button-group">
-          <button class="btn-cancel"><input type="reset" value="초기화" /></button>
-          <button class="btn-register" ><input type="submit" value="등록하기" /></button>
+          <button class="btn-cancel"><input type="reset" value="초기화" class="btn"/></button>
+          <button class="btn-register" ><input type="submit" value="등록하기" class="btn"/></button>
         </div>
 
       </div>
     </div>
 </form>
+</div>
+</div>
+</div>
     <footer class="py-5">
       <div class="container-fluid">
         <div class="row">

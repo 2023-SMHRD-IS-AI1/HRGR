@@ -286,7 +286,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
           <div>${prodList.paid_amount }원</div>
         </div>
         <div class="col-lg-3 d-grid gap-2 my-auto">
-          <button type="button" class="btn btn-outline-success">배송조회</button>
+          <a href="https://trace.cjlogistics.com/next/tracking.html?wblNo=1234567890" target="_blank"><button type="button" class="btn btn-outline-success" style="width:100%">배송조회</button></a>
           <a href="goreview?prod_idx=${prodList.prod_idx }"><button type="button" class="btn btn-outline-secondary" style="width:100%">후기 작성하기</button></a>
   
 
@@ -643,7 +643,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
 </a>
   </div>
 <div style="overflow: hidden;">${sellList.prod_name }</div>
-  <span class="rating"><svg width="24" height="24" class="text-primary"><use xlink:href="#star-solid"></use></svg>${sellList.prod_ratings }</span>
+  <span class="rating"><i class="fa fa-star" aria-hidden="true" style="color:rgb(255, 217, 0)"></i>${sellList.prod_ratings }</span>
   <span class="price">${sellList.prod_price }원</span>
 </div>
 

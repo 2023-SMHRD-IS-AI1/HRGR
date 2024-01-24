@@ -274,28 +274,23 @@
             </c:if>
           </c:forEach> 
             <script>
-            function toggleHeart(heartIcon) {
-                // 서버로 데이터 전송하는 부분
-                // 이 부분에서는 실제 서버와의 통신이 발생해야 합니다.
-                // 아래 코드에서는 간단하게 클라이언트 측에서만 값을 변경하는 예제를 제공합니다.
-                
-                // 사용자가 클릭한 아이콘에 대한 정보를 가져옵니다.
-                var likeCountElement = document.getElementById('like');
-                var currentLikeCount = parseInt(likeCountElement.innerText);
 
-                // 현재 상태에 따라 좋아요 개수를 증가 또는 감소시킵니다.
-                if (heartIcon.classList.contains('fa-heart-o')) {
-                    // 좋아요 추가
-                    likeCountElement.innerText = currentLikeCount + 1;
-                    heartIcon.classList.remove('fa-heart-o');
-                    heartIcon.classList.add('fa-heart');
-                } else {
-                    // 좋아요 취소
-                    likeCountElement.innerText = currentLikeCount - 1;
-                    heartIcon.classList.remove('fa-heart');
-                    heartIcon.classList.add('fa-heart-o');
-                }
-            }
+        function toggleHeart(element) {
+          // 현재 클래스에 따라서 토글
+          if (element.classList.contains('fa-heart-o')) {
+            element.classList.remove('fa-heart-o');
+            element.classList.add('fa-heart')
+            
+          } else {
+            element.classList.remove('fa-heart');
+            element.classList.add('fa-heart-o');
+          }
+          
+          
+          
+          event.preventDefault();
+        }
+
       </script>
           
           

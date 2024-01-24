@@ -1225,5 +1225,64 @@ insert into tb_review (prod_idx,cust_id,review_content,prod_ratings,reviewed_at)
      PRIMARY KEY (img_idx)
 );
 select * from tb_diary_image
-insert into tb_diary_image(diary_idx,img_name,img_real_name,img_ext,img_size)
-values(19,'게낚시.jpg','C:\eGovFrame-4.0.0\workspace.edu\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\HaruGreen\resources\upload','jpg',123123)
+
+
+
+SELECT
+    tb_prod.prod_idx AS prod_idx,
+    tb_prod.prod_name AS prod_name,
+    tb_prod.prod_desc AS prod_desc,
+    tb_prod.prod_type,
+    tb_prod.prod_price AS prod_price,
+    tb_prod.prod_stock AS prod_stock,
+    tb_prod.cust_id AS prod_cust_id,
+    tb_prod.created_at AS prod_created_at,
+    tb_cust.cust_name,
+    tb_cust.cust_nick,
+    tb_cust.cust_phone,
+    tb_cust.cust_addr,
+    tb_review.review_idx,
+    tb_review.review_content,
+    tb_review.prod_ratings AS prod_ratings,
+    ROUND(AVG(tb_review.prod_ratings), 1) AS avg_ratings,
+    tb_review.reviewed_at,
+    tb_prod_image.img_name AS img_name
+FROM
+    tb_prod
+JOIN
+    tb_cust ON tb_prod.cust_id = tb_cust.cust_id
+JOIN
+    (
+        SELECT
+            prod_idx,
+            MAX(review_idx) AS review_idx,
+            AVG(prod_ratings) AS prod_ratings
+        FROM
+            tb_review
+        GROUP BY
+            prod_idx
+    ) AS latest_review ON tb_prod.prod_idx = latest_review.prod_idx
+JOIN
+    tb_review ON latest_review.review_idx = tb_review.review_idx
+LEFT JOIN
+    (
+        SELECT
+            prod_idx,
+            MAX(img_name) AS img_name
+        FROM
+            tb_prod_image
+        GROUP BY
+            prod_idx
+    ) AS latest_image ON tb_prod.prod_idx = latest_image.prod_idx
+LEFT JOIN
+    tb_prod_image ON latest_image.img_name = tb_prod_image.img_name
+WHERE
+    tb_prod.prod_name LIKE '%쌀%'
+GROUP BY
+    tb_prod.prod_idx, tb_prod.prod_name, tb_prod.prod_desc, tb_prod.prod_type,
+    tb_prod.prod_price, tb_prod.prod_stock, tb_prod.cust_id, tb_prod.created_at,
+    tb_cust.cust_name, tb_cust.cust_nick, tb_cust.cust_phone, tb_cust.cust_addr,
+    tb_review.review_idx, tb_review.review_content, tb_review.prod_ratings,
+    tb_review.reviewed_at, tb_prod_image.img_name
+ORDER BY
+    avg_ratings DESC;

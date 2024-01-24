@@ -187,10 +187,10 @@ public class Product {
 		private String review_content;
 		private Date reviewed_at;
 		private String image_name;
-		
+		private String review_image_name;
 
 		private int diary_idx;
-		
+		private String prod_img_name;
 
 		
 		public Product(int prod_ratings, String cust_id, @NonNull int prod_idx, String review_content,

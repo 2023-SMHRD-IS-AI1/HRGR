@@ -26,9 +26,30 @@ FROM
 JOIN
     tb_cust ON tb_prod.cust_id = tb_cust.cust_id
 JOIN
-    tb_review ON tb_prod.prod_idx = tb_review.prod_idx
+    (
+        SELECT
+            prod_idx,
+            MAX(review_idx) AS review_idx,
+            AVG(prod_ratings) AS prod_ratings
+        FROM
+            tb_review
+        GROUP BY
+            prod_idx
+    ) AS latest_review ON tb_prod.prod_idx = latest_review.prod_idx
+JOIN
+    tb_review ON latest_review.review_idx = tb_review.review_idx
 LEFT JOIN
-    tb_prod_image ON tb_prod.prod_idx = tb_prod_image.prod_idx
+    (
+        SELECT
+            prod_idx,
+            MAX(img_name) AS img_name
+        FROM
+            tb_prod_image
+        GROUP BY
+            prod_idx
+    ) AS latest_image ON tb_prod.prod_idx = latest_image.prod_idx
+LEFT JOIN
+    tb_prod_image ON latest_image.img_name = tb_prod_image.img_name
 WHERE
     tb_prod.prod_name LIKE CONCAT('%', #{searchInput}, '%')
 GROUP BY

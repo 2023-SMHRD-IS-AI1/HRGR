@@ -280,6 +280,10 @@
             element.classList.remove('fa-heart');
             element.classList.add('fa-heart-o');
           }
+          
+          
+          
+          event.preventDefault();
         }
       </script>
           

@@ -1,4 +1,4 @@
-<%@page import="kr.smhrd.entity.Member"%>
+                                                                                                             <%@page import="kr.smhrd.entity.Member"%>
 <%@page import="kr.smhrd.entity.Product"%>
 <%@page import="kr.smhrd.entity.Cart"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -437,7 +437,7 @@
 																	<svg width="16" height="16">
 																		<use xlink:href="#minus"></use></svg>
 																</button>
-															</span> <input type="text" id="quantity" name="quantity${loopStatus.index}"
+															</span> <input type="text" id="quantity" name="quantity(1)${loopStatus.index}"
 																class="form-control input-number" value="1"> <span
 																class="input-group-btn">
 																<button type="button"
@@ -448,7 +448,7 @@
 																</button>
 															</span>
 														</div>
-														<a href="#" class="nav-link" onclick="addToCart(event,${product.prod_idx}, ${product.prod_price}, 'quantity(2)${loopStatus.index}')">장바구니 담기<iconify-icon
+														<a href="#" class="nav-link" onclick="addToCart(event,${product.prod_idx}, ${product.prod_price}, 'quantity(1)${loopStatus.index}')">장바구니 담기<iconify-icon
                                                 icon="uil:shopping-cart"></a>
 													</div>
 												</div>
@@ -538,7 +538,8 @@
 															<span class="input-group-btn">
 																<button type="button"
 																	class="quantity-left-minus btn btn-danger btn-number"
-																	data-type="minus">
+																	data-type="minus"
+																	>
 																	<svg width="16" height="16">
 																		<use xlink:href="#minus"></use></svg>
 																</button>
@@ -547,7 +548,8 @@
 																class="input-group-btn">
 																<button type="button"
 																	class="quantity-right-plus btn btn-success btn-number"
-																	data-type="plus">
+																	data-type="plus"
+																	>
 																	<svg width="16" height="16">
 																		<use xlink:href="#plus"></use></svg>
 																</button>
@@ -692,7 +694,7 @@
 
       var quantityElement = document.getElementsByName(name)[0];
       var quantityValue = quantityElement.value;
-       
+      
            var prodInfo = {
                  prod_idx: prod_idx,
                  cart_count: parseInt(quantityValue, 10),

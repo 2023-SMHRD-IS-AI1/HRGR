@@ -627,7 +627,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
     <div class="edit_content">
       <div style="display: flex; justify-content: space-between;">
       <h2 style="font-weight: bold;">판매목록 모아보기</h2>
-      <a href="#"><button type="button" class="btn btn-lg btn-success">상품등록하기</button></a>
+      <a href="goprodRegist"><button type="button" class="btn btn-lg btn-success">상품등록하기</button></a>
     </div>
       <hr>
       <!-- 한줄시작 -->

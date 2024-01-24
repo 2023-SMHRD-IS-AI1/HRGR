@@ -421,7 +421,7 @@
 														</a>
 													</figure>
 													<h3>${product.prod_name}</h3>
-													
+													<input type="hidden" id=prod_idx valeu="${product.prod_idx}">
 													<span class="qty">${product.prod_stock }개 남음</span><span
 														class="rating"><svg width="24" height="24"
 															class="text-primary">

@@ -30,6 +30,8 @@
    href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
    rel="stylesheet">
 <link rel="stylesheet" href="./resources/assets/css/font-awesome.min.css">
+
+ <script src="/jquery-3.7.1.min.js"></script>
     <style>
     .heart-icon {
       cursor: pointer;
@@ -264,23 +266,36 @@
                     <h3>${diaryList.seller_company_name }</h3>
                     <h5>${diaryList.diary_content }</h5>
                   </div>
-                  <div class="col-2" align="right"><a href="#"><i class="heart-icon fa fa-heart-o" aria-hidden="true" onclick="toggleHeart(this)"></i></a><span style="color: black; font-size:30px" id="like"> ${diaryList.diary_likes }</span></div>
-                </div>
+                  <div class="col-2" align="right">
+    <a href="#"><i class="heart-icon fa fa-heart-o" aria-hidden="true" onclick="toggleHeart(this)" id="plus"></i></a>
+    <span style="color: black; font-size:30px" id="like">${diaryList.diary_likes}</span>
+</div>
               </div>
             </c:if>
           </c:forEach> 
             <script>
-        function toggleHeart(element) {
-          // 현재 클래스에 따라서 토글
-          if (element.classList.contains('fa-heart-o')) {
-            element.classList.remove('fa-heart-o');
-            element.classList.add('fa-heart')
-            
-          } else {
-            element.classList.remove('fa-heart');
-            element.classList.add('fa-heart-o');
-          }
-        }
+            function toggleHeart(heartIcon) {
+                // 서버로 데이터 전송하는 부분
+                // 이 부분에서는 실제 서버와의 통신이 발생해야 합니다.
+                // 아래 코드에서는 간단하게 클라이언트 측에서만 값을 변경하는 예제를 제공합니다.
+                
+                // 사용자가 클릭한 아이콘에 대한 정보를 가져옵니다.
+                var likeCountElement = document.getElementById('like');
+                var currentLikeCount = parseInt(likeCountElement.innerText);
+
+                // 현재 상태에 따라 좋아요 개수를 증가 또는 감소시킵니다.
+                if (heartIcon.classList.contains('fa-heart-o')) {
+                    // 좋아요 추가
+                    likeCountElement.innerText = currentLikeCount + 1;
+                    heartIcon.classList.remove('fa-heart-o');
+                    heartIcon.classList.add('fa-heart');
+                } else {
+                    // 좋아요 취소
+                    likeCountElement.innerText = currentLikeCount - 1;
+                    heartIcon.classList.remove('fa-heart');
+                    heartIcon.classList.add('fa-heart-o');
+                }
+            }
       </script>
           
           

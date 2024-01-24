@@ -125,16 +125,27 @@ public class ProdController {
 		    for (Object priceObj : priceArray) {
 		        JSONObject priceObject = (JSONObject) priceObj;
 		        String itemName = (String) priceObject.get("item_name");
-		        String dpr1Value = (String) priceObject.get("dpr1");
-		        String dpr2Value = (String) priceObject.get("dpr2");
-		        String unitValue = (String) priceObject.get("unit");
-		        String product_cls_name = (String) priceObject.get("product_cls_name");
+
+		        // "dpr1" 값 확인 및 처리
+		        Object dpr1Object = priceObject.get("dpr1");
+		        String dpr1Value = (dpr1Object instanceof String) ? (String) dpr1Object : String.valueOf(dpr1Object);
+
+		        // "dpr2" 값 확인 및 처리
+		        Object dpr2Object = priceObject.get("dpr2");
+		        String dpr2Value = (dpr2Object instanceof String) ? (String) dpr2Object : String.valueOf(dpr2Object);
+
+		        // "unit" 값 확인 및 처리
+		        Object unitObject = priceObject.get("unit");
+		        String unitValue = (unitObject instanceof String) ? (String) unitObject : String.valueOf(unitObject);
+		        
+		        Object product_cls_nameObject = priceObject.get("product_cls_name");
+		        String product_cls_name = (unitObject instanceof String) ? (String) product_cls_nameObject : String.valueOf(unitObject);
 
 		        // itemName에 "당근"이 포함되어 있으면 출력 및 모델에 추가
 		        int index = itemName.indexOf('/');
 		        if (index != -1) {
 		            itemName = itemName.substring(0, index);
-		            if (name.contains(itemName) && "소매".equals(product_cls_name)) {
+		            if (name.contains(itemName)&&product_cls_name.equals("소매")) {
 		                System.out.println("Item Name: " + itemName);
 		                System.out.println("dpr1 value: " + dpr1Value);
 		                System.out.println("dpr2 value: " + dpr2Value);
@@ -145,10 +156,10 @@ public class ProdController {
 		                model.addAttribute("yesterday", dpr2Value);
 		                model.addAttribute("name", itemName);
 		                model.addAttribute("unit", unitValue);
+		                model.addAttribute("product_cls_name", product_cls_name);
 		            }
 		        }
 		    }
-
 		
 
 		} catch (Exception e) {
@@ -559,6 +570,14 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 		/* System.out.println(totalAmount); */
 
 		return "checkout";
+	}
+	
+	
+	
+	@RequestMapping("/goprodRegist")
+	public String goprodRegist() {
+		
+		return "prodRegist";
 	}
 
 }

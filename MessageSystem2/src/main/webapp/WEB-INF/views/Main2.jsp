@@ -404,7 +404,7 @@
 								    <div class="content-wrapper col-md-7" style="background-color: rgba(255, 255, 255, 0.508); box-shadow: 0px 0px 15px 15px  rgba(255, 255, 255, 0.508);" >
 									<div class="categories sale mb-3 pb-3">할인행사!</div>
 									<h3 class="banner-title">신선한 수산물 시세보다 싸게!</h3>
-									<a href="#" class="d-flex align-items-center nav-link">모아보기
+									<a href="searchno?value=수산물" class="d-flex align-items-center nav-link">모아보기
 										<svg width="24" height="24">
 											<use xlink:href="#arrow-right"></use></svg>
 									</a>
@@ -489,7 +489,7 @@
 								<h3><%=Buy.getProd_name() %></h3>
 								<span class="rating"><svg
 										width="24" height="24" class="text-primary">
-										<use xlink:href="#star-solid"></use></svg> <%=Buy.getProd_ratings() %></span> <span class="price"><%=Buy.getProd_price() %></span>
+										<use xlink:href="#star-solid"></use></svg> <%=Buy.getProd_ratings() %></span> <span class="price"><%=Buy.getProd_price() %>원</span>
 								<div class="d-flex align-items-center justify-content-between">
 									<div class="input-group product-qty">
 										<span class="input-group-btn">
@@ -555,7 +555,7 @@
 				<div class="col-md-4">
 					<article class="post-item card border-0 shadow-sm p-3">
 						<div class="image-holder zoom-effect">
-							<a> <img src="./resources/upload/<%=diary.getImg_name() %>" alt="이미지 준비중"
+							<a href="goSellerDiary?cust_id=<%=diary.getCust_id() %>"> <img src="./resources/upload/<%=diary.getImg_name() %>" alt="이미지 준비중"
 								class="card-img-top" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
 							</a>
 						</div>

@@ -77,7 +77,7 @@ public class MemberController {
 	public String goMain() {
 		return "redirect:/";
 	}
-	
+	// 메인 화면
 	@GetMapping("/")
 	public String main(Model model) {
 			List<Product> products = ProductMapper.selectProducts();
@@ -172,13 +172,7 @@ public class MemberController {
 		return "redirect:/goMain";
 	}
 
-	// 회원정보 보는 페이지로 이동 + DB에 있는 회원 조회 /showMember
-	@RequestMapping("/goShowMember")
-	public String showMember(Model model) {
-		List<Member> list = memberMapper.showMember();
-		model.addAttribute("list", list);
-		return "ShowMember";
-	}
+	
 
 	
 	
@@ -206,22 +200,23 @@ public class MemberController {
 	    memberMapper.sellerUpdate(member);
 	    return "sellerRegiSuccess";
 	}
-	
+	// 로그인 화면으로 이동
 	@RequestMapping("/goLogin")
 	public String goLogin() {
 		return "login_01";
 	}
-	
+	// 회원가입 화면으로 이동
 	@RequestMapping("/goJoin")
 	public String goJoin() {
 		return "join_02";
 	}
-	
+	// 판매자 등록으로 이동
 	@RequestMapping("/goSeller")
 	public String goSeller() {
 		
 		return "sellerRegist";
 	}
+	// 상품 찜 하기
 	@PostMapping("/searchLike")
 	@ResponseBody
 	public ResponseEntity<String> addToWishlist(

@@ -66,7 +66,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ProdController {
 	@Autowired
 	private ProductMapper ProductMapper;
-	
+		// 상품 검색페이지로 이동 , 상품 시세 api 연동 
 	   @RequestMapping("/gosearch")
 	   public String gosearch(Model model, @RequestParam("searchInput") String searchInput,HttpSession session) throws IOException, ParseException{
 	      // if 문으로 검색 결과 없을때 창 만들어야함;
@@ -146,7 +146,7 @@ public class ProdController {
 
 
 
-	              // itemName에 "당근"이 포함되어 있으면 출력 및 모델에 추가
+	              // itemName에 /앞부분 글자까지만
 	              int index = itemName.indexOf('/');
 	              if (index != -1) {
 	                  itemName = itemName.substring(0, index);
@@ -176,7 +176,7 @@ public class ProdController {
 	      }
 	      
 	   }
-
+	// 상품 등록
 	@RequestMapping("/prodRegist")
 	public String prodRegist(Product product, HttpSession session, HttpServletRequest request) {
 
@@ -219,7 +219,7 @@ public class ProdController {
 	    // member에 cust_id값 넣어서 tb_prod 테이블에 데이터 추가
 	    product.setCust_id(cust_id);
 
-	    System.out.println("값1 확인~~~~~ : " + product.toString()); // 값 확인
+	    System.out.println("값1 확인: " + product.toString()); // 값 확인
 	    ProductMapper.prodRegist(product);
 	    
 	    // 방금 insert 한 상품의 prod_idx 가져오기
@@ -239,26 +239,21 @@ public class ProdController {
 	    
 	    // 이미지 정보를 DB에 저장
 	    
-	    System.out.println("값2 확인~~~~~ : " + product.toString()); // 값 확인
+	    System.out.println("값2 확인 : " + product.toString()); // 값 확인
 	    ProductMapper.insertImage(product);
 
 	    return "Main";
 	}
 	
 	
-	
+	// 상품 등록 페이지로 이동
 	@RequestMapping("/goSell")
 	public String goSell() {
 		
 		return "prodRegist";
 	}
 	
-	@RequestMapping("/uploadFile")
-	public String uploadFile(Product product) {
-		
-		
-		return "Main";
-	}
+
 	
 	
 	// 장바구니에 추가
@@ -298,7 +293,7 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 	    return ResponseEntity.ok("Added to myCart");
 	}
 	
-	
+		// 장바구니 페이지로 이동
 		@RequestMapping("/goMyCart")
 		public String goMyCart(Model model, HttpSession session, Cart cart) {
 			
@@ -357,24 +352,25 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 			return "myCart";
 		}
 		
-
+		// 상품 상세 페이지로 이동
 		@RequestMapping("/goprodDetail")
 	       public String goprodDetail(@RequestParam("prod_idx") int prod_idx,
 	                                   HttpSession session,Model model) {
 	          List<Product> prodList = ProductMapper.prodDetail(prod_idx);
 	          model.addAttribute("prodList",prodList);
-	          System.out.println("상품식별자 !@!@#$!@$ !@$2!#:"+ prod_idx);
+	          System.out.println("상품식별자:"+ prod_idx);
 	          List<Product> qnaList = ProductMapper.searchQna(prod_idx);
 	          model.addAttribute("qnaList",qnaList);
-	          System.out.println("qnsandasnfasnf!~~~~~~~~~:" + qnaList);
+	          
 	          
 	          List<Product> reviewList = ProductMapper.searchReview(prod_idx);
 	          model.addAttribute("reviewList",reviewList);
 	          List<Product> list = ProductMapper.sellerDiaryimg(prod_idx);
 	           model.addAttribute("sellerimg",list);
-	           System.out.println("diary 사진들@@@:"+list);
+	           System.out.println("diary 사진들:"+list);
 	          return "prodDetail"; // 적절한 뷰 이름을 반환합니다.
 	       }
+		// 상품 문의 등록
 		@RequestMapping("/submitQna")
 		public String submitQna(@RequestParam("prod_idx") int prod_idx,
                 @RequestParam("question") String question,HttpSession session,Member member) {
@@ -383,7 +379,7 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 			String cust_id = loginMember.getCust_id();
 			Product product = new Product();
 	        product.setProd_idx(prod_idx);
-	        System.out.println("질문 사항!!  :" +prod_idx);
+	        
 	        product.setCust_id(cust_id);
 	        product.setQuestion(question);
 	        
@@ -405,7 +401,7 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 
 		    return ResponseEntity.ok("Delete to myCart");
 		}
-
+		// 상품 리뷰 등록
 		@RequestMapping(value = "/submitReview", method = RequestMethod.POST)
 		public String submitReview(@ModelAttribute Product product, @RequestParam("image_name") MultipartFile image_name,@RequestParam int prod_idx,
 				HttpServletRequest request,HttpSession session) {
@@ -436,7 +432,7 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 
 		}
 		
-		
+		// 상품 검색어가 없을때 검색어없음 페이지로 이동
 		@RequestMapping("/searchno")
 	       public String searchno(@RequestParam("value") String value,
 	                                   HttpSession session,Model model) {
@@ -447,7 +443,7 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 			 System.out.println(List.toString());
 	          return "prodView"; // 적절한 뷰 이름을 반환합니다.
 	       }
-		
+		// 전체 상품 페이지로 이동
 		@RequestMapping("/searchAll")
 	       public String searchAll(HttpSession session,Model model) {
 	         List<Product> List = ProductMapper.searchAll();
@@ -455,7 +451,7 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 			 System.out.println(List.toString());
 	          return "prodView"; // 적절한 뷰 이름을 반환합니다.
 	       }
-		
+		// 영농일기 등록
 		@RequestMapping("/diaryRegist")
 		public String diaryRegist(Product product, HttpSession session, HttpServletRequest request) {
 
@@ -531,7 +527,7 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 		
 		
 	
-
+		// 
 		@PostMapping("/updateTotalAmount")
 		public void updateTotalAmount(@RequestBody String totalAmount) {
 		    // 여기에서 totalAmount 값을 사용하거나 저장할 수 있습니다.
@@ -539,7 +535,7 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 		}
 		
 		
-		
+		// 상품 구매하기 
 		@RequestMapping("/goPay")
 		public String goPay(Product product,Member member, HttpSession session,@RequestParam int prod_idx ,@RequestParam int prod_price ) {
 			 Member loginMember = (Member)session.getAttribute("loginMember");
@@ -569,7 +565,7 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 				return "diary";
 			}
 		}
-		
+	// 장바구니 상품 구매	
 	@RequestMapping("/myCartGoPay")
 	public String myCartGoPay(/* @RequestParam int totalAmount */) {
 		/* System.out.println(totalAmount); */
@@ -578,7 +574,7 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 	}
 	
 	
-	
+	// 상품 등록 페이지로 이동
 	@RequestMapping("/goprodRegist")
 	public String goprodRegist() {
 		

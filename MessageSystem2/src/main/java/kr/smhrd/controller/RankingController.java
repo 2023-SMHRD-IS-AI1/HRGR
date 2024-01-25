@@ -14,9 +14,9 @@ public class RankingController {
 
     @Autowired
     private RankingMapper rankingMapper;
-
+    
     @RequestMapping("/getData")
-    public String getData(Model model) {
+    public void getData(Model model) {
         List<RankingData> dataList = rankingMapper.selectranking();
 
         // 데이터를 캡슐화하여 모델에 추가
@@ -26,7 +26,7 @@ public class RankingController {
 //        System.out.println(dataList.toString());
         
         // 결과를 표시할 뷰 페이지 반환
-        return "Main";
+        
     }
 }
 

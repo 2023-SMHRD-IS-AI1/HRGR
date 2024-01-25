@@ -27,8 +27,7 @@ public interface MemberMapper { // 틀, SqlSessionFactoryBean이 MemberMapper를
 
 	public void memberMapper(String email);
 
-	@Select("select * from tb_cust where cust_phone=#{cust_phone} and cust_email=#{cust_email}")
-	public Member loginCheck(Member member);
+	
 
 	public Member memberlogin(Member member);
 

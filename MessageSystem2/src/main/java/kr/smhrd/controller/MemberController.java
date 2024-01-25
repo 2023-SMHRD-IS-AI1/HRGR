@@ -103,7 +103,7 @@ public class MemberController {
 	@RequestMapping("/memberInsert")
 	public String memberInsert(Member member, Model model) {
 		// DB에 회원정보 삽입하기
-		System.out.println(member.toString());
+		
 		
 		memberMapper.memberInsert(member); // 인터페이스는 추상메소드만 존재
 		model.addAttribute("email", member.getCust_email());
@@ -124,7 +124,7 @@ public class MemberController {
 	            System.out.println("로그인 성공");
 	            session.setAttribute("loginMember", loginMember);
 
-	            System.out.println("세션값 tostring : "+loginMember.toString());
+	            
 
 	            return "redirect:/";
 	        } else {
@@ -248,7 +248,7 @@ public class MemberController {
 	    return ResponseEntity.ok("Added to wishlist");
 	}
 	
-	
+	// 마이페이로 이동, 판매자는 판매자 마이페이지로 이동
 	@RequestMapping("/gomyPage")
 	public String gomyPage(Member member, HttpSession session,Model model) {
 		MultipartRequest multi = null;
@@ -288,7 +288,7 @@ public class MemberController {
 		  return "myPage";
 		
 	}
-	
+	// 찜목록 보기
 	@RequestMapping("/searchLikeList")
 	@ResponseBody
 	public boolean deleteLikeItem(
@@ -312,7 +312,7 @@ public class MemberController {
 	    return true;
 	}
 	
-	
+	// 마이페이지 상품 리뷰 삭제
 	@RequestMapping("/reviewDelete")
 	@ResponseBody
 	public boolean reviewDelete(@RequestParam int prod_idx,Member member, HttpSession session) {
@@ -327,7 +327,7 @@ public class MemberController {
 		memberMapper.reviewDelete(member);
 		return true;
 	}
-	
+	// 마이페이지 상품 문의 삭제
 	@RequestMapping("/qnaDelete")
 	@ResponseBody
 	public boolean qnaDelete(@RequestParam int prod_idx,Member member, HttpSession session) {
@@ -344,7 +344,7 @@ public class MemberController {
 	}
 	
 	
-	
+	// 판매자 마이페이지 상품문의 답변
 	@RequestMapping("/updateAnswer")
 	@ResponseBody
 	public boolean updateAnswer(@RequestParam String answer, @RequestParam int prod_idx,@RequestParam int qna_idx,Member member, HttpSession session) {
@@ -363,12 +363,12 @@ public class MemberController {
 		memberMapper.updateAnswer(member);
 		return true;
 	}
-	
+	// 영농일지 페이지 이동
 	@RequestMapping("/godiary")
 	public String godiary(Model model,HttpSession session) {
 		List<Member> diaryList =memberMapper.diaryList();
 		model.addAttribute("diaryList",diaryList);
-		System.out.println(model);
+		
 		return "diary";
 	}
 	
@@ -377,19 +377,19 @@ public class MemberController {
 	public String goDiaryRegist(Model model,HttpSession session) {
 		List<Member> diaryList =memberMapper.diaryList();
 		model.addAttribute("diaryList",diaryList);
-		System.out.println(model);
+		
 		return "diaryRegist";
 	}
-
+	// 지정 판매자 영농일지 페이지로 이동
 	@RequestMapping("/goSellerDiary")
 	public String goSellerDiary(@RequestParam String cust_id, Model model,HttpSession session) {
 		List<Member> diaryList = memberMapper.mydiaryList(cust_id);
 		model.addAttribute("diaryList",diaryList);
-		System.out.println("판매자 농장일기!@!#!# :  "+diaryList);
+		
 		return "diary";
 	}
 	
-	
+	// 상품문의 페이지로 이동
 	@RequestMapping("/goQna")
 	public String goQna(@RequestParam int prod_idx, Model model,HttpSession session) {
 		
@@ -400,7 +400,7 @@ public class MemberController {
 	}
 
 	
-	
+	// 리뷰 페이지로 이동
 	@RequestMapping("/goreview")
 	public String goreview(@RequestParam int prod_idx, Model model,HttpSession session) {
 		

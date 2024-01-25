@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 public class PaymentController {
-	
+	// 결제 api 
 	@ResponseBody
     @RequestMapping("/payByImport")
     public void payByImport()

@@ -49,40 +49,31 @@
 ![image](https://github.com/2023-SMHRD-IS-AI1/HRGR/assets/53556125/190f5726-dade-4902-b3eb-e5d74a5f349b)
 
 
-- **URL 정규식 체크** :pushpin: [코드 확인](https://github.com/JungHyung2/gitio.io/blob/95b4c4f06a2a5a74a00f81a3c3fcc003c994725f/index.html#L15C8-L15C26)
-  - Vue.js로 렌더링된 화면단에서, 사용자가 등록을 시도한 URL의 모양새를 정규식으로 확인합니다.
-  - URL의 모양새가 아닌 경우, 에러 메세지를 띄웁니다.
+- **Url 생성 후 연결** 
+  - apiUrl 에 URL을 문자열 형태로 정의 후 api키값과 아이디값,데이터 형식을 요청합니다.
+  - URL를 생성한 뒤 HttpURLConnection을 열어 연결을 설정하고 GET방식으로 요청합니다.
 
-- **Axios 비동기 요청** :pushpin: [코드 확인]()
-  - URL의 모양새인 경우, 컨텐츠를 등록하는 POST 요청을 비동기로 날립니다.
+- **응답 데이터 변환**
+  -  HTTP 연결 객체로부터 입력 스트림을 얻어오고 감싼 데이터를 BufferedReader를 사용하여 한 줄씩 읽어들이고, 데이터가 null이 아닐 때까지 계속 반복합니다.
+  - 응답 데이터인 response를 JSONobject로 파싱합니다. 그 후 JSONArray로 캐스팅한 후 priceArray 변수에 저장합니다.
 
 ### 4.3. Controller
 ![image](https://github.com/2023-SMHRD-IS-AI1/HRGR/assets/53556125/3c4bb9fd-fd91-4063-ac16-41b4c7c144cd)
 
-- **요청 처리** :pushpin: [코드 확인](https://github.com/2023-SMHRD-KDT-IOT-4/Repo/blob/94e1b3a93c48cc3fdb51d4468de151930705faa6/Middle_project12/src/main/webapp/WEB-INF/views/BoardContent.jsp#L20)
-  - Controller에서는 요청을 화면단에서 넘어온 요청을 받고, Service 계층에 로직 처리를 위임합니다.
+- **ForEach문을 이용하여 Object형식으로 변환** 
+  - priceArray를 ForEach문을 사용하여 Object로 변환하여 반복 합니다.
 
-- **결과 응답** :pushpin: [코드 확인]()
-  - Service 계층에서 넘어온 로직 처리 결과(메세지)를 화면단에 응답해줍니다.
+- **문자열로 형 변환** 
+  - 각 api에 해당하는 값들을 String으로 변환합니다
 
 ### 4.4. Service
 ![image](https://github.com/2023-SMHRD-IS-AI1/HRGR/assets/53556125/d2055b30-89b5-411c-8d38-1cad3339deb5)
 
-- **Http 프로토콜 추가 및 trim()** :pushpin: [코드 확인]()
-  - 사용자가 URL 입력 시 Http 프로토콜을 생략하거나 공백을 넣은 경우,  
-  올바른 URL이 될 수 있도록 Http 프로토콜을 추가해주고, 공백을 제거해줍니다.
+- **데이터 전처리** 
+  - String으로 변환한 데이터를 사용하기 위해 / 앞의 문자만 추출합니다.
 
-- **URL 접속 확인** :pushpin: [코드 확인]()
-  - 화면단에서 모양새만 확인한 URL이 실제 리소스로 연결되는지 HttpUrlConnection으로 테스트합니다.
-  - 이 때, 빠른 응답을 위해 Request Method를 GET이 아닌 HEAD를 사용했습니다.
-  - (HEAD 메소드는 GET 메소드의 응답 결과의 Body는 가져오지 않고, Header만 확인하기 때문에 GET 메소드에 비해 응답속도가 빠릅니다.)
-
-  ![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow_service2.png)
-
-- **Jsoup 이미지, 제목 파싱** :pushpin: [코드 확인]()
-  - URL 접속 확인결과 유효하면 Jsoup을 사용해서 입력된 URL의 이미지와 제목을 파싱합니다.
-  - 이미지는 Open Graphic Tag를 우선적으로 파싱하고, 없을 경우 첫 번째 이미지와 제목을 파싱합니다.
-  - 컨텐츠에 이미지가 없을 경우, 미리 설정해둔 기본 이미지를 사용하고, 제목이 없을 경우 생략합니다.
+- **필요한 데이터를 추출 후 model에 값 추가**
+  - 필요한 데이터들의 값을 확인한 후 model에 데이터들을 저장합니다. 
 
 
 </div>

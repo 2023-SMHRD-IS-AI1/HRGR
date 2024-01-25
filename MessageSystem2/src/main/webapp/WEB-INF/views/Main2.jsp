@@ -863,8 +863,7 @@
 			
 		      var quantityElement = document.getElementsByName(name)[0];
 		      var quantityValue = quantityElement.value;
-		      var quantityInput = document.getElementById(name);
-              var quantity = parseInt(quantityInput.value);
+		      
 		           var prodInfo = {
 		                 prod_idx: prod_idx,
 		                 cart_count: parseInt(quantityValue, 10),
@@ -881,7 +880,7 @@
 		                     success: function(response) {
 		                         console.log('Server response:',response);
 		                         // 왜 안됨?
-		                         alert(quantity + "개의 상품이 장바구니에 추가되었습니다.");
+		                         alert(parseInt(quantityValue, 10) + "개의 상품이 장바구니에 추가되었습니다.");
 		                         /* location.reload(); */
 		                         // TODO: 서버 응답에 따른 동작 수행
 		                     },

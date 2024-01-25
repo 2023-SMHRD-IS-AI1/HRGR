@@ -67,59 +67,60 @@ public class ProdController {
 	@Autowired
 	private ProductMapper ProductMapper;
 	
-	@RequestMapping("/gosearch")
-	public String gosearch(Model model, @RequestParam("searchInput") String searchInput,HttpSession session) throws IOException, ParseException{
-		// if 문으로 검색 결과 없을때 창 만들어야함;
-		int cnt = ProductMapper.nosearch(searchInput);
-		
-		if(cnt > 0) {
-		List<Product> prodlist = ProductMapper.searchTopList(searchInput);
-		List<Product> prodNewlist = ProductMapper.searchNewList(searchInput);
-		Member member = (Member)session.getAttribute("loginMember");
-		System.out.println(searchInput);
-		System.out.println(prodlist);
-		model.addAttribute("Product", prodlist);
-		model.addAttribute("ProductNew", prodNewlist);
-		System.out.println(model.toString());
-		String name =ProductMapper.searchName(searchInput);
-		System.out.println(name);
-		try {
-		    String apiUrl = "http://www.kamis.co.kr/service/price/xml.do?action=dailySalesList";
+	   @RequestMapping("/gosearch")
+	   public String gosearch(Model model, @RequestParam("searchInput") String searchInput,HttpSession session) throws IOException, ParseException{
+	      // if 문으로 검색 결과 없을때 창 만들어야함;
+	      int cnt = ProductMapper.nosearch(searchInput);
+	      
+	      if(cnt > 0) {
+	      List<Product> prodlist = ProductMapper.searchTopList(searchInput);
+	      List<Product> prodNewlist = ProductMapper.searchNewList(searchInput);
+	      Member member = (Member)session.getAttribute("loginMember");
+	      System.out.println(searchInput);
+	      System.out.println(prodlist);
+	      model.addAttribute("Product", prodlist);
+	      model.addAttribute("ProductNew", prodNewlist);
+	      System.out.println(model.toString());
+	      String name =ProductMapper.searchName(searchInput);
+	      System.out.println(name);
+	      try {
+	          String apiUrl = "http://www.kamis.co.kr/service/price/xml.do?action=dailySalesList";
 
-		    // URL에 추가할 매개변수
-		    String certKey = "c31815c7-3cd7-49eb-ab85-83f0139faeab"; // OPEN-API 신청내용의 API-KEY 값 작성
-		    String certId = "sdee153"; // OPEN-API 신청내용의 아이디 작성
-		    String returnType = "json"; // json:Json 데이터 형식, xml:XML데이터형식 중 원하는 데이터 형식 작성
+	          // URL에 추가할 매개변수
+	          String certKey = "c31815c7-3cd7-49eb-ab85-83f0139faeab"; // OPEN-API 신청내용의 API-KEY 값 작성
+	          String certId = "sdee153"; // OPEN-API 신청내용의 아이디 작성
+	          String returnType = "json"; // json:Json 데이터 형식, xml:XML데이터형식 중 원하는 데이터 형식 작성
 
-		    // URL 생성
-		    StringBuilder urlBuilder = new StringBuilder(apiUrl);
-		    urlBuilder.append("&" + URLEncoder.encode("p_cert_key", "UTF-8") + "=" + certKey);
-		    urlBuilder.append("&" + URLEncoder.encode("p_cert_id", "UTF-8") + "=" + URLEncoder.encode(certId, "UTF-8"));
-		    urlBuilder.append("&" + URLEncoder.encode("p_returntype", "UTF-8") + "=" + URLEncoder.encode(returnType, "UTF-8"));
+	          // URL 생성
+	          StringBuilder urlBuilder = new StringBuilder(apiUrl);
+	          urlBuilder.append("&" + URLEncoder.encode("p_cert_key", "UTF-8") + "=" + certKey);
+	          urlBuilder.append("&" + URLEncoder.encode("p_cert_id", "UTF-8") + "=" + URLEncoder.encode(certId, "UTF-8"));
+	          urlBuilder.append("&" + URLEncoder.encode("p_returntype", "UTF-8") + "=" + URLEncoder.encode(returnType, "UTF-8"));
 
-		    // URL 연결 설정
-		    URL url = new URL(urlBuilder.toString());
-		    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		    conn.setRequestMethod("GET");
+	          // URL 연결 설정
+	          URL url = new URL(urlBuilder.toString());
+	          HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+	          conn.setRequestMethod("GET");
 
-		    // 응답 코드 확인
-		    int responseCode = conn.getResponseCode();
-		    System.out.println("Response Code: " + responseCode);
+	          // 응답 코드 확인
+	          int responseCode = conn.getResponseCode();
+	          System.out.println("Response Code: " + responseCode);
 
-		    // 응답 내용 읽기
-		    BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-		    String inputLine;
-		    StringBuilder response = new StringBuilder();
+	          // 응답 내용 읽기
+	          BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+	          String inputLine;
+	          StringBuilder response = new StringBuilder();
 
-		    while ((inputLine = in.readLine()) != null) {
-		        response.append(inputLine);
-		    }
-		    in.close();
+	          while ((inputLine = in.readLine()) != null) {
+	              response.append(inputLine);
+	          }
+	          in.close();
 
-		    // 응답 내용 출력
-		    JSONParser parser = new JSONParser();
-		    JSONObject obj = (JSONObject) parser.parse(response.toString());
-		    JSONArray priceArray = (JSONArray) obj.get("price");
+	          // 응답 내용 출력
+	          JSONParser parser = new JSONParser();
+	          JSONObject obj = (JSONObject) parser.parse(response.toString());
+	          JSONArray priceArray = (JSONArray) obj.get("price");
+
 
 		    // "price" 배열에서 각 객체의 "item_name", "dpr1", "dpr2" 값을 추출하여 출력
 		    for (Object priceObj : priceArray) {
@@ -141,36 +142,40 @@ public class ProdController {
 		        Object product_cls_nameObject = priceObject.get("product_cls_name");
 		        String product_cls_name = (unitObject instanceof String) ? (String) product_cls_nameObject : String.valueOf(unitObject);
 
-		        // itemName에 "당근"이 포함되어 있으면 출력 및 모델에 추가
-		        int index = itemName.indexOf('/');
-		        if (index != -1) {
-		            itemName = itemName.substring(0, index);
-		            if (name.contains(itemName)&&product_cls_name.equals("소매")) {
-		                System.out.println("Item Name: " + itemName);
-		                System.out.println("dpr1 value: " + dpr1Value);
-		                System.out.println("dpr2 value: " + dpr2Value);
-		                System.out.println();
 
-		                // model에 값 추가
-		                model.addAttribute("today", dpr1Value);
-		                model.addAttribute("yesterday", dpr2Value);
-		                model.addAttribute("name", itemName);
-		                model.addAttribute("unit", unitValue);
-		                model.addAttribute("product_cls_name", product_cls_name);
-		            }
-		        }
-		    }
-		
 
-		} catch (Exception e) {
-		    e.printStackTrace();
-		}
-			return "searchResult" ;
-		}else {
-			return "noSearchResult";
-		}
-		
-	}
+
+
+	              // itemName에 "당근"이 포함되어 있으면 출력 및 모델에 추가
+	              int index = itemName.indexOf('/');
+	              if (index != -1) {
+	                  itemName = itemName.substring(0, index);
+	                  if (name.contains(itemName)&&product_cls_name.equals("소매")) {
+	                      System.out.println("Item Name: " + itemName);
+	                      System.out.println("dpr1 value: " + dpr1Value);
+	                      System.out.println("dpr2 value: " + dpr2Value);
+	                      System.out.println();
+
+	                      // model에 값 추가
+	                      model.addAttribute("today", dpr1Value);
+	                      model.addAttribute("yesterday", dpr2Value);
+	                      model.addAttribute("name", itemName);
+	                      model.addAttribute("unit", unitValue);
+	                      model.addAttribute("product_cls_name", product_cls_name);
+	                  }
+	              }
+	          }
+	      
+
+	      } catch (Exception e) {
+	          e.printStackTrace();
+	      }
+	         return "searchResult" ;
+	      }else {
+	         return "noSearchResult";
+	      }
+	      
+	   }
 
 	@RequestMapping("/prodRegist")
 	public String prodRegist(Product product, HttpSession session, HttpServletRequest request) {

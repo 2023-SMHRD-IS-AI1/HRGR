@@ -16,7 +16,7 @@ create table member(
 insert into member(email, pw, tel, address)
 values('admin@smhrd.com', '1234', '010-0000-0000', '서구 금호동');
 
-select * from tb_cust;
+select * from tb_qna;
        
 SELECT * FROM tb_cust
 WHERE cust_phone = '456';

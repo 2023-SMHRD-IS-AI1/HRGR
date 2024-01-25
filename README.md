@@ -1,6 +1,5 @@
 # :pushpin: 하루그린
->고퀄리티 개발 컨텐츠 공유 서비스  
-> 데모사이트 링크
+> 간편한 UI/UX를 이용한 농수산물 전자상거래 C2C 서비스
 
 </br>
 
@@ -28,21 +27,22 @@
 </br>
 
 ## 3. ERD 설계
-![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/final_erd.png)
-![](https://github.com/JungHyung2/gitio.io/blob/master/assets/images/portfolio/p1.jpg)
+![ERD_최종](https://github.com/2023-SMHRD-IS-AI1/HRGR/assets/53556125/8d5b2450-15c1-470b-92c2-90b83be5a6ed)
+
 
 
 ## 4. 핵심 기능
-이 서비스의 핵심 기능은 컨텐츠 등록 기능입니다.  
-사용자는 단지 컨텐츠의 카테고리를 선택하고, URL만 입력하면 끝입니다.  
-이 단순한 기능의 흐름을 보면, 서비스가 어떻게 동작하는지 알 수 있습니다.  
+이 서비스의 핵심 기능은 농산물 유통정보를 다루고 있는 KAMIS에서 API를 이용하여 매일 시세를 업데이트 하는 기능입니다.
+사용자는 구매하고싶은 상품과 시세를 비교하여 합리적 소비를 할 수 있도록 구현했습니다.
+
 
 <details>
 <summary><b>핵심 기능 설명 펼치기</b></summary>
 <div markdown="1">
 
 ### 4.1. 전체 흐름
-![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow1.png)
+![image](https://github.com/2023-SMHRD-IS-AI1/HRGR/assets/53556125/326cfa85-c173-4f63-9709-bd6ac4102380)
+
 
 ### 4.2. 사용자 요청
 ![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow_vue.png)
@@ -390,6 +390,7 @@ public Page<Post> findAllByTagName(String tagName, Pageable pageable) {
 
 ## 6. 회고 / 느낀점
 >프로젝트 개발 회고 글: https://zuminternet.github.io/ZUM-Pilot-integer/
+>
 >
 ## github 규칙
 1.매일 아침 9시(주말포함) pull 받고 개발 들어가기<br>

@@ -388,7 +388,6 @@
 										<c:if test="${loopStatus.index < 10}">
 											<div class="col">
 												<div class="product-item" style="box-shadow : 0px 5px 22px rgba(0, 0, 0, 0.2)">
-													<span class="badge bg-success position-absolute m-3">-30%</span>
 														<input type="hidden" id="i">${loopStatus.index+1}</input>
 
 
@@ -421,12 +420,11 @@
 														</a>
 													</figure>
 													<h3>${product.prod_name}</h3>
+
 													
-													<span class="qty">${product.prod_stock }개 남음</span><span
-														class="rating"><svg width="24" height="24"
-															class="text-primary">
-															<use xlink:href="#star-solid"></use></svg>
-														${product.avg_ratings }</span> <span class="price"><fmt:formatNumber value="${product.prod_price}" type="price" pattern="#,###"/>원</span>
+													<span class="qty">${product.prod_stock }개 남음</span><br>
+													<span class="rating"><i class="fa fa-star" aria-hidden="true" style="color:rgb(255, 217, 0)"></i>${product.avg_ratings }</span> <span class="price"><fmt:formatNumber value="${product.prod_price}" type="price" pattern="#,###"/>원</span>
+
 													<div
 														class="d-flex align-items-center justify-content-between">
 														<div class="input-group product-qty">
@@ -492,7 +490,6 @@
 										<c:if test="${loopStatus.index < 10}">
 											<div class="col">
 												<div class="product-item" style="box-shadow : 0px 5px 22px rgba(0, 0, 0, 0.2)">
-													<span class="badge bg-success position-absolute m-3">-30%</span>
 													<input type="hidden" id="i">${loopStatus.index+1}</input>
 
 
@@ -527,11 +524,10 @@
 													</figure>
 													<h3>${ProductNew.prod_name}</h3>
 													
-													<span class="qty">${ProductNew.prod_stock }개 남음</span><span
-														class="rating"><svg width="24" height="24"
-															class="text-primary">
-															<use xlink:href="#star-solid"></use></svg>
-														${ProductNew.avg_ratings }</span> <span class="price"><fmt:formatNumber value="${ProductNew.prod_price}" type="price" pattern="#,###"/>원</span>
+													<span class="qty">${ProductNew.prod_stock }개 남음</span><br>
+													<span class="rating"><i class="fa fa-star" aria-hidden="true" style="color:rgb(255, 217, 0)"></i>${ProductNew.avg_ratings }</span>
+																									
+														 <span class="price"><fmt:formatNumber value="${ProductNew.prod_price}" type="price" pattern="#,###"/>원</span>
 													<div
 														class="d-flex align-items-center justify-content-between">
 														<div class="input-group product-qty">

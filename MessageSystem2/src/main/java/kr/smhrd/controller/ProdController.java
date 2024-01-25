@@ -51,7 +51,7 @@ import com.mysql.cj.Session;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import kr.smhrd.entity.Board;
+
 import kr.smhrd.entity.Cart;
 import kr.smhrd.entity.Member;
 import kr.smhrd.entity.ProdDto;
@@ -121,25 +121,30 @@ public class ProdController {
 	          JSONObject obj = (JSONObject) parser.parse(response.toString());
 	          JSONArray priceArray = (JSONArray) obj.get("price");
 
-	          // "price" 배열에서 각 객체의 "item_name", "dpr1", "dpr2" 값을 추출하여 출력
-	          for (Object priceObj : priceArray) {
-	              JSONObject priceObject = (JSONObject) priceObj;
-	              String itemName = (String) priceObject.get("item_name");
 
-	              // "dpr1" 값 확인 및 처리
-	              Object dpr1Object = priceObject.get("dpr1");
-	              String dpr1Value = (dpr1Object instanceof String) ? (String) dpr1Object : String.valueOf(dpr1Object);
+		    // "price" 배열에서 각 객체의 "item_name", "dpr1", "dpr2" 값을 추출하여 출력
+		    for (Object priceObj : priceArray) {
+		        JSONObject priceObject = (JSONObject) priceObj;
+		        String itemName = (String) priceObject.get("item_name");
 
-	              // "dpr2" 값 확인 및 처리
-	              Object dpr2Object = priceObject.get("dpr2");
-	              String dpr2Value = (dpr2Object instanceof String) ? (String) dpr2Object : String.valueOf(dpr2Object);
+		        // "dpr1" 값 확인 및 처리
+		        Object dpr1Object = priceObject.get("dpr1");
+		        String dpr1Value = (dpr1Object instanceof String) ? (String) dpr1Object : String.valueOf(dpr1Object);
 
-	              // "unit" 값 확인 및 처리
-	              Object unitObject = priceObject.get("unit");
-	              String unitValue = (unitObject instanceof String) ? (String) unitObject : String.valueOf(unitObject);
-	              
-	              Object product_cls_nameObject = priceObject.get("product_cls_name");
-	              String product_cls_name = (unitObject instanceof String) ? (String) product_cls_nameObject : String.valueOf(unitObject);
+		        // "dpr2" 값 확인 및 처리
+		        Object dpr2Object = priceObject.get("dpr2");
+		        String dpr2Value = (dpr2Object instanceof String) ? (String) dpr2Object : String.valueOf(dpr2Object);
+
+		        // "unit" 값 확인 및 처리
+		        Object unitObject = priceObject.get("unit");
+		        String unitValue = (unitObject instanceof String) ? (String) unitObject : String.valueOf(unitObject);
+		        
+		        Object product_cls_nameObject = priceObject.get("product_cls_name");
+		        String product_cls_name = (unitObject instanceof String) ? (String) product_cls_nameObject : String.valueOf(unitObject);
+
+
+
+
 
 	              // itemName에 "당근"이 포함되어 있으면 출력 및 모델에 추가
 	              int index = itemName.indexOf('/');
@@ -570,6 +575,14 @@ Cart cart, HttpSession session, @RequestBody ProdDto dto) {
 		/* System.out.println(totalAmount); */
 
 		return "checkout";
+	}
+	
+	
+	
+	@RequestMapping("/goprodRegist")
+	public String goprodRegist() {
+		
+		return "prodRegist";
 	}
 
 }

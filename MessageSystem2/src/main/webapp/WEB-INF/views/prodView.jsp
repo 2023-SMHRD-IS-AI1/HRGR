@@ -269,8 +269,8 @@
 				    <div class="img-wrapper">
 				      <a href="goprodDetail?prod_idx=${List.prod_idx}" style="text-decoration: none; color: black;"><img src="./resources/upload/${List.img_name }" alt="" style="width: 200px; height: 200px;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
 				      <div>${List.prod_name }</div></a>
-				      <span class="rating"><svg width="24" height="24" class="text-primary"><use xlink:href="#star-solid"></use></svg>${List.avg_ratings }</span>
-				      <span class="price">${List.prod_price }</span>
+				      <span class="rating"><i class="fa fa-star" aria-hidden="true" style="color:rgb(255, 217, 0)"></i>${List.avg_ratings }</span>
+				      <span class="price">${List.prod_price }원</span>
 				    </div>
 				  </div>
 				  <!-- 반복끝 -->

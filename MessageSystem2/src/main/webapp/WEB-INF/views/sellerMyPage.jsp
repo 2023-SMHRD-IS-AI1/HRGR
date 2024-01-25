@@ -627,7 +627,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
     <div class="edit_content">
       <div style="display: flex; justify-content: space-between;">
       <h2 style="font-weight: bold;">판매목록 모아보기</h2>
-      <a href="#"><button type="button" class="btn btn-lg btn-success">상품등록하기</button></a>
+      <a href="goprodRegist"><button type="button" class="btn btn-lg btn-success">상품등록하기</button></a>
     </div>
       <hr>
       <!-- 한줄시작 -->
@@ -643,7 +643,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
 </a>
   </div>
 <div style="overflow: hidden;">${sellList.prod_name }</div>
-  <span class="rating"><svg width="24" height="24" class="text-primary"><use xlink:href="#star-solid"></use></svg>${sellList.prod_ratings }</span>
+  <span class="rating"><i class="fa fa-star" aria-hidden="true" style="color:rgb(255, 217, 0)"></i>${sellList.prod_ratings }</span>
   <span class="price">${sellList.prod_price }원</span>
 </div>
 

@@ -389,7 +389,7 @@
         <div class="form-group">
           <label for="textareaDescription">상품설명</label>
           <textarea
-            name="prod_desc"
+            name="prod_desc" 
             placeholder="상품에 대한 설명을 자유롭게 적어주세요"
           ></textarea>
         </div>

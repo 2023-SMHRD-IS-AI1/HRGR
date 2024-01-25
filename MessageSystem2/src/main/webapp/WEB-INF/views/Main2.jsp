@@ -478,7 +478,6 @@
 				%>
 							
 							<div class="product-item swiper-slide">
-								<span class="badge bg-success position-absolute m-3">-15%</span>
 								<a href="#" class="btn-wishlist"><svg width="24" height="24">
 										<use xlink:href="#heart"></use></svg></a>
 								<figure>
@@ -487,7 +486,10 @@
 									</a>
 								</figure>
 								<h3><%=Buy.getProd_name() %></h3>
-								<span class="rating"><i class="fa fa-star" aria-hidden="true" style="color:rgb(255, 217, 0)"></i><%=Buy.getProd_ratings() %></span> <span class="price"><%= Buy.getProd_price() %>원</span>
+
+
+								<span class="rating"><i class="fa fa-star" aria-hidden="true" style="color:rgb(255, 217, 0)"></i><%=Buy.getProd_ratings() %></span> <span class="price"><%=Buy.getProd_price() %>원</span>
+
 								<div class="d-flex align-items-center justify-content-between">
 									<div class="input-group product-qty">
 										<span class="input-group-btn">

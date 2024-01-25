@@ -30,6 +30,8 @@
    href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
    rel="stylesheet">
 <link rel="stylesheet" href="./resources/assets/css/font-awesome.min.css">
+
+ <script src="/jquery-3.7.1.min.js"></script>
     <style>
     .heart-icon {
       cursor: pointer;
@@ -264,12 +266,15 @@
                     <h3>${diaryList.seller_company_name }</h3>
                     <h5>${diaryList.diary_content }</h5>
                   </div>
-                  <div class="col-2" align="right"><a href="#"><i class="heart-icon fa fa-heart-o" aria-hidden="true" onclick="toggleHeart(this)"></i></a><span style="color: black; font-size:30px" id="like"> ${diaryList.diary_likes }</span></div>
-                </div>
+                  <div class="col-2" align="right">
+    <a href="#"><i class="heart-icon fa fa-heart-o" aria-hidden="true" onclick="toggleHeart(this)" id="plus"></i></a>
+    <span style="color: black; font-size:30px" id="like">${diaryList.diary_likes}</span>
+</div>
               </div>
             </c:if>
           </c:forEach> 
             <script>
+
         function toggleHeart(element) {
           // 현재 클래스에 따라서 토글
           if (element.classList.contains('fa-heart-o')) {
@@ -285,6 +290,7 @@
           
           event.preventDefault();
         }
+
       </script>
           
           

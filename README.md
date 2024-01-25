@@ -41,11 +41,13 @@
 <div markdown="1">
 
 ### 4.1. 전체 흐름
-![image](https://github.com/2023-SMHRD-IS-AI1/HRGR/assets/53556125/326cfa85-c173-4f63-9709-bd6ac4102380)
+![image](https://github.com/2023-SMHRD-IS-AI1/HRGR/assets/53556125/3c0a8814-f4b3-47a7-929a-ccc8992293b6)
+
 
 
 ### 4.2. 사용자 요청
-![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow_vue.png)
+![image](https://github.com/2023-SMHRD-IS-AI1/HRGR/assets/53556125/190f5726-dade-4902-b3eb-e5d74a5f349b)
+
 
 - **URL 정규식 체크** :pushpin: [코드 확인](https://github.com/JungHyung2/gitio.io/blob/95b4c4f06a2a5a74a00f81a3c3fcc003c994725f/index.html#L15C8-L15C26)
   - Vue.js로 렌더링된 화면단에서, 사용자가 등록을 시도한 URL의 모양새를 정규식으로 확인합니다.
@@ -55,8 +57,7 @@
   - URL의 모양새인 경우, 컨텐츠를 등록하는 POST 요청을 비동기로 날립니다.
 
 ### 4.3. Controller
-
-![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow_controller.png)
+![image](https://github.com/2023-SMHRD-IS-AI1/HRGR/assets/53556125/3c4bb9fd-fd91-4063-ac16-41b4c7c144cd)
 
 - **요청 처리** :pushpin: [코드 확인](https://github.com/2023-SMHRD-KDT-IOT-4/Repo/blob/94e1b3a93c48cc3fdb51d4468de151930705faa6/Middle_project12/src/main/webapp/WEB-INF/views/BoardContent.jsp#L20)
   - Controller에서는 요청을 화면단에서 넘어온 요청을 받고, Service 계층에 로직 처리를 위임합니다.
@@ -65,8 +66,7 @@
   - Service 계층에서 넘어온 로직 처리 결과(메세지)를 화면단에 응답해줍니다.
 
 ### 4.4. Service
-
-![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow_service1.png)
+![image](https://github.com/2023-SMHRD-IS-AI1/HRGR/assets/53556125/d2055b30-89b5-411c-8d38-1cad3339deb5)
 
 - **Http 프로토콜 추가 및 trim()** :pushpin: [코드 확인]()
   - 사용자가 URL 입력 시 Http 프로토콜을 생략하거나 공백을 넣은 경우,  
@@ -84,14 +84,6 @@
   - 이미지는 Open Graphic Tag를 우선적으로 파싱하고, 없을 경우 첫 번째 이미지와 제목을 파싱합니다.
   - 컨텐츠에 이미지가 없을 경우, 미리 설정해둔 기본 이미지를 사용하고, 제목이 없을 경우 생략합니다.
 
-
-### 4.5. Repository
-
-![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow_repo.png)
-
-- **컨텐츠 저장** :pushpin: [코드 확인]()
-  - URL 유효성 체크와 이미지, 제목 파싱이 끝난 컨텐츠는 DB에 저장합니다.
-  - 저장된 컨텐츠는 다시 Repository - Service - Controller를 거쳐 화면단에 송출됩니다.
 
 </div>
 </details>

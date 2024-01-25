@@ -51,7 +51,7 @@ import com.mysql.cj.Session;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import kr.smhrd.entity.Board;
+
 import kr.smhrd.entity.Cart;
 import kr.smhrd.entity.Member;
 import kr.smhrd.entity.ProdDto;

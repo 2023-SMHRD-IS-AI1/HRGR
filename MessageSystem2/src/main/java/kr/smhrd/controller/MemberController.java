@@ -39,14 +39,14 @@ import org.springframework.web.client.RestTemplate;
 import com.google.protobuf.TextFormat.ParseException;
 import com.oreilly.servlet.MultipartRequest;
 
-import kr.smhrd.entity.Board;
+
 import kr.smhrd.entity.Member;
-import kr.smhrd.entity.Message;
+
 import kr.smhrd.entity.Product;
 import kr.smhrd.entity.RankingData;
-import kr.smhrd.mapper.BoardMapper;
+
 import kr.smhrd.mapper.MemberMapper;
-import kr.smhrd.mapper.MessageMapper;
+
 import kr.smhrd.mapper.ProductMapper;
 import kr.smhrd.mapper.RankingMapper;
 
@@ -59,8 +59,8 @@ public class MemberController {
 	// 주입받아서 씀
 	@Autowired // 스프링 컨테이너에 객체가 생성되어 올라간 boardMapper 객체를 주입받아 사용하겠다
 	private MemberMapper memberMapper; // DAO같은 역할인데 DAO는 커넥션 관리까지 다했다면
-	@Autowired
-	private MessageMapper messageMapper;
+	
+	
 	private Member member;
 	private HttpServletRequest request;
 	@Autowired
@@ -140,16 +140,6 @@ public class MemberController {
 	    }
 	}
 	
-	// 로그인 /memberSelect
-	@PostMapping("/memberSelect1")
-	public String memberSelect1(Member member, HttpSession session) { // email, pw
-		Member loginMember = memberMapper.memberSelect(member);
-		List<Message> msgList = messageMapper.messageList(member.getCust_email());
-		System.out.println("memCon" + msgList.size());
-		session.setAttribute("loginMember", loginMember);
-		session.setAttribute("msgList", msgList);
-		return "Main2";
-	}
 
 	// 로그아웃 /logoutMember
 	@RequestMapping("/goLogout")
@@ -161,11 +151,7 @@ public class MemberController {
 	
 	
 
-	// 회원수정 페이지로 이동 /goUpdatePage
-	@RequestMapping("/goUpdatePage")
-	public String goUpdatePage() {
-		return "UpdateMember";
-	}
+	
 
 	// 회원 수정 기능 /updateMember
 	@RequestMapping("/updateMember")
@@ -194,12 +180,11 @@ public class MemberController {
 		return "ShowMember";
 	}
 
-	// 회원삭제 /deleteMember
-	@RequestMapping("/deleteMember") // deleteMember?email=~~~
-	public String deleteMember(@RequestParam("email") String email) {
-		memberMapper.memberMapper(email);
-		return "redirect:/goShowMember";
-	}
+	
+	
+	
+	
+	
 //  판매자 등록
 	@RequestMapping("/insertSeller")
 	public String insertSeller(Member member, HttpSession session) {

@@ -30,7 +30,7 @@
 <body>
 <%
 	Member Memberlogin = (Member) session.getAttribute("loginMember");
-	%>
+%>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <defs>
       <symbol xmlns="http://www.w3.org/2000/svg" id="link" viewBox="0 0 24 24">
@@ -144,7 +144,7 @@
                   </svg>
                   </a> <%
  } else {
- %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
+ %>
                      <a href="gomyPage" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
                            width="24" height="24" viewBox="0 0 24 24">
                     <use xlink:href="#user"></use>
@@ -227,8 +227,6 @@
         </div>
       </div>
     </header>
-      <!-- 여기에 본문 내용 채우면 됩니다~ -->
-      <!-- 여기에 본문 내용 채우면 됩니다~ -->
       <div class="container">
         <!-- Heading -->
         <h1>회원가입</h1>

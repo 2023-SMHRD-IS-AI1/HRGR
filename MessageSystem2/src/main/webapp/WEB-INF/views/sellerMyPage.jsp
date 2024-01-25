@@ -38,7 +38,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
    
 
          
-  %>
+ %>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <defs>
           <symbol xmlns="http://www.w3.org/2000/svg" id="link" viewBox="0 0 24 24">
@@ -152,7 +152,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
                   </svg>
                   </a> <%
  } else {
- %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
+ %>
                      <a href="gomyPage" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
                            width="24" height="24" viewBox="0 0 24 24">
                     <use xlink:href="#user"></use>
@@ -297,7 +297,6 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
   </c:if>
 </c:forEach>
 
-    <!-- 모달 내용을 원하는 대로 추가하세요 -->
       
         
 
@@ -599,11 +598,6 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
                 <div class="col-10"><input type="date" class="form-control" style="width: 250px;" name="cust_birthdate"></div>
               </div>
               <hr style="margin: 0px; color: rgb(188, 188, 188);">
-              <!-- <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-                <div class="col-2 border-end" align="right">성별</div>
-                <div class="col-10"><input type="text" value="남" class="form-control-plaintext" style="width: 250px;" readonly></div>
-              </div>
-              <hr style="margin: 0px; color: rgb(188, 188, 188);"> -->
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-2 border-end" align="right">주소</div>
                 <div class="col-10">
@@ -669,7 +663,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
                       <c:if test="${i.index < 10}">
           <div class="shadow" style="margin-bottom: 20px;">
             <div class="diary_img" style="padding: 30px;">
-              <img src="./resources/upload/${diaryList.diary_img_name }" alt="이미지에용" style="margin: 0px; max-width:100%; width:100%;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
+              <img src="./resources/upload/${diaryList.diary_img_name }" alt="이미지" style="margin: 0px; max-width:100%; width:100%;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
             </div>
             <div class="diary_farmer row" style="padding: 0px 30px 30px 30px; margin: 0px;">
               <div class="col-10">
@@ -696,7 +690,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
               <div class="col-5">답변</div>
             </div>
             <hr>
-          <!-- 상품한줄 시작 for돌리는곳 -->
+          <!-- 상품한줄 시작 -->
           <c:forEach var="qnaList" items="${qnaList }" varStatus="i">
                       <c:if test="${i.index < 10}"> 
             <div class="row">
@@ -884,8 +878,7 @@ List<Member> qnaList = (List<Member>)request.getAttribute("qnaList1");
             url: 'qnaDelete',
             data: { prod_idx: prod_idx }, // 'prod_idx'를 데이터로 전송
             success: function (data) {
-                // 삭제에 성공하면 페이지 리로드 또는 화면에서 삭제된 항목 제거 등을 수행
-                location.reload(); // 예시로 페이지를 리로드하는 방법
+                location.reload();
             },
             error: function (error) {
                 console.error('후기 삭제 실패', error);

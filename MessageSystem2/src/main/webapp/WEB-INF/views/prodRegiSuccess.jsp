@@ -122,9 +122,6 @@
 						<%
 						} else {
 						%> <a href=goLogout>로그아웃</a>
-						<!-- Q7. 개인정보수정 기능 만들기 -->
-						<!-- Q8. 로그아웃 기능 만들기 -->
-						<!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
 							<% if (Memberlogin.getCust_role().equals("U")) {%>
 									<a href="goSeller">판매자 등록</a>
 							<%}else {%>	
@@ -145,7 +142,7 @@
 						</svg>
 						</a> <%
  } else {
- %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
+ %>
 							<a href="gomyPage" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
 									width="24" height="24" viewBox="0 0 24 24">
   						<use xlink:href="#user"></use>
@@ -162,7 +159,7 @@
 						</svg>
 						</a> <%
  } else {
- %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
+ %>
 							<a href="goLike" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
 									width="24" height="24" viewBox="0 0 24 24">
   						<use xlink:href="#cart"></use>

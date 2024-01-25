@@ -49,7 +49,7 @@
 
 <%
 	Member Memberlogin = (Member) session.getAttribute("loginMember");
-	%>
+%>
 
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <defs>
@@ -164,7 +164,7 @@
                   </svg>
                   </a> <%
  } else {
- %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
+ %>
                      <a href="gomyPage" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
                            width="24" height="24" viewBox="0 0 24 24">
                     <use xlink:href="#user"></use>
@@ -452,7 +452,7 @@
 		        merchant_uid : "20231101ABDE", // 주문 번호
 		        name : "하루그린", // 상품 이름
 		        amount: 3000, // 결제 가격
-		        buyer_name : "홍길동", // 구매자 이름 (buyer_ 부분은 꼭 작성하지 않아도된다. (선택사항))
+		        buyer_name : "홍길동", // 구매자 이름
 		        buyer_tel : "010-5555-1111", // 구매자 연락처
 		        buyer_postcode : 52030, // 구매자 우편번호
 		        buyer_addr : "경기도 판교" // 구매자 주소
@@ -462,11 +462,6 @@
 		                method: "post",
 		                url: "http://localhost:8081/controller/payByImport"
 		            })
-		        	// 응답 데이터의 정보들
-		            console.log("Payment success!");
-		            console.log("Payment ID : " + res.imp_uid);
-		            console.log("Order ID : " + res.merchant_uid);
-		            console.log("Payment Amount : " + res.paid_amount);
 		        } else {
 		            console.error(response.error_msg);
 		        }

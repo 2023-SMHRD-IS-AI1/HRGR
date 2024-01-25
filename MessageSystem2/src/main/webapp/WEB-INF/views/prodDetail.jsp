@@ -157,7 +157,7 @@
                   </svg>
                   </a> <%
  } else {
- %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
+ %>
                      <a href="gomyPage" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
                            width="24" height="24" viewBox="0 0 24 24">
                     <use xlink:href="#user"></use>
@@ -244,14 +244,12 @@
 <!-- 헤더 끝 -->
       <div class="prodDetail_parent" >
         <div class="prodDetail ">
-          <!--  브레드크럼?? 해보면 어떨까?? -->
           <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="#" style="text-decoration: none; color: green; font-weight: bold;">전체목록</a></li>
               <li class="breadcrumb-item active" aria-current="page">농산물</li>
             </ol>
           </nav>
-          <!-- 브레드크럼 성공함 -->
               <div class="prodDetail_content"> 
                 <!-- 메뉴바 위 박스 -->
                
@@ -342,7 +340,7 @@
   <div class="row d-flex justify-content-between">
     <div class="col-3 review-img-wrapper">
       
-     <img src="./resources/upload/${reviewList.prod_img_name }" alt="리뷰사진인데용" style="max-width: 100%;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
+     <img src="./resources/upload/${reviewList.prod_img_name }" alt="리뷰사진" style="max-width: 100%;" onerror="this.onerror=null;this.src='./resources/images/imgonerror.jpg';">
                 
     </div>
     <div class="col-9 d-flex flex-column justify-content-between">
@@ -363,7 +361,7 @@
 
     </div>
     </div>
-    <!-- 후기페이지끝~ -->
+    <!-- 후기페이지끝 -->
 </div>
         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
           <!-- 문의페이지시작 -->
@@ -411,10 +409,7 @@
 
             </div>
             <!-- 문의 하나 끝 -->
-            
-            <!-- 문의 하나 끝 -->
           </div>
-            <!-- 문의페이지끝~ -->
           </div>
   </div>
   <!--메뉴바로변경되는영역 끝 -->
@@ -617,8 +612,6 @@
 	    		        contentType: 'application/json',
 	    		        success: function(response) {
 	    		            console.log('Server response:',response);
-	    		            /* location.reload(); */
-	    		            // TODO: 서버 응답에 따른 동작 수행
 	    		            alert('장바구니 담기 성공')
 	    		        },
 	    		        error: function(error) {

@@ -145,7 +145,7 @@
                   </svg>
                   </a> <%
  } else {
- %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
+ %>
                      <a href="gomyPage" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
                            width="24" height="24" viewBox="0 0 24 24">
                     <use xlink:href="#user"></use>
@@ -243,7 +243,7 @@
                 <!-- 선택 삭제 버튼 -->
 <button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteCartItem('<c:out value="${cart.prod_idx}" />')">선택 삭제</button>
               </div>
-              <!-- 상품ㄱㄱ -->
+              <!-- 상품 시작 -->
 <c:forEach var="cart" items="${Cart}" varStatus="loop">
     <div class="prodLike_pordLine border-bottom border-success" data-prod-idx="<c:out value="${cart.prod_idx}" />">
         <div class="row">
@@ -268,7 +268,7 @@
                 <hr style="margin: 0;">
                 <div style="display: flex; justify-content: start; font-size: 20px;">
                     <c:out value="${cart.prod_price}" /> 원 
-                    <!-- data-prod-price 및 data-cart-index 속성 추가 -->
+                   
                     <input type="number" value="<c:out value="${cart.cart_count}" />" min="1" 
                            class="form-control cart-count-input" 
                            style="width: 60px; margin-left: 20px;"
@@ -382,7 +382,7 @@
               </footer>
               
               
-	  <!-- <script src="js/jquery-1.11.0.min.js"></script> -->
+
 	  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
@@ -477,7 +477,7 @@ $(document).ready(function() {
 	        // AJAX 요청으로 선택된 항목 삭제
 	        $.ajax({
 	            type: 'POST',
-	            url: '/controller/deleteCart',  // 이 부분을 절대경로로 수정
+	            url: '/controller/deleteCart',
 	            data: JSON.stringify(selectedProdIdxArray),
 	            contentType: 'application/json',
 	            success: function (response) {
@@ -506,7 +506,7 @@ function iamport() {
         merchant_uid : "20231101ABDE", // 주문 번호
         name : "상품1", // 상품 이름
         amount: 3000, // 결제 가격
-        buyer_name : "홍길동", // 구매자 이름 (buyer_ 부분은 꼭 작성하지 않아도된다. (선택사항))
+        buyer_name : "홍길동", // 구매자 이름
         buyer_tel : "010-5555-1111", // 구매자 연락처
         buyer_postcode : 52030, // 구매자 우편번호
         buyer_addr : "경기도 판교" // 구매자 주소
@@ -516,11 +516,6 @@ function iamport() {
                 method: "post",
                 url: "http://localhost:8081/controller/payByImport"
             })
-        	// 응답 데이터의 정보들
-            console.log("Payment success!");
-            console.log("Payment ID : " + res.imp_uid);
-            console.log("Order ID : " + res.merchant_uid);
-            console.log("Payment Amount : " + res.paid_amount);
         } else {
             console.error(response.error_msg);
         }
@@ -528,12 +523,6 @@ function iamport() {
 
   }
   
-</script>
-<script>
-/* 		document.getElementById("userIcon").addEventListener("click",
-				function() {
-					window.location.href = "goLogin";
-				}); */
 </script>
 <script>
 		// 검색창 눌렀을때 페이지 이동

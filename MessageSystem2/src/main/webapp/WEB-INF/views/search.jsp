@@ -11,7 +11,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<!-- Q19. 게시글 세부내용 조회 기능 -->	
 			<div id = "Product">
 				<table id="list">
 					

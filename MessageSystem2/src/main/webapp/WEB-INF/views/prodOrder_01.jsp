@@ -28,10 +28,8 @@
 			buyer_postcode : "123-456",
 		}, function(rsp) {
 			// callback
-			//rsp.imp_uid 값으로 결제 단건조회 API를 호출하여 결제결과를 판단합니다.
 			if (rsp.success) {
-				// 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
-				// jQuery로 HTTP 요청
+				// 결제 성공 시
 				jQuery.ajax({
 					url : "{서버의 결제 정보를 받는 가맹점 endpoint}",
 					method : "POST",

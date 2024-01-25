@@ -177,7 +177,7 @@
                   </svg>
                   </a> <%
  } else {
- %> <!-- Q7. 개인정보수정 기능 만들기 --> <!-- Q8. 로그아웃 기능 만들기 --> <!-- Q9. 관리자 계정(admin)일 때는 회원정보관리 탭 만들기 -->
+ %>
                      <a href="gomyPage" class="rounded-circle bg-light p-2 mx-1" style="color: green;"> <svg
                            width="24" height="24" viewBox="0 0 24 24">
                     <use xlink:href="#user"></use>
@@ -317,7 +317,6 @@
   </c:if>
 </c:forEach>
 
-    <!-- 모달 내용을 원하는 대로 추가하세요 -->
       
         
 
@@ -619,11 +618,6 @@
                 <div class="col-10"><input type="date" class="form-control" style="width: 250px;" name="cust_birthdate"></div>
               </div>
               <hr style="margin: 0px; color: rgb(188, 188, 188);">
-              <!-- <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
-                <div class="col-2 border-end" align="right">성별</div>
-                <div class="col-10"><input type="text" value="남" class="form-control-plaintext" style="width: 250px;" readonly></div>
-              </div>
-              <hr style="margin: 0px; color: rgb(188, 188, 188);"> -->
               <div class="row" style="padding: 10px 20px; display: flex; align-items: center;" >
                 <div class="col-2 border-end" align="right">주소</div>
                 <div class="col-10">

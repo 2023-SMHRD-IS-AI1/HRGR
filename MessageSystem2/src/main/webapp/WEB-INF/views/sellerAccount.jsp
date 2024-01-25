@@ -14,9 +14,9 @@
 	<li><input type="text" placeholder="판매자 이름을 입력해주세요" name="company_name"></li>
 	<li><input type="text" placeholder="사업지 주소를 입력해주세요" name="company_addr"></li>
 	<li><input type="text" placeholder="판매하실 상품의 종류를 입력해주세요" name="business_type"></li>
-	<li><!-- <input type="" value="취소하기" > -->
-		<span>  </span>
-		<input type="submit" value="등록하기">
+	<li>
+	<span>  </span>
+	<input type="submit" value="등록하기">
 	</li>
 	</ul>
 	</form>

@@ -41,7 +41,7 @@
 <div markdown="1">
 
 ### 4.1. 전체 흐름
-![image](https://github.com/2023-SMHRD-IS-AI1/HRGR/assets/53556125/3c0a8814-f4b3-47a7-929a-ccc8992293b6)
+![image](https://github.com/2023-SMHRD-IS-AI1/HRGR/assets/53556125/0ed6949d-a0c9-48d5-9015-75939e85b743)
 
 
 

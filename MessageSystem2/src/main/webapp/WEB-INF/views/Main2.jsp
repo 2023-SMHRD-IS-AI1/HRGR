@@ -404,7 +404,7 @@
 								    <div class="content-wrapper col-md-7" style="background-color: rgba(255, 255, 255, 0.508); box-shadow: 0px 0px 15px 15px  rgba(255, 255, 255, 0.508);" >
 									<div class="categories sale mb-3 pb-3">할인행사!</div>
 									<h3 class="banner-title">신선한 수산물 시세보다 싸게!</h3>
-									<a href="#" class="d-flex align-items-center nav-link">모아보기
+									<a href="searchno?value=수산물" class="d-flex align-items-center nav-link">모아보기
 										<svg width="24" height="24">
 											<use xlink:href="#arrow-right"></use></svg>
 									</a>
@@ -487,7 +487,7 @@
 									</a>
 								</figure>
 								<h3><%=Buy.getProd_name() %></h3>
-								<span class="rating"><i class="fa fa-star" aria-hidden="true" style="color:rgb(255, 217, 0)"></i><%=Buy.getProd_ratings() %></span> <span class="price"><%=Buy.getProd_price() %>원</span>
+								<span class="rating"><i class="fa fa-star" aria-hidden="true" style="color:rgb(255, 217, 0)"></i><%=Buy.getProd_ratings() %></span> <span class="price"><%= Buy.getProd_price() %>원</span>
 								<div class="d-flex align-items-center justify-content-between">
 									<div class="input-group product-qty">
 										<span class="input-group-btn">
@@ -956,8 +956,7 @@
 			
 		      var quantityElement = document.getElementsByName(name)[0];
 		      var quantityValue = quantityElement.value;
-		      var quantityInput = document.getElementById(name);
-              var quantity = parseInt(quantityInput.value);
+		      
 		           var prodInfo = {
 		                 prod_idx: prod_idx,
 		                 cart_count: parseInt(quantityValue, 10),
@@ -974,7 +973,7 @@
 		                     success: function(response) {
 		                         console.log('Server response:',response);
 		                         // 왜 안됨?
-		                         alert(quantity + "개의 상품이 장바구니에 추가되었습니다.");
+		                         alert(parseInt(quantityValue, 10) + "개의 상품이 장바구니에 추가되었습니다.");
 		                         /* location.reload(); */
 		                         // TODO: 서버 응답에 따른 동작 수행
 		                     },

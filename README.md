@@ -14,14 +14,14 @@
   - Java 8
   - Spring Boot 2.3
   - Maven
-  - Spring Data JPA
   - MySQL 8.0.26
   - Python
   - Selenium
   - Tomcat  v8.5
   - Mybatis 3.4.6
 #### `Front-end`
-  - Html/Css
+  - HTML/CSS
+  - Bootstrap
   - Java Spring
 
 </br>
